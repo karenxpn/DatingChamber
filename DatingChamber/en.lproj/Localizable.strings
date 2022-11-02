@@ -16,3 +16,4 @@
 "fillInYourPhoneNumber" = "Fill in Your phone number to pass quick registration.";
 "code" = "Code";
 "codeWasSent" = "4-digit code was sent\nto the number: ";
+"loading" = "Loading...";

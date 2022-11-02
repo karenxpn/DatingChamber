@@ -6,44 +6,42 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
-struct Loading: View {
-    @State private var isRotated: Bool = false
-    
-    var animation: Animation {
-        Animation.linear
-            .repeatForever(autoreverses: false)
-            .speed(0.5)
-    }
-    
+struct Loading<Content>: View where Content: View {
+
+    @Binding var isShowing: Bool
+    var content: () -> Content
+
     var body: some View {
-        Circle()
-            .trim(from: 0, to: 0.8)
-            .stroke(style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round))
-            .fill(AppColors.accentColor)
-            .frame(width: 80, height: 80)
-            .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
-            .animation(animation, value: isRotated)
-            .frame(minWidth: 0,
-                   maxWidth: .infinity,
-                   minHeight: 0,
-                   maxHeight: .infinity,
-                   alignment: .center)
-            .onAppear{
-                DispatchQueue.main.async {
-                    self.isRotated.toggle()
+        GeometryReader { geometry in
+            ZStack(alignment: .center) {
+
+                self.content()
+                    .disabled(self.isShowing)
+                    .blur(radius: self.isShowing ? 3 : 0)
+
+                VStack(spacing: 10) {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                    TextHelper(text: NSLocalizedString("loading", comment: ""))
                 }
-                
-            }.onDisappear{
-                DispatchQueue.main.async {
-                    self.isRotated.toggle()
-                }
+                .frame(width: geometry.size.width / 2.5,
+                       height: geometry.size.height / 5)
+                .background(Color.secondary.colorInvert())
+                .foregroundColor(Color.primary)
+                .cornerRadius(20)
+                .opacity(self.isShowing ? 1 : 0)
+
             }
+        }
     }
 }
 
 struct Loading_Previews: PreviewProvider {
     static var previews: some View {
-        Loading()
+        Loading(isShowing: .constant(true)) {
+            EmptyView()
+        }
     }
 }

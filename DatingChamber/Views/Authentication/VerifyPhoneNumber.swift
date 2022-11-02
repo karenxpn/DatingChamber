@@ -13,7 +13,7 @@ struct VerifyPhoneNumber: View {
     let phone: String
     
     var body: some View {
-        ZStack {
+        Loading(isShowing: $authVM.loading) {
             VStack( alignment: .leading, spacing: 0) {
                 
                 TextHelper(text: NSLocalizedString("code", comment: ""),
@@ -45,10 +45,6 @@ struct VerifyPhoneNumber: View {
                 
                 
             }
-            
-            if authVM.loading {
-                ProgressView()
-            }
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
                 minWidth: 0,
@@ -67,5 +63,6 @@ struct VerifyPhoneNumber: View {
 struct VerifyPhoneNumber_Previews: PreviewProvider {
     static var previews: some View {
         VerifyPhoneNumber(phone: "92837408237")
+            .environmentObject(AuthViewModel())
     }
 }
