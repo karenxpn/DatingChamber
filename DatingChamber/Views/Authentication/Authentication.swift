@@ -13,81 +13,85 @@ struct Authentication: View {
     @State private var animate: Bool = false
     
     var body: some View {
-        
-        VStack( alignment: .leading, spacing: 20) {
-            TextHelper(text: NSLocalizedString("yourPhoneNumber", comment: ""),
-                       fontName: "Inter-SemiBold",
-                       fontSize: 30)
-            
-            TextHelper(text: NSLocalizedString("fillInYourPhoneNumber", comment: ""))
-                .padding(.trailing)
-            
-            
-            HStack {
+        ZStack {
+            VStack( alignment: .leading, spacing: 20) {
+                TextHelper(text: NSLocalizedString("yourPhoneNumber", comment: ""),
+                           fontName: "Inter-SemiBold",
+                           fontSize: 30)
                 
-                Button {
-                    showPicker.toggle()
+                TextHelper(text: NSLocalizedString("fillInYourPhoneNumber", comment: ""))
+                    .padding(.trailing)
+                
+                
+                HStack {
                     
-                } label: {
-                    HStack {
-                        TextHelper(text: "\(authVM.country) +\(authVM.code)",
-                                   fontName: "Inter-SemiBold",
-                                   fontSize: 18)
+                    Button {
+                        showPicker.toggle()
                         
-                        Image("dropdown")
-                        
-                    }.padding(.vertical, 15)
+                    } label: {
+                        HStack {
+                            TextHelper(text: "\(authVM.country) +\(authVM.code)",
+                                       fontName: "Inter-SemiBold",
+                                       fontSize: 18)
+                            
+                            Image("dropdown")
+                            
+                        }.padding(.vertical, 15)
+                            .padding(.horizontal, 10)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+                    }
+                    
+                    TextField("(555) 555-1234", text: $authVM.phoneNumber)
+                        .keyboardType(.phonePad)
+                        .font(.custom("Inter-SemiBold", size: 18))
+                        .padding(.vertical, 15)
                         .padding(.horizontal, 10)
                         .background(.white)
                         .cornerRadius(10)
                         .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
-                }
+                }.padding(.top, 20)
                 
-                TextField("(555) 555-1234", text: $authVM.phoneNumber)
-                    .keyboardType(.phonePad)
-                    .font(.custom("Inter-SemiBold", size: 18))
-                    .padding(.vertical, 15)
-                    .padding(.horizontal, 10)
-                    .background(.white)
-                    .cornerRadius(10)
-                    .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
-            }.padding(.top, 20)
-            
-            TermsOfUse(agreement: $authVM.agreement,
-                       animate: $animate)
-            
-            Spacer()
-            
-            
-            HStack {
+                TermsOfUse(agreement: $authVM.agreement,
+                           animate: $animate)
                 
                 Spacer()
                 
-                ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
-                             label: NSLocalizedString("proceed", comment: "")) {
-                    if authVM.agreement {
-                        authVM.sendVerificationCode()
-                        
-                    } else{
-                        withAnimation(.easeInOut(duration: 0.7)) {
-                            animate.toggle()
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
+                                 label: NSLocalizedString("proceed", comment: "")) {
+                        if authVM.agreement {
+                            authVM.sendVerificationCode()
+                            
+                        } else{
                             withAnimation(.easeInOut(duration: 0.7)) {
                                 animate.toggle()
                             }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                withAnimation(.easeInOut(duration: 0.7)) {
+                                    animate.toggle()
+                                }
+                            }
+                            
                         }
-                        
                     }
-                }
-            }.padding(.bottom, 30)
-                .navigationDestination(isPresented: $authVM.navigate, destination: {
-                    VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)")
-                        .environmentObject(authVM)
-                })
+                }.navigationDestination(isPresented: $authVM.navigate, destination: {
+                        VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)")
+                            .environmentObject(authVM)
+                    })
                 
+                
+            }
             
+            if authVM.loading {
+                ProgressView()
+            }
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
                 minWidth: 0,

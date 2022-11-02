@@ -13,36 +13,42 @@ struct VerifyPhoneNumber: View {
     let phone: String
     
     var body: some View {
-        VStack( alignment: .leading, spacing: 0) {
-            
-            TextHelper(text: NSLocalizedString("code", comment: ""),
-                       fontName: "Inter-SemiBold", fontSize: 30)
-            
-            TextHelper(text: NSLocalizedString("codeWasSent", comment: "") + phone)
-                .padding(.top, 20)
-                .padding(.bottom, 50)
-            
-            
-            OTPTextFieldView { otp in
-                UIApplication.shared.endEditing()
-                authVM.OTP = otp
+        ZStack {
+            VStack( alignment: .leading, spacing: 0) {
+                
+                TextHelper(text: NSLocalizedString("code", comment: ""),
+                           fontName: "Inter-SemiBold", fontSize: 30)
+                
+                TextHelper(text: NSLocalizedString("codeWasSent", comment: "") + phone)
+                    .padding(.top, 20)
+                    .padding(.bottom, 50)
+                
+                
+                OTPTextFieldView { otp in
+                    UIApplication.shared.endEditing()
+                    authVM.OTP = otp
+                }
+                
+                
+                
+                Spacer()
+                
+                
+                ButtonHelper(disabled: authVM.OTP.count != 6,
+                             label: NSLocalizedString("proceed", comment: "")) {
+                    authVM.checkVerificationCode()
+                }.background(
+                    //                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
+                    //                        EmptyView()
+                    //                    }).hidden()
+                )
+                
+                
             }
             
-            
-            
-            Spacer()
-            
-            
-            ButtonHelper(disabled: authVM.OTP.count != 6,
-                         label: NSLocalizedString("proceed", comment: "")) {
-                authVM.checkVerificationCode()
-            }.background(
-//                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
-//                        EmptyView()
-//                    }).hidden()
-                )
-            
-            
+            if authVM.loading {
+                ProgressView()
+            }
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
                 minWidth: 0,

@@ -15,7 +15,9 @@ struct Introduction: View {
                 }
                 .navigationTitle("Introduction")
                 .navigationBarTitleDisplayMode(.inline)
-        }
+        }.gesture(DragGesture().onChanged({ _ in
+            UIApplication.shared.endEditing()
+        }))
     }
 }
 
