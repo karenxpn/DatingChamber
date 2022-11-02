@@ -234,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				FFC634942911983D001711BC /* Authentication */,
-				FFB4D5D829118FB10065955F /* Introduction.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,6 +282,7 @@
 				FFC6349529119853001711BC /* TermsOfUse.swift */,
 				FFC6144E2912A35400CE75E2 /* VerifyPhoneNumber.swift */,
 				FFC614502912A36900CE75E2 /* OTPTextFieldView.swift */,
+				FFB4D5D829118FB10065955F /* Introduction.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";

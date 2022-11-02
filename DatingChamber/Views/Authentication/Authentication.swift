@@ -18,9 +18,12 @@ struct Authentication: View {
                     TextHelper(text: NSLocalizedString("yourPhoneNumber", comment: ""),
                                fontName: "Inter-SemiBold",
                                fontSize: 30)
+                    .fixedSize(horizontal: false, vertical: true)
+
                     
                     TextHelper(text: NSLocalizedString("fillInYourPhoneNumber", comment: ""))
                         .padding(.trailing)
+                        .fixedSize(horizontal: false, vertical: true)
                     
                     
                     HStack {
@@ -64,7 +67,7 @@ struct Authentication: View {
                         Spacer()
                         
                         ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
-                                     label: NSLocalizedString("proceed", comment: "")) {
+                                     label: NSLocalizedString("continue", comment: "")) {
                             if authVM.agreement {
                                 authVM.sendVerificationCode()
                                 
@@ -87,7 +90,8 @@ struct Authentication: View {
                         })
                     
                 }
-        }.navigationBarTitle("", displayMode: .inline)
+        }.navigationBarHidden(true)
+            .navigationBarTitle("")
             .frame(
                 minWidth: 0,
                 maxWidth: .infinity,

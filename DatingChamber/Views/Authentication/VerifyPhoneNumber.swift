@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VerifyPhoneNumber: View {
     @EnvironmentObject var authVM: AuthViewModel
-//    @State var model: RegistrationRequest
+    //    @State var model: RegistrationRequest
     let phone: String
     
     var body: some View {
@@ -17,33 +17,23 @@ struct VerifyPhoneNumber: View {
             VStack( alignment: .leading, spacing: 0) {
                 
                 TextHelper(text: NSLocalizedString("code", comment: ""),
-                           fontName: "Inter-SemiBold", fontSize: 30)
+                           fontName: "Inter-SemiBold", fontSize: 30)                    .fixedSize(horizontal: false, vertical: true)
                 
                 TextHelper(text: NSLocalizedString("codeWasSent", comment: "") + phone)
                     .padding(.top, 20)
                     .padding(.bottom, 50)
-                
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 OTPTextFieldView { otp in
                     UIApplication.shared.endEditing()
                     authVM.OTP = otp
                 }
                 
-                
-                
                 Spacer()
-                
-                
                 ButtonHelper(disabled: authVM.OTP.count != 6,
-                             label: NSLocalizedString("proceed", comment: "")) {
+                             label: NSLocalizedString("continue", comment: "")) {
                     authVM.checkVerificationCode()
-                }.background(
-                    //                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
-                    //                        EmptyView()
-                    //                    }).hidden()
-                )
-                
-                
+                }
             }
         }.navigationBarTitle("", displayMode: .inline)
             .frame(

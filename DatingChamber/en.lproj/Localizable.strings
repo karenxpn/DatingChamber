@@ -11,9 +11,10 @@
 "gotIt" = "Got It!";
 "termsOfUse" = "Terms Of Use";
 "proceed" = "Proceed";
+"continue" = "Continue";
 "countryCode" = "Country Code";
 "yourPhoneNumber" = "Your Phone Number";
 "fillInYourPhoneNumber" = "Fill in Your phone number to pass quick registration.";
 "code" = "Code";
-"codeWasSent" = "4-digit code was sent\nto the number: ";
+"codeWasSent" = "6-digit code was sent\nto the number: ";
 "loading" = "Loading...";
