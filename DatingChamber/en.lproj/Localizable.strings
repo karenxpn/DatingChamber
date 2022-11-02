@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  DatingChamber
+
+  Created by Karen Mirakyan on 01.11.22.
+  
+*/
+
+"cancel" = "Cancel";
+"gotIt" = "Got It!";
+"termsOfUse" = "Terms Of Use";
+"proceed" = "Proceed";
+"countryCode" = "Country Code";
+"yourPhoneNumber" = "Your Phone Number";
+"fillInYourPhoneNumber" = "Fill in Your phone number to pass quick registration.";
