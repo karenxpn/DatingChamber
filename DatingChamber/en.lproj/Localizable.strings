@@ -6,6 +6,7 @@
   
 */
 
+"error" = "Error";
 "cancel" = "Cancel";
 "gotIt" = "Got It!";
 "termsOfUse" = "Terms Of Use";
@@ -13,3 +14,5 @@
 "countryCode" = "Country Code";
 "yourPhoneNumber" = "Your Phone Number";
 "fillInYourPhoneNumber" = "Fill in Your phone number to pass quick registration.";
+"code" = "Code";
+"codeWasSent" = "4-digit code was sent\n to the number: ";

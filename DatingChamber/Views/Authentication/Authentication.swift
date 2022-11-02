@@ -10,7 +10,6 @@ import SwiftUI
 struct Authentication: View {
     @StateObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
-    //    @State private var model = RegistrationRequest()
     @State private var animate: Bool = false
     
     var body: some View {
@@ -67,7 +66,7 @@ struct Authentication: View {
                 ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
                              label: NSLocalizedString("proceed", comment: "")) {
                     if authVM.agreement {
-                        //                        authVM.sendVerificationCode()
+                        authVM.sendVerificationCode()
                         
                     } else{
                         withAnimation(.easeInOut(duration: 0.7)) {
@@ -83,12 +82,11 @@ struct Authentication: View {
                     }
                 }
             }.padding(.bottom, 30)
-                .background(
-                    //                    NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
-                    //                        .environmentObject(authVM), isActive: $authVM.navigate, label: {
-                    //                            EmptyView()
-                    //                        }).hidden()
-                )
+                .navigationDestination(isPresented: $authVM.navigate, destination: {
+                    VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)")
+                        .environmentObject(authVM)
+                })
+                
             
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
