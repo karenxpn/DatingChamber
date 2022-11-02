@@ -41,9 +41,9 @@ struct TermsOfUse: View {
                 .foregroundColor(.blue)
                 .font(.custom("Inter-Regular", size: 12))
             
-            Text( "*Required" )
-                .foregroundColor(.red)
-                .font(.custom("Inter-Regular", size: 10))
+            TextHelper(text: "*Required",
+                       color: .red,
+                       fontSize: 10)
             
         }.scaleEffect(animate ? 1.3 : 1)
     }

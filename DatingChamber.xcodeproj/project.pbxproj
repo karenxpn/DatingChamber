@@ -37,6 +37,8 @@
 		FFC614412911EA9D00CE75E2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FFC614402911EA9D00CE75E2 /* FirebaseStorage */; };
 		FFC614432911EA9D00CE75E2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FFC614422911EA9D00CE75E2 /* FirebaseStorageCombine-Community */; };
 		FFC614492911EB1A00CE75E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = FFC614482911EB1A00CE75E2 /* .gitignore */; };
+		FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6144A29129B4900CE75E2 /* TextHelper.swift */; };
+		FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6144C29129F2400CE75E2 /* AuthService.swift */; };
 		FFC6348F29119803001711BC /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348A29119802001711BC /* Inter-Black.ttf */; };
 		FFC6349029119803001711BC /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348B29119803001711BC /* Inter-Bold.ttf */; };
 		FFC6349129119803001711BC /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348C29119803001711BC /* Inter-Medium.ttf */; };
@@ -85,6 +87,8 @@
 		FFB4D5EB291196860065955F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FFC614292911E8D700CE75E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFC614482911EB1A00CE75E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		FFC6144A29129B4900CE75E2 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
+		FFC6144C29129F2400CE75E2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FFC6348A29119802001711BC /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		FFC6348B29119803001711BC /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FFC6348C29119803001711BC /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 			children = (
 				FFB4D5E0291192EE0065955F /* ButtonHelper.swift */,
 				FFB4D5E2291193010065955F /* AppColors.swift */,
+				FFC6144A29129B4900CE75E2 /* TextHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 		FFB4D5D629118F6C0065955F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FFC6144C29129F2400CE75E2 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -419,7 +425,9 @@
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
+				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
+				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
 				FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,

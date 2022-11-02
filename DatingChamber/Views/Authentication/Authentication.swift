@@ -10,19 +10,17 @@ import SwiftUI
 struct Authentication: View {
     @StateObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
-//    @State private var model = RegistrationRequest()
+    //    @State private var model = RegistrationRequest()
     @State private var animate: Bool = false
     
     var body: some View {
         
         VStack( alignment: .leading, spacing: 20) {
-            Text(NSLocalizedString("yourPhoneNumber", comment: ""))
-                .foregroundColor(.black)
-                .font(.custom("Inter-SemiBold", size: 30))
+            TextHelper(text: NSLocalizedString("yourPhoneNumber", comment: ""),
+                       fontName: "Inter-SemiBold",
+                       fontSize: 30)
             
-            Text(NSLocalizedString("fillInYourPhoneNumber", comment: ""))
-                .foregroundColor(.black)
-                .font(.custom("Inter-Regular", size: 16))
+            TextHelper(text: NSLocalizedString("fillInYourPhoneNumber", comment: ""))
                 .padding(.trailing)
             
             
@@ -33,9 +31,9 @@ struct Authentication: View {
                     
                 } label: {
                     HStack {
-                        Text( "\(authVM.country) +\(authVM.code)" )
-                            .foregroundColor(.black)
-                            .font(.custom("Inter-SemiBold", size: 18))
+                        TextHelper(text: "\(authVM.country) +\(authVM.code)",
+                                   fontName: "Inter-SemiBold",
+                                   fontSize: 18)
                         
                         Image("dropdown")
                         
@@ -69,7 +67,7 @@ struct Authentication: View {
                 ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
                              label: NSLocalizedString("proceed", comment: "")) {
                     if authVM.agreement {
-//                        authVM.sendVerificationCode()
+                        //                        authVM.sendVerificationCode()
                         
                     } else{
                         withAnimation(.easeInOut(duration: 0.7)) {
@@ -86,10 +84,10 @@ struct Authentication: View {
                 }
             }.padding(.bottom, 30)
                 .background(
-//                    NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
-//                        .environmentObject(authVM), isActive: $authVM.navigate, label: {
-//                            EmptyView()
-//                        }).hidden()
+                    //                    NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
+                    //                        .environmentObject(authVM), isActive: $authVM.navigate, label: {
+                    //                            EmptyView()
+                    //                        }).hidden()
                 )
             
         }.navigationBarTitle("", displayMode: .inline)
@@ -101,14 +99,14 @@ struct Authentication: View {
                 alignment: .topLeading
             )
             .padding(30)
-             .sheet(isPresented: $showPicker) {
-                 CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
-             }
-             .alert(isPresented: $authVM.showAlert) {
-                 Alert(title: Text(NSLocalizedString("error", comment: "")),
-                       message: Text(authVM.alertMessage),
-                       dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
-             }
+            .sheet(isPresented: $showPicker) {
+                CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
+            }
+            .alert(isPresented: $authVM.showAlert) {
+                Alert(title: Text(NSLocalizedString("error", comment: "")),
+                      message: Text(authVM.alertMessage),
+                      dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
+            }
     }
 }
 

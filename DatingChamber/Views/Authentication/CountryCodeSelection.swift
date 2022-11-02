@@ -28,17 +28,15 @@ struct CountryCodeSelection: View {
                                 isPresented.toggle()
                             } label: {
                                 HStack {
-                                    Text( countryName(countryCode: key) ?? "Undefined" )
-                                        .font(.custom("Inter-Regular", size: 20))
-                                        .foregroundColor(.black)
+                                    TextHelper(text: countryName(countryCode: key) ?? "Undefined",
+                                               fontSize: 20)
                                     
-                                    Text( Credentials.countryCodeList[key]!)
-                                        .font(.custom("Inter-Regular", size: 20))
-                                            .foregroundColor(.black)
+                                    TextHelper(text: Credentials.countryCodeList[key]!,
+                                               fontSize: 20)
                                     
                                     Spacer()
                                 }.padding(.horizontal)
-                                .padding( .vertical, 8)
+                                    .padding( .vertical, 8)
                             }
                             
                             Divider()
@@ -46,18 +44,18 @@ struct CountryCodeSelection: View {
                     }
                 }.padding( .top, 1 )
             }.navigationBarTitle( Text( NSLocalizedString("countryCode", comment: "") ), displayMode: .inline)
-            .navigationBarItems(trailing: Button {
-                self.isPresented.toggle()
-            } label: {
-                Text( NSLocalizedString("cancel", comment: "") )
-            })
+                .navigationBarItems(trailing: Button {
+                    self.isPresented.toggle()
+                } label: {
+                    Text( NSLocalizedString("cancel", comment: "") )
+                })
         }
     }
     
     func countryName(countryCode: String) -> String? {
-            let current = Locale(identifier: "en_US")
-            return current.localizedString(forRegionCode: countryCode)
-        }
+        let current = Locale(identifier: "en_US")
+        return current.localizedString(forRegionCode: countryCode)
+    }
 }
 
 struct CountryCodeSelection_Previews: PreviewProvider {
