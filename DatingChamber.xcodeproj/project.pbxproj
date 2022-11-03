@@ -46,6 +46,7 @@
 		FFC614602912D52400CE75E2 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = FFC6145F2912D52400CE75E2 /* ActivityIndicatorView */; };
 		FFC614622912D55100CE75E2 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC614612912D55100CE75E2 /* Loading.swift */; };
 		FFC614642912E06100CE75E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFC614632912E06100CE75E2 /* GoogleService-Info.plist */; };
+		FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6146529141AD200CE75E2 /* AppleSignIn.swift */; };
 		FFC6348F29119803001711BC /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348A29119802001711BC /* Inter-Black.ttf */; };
 		FFC6349029119803001711BC /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348B29119803001711BC /* Inter-Bold.ttf */; };
 		FFC6349129119803001711BC /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348C29119803001711BC /* Inter-Medium.ttf */; };
@@ -102,6 +103,7 @@
 		FFC6145A2912B31800CE75E2 /* DatingChamber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DatingChamber.entitlements; sourceTree = "<group>"; };
 		FFC614612912D55100CE75E2 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		FFC614632912E06100CE75E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFC6146529141AD200CE75E2 /* AppleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignIn.swift; sourceTree = "<group>"; };
 		FFC6348A29119802001711BC /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		FFC6348B29119803001711BC /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FFC6348C29119803001711BC /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				FFC6144E2912A35400CE75E2 /* VerifyPhoneNumber.swift */,
 				FFC614502912A36900CE75E2 /* OTPTextFieldView.swift */,
 				FFB4D5D829118FB10065955F /* Introduction.swift */,
+				FFC6146529141AD200CE75E2 /* AppleSignIn.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
@@ -643,7 +647,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,7 +681,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
