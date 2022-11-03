@@ -17,7 +17,7 @@ struct AppleSignIn: View {
         Button {
             authenticate()
         } label: {
-            Image(systemName: "applelogo")
+            Image(systemName: "apple.logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
@@ -30,20 +30,10 @@ struct AppleSignIn: View {
     
     func authenticate() {
         appleService.signIn { result in
-            self.handleAppleServiceSuccess(result)
+            authVM.handleAppleServiceSuccess(result)
         } onFailed: { error in
-            self.handleAppleServiceError(error)
+            authVM.handleAppleServiceError(error)
         }
-    }
-    
-    func handleAppleServiceSuccess(_ result: FirebaseSignInWithAppleResult) {
-        let uid = result.uid
-        let firstName = result.token.appleIDCredential.fullName?.givenName ?? ""
-        let lastName = result.token.appleIDCredential.fullName?.familyName ?? ""
-    }
-    
-    func handleAppleServiceError(_ error: Error) {
-        authVM.makeAlert(with: error, message: &authVM.alertMessage, alert: &authVM.showAlert)
     }
 }
 

@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 import FirebaseAuth
+import FirebaseService
+import Firebase
+import GoogleSignIn
 
 class AuthViewModel: AlertViewModel, ObservableObject {
     
@@ -53,6 +56,62 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             } else {
                 print("signed in")
+            }
+        }
+    }
+    
+    
+    func handleAppleServiceSuccess(_ result: FirebaseSignInWithAppleResult) {
+        let uid = result.uid
+        let firstName = result.token.appleIDCredential.fullName?.givenName ?? ""
+        let lastName = result.token.appleIDCredential.fullName?.familyName ?? ""
+    }
+    
+    func handleAppleServiceError(_ error: Error) {
+        makeAlert(with: error, message: &alertMessage, alert: &showAlert)
+    }
+    
+    func googleSignin(viewController: UIViewController) {
+        print("entered")
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        print("cant find client id")
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        
+        loading = true
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: viewController) { [self] user, error in
+            if let error {
+                self.loading = false
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard
+                let authentication = user?.authentication,
+                let idToken = authentication.idToken
+            else {
+                self.loading = false
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: authentication.accessToken)
+            
+            // Firebase auth
+            Auth.auth().signIn(with: credential) { result, error in
+                self.loading = false
+
+                if let error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                // Displaying user name
+                guard let user = result?.user else {
+                    return
+                }
+                print(user.displayName ?? "Success")
             }
         }
     }

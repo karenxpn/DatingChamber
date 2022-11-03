@@ -59,8 +59,21 @@ struct Authentication: View {
                 TermsOfUse(agreement: $authVM.agreement,
                            animate: $animate)
                 
-                AppleSignIn()
-                    .environmentObject(authVM)
+                
+                HStack {
+                    Spacer()
+                    AppleSignIn()
+                        .environmentObject(authVM)
+                    
+                    Spacer()
+                    
+                    GoogleLogin()
+                        .environmentObject(authVM)
+                    Spacer()
+                }
+
+                
+                
                 
                 Spacer()
                 
