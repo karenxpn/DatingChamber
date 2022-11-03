@@ -72,9 +72,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func googleSignin(viewController: UIViewController) {
-        print("entered")
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        print("cant find client id")
         
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
@@ -83,7 +81,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
         GIDSignIn.sharedInstance.signIn(with: config, presenting: viewController) { [self] user, error in
             if let error {
                 self.loading = false
-                print(error.localizedDescription)
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
                 return
             }
             
@@ -103,7 +101,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 self.loading = false
 
                 if let error {
-                    print(error.localizedDescription)
+                    self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
                     return
                 }
                 

@@ -22,7 +22,9 @@ struct GoogleLogin: View {
                 .foregroundColor(.black)
                 .padding(20)
                 .background(RoundedRectangle(cornerRadius: 15)
-                    .strokeBorder(.gray, lineWidth: 2))
+                    .strokeBorder(.gray, lineWidth: 2)
+                    .shadow(radius: 2, x: 0, y: 2))
+                
         }
         
     }
@@ -31,5 +33,6 @@ struct GoogleLogin: View {
 struct GoogleLogin_Previews: PreviewProvider {
     static var previews: some View {
         GoogleLogin()
+            .environmentObject(AuthViewModel())
     }
 }
