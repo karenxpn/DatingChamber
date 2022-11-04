@@ -26,7 +26,7 @@ struct Authentication: View {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 
-                HStack {
+                HStack(spacing: 0) {
                     
                     Button {
                         showPicker.toggle()
@@ -34,27 +34,25 @@ struct Authentication: View {
                     } label: {
                         HStack {
                             TextHelper(text: "\(authVM.country) +\(authVM.code)",
-                                       fontName: "Inter-SemiBold",
-                                       fontSize: 18)
+                                       fontName: "Inter-SemiBold")
                             
-                            Image("dropdown")
-                            
-                        }.padding(.vertical, 15)
+                        }.frame(height: 56)
                             .padding(.horizontal, 10)
                             .background(.white)
-                            .cornerRadius(10)
-                            .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                            .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 5, y: 5)
                     }
                     
                     TextField("(555) 555-1234", text: $authVM.phoneNumber)
                         .keyboardType(.phonePad)
                         .font(.custom("Inter-SemiBold", size: 18))
-                        .padding(.vertical, 15)
-                        .padding(.horizontal, 10)
+                        .padding(.leading, 5)
+                        .frame(height: 56)
                         .background(.white)
-                        .cornerRadius(10)
-                        .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+                        .cornerRadius(10, corners: [.topRight, .bottomRight])
+                        .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 5, y: 5)
                 }.padding(.top, 20)
+                    
                 
                 TermsOfUse(agreement: $authVM.agreement,
                            animate: $animate)
