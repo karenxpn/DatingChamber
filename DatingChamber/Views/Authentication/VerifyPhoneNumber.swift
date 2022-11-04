@@ -9,7 +9,6 @@ import SwiftUI
 
 struct VerifyPhoneNumber: View {
     @EnvironmentObject var authVM: AuthViewModel
-    //    @State var model: RegistrationRequest
     let phone: String
     
     var body: some View {
@@ -17,7 +16,8 @@ struct VerifyPhoneNumber: View {
             VStack( alignment: .leading, spacing: 0) {
                 
                 TextHelper(text: NSLocalizedString("code", comment: ""),
-                           fontName: "Inter-SemiBold", fontSize: 30)                    .fixedSize(horizontal: false, vertical: true)
+                           fontName: "Inter-SemiBold", fontSize: 30)
+                .fixedSize(horizontal: false, vertical: true)
                 
                 TextHelper(text: NSLocalizedString("codeWasSent", comment: "") + phone)
                     .padding(.top, 20)
@@ -34,7 +34,7 @@ struct VerifyPhoneNumber: View {
                              label: NSLocalizedString("continue", comment: "")) {
                     authVM.checkVerificationCode()
                 }.padding(.horizontal, 7)
-            }
+            }.ignoresSafeArea(.keyboard, edges: .bottom)
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
                 minWidth: 0,

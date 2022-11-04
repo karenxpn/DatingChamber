@@ -96,9 +96,10 @@ struct Authentication: View {
                         .environmentObject(authVM)
                 })
                 
-            }
+            }.ignoresSafeArea(.keyboard, edges: .bottom)
         }.navigationBarHidden(true)
             .navigationBarTitle("")
+            
             .frame(
                 minWidth: 0,
                 maxWidth: .infinity,
