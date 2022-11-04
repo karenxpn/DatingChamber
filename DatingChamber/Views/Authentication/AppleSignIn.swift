@@ -19,8 +19,8 @@ struct AppleSignIn: View {
         } label: {
             Image(systemName: "apple.logo")
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 40, height: 40)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 24, height: 24)
                 .foregroundColor(.black)
                 .padding(20)
                 .background(RoundedRectangle(cornerRadius: 15)
