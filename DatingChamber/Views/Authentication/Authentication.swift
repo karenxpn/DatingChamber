@@ -59,7 +59,6 @@ struct Authentication: View {
                 TermsOfUse(agreement: $authVM.agreement,
                            animate: $animate)
                 
-                
                 HStack {
                     Spacer()
                     AppleSignIn()
@@ -71,17 +70,9 @@ struct Authentication: View {
                         .environmentObject(authVM)
                     Spacer()
                 }
-
-                
-                
                 
                 Spacer()
-                
-                
-                HStack {
-                    
-                    Spacer()
-                    
+                                    
                     ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
                                  label: NSLocalizedString("continue", comment: "")) {
                         if authVM.agreement {
@@ -99,8 +90,8 @@ struct Authentication: View {
                             }
                             
                         }
-                    }
-                }.navigationDestination(isPresented: $authVM.navigate, destination: {
+                    }.padding(.horizontal, 7)
+                    .navigationDestination(isPresented: $authVM.navigate, destination: {
                     VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)")
                         .environmentObject(authVM)
                 })
@@ -115,8 +106,8 @@ struct Authentication: View {
                 maxHeight: .infinity,
                 alignment: .topLeading
             )
-            .padding(30)
-            .sheet(isPresented: $showPicker) {
+            .padding([.horizontal, .top], 30)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.08)            .sheet(isPresented: $showPicker) {
                 CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
             }
             .alert(isPresented: $authVM.showAlert) {

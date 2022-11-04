@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct AppColors {
-    static let accentColor = Color(UIColor(red: 57/255, green: 91/255, blue: 100/255, alpha: 1))
-    static let proceedButtonColor = Color(UIColor(red: 165/255, green: 201/255, blue: 202/255, alpha: 1))
+    static let accent = Color(UIColor(red: 57/255, green: 91/255, blue: 100/255, alpha: 1))
+    static let primary = Color(UIColor(red: 236/255, green: 65/255, blue: 118/255, alpha: 1))
 //    static let addProfileImageBG = Color(UIColor(red: 246/255, green: 241/255, blue: 255/255, alpha: 1))
 //    static let onlineStatus = Color(UIColor(red: 110/255, green: 219/255, blue: 154/255, alpha: 1))
 //    static let filterGray = Color(UIColor(red: 87/255, green: 87/255, blue: 87/255, alpha: 1))

@@ -20,10 +20,11 @@ struct Introduction: View {
 
                 Text("Dating Chamber")
                     .foregroundColor(.white)
-                    .font(.custom("Inter-SemiBold", size: 70))
+                    .font(.custom("Inter-Black", size: 64))
                     .padding(6)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
+                    .padding(.bottom, UIScreen.main.bounds.height * 0.15)
                 
                 VStack {
                     Spacer()
@@ -34,16 +35,17 @@ struct Introduction: View {
                         HStack {
                             Spacer()
                             
-                            TextHelper(text: NSLocalizedString("continue", comment: ""), color: .white, fontName: "Inter-SemiBold", fontSize: 20)
+                            TextHelper(text: NSLocalizedString("continue", comment: ""), color: .white, fontName: "Inter-SemiBold", fontSize: 22)
                                 .padding(.vertical, 15)
                             
                             Spacer()
-                        }.background(AppColors.proceedButtonColor)
+                        }.background(AppColors.primary)
                             .cornerRadius(30)
-                            .padding(.bottom, 30)
+                            .padding(.horizontal, 7)
+                            .padding(.bottom, UIScreen.main.bounds.height * 0.08)
                     }
 
-                }.padding(.horizontal, 30)
+                }.padding(.horizontal, 35)
 
                 
             }.navigationBarHidden(true)

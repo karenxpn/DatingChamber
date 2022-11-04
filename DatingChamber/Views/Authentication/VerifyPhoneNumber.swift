@@ -33,7 +33,7 @@ struct VerifyPhoneNumber: View {
                 ButtonHelper(disabled: authVM.OTP.count != 6,
                              label: NSLocalizedString("continue", comment: "")) {
                     authVM.checkVerificationCode()
-                }
+                }.padding(.horizontal, 7)
             }
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
@@ -43,7 +43,8 @@ struct VerifyPhoneNumber: View {
                 maxHeight: .infinity,
                 alignment: .topLeading
             )
-            .padding(30)
+            .padding([.horizontal, .top], 30)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.08)
             .alert(isPresented: $authVM.showAlert) {
                 Alert(title: Text("Error"), message: Text(authVM.alertMessage), dismissButton: .default(Text("Got it!")))
             }
