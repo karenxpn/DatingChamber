@@ -56,12 +56,12 @@ struct AuthProfileImages: View {
                         TextHelper(text: NSLocalizedString("youWillBeAbleToChangePhoto", comment: ""),
                         fontSize: 12)
                         
-                        
                         Spacer()
                         
                         ButtonHelper(disabled: authVM.images.count < 2,
                                      label: NSLocalizedString("continue", comment: "")) {
                             model.images = authVM.images
+                            model.profileImage = authVM.images[0]
                             authVM.storeUser(model: model)
                         }
                         

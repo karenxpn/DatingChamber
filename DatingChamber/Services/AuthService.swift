@@ -31,14 +31,11 @@ extension AuthService: AuthServiceProtocol {
         
         var uploadedImages = [(Int, String)]()
         for (index, image) in images.enumerated() {
-            // Data in memory
-            let data = Data()
-            
             // Create a reference to the file you want to upload
             let riversRef = storageRef.child("profile/\(UUID().uuidString)")
             
             // Upload the file to the path "profile/\(UUID().uuidString)"
-            let uploadTask = riversRef.putData(image, metadata: nil) { (metadata, error) in
+            riversRef.putData(image, metadata: nil) { (metadata, error) in
                 // You can also access to download URL after upload.
                 riversRef.downloadURL { (url, error) in
                     guard let downloadURL = url else {

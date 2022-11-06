@@ -13,4 +13,5 @@ struct RegistrationModel: Codable {
     var showGender: Bool = true
     var bio: String = ""
     var images: [String] = []
+    var profileImage = ""
 }
