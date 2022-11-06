@@ -298,6 +298,7 @@
 		FFC634942911983D001711BC /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				FFCA5A382918084600C91BEC /* AuthenticatingUserInfo */,
 				FFB4D5E4291193B80065955F /* CountryCodeSelection.swift */,
 				FFB4D5DA29118FBE0065955F /* Authentication.swift */,
 				FFC6349529119853001711BC /* TermsOfUse.swift */,
@@ -306,14 +307,21 @@
 				FFB4D5D829118FB10065955F /* Introduction.swift */,
 				FFC6146529141AD200CE75E2 /* AppleSignIn.swift */,
 				FFC614672914753700CE75E2 /* GoogleLogin.swift */,
-				FFCA5A2A2917D42100C91BEC /* AuthName.swift */,
-				FFCA5A2E2917E56800C91BEC /* AuthProgress.swift */,
-				FFCA5A302917E59900C91BEC /* AuthBirthday.swift */,
-				FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */,
-				FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */,
-				FFCA5A362917F17900C91BEC /* AuthBio.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		FFCA5A382918084600C91BEC /* AuthenticatingUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */,
+				FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */,
+				FFCA5A362917F17900C91BEC /* AuthBio.swift */,
+				FFCA5A302917E59900C91BEC /* AuthBirthday.swift */,
+				FFCA5A2E2917E56800C91BEC /* AuthProgress.swift */,
+				FFCA5A2A2917D42100C91BEC /* AuthName.swift */,
+			);
+			path = AuthenticatingUserInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
