@@ -54,8 +54,10 @@ struct AuthBio: View {
                 ButtonHelper(disabled: bio.isEmpty,
                              label: NSLocalizedString("continue", comment: "")) {
                     model.bio = bio
-//                    navigate.toggle()
-                    authVM.storeUser(model: model)
+                    navigate.toggle()
+//                    authVM.storeUser(model: model)
+                }.navigationDestination(isPresented: $navigate) {
+                    AuthProfileImages(model: $model)
                 }
                 
             }.frame(

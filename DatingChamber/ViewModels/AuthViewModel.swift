@@ -31,6 +31,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     
     @Published var needInformationFill: Bool = false
     
+    @Published var images = [String]()
+    
     var manager: AuthServiceProtocol
     
     init(manager: AuthServiceProtocol = AuthService.shared) {
@@ -145,6 +147,18 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             } else {
                 NotificationCenter.default.post(name: Notification.Name("passedRegistration"), object: nil)
+            }
+        }
+    }
+    
+    func uploadImages(images: [Data]) {
+        loading = true
+        manager.uploadImages(images: images) { error, imgs in
+            self.loading = false
+            if let error {
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            } else {
+                self.images.append(contentsOf: imgs)
             }
         }
     }
