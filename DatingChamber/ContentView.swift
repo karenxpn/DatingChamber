@@ -9,21 +9,50 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
+    @StateObject var authVM = AuthViewModel()
+    
     var body: some View {
-        Button {
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-            } catch let signOutError as NSError {
-                print("Error signing out: %@", signOutError)
+        Loading(isShowing: $authVM.loading) {
+            Group {
+                if authVM.needInformationFill {
+                    AuthName()
+                        .environmentObject(authVM)
+                } else {
+                    Button {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                        } catch let signOutError as NSError {
+                            print("Error signing out: %@", signOutError)
+                        }
+                    } label: {
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                            .foregroundColor(.accentColor)
+                        Text("Log out")
+                    }.frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: 0,
+                        maxHeight: .infinity,
+                        alignment: .topLeading
+                    )
+                }
             }
-        } label: {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Log out")
-        }
-        
+
+        }.onAppear {
+            authVM.checkExistence()
+        }.alert(isPresented: $authVM.showAlert) {
+            Alert(title: Text(NSLocalizedString("error", comment: "")),
+                  message: Text(authVM.alertMessage),
+                  dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
+        }.frame(
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity,
+            alignment: .topLeading
+        )
     }
 }
 

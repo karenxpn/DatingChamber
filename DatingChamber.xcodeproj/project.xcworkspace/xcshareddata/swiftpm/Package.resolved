@@ -51,7 +51,7 @@
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
         "branch" : "master",
-        "revision" : "963db4d07a770002df1f15a60ad0cbb0710101f7"
+        "revision" : "c66588d9487ebb186e36d501f3f441425c74f9dd"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rebeloper/FirebaseService",
       "state" : {
-        "revision" : "992815527f55c900cd3e01863aef832cd9d396b6",
-        "version" : "2.0.14"
+        "revision" : "e6cbea42e9d92edb4c5433b12fd93dfd3d82a081",
+        "version" : "2.0.15"
       }
     },
     {
@@ -113,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "d4289da23e978f37c344ea6a386e5546e2466294",
-        "version" : "2.1.0"
+        "revision" : "b32617f389716af5082df5f6efa89135c87578a8",
+        "version" : "2.2.0"
       }
     },
     {

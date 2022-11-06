@@ -14,6 +14,8 @@ import GoogleSignIn
 
 class AuthViewModel: AlertViewModel, ObservableObject {
     
+    @AppStorage("name") var name: String = ""
+    
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
@@ -26,7 +28,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var navigate: Bool = false
     @Published var agreement: Bool = false
     
-    @Published var shouldLogIn: Bool = false
+    @Published var needInformationFill: Bool = false
     
     var manager: AuthServiceProtocol
     
@@ -62,9 +64,9 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     
     
     func handleAppleServiceSuccess(_ result: FirebaseSignInWithAppleResult) {
-        let uid = result.uid
-        let firstName = result.token.appleIDCredential.fullName?.givenName ?? ""
-        let lastName = result.token.appleIDCredential.fullName?.familyName ?? ""
+        name = (result.token.appleIDCredential.fullName?.givenName ?? "")
+        + (result.token.appleIDCredential.fullName?.familyName ?? "")
+        
     }
     
     func handleAppleServiceError(_ error: Error) {
@@ -99,7 +101,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             // Firebase auth
             Auth.auth().signIn(with: credential) { result, error in
                 self.loading = false
-
+                
                 if let error {
                     self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
                     return
@@ -109,7 +111,43 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 guard let user = result?.user else {
                     return
                 }
+                
+                self.name = user.displayName ?? ""
+                
                 print(user.displayName ?? "Success")
+            }
+        }
+    }
+    
+    func checkExistence() {
+        if let user = Auth.auth().currentUser?.uid {
+            loading = true
+            manager.checkExistence(uid: user) { error, exist in
+                self.loading = false
+                if let error {
+                    self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+                } else if exist {
+                    // go on
+                    self.needInformationFill = false
+
+                } else if !exist {
+                    self.needInformationFill = true
+                    // show fill the form view
+                }
+            }
+        }
+    }
+    
+    func storeUser(model: RegistrationModel) {
+        if let user = Auth.auth().currentUser?.uid {
+            loading = true
+            manager.storeUser(uid: user, user: model) { error in
+                self.loading = false
+                if let error {
+                    self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.checkExistence()
+                }
             }
         }
     }

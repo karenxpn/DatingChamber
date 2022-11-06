@@ -18,13 +18,10 @@ struct Authentication: View {
                 TextHelper(text: NSLocalizedString("yourPhoneNumber", comment: ""),
                            fontName: "Inter-SemiBold",
                            fontSize: 30)
-                .fixedSize(horizontal: false, vertical: true)
                 
                 
                 TextHelper(text: NSLocalizedString("fillInYourPhoneNumber", comment: ""))
-                    .padding(.trailing)
-                    .fixedSize(horizontal: false, vertical: true)
-                
+                    .padding(.trailing)                
                 
                 HStack(spacing: 0) {
                     
@@ -106,7 +103,8 @@ struct Authentication: View {
                 alignment: .topLeading
             )
             .padding([.horizontal, .top], 30)
-            .padding(.bottom, UIScreen.main.bounds.height * 0.08)            .sheet(isPresented: $showPicker) {
+            .padding(.bottom, UIScreen.main.bounds.height * 0.08)
+            .sheet(isPresented: $showPicker) {
                 CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
             }
             .alert(isPresented: $authVM.showAlert) {

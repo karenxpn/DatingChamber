@@ -17,12 +17,10 @@ struct VerifyPhoneNumber: View {
                 
                 TextHelper(text: NSLocalizedString("code", comment: ""),
                            fontName: "Inter-SemiBold", fontSize: 30)
-                .fixedSize(horizontal: false, vertical: true)
                 
                 TextHelper(text: NSLocalizedString("codeWasSent", comment: "") + phone)
                     .padding(.top, 20)
                     .padding(.bottom, 50)
-                    .fixedSize(horizontal: false, vertical: true)
                 
                 OTPTextFieldView { otp in
                     UIApplication.shared.endEditing()

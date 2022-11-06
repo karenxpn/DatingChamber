@@ -55,6 +55,13 @@
 		FFC6349229119803001711BC /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348D29119803001711BC /* Inter-SemiBold.ttf */; };
 		FFC6349329119803001711BC /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFC6348E29119803001711BC /* Inter-Regular.ttf */; };
 		FFC6349629119853001711BC /* TermsOfUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6349529119853001711BC /* TermsOfUse.swift */; };
+		FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A2A2917D42100C91BEC /* AuthName.swift */; };
+		FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A2C2917E31900C91BEC /* RegistrationModel.swift */; };
+		FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A2E2917E56800C91BEC /* AuthProgress.swift */; };
+		FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A302917E59900C91BEC /* AuthBirthday.swift */; };
+		FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */; };
+		FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */; };
+		FFCA5A372917F17900C91BEC /* AuthBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A362917F17900C91BEC /* AuthBio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +120,13 @@
 		FFC6348D29119803001711BC /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		FFC6348E29119803001711BC /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		FFC6349529119853001711BC /* TermsOfUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUse.swift; sourceTree = "<group>"; };
+		FFCA5A2A2917D42100C91BEC /* AuthName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthName.swift; sourceTree = "<group>"; };
+		FFCA5A2C2917E31900C91BEC /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		FFCA5A2E2917E56800C91BEC /* AuthProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProgress.swift; sourceTree = "<group>"; };
+		FFCA5A302917E59900C91BEC /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
+		FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayFields.swift; sourceTree = "<group>"; };
+		FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGenderPicker.swift; sourceTree = "<group>"; };
+		FFCA5A362917F17900C91BEC /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +278,7 @@
 		FFB4D5D729118F740065955F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FFCA5A2C2917E31900C91BEC /* RegistrationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +306,12 @@
 				FFB4D5D829118FB10065955F /* Introduction.swift */,
 				FFC6146529141AD200CE75E2 /* AppleSignIn.swift */,
 				FFC614672914753700CE75E2 /* GoogleLogin.swift */,
+				FFCA5A2A2917D42100C91BEC /* AuthName.swift */,
+				FFCA5A2E2917E56800C91BEC /* AuthProgress.swift */,
+				FFCA5A302917E59900C91BEC /* AuthBirthday.swift */,
+				FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */,
+				FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */,
+				FFCA5A362917F17900C91BEC /* AuthBio.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -457,18 +478,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
+				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
+				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
+				FFCA5A372917F17900C91BEC /* AuthBio.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
+				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
+				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
 				FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */,
+				FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
+				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
 				FFC614532912A3A200CE75E2 /* Extensions.swift in Sources */,

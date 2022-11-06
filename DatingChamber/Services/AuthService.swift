@@ -7,18 +7,59 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 protocol AuthServiceProtocol {
     func sendVerificationCode(phone: String, completion: @escaping (Error?) -> ())
     func checkVerificationCode(code: String, completion: @escaping ( Error? ) -> () )
+    func checkExistence(uid: String, completion: @escaping(Error?, Bool) -> ())
+    func storeUser(uid: String, user: RegistrationModel, completion: @escaping(Error?) -> ())
 }
 
 class AuthService {
     static var shared: AuthServiceProtocol = AuthService()
+    let db = Firestore.firestore()
     private init() { }
 }
 
 extension AuthService: AuthServiceProtocol {
+    
+    func storeUser(uid: String, user: RegistrationModel, completion: @escaping (Error?) -> ()) {
+        do {
+            try db.collection("Users").document(uid).setData(from: user)
+            DispatchQueue.main.async {
+                completion(nil)
+            }
+        } catch let error {
+            print("Error writing city to Firestore: \(error)")
+            DispatchQueue.main.async {
+                completion(error)
+            }
+        }
+    }
+    
+    func checkExistence(uid: String, completion: @escaping (Error?, Bool) -> ()) {
+        let docRef = db.collection("Users").document(uid)
+        docRef.getDocument { doc, error in
+            if let error {
+                DispatchQueue.main.async { completion(error, false) }
+                return
+            }
+            
+            if let doc, doc.exists {
+                print("document exists")
+                print(doc)
+                DispatchQueue.main.async { completion(nil, true) }
+                return
+
+            } else {
+                DispatchQueue.main.async { completion(nil, false) }
+                print("document does not exist")
+                return
+            }
+        }
+    }
+    
     func sendVerificationCode(phone: String, completion: @escaping (Error?) -> ()) {
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phone, uiDelegate: nil) { verificationID, error in
