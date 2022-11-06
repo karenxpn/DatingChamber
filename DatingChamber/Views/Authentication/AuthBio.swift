@@ -11,7 +11,7 @@ import SwiftUI
 import SwiftUI
 
 struct AuthBio: View {
-    @EnvironmentObject var authVM: AuthViewModel
+    @StateObject var authVM = AuthViewModel()
     @Binding var model: RegistrationModel
     @State private var navigate: Bool = false
     
@@ -70,6 +70,7 @@ struct AuthBio: View {
             AuthProgress(page: 3)
         }.navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
+                // can finish the registration
                 navigate.toggle()
             }, label: {
                 TextHelper(text: NSLocalizedString("skip", comment: ""),

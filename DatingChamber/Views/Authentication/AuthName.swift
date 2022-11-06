@@ -10,7 +10,6 @@ import SwiftUI
 import SwiftUI
 
 struct AuthName: View {
-    @EnvironmentObject var authVM: AuthViewModel
     @AppStorage("name") var local_name: String = ""
 
     @State private var model = RegistrationModel()
@@ -49,7 +48,6 @@ struct AuthName: View {
                         navigate.toggle()
                     }.navigationDestination(isPresented: $navigate) {
                         AuthBirthday(model: $model)
-                            .environmentObject(authVM)
                     }
                     
                 }.frame(

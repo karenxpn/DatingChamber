@@ -12,34 +12,26 @@ struct ContentView: View {
     @StateObject var authVM = AuthViewModel()
     
     var body: some View {
-        Loading(isShowing: $authVM.loading) {
-            Group {
-                if authVM.needInformationFill {
-                    AuthName()
-                        .environmentObject(authVM)
-                } else {
-                    Button {
-                        let firebaseAuth = Auth.auth()
-                        do {
-                            try firebaseAuth.signOut()
-                        } catch let signOutError as NSError {
-                            print("Error signing out: %@", signOutError)
-                        }
-                    } label: {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundColor(.accentColor)
-                        Text("Log out")
-                    }.frame(
-                        minWidth: 0,
-                        maxWidth: .infinity,
-                        minHeight: 0,
-                        maxHeight: .infinity,
-                        alignment: .topLeading
-                    )
+        Group {
+            if authVM.loading {
+                ProgressView()
+            } else if authVM.needInformationFill {
+                AuthName()
+            } else {
+                Button {
+                    let firebaseAuth = Auth.auth()
+                    do {
+                        try firebaseAuth.signOut()
+                    } catch let signOutError as NSError {
+                        print("Error signing out: %@", signOutError)
+                    }
+                } label: {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                    Text("Log out")
                 }
             }
-
         }.onAppear {
             authVM.checkExistence()
         }.alert(isPresented: $authVM.showAlert) {
@@ -51,8 +43,10 @@ struct ContentView: View {
             maxWidth: .infinity,
             minHeight: 0,
             maxHeight: .infinity,
-            alignment: .topLeading
-        )
+            alignment: .center
+        ).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "passedRegistration"))) { _ in
+            authVM.checkExistence()
+        }
     }
 }
 

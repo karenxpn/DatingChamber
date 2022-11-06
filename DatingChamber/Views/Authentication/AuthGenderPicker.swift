@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AuthGenderPicker: View {
-    @EnvironmentObject var authVM: AuthViewModel
     @Binding var model: RegistrationModel
     
     let genders = [NSLocalizedString("female", comment: ""),
@@ -77,7 +76,6 @@ struct AuthGenderPicker: View {
                     model.showGender = showGender
                 }.navigationDestination(isPresented: $navigate) {
                     AuthBio(model: $model)
-                        .environmentObject(authVM)
                 }
             }
             .frame(

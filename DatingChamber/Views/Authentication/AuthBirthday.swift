@@ -16,7 +16,6 @@ enum BirthdayForm: Hashable {
 }
 
 struct AuthBirthday: View {
-    @EnvironmentObject var authVM: AuthViewModel
     @Binding var model: RegistrationModel
     
     @StateObject var birthdayFormFields = BirthdayFormFields()
@@ -53,7 +52,6 @@ struct AuthBirthday: View {
                     navigate = true
                 }.navigationDestination(isPresented: $navigate, destination: {
                     AuthGenderPicker(model: $model)
-                        .environmentObject(authVM)
                 })
                 
             }.frame(

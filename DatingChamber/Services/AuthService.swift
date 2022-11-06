@@ -8,10 +8,11 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import SwiftUI
 
 protocol AuthServiceProtocol {
     func sendVerificationCode(phone: String, completion: @escaping (Error?) -> ())
-    func checkVerificationCode(code: String, completion: @escaping ( Error? ) -> () )
+    func checkVerificationCode(code: String, completion: @escaping ( Error?, String? ) -> () )
     func checkExistence(uid: String, completion: @escaping(Error?, Bool) -> ())
     func storeUser(uid: String, user: RegistrationModel, completion: @escaping(Error?) -> ())
 }
@@ -77,12 +78,12 @@ extension AuthService: AuthServiceProtocol {
             }
     }
     
-    func checkVerificationCode(code: String, completion: @escaping (Error?) -> ()) {
+    func checkVerificationCode(code: String, completion: @escaping (Error?, String?) -> ()) {
         let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
         
         if verificationID == nil {
             DispatchQueue.main.async {
-                completion( nil )
+                completion( nil, nil )
             }
             return
         }
@@ -92,13 +93,13 @@ extension AuthService: AuthServiceProtocol {
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error {
                 DispatchQueue.main.async {
-                    completion( error )
+                    completion( error, nil )
                 }
                 return
             }
             
             DispatchQueue.main.async {
-                completion( nil )
+                completion( nil, result!.user.uid )
             }
         }
     }
