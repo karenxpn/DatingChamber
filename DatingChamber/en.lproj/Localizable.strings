@@ -13,8 +13,8 @@
 "proceed" = "Proceed";
 "continue" = "Continue";
 "countryCode" = "Country Code";
-"yourPhoneNumber" = "Your Phone Number";
-"fillInYourPhoneNumber" = "Fill in Your phone number to pass quick registration.";
+"createYourLoveStory" = "Create your real love story with us";
+"continueWithPhoneNumber" = "Continue with phone number";
 "code" = "Code";
 "codeWasSent" = "6-digit code was sent\nto the number: ";
 "loading" = "Loading...";
@@ -37,3 +37,4 @@
 "uploadMinTwoPhotos" = "Upload minimum 2 photos\nthat will be displayed\nin your profile.";
 "youWillBeAbleToChangePhoto" = "You will be able to change photos from profile.";
 "avatar" = "Avatar";
+"alternativeSignIn" = "or sign in with";

@@ -15,13 +15,19 @@ struct Authentication: View {
     var body: some View {
         Loading(isShowing: $authVM.loading) {
             VStack( alignment: .leading, spacing: 20) {
-                TextHelper(text: NSLocalizedString("yourPhoneNumber", comment: ""),
-                           fontName: "Inter-SemiBold",
-                           fontSize: 30)
+                
+                Spacer()
+                TextHelper(text: NSLocalizedString("createYourLoveStory", comment: ""),
+                           fontName: "Inter-Black",
+                           fontSize: 34)
+                
+                Spacer()
                 
                 
-                TextHelper(text: NSLocalizedString("fillInYourPhoneNumber", comment: ""))
-                    .padding(.trailing)                
+                TextHelper(text: NSLocalizedString("continueWithPhoneNumber", comment: ""),
+                           fontName: "Inter-Black",
+                           fontSize: 20)
+                .padding(.top, 16)
                 
                 HStack(spacing: 0) {
                     
@@ -48,53 +54,74 @@ struct Authentication: View {
                         .background(.white)
                         .cornerRadius(10, corners: [.topRight, .bottomRight])
                         .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 5, y: 5)
-                }.padding(.top, 20)
-                    
+                }
+                
                 
                 TermsOfUse(agreement: $authVM.agreement,
                            animate: $animate)
                 
-                HStack {
-                    Spacer()
-                    AppleSignIn()
-                        .environmentObject(authVM)
-                    
-                    Spacer()
-                    
-                    GoogleLogin()
-                        .environmentObject(authVM)
-                    Spacer()
-                }
-                
-                Spacer()
-                                    
-                    ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
-                                 label: NSLocalizedString("continue", comment: "")) {
-                        if authVM.agreement {
-                            authVM.sendVerificationCode()
-                            
-                        } else{
+                ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
+                             label: NSLocalizedString("continue", comment: "")) {
+                    if authVM.agreement {
+                        authVM.sendVerificationCode()
+                        
+                    } else{
+                        withAnimation(.easeInOut(duration: 0.7)) {
+                            animate.toggle()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                             withAnimation(.easeInOut(duration: 0.7)) {
                                 animate.toggle()
                             }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                                withAnimation(.easeInOut(duration: 0.7)) {
-                                    animate.toggle()
-                                }
-                            }
-                            
                         }
-                    }.padding(.horizontal, 7)
+                        
+                    }
+                }.padding(.horizontal, 7)
                     .navigationDestination(isPresented: $authVM.navigate, destination: {
-                    VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)")
-                        .environmentObject(authVM)
-                })
+                        VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)")
+                            .environmentObject(authVM)
+                    })
+                
+                Spacer()
+                
+                VStack(spacing: 16) {
+                    
+                    HStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.white)
+                            .frame(height: 1.2)
+                        
+                        TextHelper(text: NSLocalizedString("alternativeSignIn", comment: ""),
+                                   color: .white,
+                                   fontName: "Inter-Bold",
+                                   fontSize: 12)
+                        .padding(.horizontal, 8)
+                        .lineLimit(1)
+                        
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.white)
+                            .frame(height: 1.2)
+                    }
+                    HStack {
+                        Spacer()
+                        AppleSignIn()
+                            .environmentObject(authVM)
+                        
+                        Spacer()
+                        
+                        GoogleLogin()
+                            .environmentObject(authVM)
+                        Spacer()
+                    }
+                }
+                
+                
                 
             }.ignoresSafeArea(.keyboard, edges: .bottom)
         }.navigationBarHidden(true)
             .navigationBarTitle("")
-            
+        
             .frame(
                 minWidth: 0,
                 maxWidth: .infinity,

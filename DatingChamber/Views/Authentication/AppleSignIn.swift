@@ -22,11 +22,9 @@ struct AppleSignIn: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 24, height: 24)
                 .foregroundColor(.black)
-                .padding(.vertical, 20)
-                .padding(.horizontal, UIScreen.main.bounds.width * 0.15)
-                .background(RoundedRectangle(cornerRadius: 15)
-                    .strokeBorder(.gray, lineWidth: 2)
-                    .shadow(radius: 2, x: 0, y: 2))
+                .frame(width: UIScreen.main.bounds.size.width * 0.3, height: 47)
+                .background(RoundedRectangle(cornerRadius: 12)
+                    .strokeBorder(.gray, lineWidth: 2))
         }
     }
     
