@@ -14,8 +14,8 @@ import SwiftUI
 protocol AuthServiceProtocol {
     func sendVerificationCode(phone: String, completion: @escaping (Error?) -> ())
     func checkVerificationCode(code: String, completion: @escaping ( Error?, String? ) -> () )
-    func checkExistence(uid: String, completion: @escaping(Error?, Bool) -> ())
-    func storeUser(uid: String, user: RegistrationModel, completion: @escaping(Error?) -> ())
+    func checkExistence(uid: String) async -> Result<Bool, Error>
+    func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error>
     func uploadImages(images: [Data], completion: @escaping(Error?, [String]) -> ())
 }
 
@@ -32,15 +32,15 @@ extension AuthService: AuthServiceProtocol {
         var uploadedImages = [(Int, String)]()
         for (index, image) in images.enumerated() {
             // Create a reference to the file you want to upload
-            let riversRef = storageRef.child("profile/\(UUID().uuidString)")
+            let dbRef = storageRef.child("profile/\(UUID().uuidString)")
             
             // Upload the file to the path "profile/\(UUID().uuidString)"
-            riversRef.putData(image, metadata: nil) { (metadata, error) in
+            dbRef.putData(image, metadata: nil) { (metadata, error) in
                 // You can also access to download URL after upload.
-                riversRef.downloadURL { (url, error) in
+                dbRef.downloadURL { (url, error) in
                     guard let downloadURL = url else {
                         // Uh-oh, an error occurred!
-
+                        
                         DispatchQueue.main.async {
                             completion(error, [])
                         }
@@ -60,39 +60,22 @@ extension AuthService: AuthServiceProtocol {
     }
     
     
-    func storeUser(uid: String, user: RegistrationModel, completion: @escaping (Error?) -> ()) {
+    func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error> {
         do {
-            try db.collection("Users").document(uid).setData(from: user)
-            DispatchQueue.main.async {
-                completion(nil)
-            }
-        } catch let error {
-            print("Error writing city to Firestore: \(error)")
-            DispatchQueue.main.async {
-                completion(error)
-            }
+            try await db.collection("Users").document(uid).setData(from: user)
+            return .success(())
+        } catch {
+            return .failure(error)
         }
     }
     
-    func checkExistence(uid: String, completion: @escaping (Error?, Bool) -> ()) {
-        let docRef = db.collection("Users").document(uid)
-        docRef.getDocument { doc, error in
-            if let error {
-                DispatchQueue.main.async { completion(error, false) }
-                return
-            }
-            
-            if let doc, doc.exists {
-                print("document exists")
-                print(doc)
-                DispatchQueue.main.async { completion(nil, true) }
-                return
-                
-            } else {
-                DispatchQueue.main.async { completion(nil, false) }
-                print("document does not exist")
-                return
-            }
+    
+    func checkExistence(uid: String) async -> Result<Bool, Error> {
+        do {
+            let exists = try await db.collection("Users").document(uid).getDocument().exists
+            return .success(exists)
+        } catch {
+            return .failure(error)
         }
     }
     

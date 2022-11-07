@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseService
 import Firebase
 import GoogleSignIn
+import Combine
 
 class AuthViewModel: AlertViewModel, ObservableObject {
     
@@ -51,6 +52,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             }
         }
     }
+    
     
     func checkVerificationCode() {
         loading = true
@@ -122,31 +124,39 @@ class AuthViewModel: AlertViewModel, ObservableObject {
         }
     }
     
+    @MainActor
     func checkExistence() {
         loading = true
-        manager.checkExistence(uid: userID) { error, exist in
-            self.loading = false
-            if let error {
+        Task {
+            let result = await manager.checkExistence(uid: userID)
+            switch result {
+            case .success(let exist):
+                self.needInformationFill = !exist
+            case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            } else if exist {
-                // go on
-                self.needInformationFill = false
-                
-            } else if !exist {
-                self.needInformationFill = true
-                // show fill the form view
+            }
+            
+            if !Task.isCancelled {
+                self.loading = false
             }
         }
     }
     
+    @MainActor
     func storeUser(model: RegistrationModel) {
         loading = true
-        manager.storeUser(uid: userID, user: model) { error in
-            self.loading = false
-            if let error {
-                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            } else {
+        Task {
+            let result = await manager.storeUser(uid: userID, user: model)
+            
+            switch result {
+            case .success():
                 NotificationCenter.default.post(name: Notification.Name("passedRegistration"), object: nil)
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            }
+            
+            if !Task.isCancelled {
+                self.loading = false
             }
         }
     }

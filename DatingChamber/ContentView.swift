@@ -32,7 +32,7 @@ struct ContentView: View {
                     Text("Log out")
                 }
             }
-        }.onAppear {
+        }.task {
             authVM.checkExistence()
         }.alert(isPresented: $authVM.showAlert) {
             Alert(title: Text(NSLocalizedString("error", comment: "")),

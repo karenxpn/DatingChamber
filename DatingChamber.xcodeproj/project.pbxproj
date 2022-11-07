@@ -67,6 +67,7 @@
 		FFCA5A3E29180F3600C91BEC /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3D29180F3600C91BEC /* Gallery.swift */; };
 		FFCA5A41291818A300C91BEC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */; };
 		FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A42291818DC00C91BEC /* ImageHelper.swift */; };
+		FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A452918289200C91BEC /* PromiseKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 				FFC6145D2912CC0300CE75E2 /* FirebaseService in Frameworks */,
 				FFC614602912D52400CE75E2 /* ActivityIndicatorView in Frameworks */,
 				FFC614392911EA9D00CE75E2 /* FirebaseFirestore in Frameworks */,
+				FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */,
 				FFC614432911EA9D00CE75E2 /* FirebaseStorageCombine-Community in Frameworks */,
 				FFC6143D2911EA9D00CE75E2 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -371,6 +373,7 @@
 				FFC6145F2912D52400CE75E2 /* ActivityIndicatorView */,
 				FFC6146A2914789400CE75E2 /* GoogleSignIn */,
 				FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */,
+				FFCA5A452918289200C91BEC /* PromiseKit */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -450,6 +453,7 @@
 				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -919,6 +923,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1001,6 +1013,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		FFCA5A452918289200C91BEC /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

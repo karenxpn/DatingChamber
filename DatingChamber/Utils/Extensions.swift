@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import AVKit
+import FirebaseFirestore
 
 
 extension UIApplication {
@@ -242,5 +243,14 @@ struct NetworkReconnection: ViewModifier {
                 action()
             }
         
+    }
+}
+
+// special extension for set data in firestore
+extension FirebaseFirestore.DocumentReference {
+    func setData<T: Encodable>(from: T, merge: Bool = false) async throws {
+        let encoder = Firestore.Encoder()
+        let data = try encoder.encode(from)
+        try await setData(data, merge: merge)
     }
 }

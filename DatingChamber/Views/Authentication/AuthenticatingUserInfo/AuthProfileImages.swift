@@ -81,7 +81,6 @@ struct AuthProfileImages: View {
             .sheet(isPresented: $showPicker) {
                 Gallery(action: { images in
                     authVM.uploadImages(images: images)
-//                    authVM.getPreSignedURL(images: images)
                 }, existingImageCount: authVM.images.count)
             }.alert(isPresented: $authVM.showAlert) {
                 Alert(title: Text( "Error" ), message: Text( authVM.alertMessage), dismissButton: .cancel(Text( "Got It!" )))
