@@ -40,14 +40,14 @@ struct ProfileImageBox: View {
                 }
                 
                 if index == 0 {
-                    Text( NSLocalizedString("profile_image", comment: ""))
-                        .foregroundColor(.white)
-                        .font(.custom("Inter-Regular", size: 8))
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 7.5)
-                        .background(Color.white.opacity(0.3))
-                        .cornerRadius(4)
-                        .padding(6)
+                    TextHelper(text: NSLocalizedString("avatar", comment: ""),
+                               color: .white,
+                               fontSize: 8)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 7.5)
+                    .background(Color.white.opacity(0.3))
+                    .cornerRadius(4)
+                    .padding(6)
                 }
             }.frame(width: width, height: height)
         } else {

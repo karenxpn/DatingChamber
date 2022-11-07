@@ -40,28 +40,38 @@ class AuthViewModel: AlertViewModel, ObservableObject {
         self.manager = manager
     }
     
+    @MainActor
     func sendVerificationCode() {
         loading = true
-        manager.sendVerificationCode(phone: "+\(code)\(phoneNumber)") { error in
-            self.loading = false
-            if let error {
-                print(error.localizedDescription)
+        Task {
+            let result = await manager.sendVerificationCode(phone: "+\(code)\(phoneNumber)")
+            switch result {
+            case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            } else {
+            case .success():
                 self.navigate = true
+            }
+            
+            if !Task.isCancelled {
+                self.loading = false
             }
         }
     }
     
-    
+    @MainActor
     func checkVerificationCode() {
         loading = true
-        manager.checkVerificationCode(code: OTP) { error, uid in
-            self.loading = false
-            if let error {
+        Task {
+            let result = await manager.checkVerificationCode(code: OTP)
+            switch result {
+            case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            } else {
-                self.userID = uid!
+            case .success(let uid):
+                self.userID = uid
+            }
+            
+            if !Task.isCancelled {
+                self.loading = false
             }
         }
     }

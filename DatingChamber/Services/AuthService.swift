@@ -12,10 +12,11 @@ import FirebaseStorage
 import SwiftUI
 
 protocol AuthServiceProtocol {
-    func sendVerificationCode(phone: String, completion: @escaping (Error?) -> ())
-    func checkVerificationCode(code: String, completion: @escaping ( Error?, String? ) -> () )
+    func sendVerificationCode(phone: String) async -> Result<Void, Error>
+    func checkVerificationCode(code: String) async -> Result<String, Error>
     func checkExistence(uid: String) async -> Result<Bool, Error>
     func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error>
+    
     func uploadImages(images: [Data], completion: @escaping(Error?, [String]) -> ())
 }
 
@@ -59,6 +60,17 @@ extension AuthService: AuthServiceProtocol {
         }
     }
     
+//    func uploadImage(image: Data) async -> Result<String, Error> {
+//        let dbRef = storageRef.child("profile/\(UUID().uuidString)")
+//        do {
+//            let ref = try await dbRef.putDataAsync(image).
+//            let url = try await ref.storageReference?.downloadURL()
+//            return .success("url")
+//        } catch {
+//            return .failure(error)
+//        }
+//    }
+    
     
     func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error> {
         do {
@@ -79,46 +91,28 @@ extension AuthService: AuthServiceProtocol {
         }
     }
     
-    func sendVerificationCode(phone: String, completion: @escaping (Error?) -> ()) {
-        PhoneAuthProvider.provider()
-            .verifyPhoneNumber(phone, uiDelegate: nil) { verificationID, error in
-                if let error {
-                    DispatchQueue.main.async {
-                        completion(error)
-                    }
-                    return
-                }
-                
-                UserDefaults.standard.set( verificationID!, forKey: "authVerificationID")
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
-            }
+    func sendVerificationCode(phone: String) async -> Result<Void, Error> {
+        do {
+            let verificationID = try await PhoneAuthProvider.provider().verifyPhoneNumber(phone, uiDelegate: nil)
+            UserDefaults.standard.set( verificationID, forKey: "authVerificationID")
+            
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
     }
     
-    func checkVerificationCode(code: String, completion: @escaping (Error?, String?) -> ()) {
+    func checkVerificationCode(code: String) async -> Result<String, Error> {
         let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+        guard let verificationID else { return .failure(Error.self as! Error) }
         
-        if verificationID == nil {
-            DispatchQueue.main.async {
-                completion( nil, nil )
-            }
-            return
-        }
-        let credential =  PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: code)
-        
-        
-        Auth.auth().signIn(with: credential) { (result, error) in
-            if let error {
-                DispatchQueue.main.async {
-                    completion( error, nil )
-                }
-                return
-            }
+        do {
+            let credential =  PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
+            let uid = try await Auth.auth().signIn(with: credential).user.uid
+            return .success(uid)
             
-            DispatchQueue.main.async {
-                completion( nil, result!.user.uid )
-            }
+        } catch {
+            return .failure(error)
         }
     }
 }
