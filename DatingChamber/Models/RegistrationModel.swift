@@ -14,4 +14,10 @@ struct RegistrationModel: Codable {
     var bio: String = ""
     var images: [String] = []
     var profileImage = ""
+    var location: LocationModel?
+}
+
+struct LocationModel: Codable {
+    var lat: Double = 0
+    var lng: Double = 0
 }

@@ -18,14 +18,14 @@ struct Authentication: View {
                 
                 Spacer()
                 TextHelper(text: NSLocalizedString("createYourLoveStory", comment: ""),
-                           fontName: "Inter-Black",
+                           fontName: "Inter-SemiBold",
                            fontSize: 34)
                 
                 Spacer()
                 
                 
                 TextHelper(text: NSLocalizedString("continueWithPhoneNumber", comment: ""),
-                           fontName: "Inter-Black",
+                           fontName: "Inter-Medium",
                            fontSize: 20)
                 .padding(.top, 16)
                 
@@ -118,7 +118,7 @@ struct Authentication: View {
                 
                 
                 
-            }.ignoresSafeArea(.keyboard, edges: .bottom)
+            }
         }.navigationBarHidden(true)
             .navigationBarTitle("")
         
