@@ -20,6 +20,10 @@
 		FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */; };
 		FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */; };
 		FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */; };
+		FF5F2093291ACCE2007E0E99 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FF5F2092291ACCE2007E0E99 /* Sliders */; };
+		FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2094291ACCED007E0E99 /* Filter.swift */; };
+		FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2096291ACD17007E0E99 /* AgeFilter.swift */; };
+		FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -114,6 +118,9 @@
 		FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButtonHelper.swift; sourceTree = "<group>"; };
 		FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewModel.swift; sourceTree = "<group>"; };
 		FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnlineAndVerified.swift; sourceTree = "<group>"; };
+		FF5F2094291ACCED007E0E99 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		FF5F2096291ACD17007E0E99 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
+		FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,6 +180,7 @@
 				FFC614372911EA9D00CE75E2 /* FirebaseDatabaseSwift in Frameworks */,
 				FFC6143B2911EA9D00CE75E2 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				FFC614352911EA9D00CE75E2 /* FirebaseDatabase in Frameworks */,
+				FF5F2093291ACCE2007E0E99 /* Sliders in Frameworks */,
 				FFC6142F2911EA9D00CE75E2 /* FirebaseAnalyticsSwift in Frameworks */,
 				FFCA5A41291818A300C91BEC /* SDWebImageSwiftUI in Frameworks */,
 				FFC614332911EA9D00CE75E2 /* FirebaseCrashlytics in Frameworks */,
@@ -228,6 +236,9 @@
 				FF5F207F291AADE7007E0E99 /* Swipes.swift */,
 				FF5F2081291AADF1007E0E99 /* SwipeCard.swift */,
 				FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */,
+				FF5F2094291ACCED007E0E99 /* Filter.swift */,
+				FF5F2096291ACD17007E0E99 /* AgeFilter.swift */,
+				FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -437,6 +448,7 @@
 				FFC6146A2914789400CE75E2 /* GoogleSignIn */,
 				FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */,
 				FFCA5A452918289200C91BEC /* PromiseKit */,
+				FF5F2092291ACCE2007E0E99 /* Sliders */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -517,6 +529,7 @@
 				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -584,6 +597,7 @@
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
+				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
@@ -596,6 +610,8 @@
 				FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */,
 				FF5F207E291A90BB007E0E99 /* Account.swift in Sources */,
 				FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */,
+				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
+				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
@@ -959,6 +975,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1010,6 +1034,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FF5F2092291ACCE2007E0E99 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
 		FFC6142C2911EA9D00CE75E2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

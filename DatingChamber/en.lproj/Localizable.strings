@@ -46,4 +46,8 @@
 "fraud" = "Fraud";
 "insults" = "Insults";
 "fakeAccount" = "Fake Account";
+"all" = "All";
+"age" = "Age";
+"showGenders" = "Show users with gender";
+"showOnline" = "Show users with online status";
 
