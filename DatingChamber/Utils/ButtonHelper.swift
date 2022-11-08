@@ -11,6 +11,7 @@ import SwiftUI
 struct ButtonHelper: View {
     
     var disabled: Bool
+    var height: CGFloat = 56
     let label: String
     let action: (() -> Void)
 
@@ -22,10 +23,10 @@ struct ButtonHelper: View {
                 Text( label )
                     .font(.custom("Inter-SemiBold", size: 20))
                     .foregroundColor(.white)
-                    .padding(.vertical, 15)
                 
                 Spacer()
-            }.background(AppColors.proceedButtonColor)
+            }.frame(height: height)
+            .background(AppColors.primary)
                 .opacity(disabled ? 0.5 : 1)
                 .cornerRadius(30)
         }.disabled(disabled)

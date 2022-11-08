@@ -6,17 +6,22 @@
 //
 
 import SwiftUI
+import FirebaseService
 
 @main
 struct DatingChamberApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @AppStorage("token") private var token: String = ""
+    @StateObject var authState = AuthState()
+
     var body: some Scene {
         WindowGroup {
-            if token.isEmpty {
-                Introduction()
-            } else {
+            switch authState.value {
+            case .undefined:
+                ProgressView()
+            case .authenticated:
                 ContentView()
+            case .notAuthenticated:
+                Introduction()
             }
         }
     }

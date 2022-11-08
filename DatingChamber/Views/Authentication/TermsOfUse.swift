@@ -19,7 +19,7 @@ struct TermsOfUse: View {
                 ZStack {
                     if agreement {
                         RoundedRectangle(cornerRadius: 5)
-                            .fill(AppColors.accentColor)
+                            .fill(AppColors.primary)
                             .frame(width: 16, height: 16, alignment: .center)
                     } else {
                         RoundedRectangle(cornerRadius: 5)

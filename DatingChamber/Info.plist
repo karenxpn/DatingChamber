@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1098365330663-33282bv5sbncrnf8mmceif7k98q4cj43</string>
+				<string>com.googleusercontent.apps.1098365330663-jbm19t6ksg5o9jh9b0u26a3c8a5rkh2r</string>
 			</array>
 		</dict>
 	</array>
@@ -20,6 +20,11 @@
 		<string>Inter-Medium.ttf</string>
 		<string>Inter-Bold.ttf</string>
 		<string>Inter-Regular.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>
