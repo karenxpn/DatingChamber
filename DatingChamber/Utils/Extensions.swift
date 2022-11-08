@@ -102,6 +102,20 @@ extension String {
         return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("now", comment: "") : string
     }
     
+    func getAgeFromDOF() -> String {
+
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "dd/MM/YYYY"
+        let dateOfBirth = dateFormater.date(from: self)
+
+        let calender = Calendar.current
+
+        let age = calender.dateComponents([.year], from: dateOfBirth!, to: Date())
+
+        return String(age.year!)
+    }
+
+    
     var isSingleEmoji: Bool { count == 1 && containsEmoji }
     
     var containsEmoji: Bool { contains { $0.isEmoji } }

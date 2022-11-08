@@ -38,3 +38,12 @@
 "youWillBeAbleToChangePhoto" = "You will be able to change photos from profile.";
 "avatar" = "Avatar";
 "alternativeSignIn" = "or sign in with";
+"online" = "Online";
+"verified" = "Verified";
+"report" = "Report the user";
+"block" = "Block the user";
+"chooseReason" = "Chose the reason why you report this user.";
+"fraud" = "Fraud";
+"insults" = "Insults";
+"fakeAccount" = "Fake Account";
+
