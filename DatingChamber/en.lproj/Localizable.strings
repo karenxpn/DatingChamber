@@ -6,10 +6,35 @@
   
 */
 
+"error" = "Error";
 "cancel" = "Cancel";
 "gotIt" = "Got It!";
 "termsOfUse" = "Terms Of Use";
 "proceed" = "Proceed";
+"continue" = "Continue";
 "countryCode" = "Country Code";
-"yourPhoneNumber" = "Your Phone Number";
-"fillInYourPhoneNumber" = "Fill in Your phone number to pass quick registration.";
+"createYourLoveStory" = "Create your real love story with us";
+"continueWithPhoneNumber" = "Continue with phone number";
+"code" = "Code";
+"codeWasSent" = "6-digit code was sent\nto the number: ";
+"loading" = "Loading...";
+"yourName" = "Your Name:";
+"thisNameWillBeDisplayed" = "This name will be displayed in your profile.";
+"whatsYourName" = "What's your name";
+"nameWillNotBeChanged" = "The name will not be changed in settings.";
+"yourBirthday" = "Your Birth Date";
+"onlyAgeWillBeSeen" = "Only your age will be displayes for other users";
+"female" = "Female";
+"male" = "Male";
+"non-binaryPerson" = "Non-Binary Person";
+"youAre" = "You Are:";
+"dontShowMyGender" = "Don't show my gender in the profile";
+"aboutYou" = "About You:";
+"tellAboutYou" = "Tell about yourself in few words";
+"skip" = "Skip";
+"youCanModifyLater" = "You can modify this section later.";
+"photo" = "Photo:";
+"uploadMinTwoPhotos" = "Upload minimum 2 photos\nthat will be displayed\nin your profile.";
+"youWillBeAbleToChangePhoto" = "You will be able to change photos from profile.";
+"avatar" = "Avatar";
+"alternativeSignIn" = "or sign in with";
