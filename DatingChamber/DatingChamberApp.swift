@@ -7,12 +7,14 @@
 
 import SwiftUI
 import FirebaseService
+import FirebaseAuth
 
 @main
 struct DatingChamberApp: App {
+
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authState = AuthState()
-
+    
     var body: some Scene {
         WindowGroup {
             switch authState.value {

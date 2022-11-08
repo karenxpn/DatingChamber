@@ -26,7 +26,7 @@ struct MainView: View {
                     Text("Chats")
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 3 {
-                    Text("Account")
+                    Account()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 }
             }
