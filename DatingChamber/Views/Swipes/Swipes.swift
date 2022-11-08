@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct Swipes: View {
+    @StateObject var swipesVM = SwipesViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if swipesVM.loading {
+            ProgressView()
+        } else {
+            ZStack {
+                ForEach(swipesVM.users, id: \.id) { user in
+                    SwipeCard(user: user)
+                }
+            }
+        }
     }
 }
 
