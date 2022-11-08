@@ -7,12 +7,17 @@
 
 import SwiftUI
 
+enum CardAction {
+    case dislike, like, star
+}
+
 struct SwipeCard: View {
     @State var user: SwipeUserViewModel
     @State private var navigate: Bool = false
     @State private var showDialog: Bool = false
     @State private var showReportConfirmation: Bool = false
     @State private var starredRotationDegree: Double = 360
+    @State private var cardAction: CardAction? = .none
 
     
     let animation = Animation
@@ -37,38 +42,7 @@ struct SwipeCard: View {
                     
                     HStack( alignment: .top) {
                         
-                        VStack( alignment: .leading) {
-                            
-                            
-                            if user.isVerified {
-                                HStack {
-                                    Image("verified_icon")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 12, height: 12)
-                                    
-                                    TextHelper(text: NSLocalizedString("verified", comment: ""), color: .white, fontSize: 8)
-                                }.padding(.horizontal, 9)
-                                    .frame(height: 21)
-                                    .background(.white.opacity(0.3))
-                                    .cornerRadius(20)
-                            }
-                            
-                            if user.online {
-                                HStack {
-                                    Circle()
-                                        .fill(AppColors.onlineStatus)
-                                        .frame(width: 6, height: 6)
-                                    
-                                    TextHelper(text: NSLocalizedString("online", comment: ""), color: .white, fontSize: 8)
-
-                                }.padding(.horizontal, 9)
-                                    .frame(height: 21)
-                                    .background(.white.opacity(0.3))
-                                    .cornerRadius(20)
-                            }
-                            
-                        }
+                        SwipeOnlineAndVerified(isVerified: user.isVerified, online: user.online)
                         
                         Spacer()
                         
@@ -132,7 +106,7 @@ struct SwipeCard: View {
                     Spacer()
                     TextHelper(text: "\(user.name), \(user.age)", color: .white,
                                fontName: "Inter-SemiBold",
-                               fontSize: 30)
+                               fontSize: 25)
                     
 //                    HStack {
 //
@@ -161,6 +135,7 @@ struct SwipeCard: View {
 
                 SwipeButtonHelper(icon: "broken_heart", color: .red, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
                     // make request
+                    cardAction = .dislike
                     withAnimation(animation) {
                         user.x = -1000; user.degree = -20
                         checkLastAndRequestMore()
@@ -169,6 +144,7 @@ struct SwipeCard: View {
                 
                 SwipeButtonHelper(icon: "star", color: .blue, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
                     // make request
+                    cardAction = .star
                     withAnimation(animation) {
                         starredRotationDegree += 360
                     }
@@ -182,7 +158,7 @@ struct SwipeCard: View {
                 }
                 
                 SwipeButtonHelper(icon: "heart", color: .red, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
-                    // make request
+                    cardAction = .like
                     withAnimation(animation) {
                         user.x = 1000; user.degree = 20
                         checkLastAndRequestMore()
@@ -191,21 +167,18 @@ struct SwipeCard: View {
             }
         }.padding(16)
             .background(
-//                Group {
-//                    switch cardAction {
-//                    case .request:
-//                        AppColors.onlineStatus
-//                    case .report:
-//                        AppColors.reportColor
-//                    case .star:
-//                        AppColors.starColor
-//                    case .swipe:
-//                        AppColors.proceedButtonColor
-//                    default:
-//                        AppColors.addProfileImageBG
-//                    }
-//                }
-                AppColors.light_purple
+                Group {
+                    switch cardAction {
+                    case .like:
+                        AppColors.onlineStatus
+                    case .dislike:
+                        Color.red
+                    case .star:
+                        Color.blue
+                    case .none:
+                        AppColors.light_purple
+                    }
+                }
             )
             .cornerRadius(30)
             .shadow(radius: 1)
@@ -215,7 +188,6 @@ struct SwipeCard: View {
             .gesture(
                 DragGesture()
                     .onChanged({ value in
-//                        self.cardAction = .swipe
                         withAnimation(.default) {
                             user.x = value.translation.width
                             user.degree = 7 * (value.translation.width > 0 ? 1 : -1)
@@ -225,23 +197,25 @@ struct SwipeCard: View {
                         withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
                             switch value.translation.width {
                             case 0...100:
-//                                self.cardAction = .none
+                                cardAction = .none
                                 user.x = 0
                                 user.degree = 0
                             case let x where x > 100:
+                                cardAction = .like
                                 checkLastAndRequestMore()
                                 user.x = 1000; user.degree = 20
 //                                AppAnalytics().logEvent(event: "swipe")
                             case (-100)...(-1):
-//                                self.cardAction = .none
+                                cardAction = .none
                                 user.x = 0
                                 user.degree = 0
                             case let x where x < -100:
+                                cardAction = .dislike
                                 checkLastAndRequestMore()
                                 user.x = -1000; user.degree = -20
 //                                AppAnalytics().logEvent(event: "swipe")
                             default:
-//                                self.cardAction = .none
+                                cardAction = .none
                                 user.x = 0;
                                 user.degree = 0
                             }

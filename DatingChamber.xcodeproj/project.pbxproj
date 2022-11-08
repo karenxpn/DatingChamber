@@ -18,6 +18,8 @@
 		FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2087291AB4A8007E0E99 /* ActionSheetButtonHelper.swift */; };
 		FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2089291AB4E7007E0E99 /* CustomActionSheet.swift */; };
 		FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */; };
+		FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */; };
+		FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 		FF5F2087291AB4A8007E0E99 /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
 		FF5F2089291AB4E7007E0E99 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButtonHelper.swift; sourceTree = "<group>"; };
+		FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewModel.swift; sourceTree = "<group>"; };
+		FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnlineAndVerified.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 			children = (
 				FF5F207F291AADE7007E0E99 /* Swipes.swift */,
 				FF5F2081291AADF1007E0E99 /* SwipeCard.swift */,
+				FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				FFC614562912A56200CE75E2 /* AlertViewModel.swift */,
 				FFB4D5DC291192150065955F /* AuthViewModel.swift */,
 				FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */,
+				FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -563,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
+				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,
 				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
@@ -580,6 +587,7 @@
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
+				FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */,
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
