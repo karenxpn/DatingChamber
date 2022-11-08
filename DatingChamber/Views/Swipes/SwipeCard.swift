@@ -191,6 +191,10 @@ struct SwipeCard: View {
                         withAnimation(.default) {
                             user.x = value.translation.width
                             user.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                            
+                            if user.x > 10 { cardAction = .like }
+                            else if user.x < -10 { cardAction = .dislike }
+                            else                  { cardAction = .none }
                         }
                     })
                     .onEnded({ value in
