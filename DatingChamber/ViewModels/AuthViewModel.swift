@@ -16,6 +16,7 @@ import Combine
 class AuthViewModel: AlertViewModel, ObservableObject {
     
     @AppStorage("userID") var userID: String = ""
+    @AppStorage("initialuserID") var initialUserID: String = ""
     @AppStorage("name") var name: String = ""
     
     @Published var loading: Bool = false
@@ -67,7 +68,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let uid):
-                self.userID = uid
+                initialUserID = uid
             }
             
             if !Task.isCancelled {
@@ -80,7 +81,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     func handleAppleServiceSuccess(_ result: FirebaseSignInWithAppleResult) {
         name = (result.token.appleIDCredential.fullName?.givenName ?? "")
         + (result.token.appleIDCredential.fullName?.familyName ?? "")
-        userID = result.uid
+        initialUserID = result.uid
     }
     
     func handleAppleServiceError(_ error: Error) {
@@ -126,9 +127,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                     return
                 }
                 
-                self.userID = user.uid
                 self.name = user.displayName ?? ""
-                
+                self.initialUserID = user.uid
                 print(user.displayName ?? "Success")
             }
         }
@@ -138,10 +138,11 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     func checkExistence() {
         loading = true
         Task {
-            let result = await manager.checkExistence(uid: userID)
+            let result = await manager.checkExistence(uid: initialUserID)
             switch result {
             case .success(let exist):
                 self.needInformationFill = !exist
+                if exist { self.userID = self.initialUserID }
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             }
@@ -156,10 +157,11 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     func storeUser(model: RegistrationModel) {
         loading = true
         Task {
-            let result = await manager.storeUser(uid: userID, user: model)
+            let result = await manager.storeUser(uid: initialUserID, user: model)
             
             switch result {
             case .success():
+                self.userID = initialUserID
                 NotificationCenter.default.post(name: Notification.Name("passedRegistration"), object: nil)
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
