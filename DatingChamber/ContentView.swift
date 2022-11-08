@@ -9,28 +9,17 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
+    @AppStorage("userID") var userID: String = ""
     @StateObject var authVM = AuthViewModel()
     
     var body: some View {
         Group {
-            if authVM.loading {
-                ProgressView()
+            if !userID.isEmpty {
+                MainView()
             } else if authVM.needInformationFill {
                 AuthName()
             } else {
-                Button {
-                    let firebaseAuth = Auth.auth()
-                    do {
-                        try firebaseAuth.signOut()
-                    } catch let signOutError as NSError {
-                        print("Error signing out: %@", signOutError)
-                    }
-                } label: {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundColor(.accentColor)
-                    Text("Log out")
-                }
+                ProgressView()
             }
         }.task {
             authVM.checkExistence()
