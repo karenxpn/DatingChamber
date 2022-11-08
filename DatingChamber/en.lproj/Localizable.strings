@@ -50,4 +50,6 @@
 "age" = "Age";
 "showGenders" = "Show users with gender";
 "showOnline" = "Show users with online status";
+"interests" = "Interests";
+"chooseInterests" = "Choose minimum 3 hobbies to continue";
 

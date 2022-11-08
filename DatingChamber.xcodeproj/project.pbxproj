@@ -24,6 +24,9 @@
 		FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2094291ACCED007E0E99 /* Filter.swift */; };
 		FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2096291ACD17007E0E99 /* AgeFilter.swift */; };
 		FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */; };
+		FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF5F209B291AE747007E0E99 /* TagLayoutView */; };
+		FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */; };
+		FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -78,7 +81,6 @@
 		FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A302917E59900C91BEC /* AuthBirthday.swift */; };
 		FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */; };
 		FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */; };
-		FFCA5A372917F17900C91BEC /* AuthBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A362917F17900C91BEC /* AuthBio.swift */; };
 		FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3929180E3600C91BEC /* ProfileImageBox.swift */; };
 		FFCA5A3C29180EDA00C91BEC /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */; };
 		FFCA5A3E29180F3600C91BEC /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3D29180F3600C91BEC /* Gallery.swift */; };
@@ -121,6 +123,8 @@
 		FF5F2094291ACCED007E0E99 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		FF5F2096291ACD17007E0E99 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
+		FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewHelper.swift; sourceTree = "<group>"; };
+		FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,7 +169,6 @@
 		FFCA5A302917E59900C91BEC /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
 		FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayFields.swift; sourceTree = "<group>"; };
 		FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGenderPicker.swift; sourceTree = "<group>"; };
-		FFCA5A362917F17900C91BEC /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
 		FFCA5A3929180E3600C91BEC /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
 		FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFCA5A3D29180F3600C91BEC /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 				FFC614392911EA9D00CE75E2 /* FirebaseFirestore in Frameworks */,
 				FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */,
 				FFC614432911EA9D00CE75E2 /* FirebaseStorageCombine-Community in Frameworks */,
+				FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */,
 				FFC6143D2911EA9D00CE75E2 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +326,7 @@
 				FFC614612912D55100CE75E2 /* Loading.swift */,
 				FFCA5A42291818DC00C91BEC /* ImageHelper.swift */,
 				FF5F2085291AB38B007E0E99 /* AppPreviewModel.swift */,
+				FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -405,7 +410,7 @@
 				FFCA5A302917E59900C91BEC /* AuthBirthday.swift */,
 				FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */,
 				FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */,
-				FFCA5A362917F17900C91BEC /* AuthBio.swift */,
+				FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */,
 				FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */,
 				FFCA5A3929180E3600C91BEC /* ProfileImageBox.swift */,
 				FFCA5A3D29180F3600C91BEC /* Gallery.swift */,
@@ -449,6 +454,7 @@
 				FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */,
 				FFCA5A452918289200C91BEC /* PromiseKit */,
 				FF5F2092291ACCE2007E0E99 /* Sliders */,
+				FF5F209B291AE747007E0E99 /* TagLayoutView */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -530,6 +536,7 @@
 				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -587,7 +594,6 @@
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
-				FFCA5A372917F17900C91BEC /* AuthBio.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
@@ -599,9 +605,11 @@
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
 				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
+				FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
 				FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */,
+				FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */,
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
@@ -983,6 +991,14 @@
 				kind = branch;
 			};
 		};
+		FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yotsu12/TagLayoutView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1038,6 +1054,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
 			productName = Sliders;
+		};
+		FF5F209B291AE747007E0E99 /* TagLayoutView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */;
+			productName = TagLayoutView;
 		};
 		FFC6142C2911EA9D00CE75E2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
