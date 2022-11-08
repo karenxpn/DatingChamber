@@ -78,7 +78,7 @@ struct AuthProfileImages: View {
                     .padding(30)
                 }.padding(.top, 1)
                 
-                AuthProgress(page: 3)
+                AuthProgress(page: 4)
             }
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {

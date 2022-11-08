@@ -15,6 +15,7 @@ protocol AuthServiceProtocol {
     func sendVerificationCode(phone: String) async -> Result<Void, Error>
     func checkVerificationCode(code: String) async -> Result<String, Error>
     func checkExistence(uid: String) async -> Result<Bool, Error>
+    func fetchInterests() async -> Result<[String], Error>
     func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error>
     
     func uploadImages(images: [Data], completion: @escaping(Error?, [String]) -> ())
@@ -28,6 +29,17 @@ class AuthService {
 }
 
 extension AuthService: AuthServiceProtocol {
+    func fetchInterests() async -> Result<[String], Error> {
+        do {
+            let docs = try await db.collection("Interests").getDocuments()
+            let interests = docs.documents.map { $0.data()["name"] as! String }
+            return .success(interests)
+            
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func uploadImages(images: [Data], completion: @escaping (Error?, [String]) -> ()) {
         
         var uploadedImages = [(Int, String)]()

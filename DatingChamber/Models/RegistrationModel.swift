@@ -18,6 +18,7 @@ struct RegistrationModel: Codable, Identifiable {
     var location: LocationModel?
     var online: Bool = true
     var isVerified: Bool = false
+    var interests: [String] = []
 }
 
 struct LocationModel: Codable {

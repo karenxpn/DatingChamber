@@ -13,6 +13,7 @@ struct SwipeModel: Codable, Identifiable {
     var birthday: String
     var online: Bool
     var isVerified: Bool
+    var interests: [String]
 }
 
 struct SwipeUserViewModel: Identifiable {
@@ -27,6 +28,7 @@ struct SwipeUserViewModel: Identifiable {
     var name: String        { self.user.name }
     var online: Bool        { self.user.online }
     var isVerified: Bool    { self.user.isVerified }
+    var interests: [String] { self.user.interests }
     var age: String         { self.user.birthday.getAgeFromDOF() }
     
     

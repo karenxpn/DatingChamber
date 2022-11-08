@@ -108,22 +108,20 @@ struct SwipeCard: View {
                                fontName: "Inter-SemiBold",
                                fontSize: 25)
                     
-//                    HStack {
-//
-//                        TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
-//                                       parentWidth: UIScreen.main.bounds.size.width * 0.55,
-//                                       interests: user.interests.count <= 4 ?
-//                                       user.interests : Array(user.interests.prefix(3)) +
-//                                       [UserInterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 3)")])
-//
-//                        Button {
-//                            navigate.toggle()
-//                        } label: {
-//                            Image(systemName: "info.circle")
-//                                .foregroundColor(.white)
-//                                .font(.title)
-//                        }
-//                    }
+                    HStack {
+
+                        TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
+                                       parentWidth: UIScreen.main.bounds.size.width * 0.7,
+                                       interests: user.interests)
+
+                        Button {
+                            navigate.toggle()
+                        } label: {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.white)
+                                .font(.title)
+                        }
+                    }
                     
                 }.padding()
                 
