@@ -6,15 +6,18 @@
 //
 
 import Foundation
-struct RegistrationModel: Codable {
+struct RegistrationModel: Codable, Identifiable {
+    var id: String = ""
     var name: String = ""
     var birthday: String = ""
     var gender: String = ""
     var showGender: Bool = true
     var bio: String = ""
     var images: [String] = []
-    var profileImage = ""
+    var avatar = ""
     var location: LocationModel?
+    var online: Bool = true
+    var isVerified: Bool = false
 }
 
 struct LocationModel: Codable {

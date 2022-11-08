@@ -11,6 +11,8 @@ import SwiftUI
 import SwiftUI
 
 struct AuthProfileImages: View {
+    @AppStorage("initialuserID") var initialUserID: String = ""
+
     @StateObject private var authVM = AuthViewModel()
     @Binding var model: RegistrationModel
     
@@ -61,7 +63,8 @@ struct AuthProfileImages: View {
                         ButtonHelper(disabled: authVM.images.count < 2,
                                      label: NSLocalizedString("continue", comment: "")) {
                             model.images = authVM.images
-                            model.profileImage = authVM.images[0]
+                            model.avatar = authVM.images[0]
+                            model.id = initialUserID
                             authVM.storeUser(model: model)
                         }
                         
