@@ -18,7 +18,6 @@ struct RegistrationModel: Codable, Identifiable {
     var bio: String = ""
     var images: [String] = []
     var avatar = ""
-    var location: LocationModel?
     var online: Bool = true
     var isVerified: Bool = false
     var interests: [String] = []

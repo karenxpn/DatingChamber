@@ -10,7 +10,12 @@ import FirebaseFirestore
 import GeoFire
 
 protocol SwipesServiceProtocol {
-    func fetchSwipes(userID: String, gender: String, minAge: Int, maxAge: Int, online: String) async -> Result<[SwipeModel], Error>
+    func fetchSwipes(userID: String,
+                     gender: String,
+                     minAge: Int,
+                     maxAge: Int,
+                     online: String,
+                     lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([SwipeModel], QueryDocumentSnapshot?), Error>
 }
 
 class SwipesService {
@@ -21,7 +26,12 @@ class SwipesService {
 }
 
 extension SwipesService: SwipesServiceProtocol {
-    func fetchSwipes(userID: String, gender: String, minAge: Int, maxAge: Int, online: String) async -> Result<[SwipeModel], Error> {
+    func fetchSwipes(userID: String,
+                     gender: String,
+                     minAge: Int,
+                     maxAge: Int,
+                     online: String,
+                     lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([SwipeModel], QueryDocumentSnapshot?), Error> {
         
         let dateMinLimit = Calendar.current.date(byAdding: .year, value: -minAge, to: Date()) ?? Date()
         let dateMaxLimit = Calendar.current.date(byAdding: .year, value: -maxAge, to: Date()) ?? Date()
@@ -35,10 +45,13 @@ extension SwipesService: SwipesServiceProtocol {
             if maxAge < 51 { query = query.whereField("birthday", isGreaterThanOrEqualTo: dateMaxLimit) }
             if minAge > 18 { query = query.whereField("birthday", isLessThanOrEqualTo: dateMinLimit) }
             
+            if lastDocSnapshot == nil   { query = query.limit(to: 10) }
+            else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
+            
             let docs = try await query.getDocuments().documents
             let users = try docs.map { try $0.data(as: SwipeModel.self ) }
             
-            return .success(users)
+            return .success((users, docs.last))
         } catch {
             return .failure(error)
         }
