@@ -33,7 +33,7 @@ extension SwipesService: SwipesServiceProtocol {
             if gender != NSLocalizedString("all", comment: "") { query = ref.whereField("gender", isEqualTo: gender) }
             if online != NSLocalizedString("all", comment: "") { query = query.whereField("online", isEqualTo: true) }
             if maxAge < 51 { query = query.whereField("birthday", isGreaterThanOrEqualTo: dateMaxLimit) }
-            query = query.whereField("birthday", isLessThanOrEqualTo: dateMinLimit)
+            if minAge > 18 { query = query.whereField("birthday", isLessThanOrEqualTo: dateMinLimit) }
             
             let docs = try await query.getDocuments().documents
             let users = try docs.map { try $0.data(as: SwipeModel.self ) }
