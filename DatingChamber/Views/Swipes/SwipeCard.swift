@@ -75,54 +75,12 @@ struct SwipeCard: View {
                             Image("dots")
                                 .foregroundColor(.white)
                         }.fullScreenCover(isPresented: $showDialog) {
-                            CustomActionSheet {
-                                
-                                ActionSheetButtonHelper(icon: "report_icon",
-                                                        label: NSLocalizedString("report", comment: ""),
-                                                        role: .destructive) {
-                                    self.showReportConfirmation.toggle()
-                                }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {
-                                    Button {
-                                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
-                                        reportUser()
-                                        
-                                    } label: {
-                                        Text( NSLocalizedString("fraud", comment: "") )
-                                    }
-                                    
-                                    Button {
-                                        userVM.reportReason = NSLocalizedString("insults", comment: "")
-                                        reportUser()
-                                    } label: {
-                                        Text( NSLocalizedString("insults", comment: "") )
-                                    }
-                                    
-                                    Button {
-                                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
-                                        reportUser()
-                                    } label: {
-                                        Text( NSLocalizedString("fakeAccount", comment: "") )
-                                    }
-                                    
-                                    Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
-                                    
-                                })
-                                
-                                Divider()
-                                
-                                ActionSheetButtonHelper(icon: "block_icon",
-                                                        label: NSLocalizedString("block", comment: ""),
-                                                        role: .destructive) {
-                                    self.showDialog.toggle()
-                                    cardAction = .report
-                                    withAnimation(animation) {
-                                        user.y = 1000;
-                                        checkLastAndRequestMore()
-                                    }
-                                    
-                                    //                                    userVM.blockUser(id: user.id)
-                                }
+                            SwipeCardActionSheet(showDialog: $showDialog, showReportConfirmation: $showReportConfirmation, reportReason: $userVM.reportReason, user: $user, cardAction: $cardAction, animation: animation) {
+                                reportUser()
+                            } checkLastAndRequestMore: {
+                                checkLastAndRequestMore()
                             }
+
                         }
                     }
                     
