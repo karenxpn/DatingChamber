@@ -25,6 +25,7 @@ struct RegistrationModel: Codable, Identifiable {
 }
 
 struct LocationModel: Codable {
+    var hash: String
     var lat: Double = 0
     var lng: Double = 0
 }
