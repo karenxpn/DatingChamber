@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class SwipesViewModel: AlertViewModel, ObservableObject {
+    @AppStorage("userID") var userID: String = ""
     @AppStorage( "ageLowerBound" ) var ageLowerBound: Int = 18
     @AppStorage( "ageUpperBound" ) var ageUppwerBound: Int = 51
     @AppStorage( "preferredGender" ) var preferredGender: String = NSLocalizedString("all", comment: "")
@@ -58,7 +59,8 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
     func getUsers() {
         loading = true
         Task {
-            let result = await manager.fetchSwipes(gender: preferredGender,
+            let result = await manager.fetchSwipes(userID: userID,
+                                                   gender: preferredGender,
                                                    minAge: ageLowerBound,
                                                    maxAge: ageUppwerBound,
                                                    online: usersStatus)
