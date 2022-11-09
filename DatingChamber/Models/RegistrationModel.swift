@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestore
+
 struct RegistrationModel: Codable, Identifiable {
     var id: String = ""
     var name: String = ""
-    var birthday: String = ""
+    var birthday:Date = .now
     var gender: String = ""
     var showGender: Bool = true
     var bio: String = ""
