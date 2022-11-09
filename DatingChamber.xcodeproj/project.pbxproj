@@ -93,6 +93,7 @@
 		FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EDE291B33CA002053B7 /* SwipesService.swift */; };
 		FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE0291BE609002053B7 /* LocationManager.swift */; };
 		FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE2291BFF3B002053B7 /* UserService.swift */; };
+		FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +192,7 @@
 		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
 		FFE33EE0291BE609002053B7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFE33EE2291BFF3B002053B7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,7 +252,6 @@
 				35A1810C9F0C3352C40B7329 /* Pods-DatingChamberTests.debug.xcconfig */,
 				4902F74FFF476B82E226BF80 /* Pods-DatingChamberTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -402,6 +403,7 @@
 				FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */,
 				FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */,
 				FFE33EE0291BE609002053B7 /* LocationManager.swift */,
+				FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -586,9 +588,9 @@
 			packageReferences = (
 				FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FFC6145B2912CC0300CE75E2 /* XCRemoteSwiftPackageReference "FirebaseService" */,
-				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */,
-				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */,
-				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */,
+				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
@@ -755,6 +757,7 @@
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
+				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
@@ -1182,7 +1185,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */ = {
+		FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
 			requirement = {
@@ -1190,7 +1193,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */ = {
+		FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
 			requirement = {
@@ -1198,7 +1201,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */ = {
+		FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -1294,17 +1297,17 @@
 		};
 		FFC6145F2912D52400CE75E2 /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */;
+			package = FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
 		};
 		FFC6146A2914789400CE75E2 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
+			package = FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
 		FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */;
+			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 		FFCA5A452918289200C91BEC /* PromiseKit */ = {

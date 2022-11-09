@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum CardAction {
-    case dislike, like, star
+    case dislike, like, star, report
 }
 
 struct SwipeCard: View {
@@ -18,7 +18,9 @@ struct SwipeCard: View {
     @State private var showReportConfirmation: Bool = false
     @State private var starredRotationDegree: Double = 360
     @State private var cardAction: CardAction? = .none
-
+    
+    @State private var blur: CGFloat = 0
+    
     
     let animation = Animation
         .interpolatingSpring(mass: 1.0,
@@ -37,6 +39,26 @@ struct SwipeCard: View {
                     .frame(width: UIScreen.main.bounds.width * 0.8,
                            height: UIScreen.main.bounds.height * 0.55)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .blur(radius: blur)
+                    .overlay(
+                        Group {
+                            if cardAction == .dislike {
+                                Image( "swipe_broken_heart" )
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame( width: 80, height: 80)
+                                    .padding()
+                                    .opacity(cardAction == .dislike ? 1 : 0)
+                            } else if cardAction == .like {
+                                Image( "swipe_heart" )
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame( width: 80, height: 80)
+                                    .padding()
+                                    .opacity(cardAction == .like ? 1 : 0)
+                                
+                            }
+                        })
                 
                 VStack( alignment: .leading, spacing: 8) {
                     
@@ -60,29 +82,29 @@ struct SwipeCard: View {
                                     self.showReportConfirmation.toggle()
                                 }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {
                                     Button {
-//                                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
+                                        //                                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
                                         reportUser()
-
+                                        
                                     } label: {
                                         Text( NSLocalizedString("fraud", comment: "") )
                                     }
                                     
                                     Button {
-//                                        userVM.reportReason = NSLocalizedString("insults", comment: "")
+                                        //                                        userVM.reportReason = NSLocalizedString("insults", comment: "")
                                         reportUser()
                                     } label: {
                                         Text( NSLocalizedString("insults", comment: "") )
                                     }
                                     
                                     Button {
-//                                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
+                                        //                                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
                                         reportUser()
                                     } label: {
                                         Text( NSLocalizedString("fakeAccount", comment: "") )
                                     }
                                     
                                     Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
-
+                                    
                                 })
                                 
                                 Divider()
@@ -91,13 +113,13 @@ struct SwipeCard: View {
                                                         label: NSLocalizedString("block", comment: ""),
                                                         role: .destructive) {
                                     self.showDialog.toggle()
-//                                    cardAction = .report
+                                    cardAction = .report
                                     withAnimation(animation) {
-                                        user.x = -1000; user.degree = -20
+                                        user.y = 1000;
                                         checkLastAndRequestMore()
                                     }
                                     
-//                                    userVM.blockUser(id: user.id)
+                                    //                                    userVM.blockUser(id: user.id)
                                 }
                             }
                         }
@@ -109,11 +131,11 @@ struct SwipeCard: View {
                                fontSize: 25)
                     
                     HStack {
-
+                        
                         TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
                                        parentWidth: UIScreen.main.bounds.size.width * 0.7,
                                        interests: user.interests)
-
+                        
                         Button {
                             navigate.toggle()
                         } label: {
@@ -130,7 +152,7 @@ struct SwipeCard: View {
             
             HStack( spacing: 15) {
                 
-
+                
                 SwipeButtonHelper(icon: "broken_heart", color: .red, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
                     // make request
                     cardAction = .dislike
@@ -142,12 +164,9 @@ struct SwipeCard: View {
                 
                 SwipeButtonHelper(icon: "star", color: .blue, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
                     // make request
-                    cardAction = .star
-                    withAnimation(animation) {
-                        starredRotationDegree += 360
-                    }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        cardAction = .star
                         withAnimation {
                             user.y = -1000;
                             checkLastAndRequestMore()
@@ -166,16 +185,8 @@ struct SwipeCard: View {
         }.padding(16)
             .background(
                 Group {
-                    switch cardAction {
-                    case .like:
-                        AppColors.onlineStatus
-                    case .dislike:
-                        Color.red
-                    case .star:
-                        Color.blue
-                    case .none:
-                        AppColors.light_purple
-                    }
+                    if cardAction == .report    { Color.red }
+                    else                        { AppColors.light_purple }
                 }
             )
             .cornerRadius(30)
@@ -189,10 +200,11 @@ struct SwipeCard: View {
                         withAnimation(.default) {
                             user.x = value.translation.width
                             user.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                            blur += 0.1
                             
-                            if user.x > 10 { cardAction = .like }
-                            else if user.x < -10 { cardAction = .dislike }
-                            else                  { cardAction = .none }
+                            if user.x > 30          { cardAction = .like }
+                            else if user.x < -30    { cardAction = .dislike }
+                            else                    { cardAction = .none }
                         }
                     })
                     .onEnded({ value in
@@ -202,24 +214,27 @@ struct SwipeCard: View {
                                 cardAction = .none
                                 user.x = 0
                                 user.degree = 0
+                                blur = 0
                             case let x where x > 100:
                                 cardAction = .like
                                 checkLastAndRequestMore()
                                 user.x = 1000; user.degree = 20
-//                                AppAnalytics().logEvent(event: "swipe")
+                                //                                AppAnalytics().logEvent(event: "swipe")
                             case (-100)...(-1):
                                 cardAction = .none
                                 user.x = 0
                                 user.degree = 0
+                                blur = 0
                             case let x where x < -100:
                                 cardAction = .dislike
                                 checkLastAndRequestMore()
                                 user.x = -1000; user.degree = -20
-//                                AppAnalytics().logEvent(event: "swipe")
+                                //                                AppAnalytics().logEvent(event: "swipe")
                             default:
                                 cardAction = .none
                                 user.x = 0;
                                 user.degree = 0
+                                blur = 0
                             }
                         }
                     })
@@ -227,20 +242,20 @@ struct SwipeCard: View {
     }
     
     func checkLastAndRequestMore() {
-//        if user.id == placesVM.users.first?.id {
-//            placesVM.swipePage += 1
-//            placesVM.getSwipes()
-//        }
+        //        if user.id == placesVM.users.first?.id {
+        //            placesVM.swipePage += 1
+        //            placesVM.getSwipes()
+        //        }
         // do smth
     }
     
     func reportUser() {
-        withAnimation(animation) {
-            user.x = -1000; user.degree = -20
+        cardAction = .report
+        withAnimation {
+            user.y = 1000;
             checkLastAndRequestMore()
         }
         
-//        userVM.reportUser(id: user.id)
         self.showDialog.toggle()
     }
 }
