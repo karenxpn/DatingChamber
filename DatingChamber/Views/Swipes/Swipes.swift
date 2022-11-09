@@ -40,7 +40,14 @@ struct Swipes: View {
                                 self.offsetOnDrag = 0
                             }
                         }))
-            }.navigationBarItems(leading: TextHelper(text: "Dating Chamber",
+            }.task {
+                swipesVM.getUsers()
+            }.alert(isPresented: $swipesVM.showAlert) {
+                Alert(title: Text(NSLocalizedString("error", comment: "")),
+                      message: Text(swipesVM.alertMessage),
+                      dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
+            }
+            .navigationBarItems(leading: TextHelper(text: "Dating Chamber",
                                                      fontName: "Inter-Bold",
                                                      fontSize: 28).kerning(0.56), trailing: Button {
                 showFilter.toggle()

@@ -22,9 +22,11 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
     @Published var status: String = ""
     
     
-    @Published var users = [AppPreviewModel.swipeModel]
+    @Published var users = [SwipeUserViewModel]()
     
-    override init() {
+    var manager: SwipesServiceProtocol
+    init(manager: SwipesServiceProtocol = SwipesService.shared) {
+        self.manager = manager
         super.init()
         
         self.ageRange = self.ageLowerBound...self.ageUppwerBound
@@ -32,6 +34,7 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
         self.status = self.usersStatus
     }
     
+    @MainActor
     func storeFilterValues() {
         var mark = false
         if ageLowerBound != ageRange.lowerBound ||
@@ -47,7 +50,28 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
         usersStatus = status
         
         if mark {
-            // get swipes agait
+            getUsers()
+        }
+    }
+    
+    @MainActor
+    func getUsers() {
+        loading = true
+        Task {
+            let result = await manager.fetchSwipes(gender: preferredGender,
+                                                   minAge: ageLowerBound,
+                                                   maxAge: ageUppwerBound,
+                                                   online: usersStatus)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(let users):
+                self.users = users.map{SwipeUserViewModel.init(user: $0)}
+            }
+            
+            if !Task.isCancelled {
+                loading = false
+            }
         }
     }
     
