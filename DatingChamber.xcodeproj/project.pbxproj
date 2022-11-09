@@ -94,6 +94,7 @@
 		FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE0291BE609002053B7 /* LocationManager.swift */; };
 		FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE2291BFF3B002053B7 /* UserService.swift */; };
 		FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */; };
+		FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,7 @@
 		FFE33EE0291BE609002053B7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFE33EE2291BFF3B002053B7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 				FF5F2094291ACCED007E0E99 /* Filter.swift */,
 				FF5F2096291ACD17007E0E99 /* AgeFilter.swift */,
 				FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */,
+				FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */,
 				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
+				FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
