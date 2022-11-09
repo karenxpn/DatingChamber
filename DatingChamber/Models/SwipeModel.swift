@@ -10,7 +10,7 @@ struct SwipeModel: Codable, Identifiable {
     var id: String
     var avatar: String
     var name: String
-    var birthday: String
+    var birthday: Date
     var online: Bool
     var isVerified: Bool
     var interests: [String]
@@ -29,7 +29,7 @@ struct SwipeUserViewModel: Identifiable {
     var online: Bool        { self.user.online }
     var isVerified: Bool    { self.user.isVerified }
     var interests: [String] { self.user.interests }
-    var age: String         { self.user.birthday.getAgeFromDOF() }
+    var age: String         { self.user.birthday.getAgeFromBirthDate() }
     
     
     // Card x position
