@@ -12,6 +12,7 @@ enum CardAction {
 }
 
 struct SwipeCard: View {
+    @StateObject var userVM = UserViewModel()
     @State var user: SwipeUserViewModel
     @State private var navigate: Bool = false
     @State private var showDialog: Bool = false
@@ -82,7 +83,7 @@ struct SwipeCard: View {
                                     self.showReportConfirmation.toggle()
                                 }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {
                                     Button {
-                                        //                                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
+                                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
                                         reportUser()
                                         
                                     } label: {
@@ -90,14 +91,14 @@ struct SwipeCard: View {
                                     }
                                     
                                     Button {
-                                        //                                        userVM.reportReason = NSLocalizedString("insults", comment: "")
+                                        userVM.reportReason = NSLocalizedString("insults", comment: "")
                                         reportUser()
                                     } label: {
                                         Text( NSLocalizedString("insults", comment: "") )
                                     }
                                     
                                     Button {
-                                        //                                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
+                                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
                                         reportUser()
                                     } label: {
                                         Text( NSLocalizedString("fakeAccount", comment: "") )
