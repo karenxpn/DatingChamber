@@ -12,6 +12,7 @@ enum CardAction {
 }
 
 struct SwipeCard: View {
+    @EnvironmentObject var swipesVM: SwipesViewModel
     @StateObject var userVM = UserViewModel()
     @State var user: SwipeUserViewModel
     @State private var navigate: Bool = false
@@ -80,7 +81,7 @@ struct SwipeCard: View {
                             } checkLastAndRequestMore: {
                                 checkLastAndRequestMore()
                             }
-
+                            
                         }
                     }
                     
@@ -201,11 +202,9 @@ struct SwipeCard: View {
     }
     
     func checkLastAndRequestMore() {
-        //        if user.id == placesVM.users.first?.id {
-        //            placesVM.swipePage += 1
-        //            placesVM.getSwipes()
-        //        }
-        // do smth
+        if user.id == swipesVM.users.first?.id {
+            swipesVM.getUsers()
+        }
     }
     
     func reportUser() {
@@ -222,5 +221,6 @@ struct SwipeCard: View {
 struct SwipeCard_Previews: PreviewProvider {
     static var previews: some View {
         SwipeCard(user: AppPreviewModel.swipeModel)
+            .environmentObject(SwipesViewModel())
     }
 }

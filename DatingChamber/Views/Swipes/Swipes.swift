@@ -21,6 +21,7 @@ struct Swipes: View {
                     ZStack {
                         ForEach(swipesVM.users, id: \.id) { user in
                             SwipeCard(user: user)
+                                .environmentObject(swipesVM)
                         }
                     }.frame(maxHeight: .infinity, alignment: .top)
                         .padding(.top, 30)

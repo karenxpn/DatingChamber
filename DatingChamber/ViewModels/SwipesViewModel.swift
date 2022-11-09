@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 import SwiftUI
 
 class SwipesViewModel: AlertViewModel, ObservableObject {
@@ -21,6 +22,8 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
     @Published var ageRange: ClosedRange<Int> = 18...51
     @Published var gender: String = ""
     @Published var status: String = ""
+    
+    @Published var lastUser: QueryDocumentSnapshot?
     
     
     @Published var users = [SwipeUserViewModel]()
@@ -63,12 +66,14 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
                                                    gender: preferredGender,
                                                    minAge: ageLowerBound,
                                                    maxAge: ageUppwerBound,
-                                                   online: usersStatus)
+                                                   online: usersStatus,
+            lastDocSnapshot: lastUser)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let users):
-                self.users = users.map{SwipeUserViewModel.init(user: $0)}
+                self.users = users.0.map{SwipeUserViewModel.init(user: $0)}
+                self.lastUser = users.1
             }
             
             if !Task.isCancelled {
