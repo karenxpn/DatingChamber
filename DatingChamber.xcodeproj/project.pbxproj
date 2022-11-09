@@ -88,6 +88,7 @@
 		FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A42291818DC00C91BEC /* ImageHelper.swift */; };
 		FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A452918289200C91BEC /* PromiseKit */; };
 		FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EDE291B33CA002053B7 /* SwipesService.swift */; };
+		FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE0291BE609002053B7 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,7 @@
 		FFCA5A3D29180F3600C91BEC /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFCA5A42291818DC00C91BEC /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
+		FFE33EE0291BE609002053B7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +358,7 @@
 				FFB4D5DC291192150065955F /* AuthViewModel.swift */,
 				FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */,
 				FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */,
+				FFE33EE0291BE609002053B7 /* LocationManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 			files = (
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
 				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,
+				FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */,
 				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
