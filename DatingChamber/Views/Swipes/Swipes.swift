@@ -49,7 +49,7 @@ struct Swipes: View {
                     .foregroundColor(showFilter ? AppColors.primary : .black)
             }).onChange(of: showFilter) { value in
                 if !value {
-                    //                    reload
+                    swipesVM.storeFilterValues()
                 }
             }
         }

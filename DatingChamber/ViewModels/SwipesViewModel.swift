@@ -31,4 +31,24 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
         self.gender = self.preferredGender
         self.status = self.usersStatus
     }
+    
+    func storeFilterValues() {
+        var mark = false
+        if ageLowerBound != ageRange.lowerBound ||
+            ageUppwerBound != ageRange.upperBound ||
+            preferredGender != gender ||
+            usersStatus != status {
+            mark = true
+        }
+        
+        ageLowerBound = ageRange.lowerBound
+        ageUppwerBound = ageRange.upperBound
+        preferredGender = gender
+        usersStatus = status
+        
+        if mark {
+            // get swipes agait
+        }
+    }
+    
 }
