@@ -12,12 +12,12 @@ struct TagsViewHelper: View {
     
     let font: UIFont
     let parentWidth: CGFloat
-    let interests: [String]
+    let interests: [InterestModel]
     
     
     var body: some View {
         TagLayoutView(
-            interests, tagFont: font,
+            interests.map{ $0.name}, tagFont: font,
             padding: 20, parentWidth: parentWidth) { tag in
                 
                 Text(tag)
@@ -25,21 +25,12 @@ struct TagsViewHelper: View {
                     .font(Font(font))
                     .fixedSize()
                     .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                    .foregroundColor(.black)
-                    .background(RoundedRectangle(cornerRadius: 30)
-                        .strokeBorder(AppColors.primary, lineWidth: 1.5)
-                        .background(
-                            RoundedRectangle(cornerRadius: 30)
-                                .fill(.white)
-                        )
+                    .foregroundColor(.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30)
+                            .fill(LinearGradient(colors: interests.contains(where: {$0.name == tag && $0.same == true}) ? [AppColors.gradient_orange, AppColors.gradient_crimson] : [.gray.opacity(0.5)], startPoint: .top, endPoint: .bottom))
                     )
                 
             }
-    }
-}
-
-struct TagsViewHelper_Previews: PreviewProvider {
-    static var previews: some View {
-        TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 8)!, parentWidth: UIScreen.main.bounds.width,interests: ["tea", "coffee", "travel", "dancing", "chill"])
     }
 }

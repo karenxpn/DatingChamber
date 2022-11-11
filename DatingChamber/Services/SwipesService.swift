@@ -15,7 +15,7 @@ protocol SwipesServiceProtocol {
                      minAge: Int,
                      maxAge: Int,
                      online: String,
-                     lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([SwipeModel], QueryDocumentSnapshot?), Error>
+                     lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<(([SwipeModel], [String]), QueryDocumentSnapshot?), Error>
 }
 
 class SwipesService {
@@ -31,7 +31,7 @@ extension SwipesService: SwipesServiceProtocol {
                      minAge: Int,
                      maxAge: Int,
                      online: String,
-                     lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([SwipeModel], QueryDocumentSnapshot?), Error> {
+                     lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<(([SwipeModel], [String]), QueryDocumentSnapshot?), Error> {
         
         let dateMinLimit = Calendar.current.date(byAdding: .year, value: -minAge, to: Date()) ?? Date()
         let dateMaxLimit = Calendar.current.date(byAdding: .year, value: -maxAge, to: Date()) ?? Date()
@@ -55,7 +55,7 @@ extension SwipesService: SwipesServiceProtocol {
             let docs = try await query.getDocuments().documents
             let users = try docs.map { try $0.data(as: SwipeModel.self ) }
             
-            return .success((users, docs.last))
+            return .success(((users, interests), docs.last))
         } catch {
             return .failure(error)
         }

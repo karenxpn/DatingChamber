@@ -27,6 +27,7 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
     
     
     @Published var users = [SwipeUserViewModel]()
+    @Published var myInterests = [String]()
     
     var manager: SwipesServiceProtocol
     init(manager: SwipesServiceProtocol = SwipesService.shared) {
@@ -72,7 +73,8 @@ class SwipesViewModel: AlertViewModel, ObservableObject {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let users):
-                self.users = users.0.map{SwipeUserViewModel.init(user: $0)}
+                self.users = users.0.0.map{SwipeUserViewModel.init(user: $0, interests: users.0.1)}
+                self.myInterests = users.0.1
                 self.lastUser = users.1
             }
             
