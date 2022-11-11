@@ -18,9 +18,11 @@ struct SwipeModel: Codable, Identifiable {
 
 struct SwipeUserViewModel: Identifiable {
     var user: SwipeModel
+    var myInterests: [String]
     
-    init(user: SwipeModel) {
+    init(user: SwipeModel, interests: [String]) {
         self.user = user
+        self.myInterests = interests
     }
     
     var id: String          { self.user.id }
@@ -28,8 +30,12 @@ struct SwipeUserViewModel: Identifiable {
     var name: String        { self.user.name }
     var online: Bool        { self.user.online }
     var isVerified: Bool    { self.user.isVerified }
-    var interests: [String] { self.user.interests }
     var age: String         { self.user.birthday.getAgeFromBirthDate() }
+    var interests: [InterestModel] {
+        let newIntersts = self.user.interests.map { InterestModel(same: myInterests.contains($0) ? true : false, name: $0) }
+        return newIntersts.sorted(by: { $0.same && !$1.same })
+    }
+
     
     
     // Card x position
@@ -42,3 +48,7 @@ struct SwipeUserViewModel: Identifiable {
     var degree: Double = 0.0
 }
 
+struct InterestModel {
+    var same: Bool
+    var name: String
+}

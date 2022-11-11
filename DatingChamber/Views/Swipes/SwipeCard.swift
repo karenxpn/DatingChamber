@@ -94,7 +94,9 @@ struct SwipeCard: View {
                         
                         TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
                                        parentWidth: UIScreen.main.bounds.size.width * 0.7,
-                                       interests: user.interests)
+                                       interests: user.interests.count <= 4 ?
+                                       user.interests : Array(user.interests.prefix(3)) +
+                                       [InterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 3)")])
                         
                         Button {
                             navigate.toggle()
@@ -138,12 +140,10 @@ struct SwipeCard: View {
                 SwipeButtonHelper(icon: "star", color: .white, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15, background: .clear) {
                     // make request
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        cardAction = .star
-                        withAnimation {
-                            user.y = -1000;
-                            checkLastAndRequestMore()
-                        }
+                    cardAction = .star
+                    withAnimation {
+                        user.y = -1000;
+                        checkLastAndRequestMore()
                     }
                 }
             }
