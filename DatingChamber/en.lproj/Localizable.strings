@@ -48,8 +48,8 @@
 "fakeAccount" = "Fake Account";
 "all" = "All";
 "age" = "Age";
-"showGenders" = "Show users with gender";
-"showOnline" = "Show users with online status";
+"showUsers" = "Show users";
 "interests" = "Interests";
 "chooseInterests" = "Choose minimum 3 hobbies to continue";
+"interestedIn" = "Interested in";
 
