@@ -47,15 +47,26 @@ struct Swipes: View {
                 Alert(title: Text(NSLocalizedString("error", comment: "")),
                       message: Text(swipesVM.alertMessage),
                       dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
-            }
-            .navigationBarItems(leading: TextHelper(text: "Dating Chamber",
-                                                     fontName: "Inter-Bold",
-                                                     fontSize: 28).kerning(0.56), trailing: Button {
-                showFilter.toggle()
-            } label: {
-                Image("icon_filter")
-                    .foregroundColor(showFilter ? AppColors.primary : .black)
-            }).onChange(of: showFilter) { value in
+            }.navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    TextHelper(text: NSLocalizedString("discover", comment: ""),
+                               color: AppColors.primary,
+                               fontName: "Inter-Bold",
+                               fontSize: 20)
+                    .kerning(0.56)
+                    .accessibilityAddTraits(.isHeader)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showFilter.toggle()
+                    } label: {
+                        Image("icon_filter")
+                            .foregroundColor(showFilter ? AppColors.primary : .black)
+                    }
+                }
+            }.onChange(of: showFilter) { value in
                 if !value {
                     swipesVM.storeFilterValues()
                 }
