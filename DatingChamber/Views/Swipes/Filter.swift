@@ -25,11 +25,11 @@ struct Filter: View {
             
             Spacer()
             
-            CustomSegmentPicker(selection: $gender, variants: genders, header: NSLocalizedString("showGenders", comment: ""))
+            CustomSegmentPicker(selection: $gender, variants: genders, header: NSLocalizedString("interestedIn", comment: ""))
             
             AgeFilter(range: $range)
             
-            CustomSegmentPicker(selection: $status, variants: statuses, header: NSLocalizedString("showOnline", comment: ""))
+            CustomSegmentPicker(selection: $status, variants: statuses, header: NSLocalizedString("showUsers", comment: ""))
             
             Button {
                 present.toggle()
