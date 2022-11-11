@@ -39,7 +39,8 @@ struct CustomTabView: View {
                                     Image(icons[id])
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .foregroundColor(id == tabViewModel.currentTab ? AppColors.primary : .black)
+                                        .foregroundStyle(.linearGradient(colors: id == tabViewModel.currentTab ? [AppColors.gradient_orange, AppColors.gradient_crimson] : [.black], startPoint: .top, endPoint: .bottom))
+//                                        .foregroundColor(id == tabViewModel.currentTab ? AppColors.primary : .black)
                                         .frame(width: 28, height: 28)
                                     
                                     
