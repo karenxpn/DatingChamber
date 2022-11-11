@@ -11,7 +11,7 @@ import AppTrackingTransparency
 struct MainView: View {
     @StateObject private var locationManager = LocationManager()
     @StateObject private var tabViewModel = TabViewModel()
-
+    
     var body: some View {
         ZStack( alignment: .bottom) {
 

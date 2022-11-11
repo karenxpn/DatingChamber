@@ -14,6 +14,8 @@ struct SwipeButtonHelper: View {
     let height: CGFloat
     let horizontalPadding: CGFloat
     let verticalPadding: CGFloat
+    var background: Color = .white
+    var shadowColor: Color = Color.gray.opacity(0.4)
     let action: (() -> Void)
     
     var body: some View {
@@ -21,13 +23,14 @@ struct SwipeButtonHelper: View {
         Button(action: action) {
             Image( icon )
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .foregroundColor(color)
                 .frame(width: width, height: height)
                 .padding(.horizontal, horizontalPadding)
                 .padding(.vertical, verticalPadding)
-                .background(.white)
+                .background(background)
                 .cornerRadius(100)
-                .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+                .shadow(color: shadowColor, radius: 5, x: 0, y: 5)
         }
     }
 }

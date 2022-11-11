@@ -112,8 +112,13 @@ struct SwipeCard: View {
             
             HStack( spacing: 15) {
                 
+                SwipeButtonHelper(icon: "refresh", color: .white, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15, background: .clear) {
+                    swipesVM.lastUser = nil
+                    swipesVM.getUsers()
+                }
                 
-                SwipeButtonHelper(icon: "broken_heart", color: .red, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
+                
+                SwipeButtonHelper(icon: "broken_heart", color: AppColors.red, width: 28, height: 28, horizontalPadding: 15, verticalPadding: 15) {
                     // make request
                     cardAction = .dislike
                     withAnimation(animation) {
@@ -122,7 +127,15 @@ struct SwipeCard: View {
                     }
                 }
                 
-                SwipeButtonHelper(icon: "star", color: .blue, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
+                SwipeButtonHelper(icon: "heart", color: AppColors.red, width: 28, height: 28, horizontalPadding: 15, verticalPadding: 15) {
+                    cardAction = .like
+                    withAnimation(animation) {
+                        user.x = 1000; user.degree = 20
+                        checkLastAndRequestMore()
+                    }
+                }
+                
+                SwipeButtonHelper(icon: "star", color: .white, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15, background: .clear) {
                     // make request
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -133,20 +146,12 @@ struct SwipeCard: View {
                         }
                     }
                 }
-                
-                SwipeButtonHelper(icon: "heart", color: .red, width: 20, height: 20, horizontalPadding: 15, verticalPadding: 15) {
-                    cardAction = .like
-                    withAnimation(animation) {
-                        user.x = 1000; user.degree = 20
-                        checkLastAndRequestMore()
-                    }
-                }
             }
         }.padding(16)
             .background(
                 Group {
                     if cardAction == .report    { Color.red }
-                    else                        { AppColors.light_purple }
+                    else                        { AppColors.light_orange }
                 }
             )
             .cornerRadius(30)
