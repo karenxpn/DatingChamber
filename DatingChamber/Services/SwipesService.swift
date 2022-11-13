@@ -53,7 +53,8 @@ extension SwipesService: SwipesServiceProtocol {
             else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
             
             let docs = try await query.getDocuments().documents
-            let users = try docs.map { try $0.data(as: SwipeModel.self ) }
+            var users = try docs.map { try $0.data(as: SwipeModel.self ) }
+            users.removeAll(where: { $0.id == userID })
             
             return .success(((users, interests), docs.last))
         } catch {
