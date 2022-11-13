@@ -13,7 +13,7 @@ protocol UserServiceProtocol {
     func updateLocation(userID: String, location: LocationModel) async -> Result<Void, Error>
     func likeUser(userID: String, uid: String) async -> Result<Void, Error>
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error>
-//    func blockUser(userID: String, uid: String) async -> Result<Void, Error>
+    func blockUser(userID: String, uid: String) async -> Result<Void, Error>
 }
 
 class UserService {
@@ -79,9 +79,23 @@ extension UserService: UserServiceProtocol {
         }
     }
     
-//    func blockUser(userID: String, uid: String) async -> Result<Void, Error> {
-//
-//    }
+    func blockUser(userID: String, uid: String) async -> Result<Void, Error> {
+        do {
+            // remove from my requests and pendings
+            try await db.collection("Users").document(userID).updateData(["requests": FieldValue.arrayRemove([uid])])
+            try await db.collection("Users").document(userID).updateData(["pending": FieldValue.arrayRemove([uid])])
+            // remove from users requests and pendings
+            try await db.collection("Users").document(uid).updateData(["requests": FieldValue.arrayRemove([userID])])
+            try await db.collection("Users").document(uid).updateData(["pending": FieldValue.arrayRemove([userID])])
+            
+            // add to my blocked users
+            try await db.collection("Users").document(userID).updateData(["blocked": FieldValue.arrayUnion([uid])])
+            
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
     
     func updateLocation(userID: String, location: LocationModel) async -> Result<Void, Error> {
         do {
