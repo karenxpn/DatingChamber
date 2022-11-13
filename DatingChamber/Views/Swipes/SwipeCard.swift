@@ -123,6 +123,7 @@ struct SwipeCard: View {
                 SwipeButtonHelper(icon: "broken_heart", color: AppColors.red, width: 28, height: 28, horizontalPadding: 15, verticalPadding: 15) {
                     // make request
                     cardAction = .dislike
+                    userVM.dislikeUser(uid: user.id)
                     withAnimation(animation) {
                         user.x = -1000; user.degree = -20
                         checkLastAndRequestMore()
@@ -131,6 +132,7 @@ struct SwipeCard: View {
                 
                 SwipeButtonHelper(icon: "heart", color: AppColors.red, width: 28, height: 28, horizontalPadding: 15, verticalPadding: 15) {
                     cardAction = .like
+                    userVM.likeUser(uid: user.id)
                     withAnimation(animation) {
                         user.x = 1000; user.degree = 20
                         checkLastAndRequestMore()
@@ -182,6 +184,7 @@ struct SwipeCard: View {
                                 blur = 0
                             case let x where x > 100:
                                 cardAction = .like
+                                userVM.likeUser(uid: user.id)
                                 checkLastAndRequestMore()
                                 user.x = 1000; user.degree = 20
                                 //                                AppAnalytics().logEvent(event: "swipe")
@@ -192,6 +195,7 @@ struct SwipeCard: View {
                                 blur = 0
                             case let x where x < -100:
                                 cardAction = .dislike
+                                userVM.likeUser(uid: user.id)
                                 checkLastAndRequestMore()
                                 user.x = -1000; user.degree = -20
                                 //                                AppAnalytics().logEvent(event: "swipe")
@@ -203,7 +207,11 @@ struct SwipeCard: View {
                             }
                         }
                     })
-            )
+            ).alert(isPresented: $userVM.showAlert) {
+                Alert(title: Text(NSLocalizedString("error", comment: "")),
+                      message: Text(userVM.alertMessage),
+                      dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
+            }
     }
     
     func checkLastAndRequestMore() {
