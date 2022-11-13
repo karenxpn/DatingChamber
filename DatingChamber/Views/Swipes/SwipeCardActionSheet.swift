@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SwipeCardActionSheet: View {
+    @EnvironmentObject var userVM: UserViewModel
     @Binding var showDialog: Bool
     @Binding var showReportConfirmation: Bool
     @Binding var reportReason: String
@@ -67,7 +68,7 @@ struct SwipeCardActionSheet: View {
                     checkLastAndRequestMore()
                 }
                 
-                //                                    userVM.blockUser(id: user.id)
+                userVM.blockUser(uid: user.id)
             }
         }
 

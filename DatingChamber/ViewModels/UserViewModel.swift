@@ -38,13 +38,12 @@ class UserViewModel: AlertViewModel, ObservableObject {
     @MainActor func dislikeUser(uid: String) {
         Task {
             let result = await manager.dislikeUser(userID: userID, uid: uid)
-            switch result {
-            case .failure(let error):
-                print(error)
-                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            case .success(()):
-                break
-            }
+        }
+    }
+    
+    @MainActor func blockUser(uid: String) {
+        Task {
+            let result = await manager.blockUser(userID: userID, uid: uid)
         }
     }
 }

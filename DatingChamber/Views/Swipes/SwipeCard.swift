@@ -80,8 +80,7 @@ struct SwipeCard: View {
                                 reportUser()
                             } checkLastAndRequestMore: {
                                 checkLastAndRequestMore()
-                            }
-                            
+                            }.environmentObject(userVM)
                         }
                     }
                     
