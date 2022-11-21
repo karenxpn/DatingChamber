@@ -3,14 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FDF77821B312607ED85FABD /* Pods_DatingChamberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583C8561B24CA2895C5E418A /* Pods_DatingChamberTests.framework */; };
+		AC11603571AE24016913698E /* Pods_DatingChamber_DatingChamberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F38AE49E652FBA2932DFCC /* Pods_DatingChamber_DatingChamberUITests.framework */; };
+		C8C018EA24F7D88B044EC4CD /* Pods_DatingChamber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D32021C10C86B0735E5842C /* Pods_DatingChamber.framework */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
 		FF5F207E291A90BB007E0E99 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F207D291A90BB007E0E99 /* Account.swift */; };
+		FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F207F291AADE7007E0E99 /* Swipes.swift */; };
+		FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2081291AADF1007E0E99 /* SwipeCard.swift */; };
+		FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2083291AAF38007E0E99 /* SwipeModel.swift */; };
+		FF5F2086291AB38B007E0E99 /* AppPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2085291AB38B007E0E99 /* AppPreviewModel.swift */; };
+		FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2087291AB4A8007E0E99 /* ActionSheetButtonHelper.swift */; };
+		FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2089291AB4E7007E0E99 /* CustomActionSheet.swift */; };
+		FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */; };
+		FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */; };
+		FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */; };
+		FF5F2093291ACCE2007E0E99 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FF5F2092291ACCE2007E0E99 /* Sliders */; };
+		FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2094291ACCED007E0E99 /* Filter.swift */; };
+		FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2096291ACD17007E0E99 /* AgeFilter.swift */; };
+		FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */; };
+		FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF5F209B291AE747007E0E99 /* TagLayoutView */; };
+		FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */; };
+		FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -65,13 +84,17 @@
 		FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A302917E59900C91BEC /* AuthBirthday.swift */; };
 		FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */; };
 		FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */; };
-		FFCA5A372917F17900C91BEC /* AuthBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A362917F17900C91BEC /* AuthBio.swift */; };
 		FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3929180E3600C91BEC /* ProfileImageBox.swift */; };
 		FFCA5A3C29180EDA00C91BEC /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */; };
 		FFCA5A3E29180F3600C91BEC /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A3D29180F3600C91BEC /* Gallery.swift */; };
 		FFCA5A41291818A300C91BEC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */; };
 		FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A42291818DC00C91BEC /* ImageHelper.swift */; };
 		FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A452918289200C91BEC /* PromiseKit */; };
+		FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EDE291B33CA002053B7 /* SwipesService.swift */; };
+		FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE0291BE609002053B7 /* LocationManager.swift */; };
+		FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE2291BFF3B002053B7 /* UserService.swift */; };
+		FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */; };
+		FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,10 +115,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		142A78D566291CE0AB3297E9 /* Pods-DatingChamber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamber.debug.xcconfig"; path = "Target Support Files/Pods-DatingChamber/Pods-DatingChamber.debug.xcconfig"; sourceTree = "<group>"; };
+		49EFC70E342FEC061ADD1973 /* Pods-DatingChamber-DatingChamberUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamber-DatingChamberUITests.release.xcconfig"; path = "Target Support Files/Pods-DatingChamber-DatingChamberUITests/Pods-DatingChamber-DatingChamberUITests.release.xcconfig"; sourceTree = "<group>"; };
+		583C8561B24CA2895C5E418A /* Pods_DatingChamberTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatingChamberTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67F38AE49E652FBA2932DFCC /* Pods_DatingChamber_DatingChamberUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatingChamber_DatingChamberUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F6F4E60DAE2952BB44EC050 /* Pods-DatingChamberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamberTests.release.xcconfig"; path = "Target Support Files/Pods-DatingChamberTests/Pods-DatingChamberTests.release.xcconfig"; sourceTree = "<group>"; };
+		8D32021C10C86B0735E5842C /* Pods_DatingChamber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatingChamber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6E8BD76042C1A20844E4D94 /* Pods-DatingChamberTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamberTests.debug.xcconfig"; path = "Target Support Files/Pods-DatingChamberTests/Pods-DatingChamberTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD86050C16EA11A3FD42B06B /* Pods-DatingChamber-DatingChamberUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamber-DatingChamberUITests.debug.xcconfig"; path = "Target Support Files/Pods-DatingChamber-DatingChamberUITests/Pods-DatingChamber-DatingChamberUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4CC2631C05FE24E808DE19E /* Pods-DatingChamber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamber.release.xcconfig"; path = "Target Support Files/Pods-DatingChamber/Pods-DatingChamber.release.xcconfig"; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FF5F207D291A90BB007E0E99 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		FF5F207F291AADE7007E0E99 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
+		FF5F2081291AADF1007E0E99 /* SwipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCard.swift; sourceTree = "<group>"; };
+		FF5F2083291AAF38007E0E99 /* SwipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModel.swift; sourceTree = "<group>"; };
+		FF5F2085291AB38B007E0E99 /* AppPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreviewModel.swift; sourceTree = "<group>"; };
+		FF5F2087291AB4A8007E0E99 /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
+		FF5F2089291AB4E7007E0E99 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
+		FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButtonHelper.swift; sourceTree = "<group>"; };
+		FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewModel.swift; sourceTree = "<group>"; };
+		FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnlineAndVerified.swift; sourceTree = "<group>"; };
+		FF5F2094291ACCED007E0E99 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		FF5F2096291ACD17007E0E99 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
+		FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
+		FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewHelper.swift; sourceTree = "<group>"; };
+		FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -140,11 +186,15 @@
 		FFCA5A302917E59900C91BEC /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
 		FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayFields.swift; sourceTree = "<group>"; };
 		FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGenderPicker.swift; sourceTree = "<group>"; };
-		FFCA5A362917F17900C91BEC /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
 		FFCA5A3929180E3600C91BEC /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
 		FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFCA5A3D29180F3600C91BEC /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFCA5A42291818DC00C91BEC /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
+		FFE33EE0291BE609002053B7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FFE33EE2291BFF3B002053B7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +205,7 @@
 				FFC614372911EA9D00CE75E2 /* FirebaseDatabaseSwift in Frameworks */,
 				FFC6143B2911EA9D00CE75E2 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				FFC614352911EA9D00CE75E2 /* FirebaseDatabase in Frameworks */,
+				FF5F2093291ACCE2007E0E99 /* Sliders in Frameworks */,
 				FFC6142F2911EA9D00CE75E2 /* FirebaseAnalyticsSwift in Frameworks */,
 				FFCA5A41291818A300C91BEC /* SDWebImageSwiftUI in Frameworks */,
 				FFC614332911EA9D00CE75E2 /* FirebaseCrashlytics in Frameworks */,
@@ -168,7 +219,9 @@
 				FFC614392911EA9D00CE75E2 /* FirebaseFirestore in Frameworks */,
 				FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */,
 				FFC614432911EA9D00CE75E2 /* FirebaseStorageCombine-Community in Frameworks */,
+				FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */,
 				FFC6143D2911EA9D00CE75E2 /* FirebaseFirestoreSwift in Frameworks */,
+				C8C018EA24F7D88B044EC4CD /* Pods_DatingChamber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FDF77821B312607ED85FABD /* Pods_DatingChamberTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,12 +237,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC11603571AE24016913698E /* Pods_DatingChamber_DatingChamberUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1079652EE24E025231084875 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				142A78D566291CE0AB3297E9 /* Pods-DatingChamber.debug.xcconfig */,
+				E4CC2631C05FE24E808DE19E /* Pods-DatingChamber.release.xcconfig */,
+				DD86050C16EA11A3FD42B06B /* Pods-DatingChamber-DatingChamberUITests.debug.xcconfig */,
+				49EFC70E342FEC061ADD1973 /* Pods-DatingChamber-DatingChamberUITests.release.xcconfig */,
+				D6E8BD76042C1A20844E4D94 /* Pods-DatingChamberTests.debug.xcconfig */,
+				6F6F4E60DAE2952BB44EC050 /* Pods-DatingChamberTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E5666CCBD15DD92B33B0D2EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D32021C10C86B0735E5842C /* Pods_DatingChamber.framework */,
+				67F38AE49E652FBA2932DFCC /* Pods_DatingChamber_DatingChamberUITests.framework */,
+				583C8561B24CA2895C5E418A /* Pods_DatingChamberTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FF5F207A291A909E007E0E99 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +285,13 @@
 		FF5F207C291A90AB007E0E99 /* Swipes */ = {
 			isa = PBXGroup;
 			children = (
+				FF5F207F291AADE7007E0E99 /* Swipes.swift */,
+				FF5F2081291AADF1007E0E99 /* SwipeCard.swift */,
+				FF5F208F291AC81F007E0E99 /* SwipeOnlineAndVerified.swift */,
+				FF5F2094291ACCED007E0E99 /* Filter.swift */,
+				FF5F2096291ACD17007E0E99 /* AgeFilter.swift */,
+				FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */,
+				FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -219,6 +304,8 @@
 				FFB4D5B929118EE20065955F /* DatingChamberTests */,
 				FFB4D5C329118EE20065955F /* DatingChamberUITests */,
 				FFB4D5A729118EDE0065955F /* Products */,
+				1079652EE24E025231084875 /* Pods */,
+				E5666CCBD15DD92B33B0D2EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,6 +376,8 @@
 				FFC614522912A3A200CE75E2 /* Extensions.swift */,
 				FFC614612912D55100CE75E2 /* Loading.swift */,
 				FFCA5A42291818DC00C91BEC /* ImageHelper.swift */,
+				FF5F2085291AB38B007E0E99 /* AppPreviewModel.swift */,
+				FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -302,6 +391,9 @@
 				FFC634942911983D001711BC /* Authentication */,
 				FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */,
 				FF5F2078291A8DFE007E0E99 /* MainView.swift */,
+				FF5F2087291AB4A8007E0E99 /* ActionSheetButtonHelper.swift */,
+				FF5F2089291AB4E7007E0E99 /* CustomActionSheet.swift */,
+				FF5F208B291AB57C007E0E99 /* SwipeButtonHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +404,9 @@
 				FFC614562912A56200CE75E2 /* AlertViewModel.swift */,
 				FFB4D5DC291192150065955F /* AuthViewModel.swift */,
 				FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */,
+				FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */,
+				FFE33EE0291BE609002053B7 /* LocationManager.swift */,
+				FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -320,6 +415,8 @@
 			isa = PBXGroup;
 			children = (
 				FFC6144C29129F2400CE75E2 /* AuthService.swift */,
+				FFE33EDE291B33CA002053B7 /* SwipesService.swift */,
+				FFE33EE2291BFF3B002053B7 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -328,6 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				FFCA5A2C2917E31900C91BEC /* RegistrationModel.swift */,
+				FF5F2083291AAF38007E0E99 /* SwipeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,7 +465,7 @@
 				FFCA5A302917E59900C91BEC /* AuthBirthday.swift */,
 				FFCA5A322917E5D100C91BEC /* BirthdayFields.swift */,
 				FFCA5A342917E8FB00C91BEC /* AuthGenderPicker.swift */,
-				FFCA5A362917F17900C91BEC /* AuthBio.swift */,
+				FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */,
 				FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */,
 				FFCA5A3929180E3600C91BEC /* ProfileImageBox.swift */,
 				FFCA5A3D29180F3600C91BEC /* Gallery.swift */,
@@ -383,9 +481,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFB4D5CA29118EE20065955F /* Build configuration list for PBXNativeTarget "DatingChamber" */;
 			buildPhases = (
+				A2168DB3AAD27F3A98F2601D /* [CP] Check Pods Manifest.lock */,
 				FFB4D5A229118EDE0065955F /* Sources */,
 				FFB4D5A329118EDE0065955F /* Frameworks */,
 				FFB4D5A429118EDE0065955F /* Resources */,
+				2186DF4D4982B82704401D9F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -410,6 +510,8 @@
 				FFC6146A2914789400CE75E2 /* GoogleSignIn */,
 				FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */,
 				FFCA5A452918289200C91BEC /* PromiseKit */,
+				FF5F2092291ACCE2007E0E99 /* Sliders */,
+				FF5F209B291AE747007E0E99 /* TagLayoutView */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -419,6 +521,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFB4D5CD29118EE20065955F /* Build configuration list for PBXNativeTarget "DatingChamberTests" */;
 			buildPhases = (
+				7996314D99429E830C7D91FA /* [CP] Check Pods Manifest.lock */,
 				FFB4D5B229118EE20065955F /* Sources */,
 				FFB4D5B329118EE20065955F /* Frameworks */,
 				FFB4D5B429118EE20065955F /* Resources */,
@@ -437,9 +540,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFB4D5D029118EE20065955F /* Build configuration list for PBXNativeTarget "DatingChamberUITests" */;
 			buildPhases = (
+				99383D7DE52FB5FBECF36ECE /* [CP] Check Pods Manifest.lock */,
 				FFB4D5BC29118EE20065955F /* Sources */,
 				FFB4D5BD29118EE20065955F /* Frameworks */,
 				FFB4D5BE29118EE20065955F /* Resources */,
+				666055A19895C0203D0EABA4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -475,7 +580,7 @@
 				};
 			};
 			buildConfigurationList = FFB4D5A129118EDE0065955F /* Build configuration list for PBXProject "DatingChamber" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -486,10 +591,12 @@
 			packageReferences = (
 				FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FFC6145B2912CC0300CE75E2 /* XCRemoteSwiftPackageReference "FirebaseService" */,
-				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
-				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */,
+				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */,
+				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */,
 				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -536,45 +643,166 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2186DF4D4982B82704401D9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DatingChamber/Pods-DatingChamber-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DatingChamber/Pods-DatingChamber-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DatingChamber/Pods-DatingChamber-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		666055A19895C0203D0EABA4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DatingChamber-DatingChamberUITests/Pods-DatingChamber-DatingChamberUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DatingChamber-DatingChamberUITests/Pods-DatingChamber-DatingChamberUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DatingChamber-DatingChamberUITests/Pods-DatingChamber-DatingChamberUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7996314D99429E830C7D91FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DatingChamberTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99383D7DE52FB5FBECF36ECE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DatingChamber-DatingChamberUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2168DB3AAD27F3A98F2601D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DatingChamber-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FFB4D5A229118EDE0065955F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
+				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,
+				FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */,
 				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
+				FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
-				FFCA5A372917F17900C91BEC /* AuthBio.swift in Sources */,
+				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
+				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
+				FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
+				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
+				FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
+				FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */,
+				FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */,
+				FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */,
+				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
+				FF5F2086291AB38B007E0E99 /* AppPreviewModel.swift in Sources */,
 				FFCA5A3E29180F3600C91BEC /* Gallery.swift in Sources */,
 				FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */,
 				FF5F207E291A90BB007E0E99 /* Account.swift in Sources */,
 				FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */,
+				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
+				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
+				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
 				FFC614532912A3A200CE75E2 /* Extensions.swift in Sources */,
 				FFC6144F2912A35400CE75E2 /* VerifyPhoneNumber.swift in Sources */,
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
+				FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */,
 				FFB4D5E3291193010065955F /* AppColors.swift in Sources */,
 				FFB4D5DB29118FBE0065955F /* Authentication.swift in Sources */,
 				FFB4D5E1291192EE0065955F /* ButtonHelper.swift in Sources */,
+				FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */,
+				FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */,
 				FFCA5A3C29180EDA00C91BEC /* AuthProfileImages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,6 +967,7 @@
 		};
 		FFB4D5CB29118EE20065955F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 142A78D566291CE0AB3297E9 /* Pods-DatingChamber.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -773,6 +1002,7 @@
 		};
 		FFB4D5CC29118EE20065955F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4CC2631C05FE24E808DE19E /* Pods-DatingChamber.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -807,6 +1037,7 @@
 		};
 		FFB4D5CE29118EE20065955F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6E8BD76042C1A20844E4D94 /* Pods-DatingChamberTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -827,6 +1058,7 @@
 		};
 		FFB4D5CF29118EE20065955F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F6F4E60DAE2952BB44EC050 /* Pods-DatingChamberTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -847,6 +1079,7 @@
 		};
 		FFB4D5D129118EE20065955F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD86050C16EA11A3FD42B06B /* Pods-DatingChamber-DatingChamberUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -865,6 +1098,7 @@
 		};
 		FFB4D5D229118EE20065955F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49EFC70E342FEC061ADD1973 /* Pods-DatingChamber-DatingChamberUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -923,6 +1157,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yotsu12/TagLayoutView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -939,7 +1189,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+		FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
 			requirement = {
@@ -947,7 +1197,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+		FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
 			requirement = {
@@ -955,7 +1205,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -974,6 +1224,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FF5F2092291ACCE2007E0E99 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+		FF5F209B291AE747007E0E99 /* TagLayoutView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */;
+			productName = TagLayoutView;
+		};
 		FFC6142C2911EA9D00CE75E2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1041,17 +1301,17 @@
 		};
 		FFC6145F2912D52400CE75E2 /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			package = FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */;
 			productName = ActivityIndicatorView;
 		};
 		FFC6146A2914789400CE75E2 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
 			productName = GoogleSignIn;
 		};
 		FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */;
 			productName = SDWebImageSwiftUI;
 		};
 		FFCA5A452918289200C91BEC /* PromiseKit */ = {

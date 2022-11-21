@@ -35,6 +35,10 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     
     @Published var images = [String]()
     
+    
+    @Published var interests = [String]()
+    @Published var selected_interests = [String]()
+    
     var manager: AuthServiceProtocol
     
     init(manager: AuthServiceProtocol = AuthService.shared) {
@@ -163,6 +167,24 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             case .success():
                 self.userID = initialUserID
                 NotificationCenter.default.post(name: Notification.Name("passedRegistration"), object: nil)
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            }
+            
+            if !Task.isCancelled {
+                self.loading = false
+            }
+        }
+    }
+    
+    @MainActor
+    func getInterests() {
+        loading = true
+        Task {
+            let result = await manager.fetchInterests()
+            switch result {
+            case .success(let interests):
+                self.interests = interests
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             }

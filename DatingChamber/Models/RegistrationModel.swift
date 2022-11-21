@@ -6,18 +6,25 @@
 //
 
 import Foundation
-struct RegistrationModel: Codable {
+import Firebase
+import FirebaseFirestore
+
+struct RegistrationModel: Codable, Identifiable {
+    var id: String = ""
     var name: String = ""
-    var birthday: String = ""
+    var birthday:Date = .now
     var gender: String = ""
     var showGender: Bool = true
     var bio: String = ""
     var images: [String] = []
-    var profileImage = ""
-    var location: LocationModel?
+    var avatar = ""
+    var online: Bool = true
+    var isVerified: Bool = false
+    var interests: [String] = []
 }
 
 struct LocationModel: Codable {
+    var hash: String
     var lat: Double = 0
     var lng: Double = 0
 }

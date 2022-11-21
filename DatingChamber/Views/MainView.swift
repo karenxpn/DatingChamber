@@ -9,8 +9,9 @@ import SwiftUI
 import AppTrackingTransparency
 
 struct MainView: View {
+    @StateObject private var locationManager = LocationManager()
     @StateObject private var tabViewModel = TabViewModel()
-
+    
     var body: some View {
         ZStack( alignment: .bottom) {
 
@@ -20,7 +21,7 @@ struct MainView: View {
                     Text("Home")
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 1 {
-                    Text("Swipes")
+                    Swipes()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 2 {
                     Text("Chats")

@@ -22,6 +22,12 @@ struct AuthBirthday: View {
     @FocusState private var focusedField: BirthdayForm?
     @State private var navigate: Bool = false
     
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/YYYY"
+        return formatter
+    }
+    
     var body: some View {
         ZStack {
             VStack( alignment: .leading, spacing: 30) {
@@ -48,7 +54,10 @@ struct AuthBirthday: View {
                 
                 ButtonHelper(disabled: !birthdayFormFields.isProceedButtonClickable,
                              label: NSLocalizedString("continue", comment: "")) {
-                    model.birthday = "\(birthdayFormFields.day)/\(birthdayFormFields.month)/\(birthdayFormFields.year)"
+                    
+                    let date = dateFormatter.date(from: "\(birthdayFormFields.day)/\(birthdayFormFields.month)/\(birthdayFormFields.year)")
+                    
+                    model.birthday = date ?? .now
                     navigate = true
                 }.navigationDestination(isPresented: $navigate, destination: {
                     AuthGenderPicker(model: $model)

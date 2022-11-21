@@ -223,6 +223,15 @@ extension Date {
     init(milliseconds: Int64) {
         self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
     }
+    
+    func getAgeFromBirthDate() -> String {
+
+        let calender = Calendar.current
+
+        let age = calender.dateComponents([.year], from: self, to: Date())
+
+        return String(age.year!)
+    }
 }
 
 extension Array {

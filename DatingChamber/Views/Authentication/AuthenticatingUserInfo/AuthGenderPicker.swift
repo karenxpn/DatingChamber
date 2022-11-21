@@ -75,7 +75,7 @@ struct AuthGenderPicker: View {
                     model.gender = selected_gender
                     model.showGender = showGender
                 }.navigationDestination(isPresented: $navigate) {
-                    AuthBio(model: $model)
+                    AuthInterests(model: $model)
                 }
             }
             .frame(
