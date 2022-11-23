@@ -15,10 +15,25 @@ struct EditAccount: View {
             if accountVM.loading {
                 ProgressView()
             } else if accountVM.user != nil {
-                EditAccountInnerView()
+                EditAccountInnerView(user: accountVM.user!)
             }
         }.task {
             accountVM.getAccount()
+        }.toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                TextHelper(text: NSLocalizedString("profile", comment: ""),
+                           fontName: "Inter-Black",
+                           fontSize: 24)
+                .kerning(0.56)
+                .accessibilityAddTraits(.isHeader)
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                } label: {
+                    Image("icon_settings")
+                }
+            }
         }
     }
 }

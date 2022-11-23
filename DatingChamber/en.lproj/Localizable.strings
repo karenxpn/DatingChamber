@@ -58,4 +58,7 @@
 "bio" = "Bio";
 "fullName" = "Full Name";
 "specify" = "Specify";
-
+"occupation" = "Occupation";
+"education" = "Education";
+"gender" = "Gender";
+"city" = "City";

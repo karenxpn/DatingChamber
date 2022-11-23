@@ -37,7 +37,7 @@ struct Account: View {
                         Image("icon_settings")
                     }
                 }
-            }
+            }.navigationTitle(Text(""))
             .task {
                 accountVM.getAccount()
             }
