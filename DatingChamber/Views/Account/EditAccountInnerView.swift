@@ -80,44 +80,14 @@ struct EditAccountInnerView: View {
                 
                 // bio here
                 
-                VStack( alignment: .leading, spacing: 4) {
-                    
-                    HStack {
-                        TextHelper(text: NSLocalizedString("bio", comment: ""), fontName: "Inter-SemiBold", fontSize: 18)
-                        
-                        Spacer()
-                        
-                        Button {
-                            
-                        } label: {
-                            TextHelper(text: NSLocalizedString("edit", comment: ""), color: AppColors.primary, fontSize: 12)
-                                .padding(.leading)
-                        }
-
-                    }
-                    
-                    TextHelper(text: user.bio.isEmpty ? NSLocalizedString("tellAboutYou", comment: "") : user.bio, fontSize: 12)
-                        .padding(10)
-                        .frame(minWidth: 0,
-                               maxWidth: .infinity,
-                               minHeight: 0,
-                               maxHeight: .infinity,
-                               alignment: .leading)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(AppColors.light_red)
-                        )
-                    
-                }.frame(minWidth: 0,
-                           maxWidth: .infinity,
-                           alignment: .leading)
+                EditBio(bio: $user.bio)
                 
                 // specs here
                 VStack( spacing: 5) {
-                    AccountSpecs(icon: icons[0], label: names[0], value: user.occupation, destination: AnyView(Text("")))
-                    AccountSpecs(icon: icons[1], label: names[1], value: user.education, destination: AnyView(Text("")))
-                    AccountSpecs(icon: icons[2], label: names[2], value: user.gender, destination: AnyView(Text("")))
-                    AccountSpecs(icon: icons[3], label: names[3], value: user.city, destination: AnyView(Text("")))
+                    AccountSpecs(icon: icons[0], label: names[0], value: user.occupation, destination: AnyView(EditOccupation(user: $user)))
+                    AccountSpecs(icon: icons[1], label: names[1], value: user.education, destination: AnyView(EditEducation(user: $user)))
+                    AccountSpecs(icon: icons[2], label: names[2], value: user.gender, destination: AnyView(EditGender(user: $user)))
+                    AccountSpecs(icon: icons[3], label: names[3], value: user.city, destination: AnyView(EditCity(user: $user)))
                 }
                 
                 // interests here
@@ -159,6 +129,7 @@ struct EditAccountInnerView: View {
                 alignment: .center
             )
             .padding(30)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
         }.sheet(isPresented: $showBirthdayPicker) {
             EditBirthday(user: $user)
                 .presentationDetents([.large, .medium])

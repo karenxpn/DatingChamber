@@ -59,9 +59,13 @@
 "fullName" = "Full Name";
 "specify" = "Specify";
 "occupation" = "Occupation";
+"occupationMessage" = "Tell others about you occupation";
 "education" = "Education";
+"educationMessage" = "Tell others where you study/studied, maybe you'll find some from the same place.";
 "gender" = "Gender";
+"genderMessage" = "Specify your gender here";
 "city" = "City";
+"cityMessage" = "Tell others where you are from, and increase possibility to find people from the same city";
 "yourInterests" = "Your interests";
 "selectInterests" = "Select a few of your intersts and let everyone know what you’re passionate about.";
 "birthday" = "Birthday";
