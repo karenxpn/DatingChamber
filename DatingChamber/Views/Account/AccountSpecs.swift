@@ -12,11 +12,15 @@ struct AccountSpecs: View {
     let label: String
     let value: String
     let destination: AnyView
+    var disabled: Bool = false
+    var iconColor: Color = .black
     
     var body: some View {
         NavigationLink(destination: destination) {
             HStack {
                 Image(icon)
+                    .foregroundColor(iconColor)
+                
                 Text( label )
                     .kerning(0.24)
                     .foregroundColor(.black)
@@ -24,20 +28,22 @@ struct AccountSpecs: View {
                 
                 Spacer()
                 
-                Text( value.isEmpty ? NSLocalizedString("specify", comment: "") : value )
+                Text( value.isEmpty ? NSLocalizedString( disabled ? "notSpecified" : "specify", comment: "") : value )
                     .kerning(0.24)
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 12))
                 
-                Image("navigate_arrow")
+                if !disabled {
+                    Image("navigate_arrow")
+                }
                 
             }.padding(.vertical, 5)
-        }
+        }.disabled(disabled)
     }
 }
 
 struct AccountSpecs_Previews: PreviewProvider {
     static var previews: some View {
-        AccountSpecs(icon: "user_school_icon", label: "Образование", value: "Указать", destination: AnyView(Text( "Destination" )))
+        AccountSpecs(icon: "user_school_icon", label: "Образование", value: "Указать", destination: AnyView(Text( "Destination" )), disabled: false)
     }
 }

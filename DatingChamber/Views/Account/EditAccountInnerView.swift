@@ -130,7 +130,8 @@ struct EditAccountInnerView: View {
             )
             .padding(30)
             .padding(.bottom, UIScreen.main.bounds.height * 0.1)
-        }.sheet(isPresented: $showBirthdayPicker) {
+        }.padding(.top, 1)
+        .sheet(isPresented: $showBirthdayPicker) {
             EditBirthday(user: $user)
                 .presentationDetents([.large, .medium])
         }

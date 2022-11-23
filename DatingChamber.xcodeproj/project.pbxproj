@@ -306,8 +306,8 @@
 			children = (
 				FF5F207D291A90BB007E0E99 /* Account.swift */,
 				FF071626292D45000028B35D /* AccountPreview.swift */,
-				FF07162E292D4D5E0028B35D /* AccountName.swift */,
 				FF071628292D472C0028B35D /* ProfileImage.swift */,
+				FF07162E292D4D5E0028B35D /* AccountName.swift */,
 				FF07162A292D47470028B35D /* EditAccount.swift */,
 				FF071632292E40170028B35D /* EditAccountInnerView.swift */,
 				FF071630292E3F4D0028B35D /* AccountSpecs.swift */,

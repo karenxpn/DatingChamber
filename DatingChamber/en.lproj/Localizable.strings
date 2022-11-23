@@ -58,6 +58,7 @@
 "bio" = "Bio";
 "fullName" = "Full Name";
 "specify" = "Specify";
+"notSpecified" = "Not Specified";
 "occupation" = "Occupation";
 "occupationMessage" = "Tell others about you occupation";
 "education" = "Education";

@@ -9,14 +9,20 @@ import SwiftUI
 
 struct AccountPreview: View {
     let user: UserModelViewModel
+    let icons = ["occupation_icon", "education_icon", "gender_icon", "city_icon"]
+    let names = [NSLocalizedString("occupation", comment: ""),
+                 NSLocalizedString("education", comment: ""),
+                 NSLocalizedString("gender", comment: ""),
+                 NSLocalizedString("city", comment: "")]
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             
+            ProfileImage(user: user)
+                
             VStack(spacing: 20) {
-                ProfileImage(user: user)
-                
-                AccountName(name: user.name)
-                
+                TextHelper(text: "\(user.name), \(user.age)", fontName: "Inter-SemiBold", fontSize: 20)
+
                 // bio
                 if !user.bio.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
@@ -31,8 +37,16 @@ struct AccountPreview: View {
                     )
                 }
                 
+                // specs here
+                VStack( spacing: 5) {
+                    AccountSpecs(icon: icons[0], label: names[0], value: user.occupation, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[1], label: names[1], value: user.education, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[2], label: names[2], value: user.gender, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[3], label: names[3], value: user.city, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
+                }
+                
                 // interests
-                TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!, parentWidth: UIScreen.main.bounds.width, interests: user.interests.map{ InterestModel(same: true, name: $0)})
+                TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!, parentWidth: UIScreen.main.bounds.width * 0.8, interests: user.interests.map{ InterestModel(same: true, name: $0)})
                 
                 
             }.frame(
@@ -43,8 +57,10 @@ struct AccountPreview: View {
                 alignment: .center
             )
             .padding(30)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
+            .offset(y: 50)
             
-        }
+        }.padding(.top, 1)
     }
 }
 
