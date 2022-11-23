@@ -61,7 +61,7 @@ struct EditInterests: View {
                                      label: NSLocalizedString("continue", comment: "")) {
                             
                             user.interests = selectedInterests
-                            accountVM.updateInterests(interests: selectedInterests)
+                            accountVM.updateAccount(field: ["interests" : selectedInterests])
                         }
                     }.padding(30)
                 }

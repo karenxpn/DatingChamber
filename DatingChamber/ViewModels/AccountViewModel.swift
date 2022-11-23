@@ -59,10 +59,10 @@ class AccountViewModel: AlertViewModel, ObservableObject {
         }
     }
     
-    @MainActor func updateInterests(interests: [String]) {
+    @MainActor func updateAccount(field: [String: Any]) {
         loading = true
         Task {
-            let result = await manager.updateInterests(userID: userID, interests: interests)
+            let result = await manager.updateAccount(userID: userID, updateField: field)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)

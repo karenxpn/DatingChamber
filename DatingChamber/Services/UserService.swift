@@ -16,7 +16,7 @@ protocol UserServiceProtocol {
     func blockUser(userID: String, uid: String) async -> Result<Void, Error>
     
     func fetchAccount(userID: String) async -> Result<UserModel, Error>
-    func updateInterests(userID: String, interests: [String]) async -> Result<Void, Error>
+    func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
 }
 
 class UserService {
@@ -26,9 +26,9 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
-    func updateInterests(userID: String, interests: [String]) async -> Result<Void, Error> {
+    func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error> {
         do {
-            try await db.collection("Users").document(userID).updateData(["interests" : interests])
+            try await db.collection("Users").document(userID).setData(updateField, merge: true)
             return .success(())
         } catch {
             return .failure(error)
