@@ -37,6 +37,10 @@ struct UserModelViewModel: Identifiable {
         set { self.user.birthday = newValue }
     }
     
+    var stringBirthday: String {
+        self.user.birthday.formatted(date: .abbreviated, time: .omitted)
+    }
+    
     var age: String         { self.user.birthday.getAgeFromBirthDate()}
     
     var avatar: String {

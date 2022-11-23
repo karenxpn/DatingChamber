@@ -263,3 +263,11 @@ extension FirebaseFirestore.DocumentReference {
         try await setData(data, merge: merge)
     }
 }
+
+extension Date {
+   func getFormattedDate(format: String) -> String {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = format
+        return dateformat.string(from: self)
+    }
+}

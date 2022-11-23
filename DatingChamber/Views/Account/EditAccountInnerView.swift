@@ -57,7 +57,8 @@ struct EditAccountInnerView: View {
                                 .clipped()
                                 .cornerRadius(10)
                         }
-                    }
+                    }                                .frame(height: 92)
+
                 }
                 
                 // birthday here
@@ -67,7 +68,7 @@ struct EditAccountInnerView: View {
                     HStack {
                         Image("calendar")
                             .padding(.leading, 20)
-                        TextHelper(text: "\(user.birthday)", color: AppColors.primary, fontName: "Inter-SemiBold", fontSize: 14)
+                        TextHelper(text: user.stringBirthday, color: AppColors.primary, fontName: "Inter-SemiBold", fontSize: 14)
                         Spacer()
                     }.frame(height: 55)
                         .background(
@@ -94,8 +95,8 @@ struct EditAccountInnerView: View {
 
                     }
                     
-                    TextHelper(text: user.bio, fontSize: 12)
-                        .padding(.leading)
+                    TextHelper(text: user.bio.isEmpty ? NSLocalizedString("tellAboutYou", comment: "") : user.bio, fontSize: 12)
+                        .padding(10)
                         .frame(minWidth: 0,
                                maxWidth: .infinity,
                                minHeight: 0,
