@@ -19,6 +19,7 @@
 		FF071631292E3F4D0028B35D /* AccountSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071630292E3F4D0028B35D /* AccountSpecs.swift */; };
 		FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071632292E40170028B35D /* EditAccountInnerView.swift */; };
 		FF071635292E558F0028B35D /* EditInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071634292E558E0028B35D /* EditInterests.swift */; };
+		FF071637292E6E830028B35D /* EditBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071636292E6E830028B35D /* EditBirthday.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -142,6 +143,7 @@
 		FF071630292E3F4D0028B35D /* AccountSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSpecs.swift; sourceTree = "<group>"; };
 		FF071632292E40170028B35D /* EditAccountInnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountInnerView.swift; sourceTree = "<group>"; };
 		FF071634292E558E0028B35D /* EditInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInterests.swift; sourceTree = "<group>"; };
+		FF071636292E6E830028B35D /* EditBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBirthday.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				FF071632292E40170028B35D /* EditAccountInnerView.swift */,
 				FF071630292E3F4D0028B35D /* AccountSpecs.swift */,
 				FF071634292E558E0028B35D /* EditInterests.swift */,
+				FF071636292E6E830028B35D /* EditBirthday.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
+				FF071637292E6E830028B35D /* EditBirthday.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
 				FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,

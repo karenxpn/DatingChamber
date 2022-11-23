@@ -10,6 +10,7 @@ import TagLayoutView
 
 struct EditAccountInnerView: View {
     @State var user: UserModelViewModel
+    @State private var showBirthdayPicker: Bool = false
     
     let icons = ["occupation_icon", "education_icon", "gender_icon", "city_icon"]
     let names = [NSLocalizedString("occupation", comment: ""),
@@ -63,7 +64,7 @@ struct EditAccountInnerView: View {
                 
                 // birthday here
                 Button {
-                    
+                    showBirthdayPicker.toggle()
                 } label: {
                     HStack {
                         Image("calendar")
@@ -158,6 +159,9 @@ struct EditAccountInnerView: View {
                 alignment: .center
             )
             .padding(30)
+        }.sheet(isPresented: $showBirthdayPicker) {
+            EditBirthday(user: $user)
+                .presentationDetents([.large, .medium])
         }
     }
 }
