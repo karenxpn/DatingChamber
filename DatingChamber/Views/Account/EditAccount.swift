@@ -19,7 +19,8 @@ struct EditAccount: View {
             }
         }.task {
             accountVM.getAccount()
-        }.toolbar {
+        }.navigationTitle(Text(""))
+        .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 TextHelper(text: NSLocalizedString("profile", comment: ""),
                            fontName: "Inter-Black",

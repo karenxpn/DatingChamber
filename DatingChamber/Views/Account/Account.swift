@@ -40,6 +40,10 @@ struct Account: View {
             }.navigationTitle(Text(""))
             .task {
                 accountVM.getAccount()
+            }.alert(isPresented: $accountVM.showAlert) {
+                Alert(title: Text(NSLocalizedString("error", comment: "")),
+                      message: Text(accountVM.alertMessage),
+                      dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
             }
         }
 //        Button {

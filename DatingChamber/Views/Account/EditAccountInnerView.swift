@@ -126,8 +126,8 @@ struct EditAccountInnerView: View {
                         
                         Spacer()
                         
-                        Button {
-                            
+                        NavigationLink {
+                            EditInterests(user: user)
                         } label: {
                             TextHelper(text: NSLocalizedString("edit", comment: ""), color: AppColors.primary, fontSize: 12)
                                 .padding(.leading)
