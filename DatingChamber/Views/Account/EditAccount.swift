@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct EditAccount: View {
+    @StateObject private var accountVM = AccountViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            if accountVM.loading {
+                ProgressView()
+            } else if accountVM.user != nil {
+                EditAccountInnerView()
+            }
+        }.task {
+            accountVM.getAccount()
+        }
     }
 }
 

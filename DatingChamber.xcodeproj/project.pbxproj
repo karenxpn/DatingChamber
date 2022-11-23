@@ -15,8 +15,9 @@
 		FF071627292D45000028B35D /* AccountPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071626292D45000028B35D /* AccountPreview.swift */; };
 		FF071629292D472C0028B35D /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071628292D472C0028B35D /* ProfileImage.swift */; };
 		FF07162B292D47470028B35D /* EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07162A292D47470028B35D /* EditAccount.swift */; };
-		FF07162D292D48210028B35D /* AccountNamePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07162C292D48210028B35D /* AccountNamePreview.swift */; };
 		FF07162F292D4D5E0028B35D /* AccountName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07162E292D4D5E0028B35D /* AccountName.swift */; };
+		FF071631292E3F4D0028B35D /* AccountSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071630292E3F4D0028B35D /* AccountSpecs.swift */; };
+		FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071632292E40170028B35D /* EditAccountInnerView.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -136,8 +137,9 @@
 		FF071626292D45000028B35D /* AccountPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPreview.swift; sourceTree = "<group>"; };
 		FF071628292D472C0028B35D /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		FF07162A292D47470028B35D /* EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccount.swift; sourceTree = "<group>"; };
-		FF07162C292D48210028B35D /* AccountNamePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNamePreview.swift; sourceTree = "<group>"; };
 		FF07162E292D4D5E0028B35D /* AccountName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountName.swift; sourceTree = "<group>"; };
+		FF071630292E3F4D0028B35D /* AccountSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSpecs.swift; sourceTree = "<group>"; };
+		FF071632292E40170028B35D /* EditAccountInnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountInnerView.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -286,10 +288,11 @@
 			children = (
 				FF5F207D291A90BB007E0E99 /* Account.swift */,
 				FF071626292D45000028B35D /* AccountPreview.swift */,
+				FF07162E292D4D5E0028B35D /* AccountName.swift */,
 				FF071628292D472C0028B35D /* ProfileImage.swift */,
 				FF07162A292D47470028B35D /* EditAccount.swift */,
-				FF07162C292D48210028B35D /* AccountNamePreview.swift */,
-				FF07162E292D4D5E0028B35D /* AccountName.swift */,
+				FF071632292E40170028B35D /* EditAccountInnerView.swift */,
+				FF071630292E3F4D0028B35D /* AccountSpecs.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -795,7 +798,6 @@
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
 				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
-				FF07162D292D48210028B35D /* AccountNamePreview.swift in Sources */,
 				FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
@@ -825,7 +827,9 @@
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
 				FF071629292D472C0028B35D /* ProfileImage.swift in Sources */,
+				FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */,
 				FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */,
+				FF071631292E3F4D0028B35D /* AccountSpecs.swift in Sources */,
 				FFB4D5E3291193010065955F /* AppColors.swift in Sources */,
 				FFB4D5DB29118FBE0065955F /* Authentication.swift in Sources */,
 				FFB4D5E1291192EE0065955F /* ButtonHelper.swift in Sources */,

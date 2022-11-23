@@ -10,7 +10,7 @@ import SwiftUI
 
 class AccountViewModel: AlertViewModel, ObservableObject {
     @AppStorage("userID") var userID: String = ""
-    @Published var user: UserModel?
+    @Published var user: UserModelViewModel?
     
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
@@ -29,7 +29,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let user):
-                self.user = user
+                self.user = UserModelViewModel(user: user)
             }
             
             if !Task.isCancelled {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AccountPreview: View {
-    let user: UserModel
+    let user: UserModelViewModel
     var body: some View {
         ScrollView(showsIndicators: false) {
             
@@ -44,13 +44,12 @@ struct AccountPreview: View {
             )
             .padding(30)
             
-        }.navigationTitle(Text(NSLocalizedString("profile", comment: "")))
-            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
 struct AccountPreview_Previews: PreviewProvider {
     static var previews: some View {
-        AccountPreview(user: AppPreviewModel.userModel)
+        AccountPreview(user: UserModelViewModel(user: AppPreviewModel.userModel) )
     }
 }

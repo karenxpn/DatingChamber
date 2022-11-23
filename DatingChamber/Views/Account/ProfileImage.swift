@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileImage: View {
-    let user: UserModel
+    let user: UserModelViewModel
     var body: some View {
         ZStack( alignment: .bottomTrailing) {
             
@@ -45,6 +45,6 @@ struct ProfileImage: View {
 
 struct ProfileImage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileImage(user: AppPreviewModel.userModel)
+        ProfileImage(user: UserModelViewModel(user: AppPreviewModel.userModel))
     }
 }
