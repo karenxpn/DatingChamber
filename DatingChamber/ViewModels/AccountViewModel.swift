@@ -16,6 +16,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     @Published var interests = [String]()
+    @Published var uploadedImages = [String]()
     
     var manager: UserServiceProtocol
     var authManager: AuthServiceProtocol
@@ -75,4 +76,40 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             }
         }
     }
+    
+    func uploadImages(images: [Data]) {
+        loading = true
+        authManager.uploadImages(images: images) { error, urls in
+            self.loading = false
+            if let error {
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            } else {
+                self.uploadedImages.append(contentsOf: urls)
+            }
+        }
+    }
+    
+    @MainActor func updateAvatar(image: String) {
+        loading = true
+        Task {
+            let result = await manager.updateAccount(userID: userID, updateField: ["avatar" : image])
+            print(result)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(()):
+                let image_index = uploadedImages.firstIndex(where: { $0 == image })
+                if let image_index {
+                    withAnimation {
+                        self.uploadedImages.move(from: image_index, to: 0)
+                    }
+                }
+            }
+            
+            if !Task.isCancelled {
+                loading = false
+            }
+        }
+    }
+    
 }

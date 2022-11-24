@@ -27,6 +27,9 @@
 		FF071641292E98660028B35D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071640292E98660028B35D /* EditOccupation.swift */; };
 		FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071642292E98F40028B35D /* EditProfileBuilder.swift */; };
 		FF071645292E9FB30028B35D /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071644292E9FB30028B35D /* EditGender.swift */; };
+		FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D85292FAB6E0046015C /* EditGallery.swift */; };
+		FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = FF3D6D88292FB7BB0046015C /* Popovers */; };
+		FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -158,6 +161,8 @@
 		FF071640292E98660028B35D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF071642292E98F40028B35D /* EditProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBuilder.swift; sourceTree = "<group>"; };
 		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FF3D6D85292FAB6E0046015C /* EditGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGallery.swift; sourceTree = "<group>"; };
+		FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonHelper.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -254,6 +259,7 @@
 				FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */,
 				FFC614432911EA9D00CE75E2 /* FirebaseStorageCombine-Community in Frameworks */,
 				FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */,
+				FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */,
 				FFC6143D2911EA9D00CE75E2 /* FirebaseFirestoreSwift in Frameworks */,
 				C8C018EA24F7D88B044EC4CD /* Pods_DatingChamber.framework in Frameworks */,
 			);
@@ -319,6 +325,7 @@
 				FF071640292E98660028B35D /* EditOccupation.swift */,
 				FF071644292E9FB30028B35D /* EditGender.swift */,
 				FF071642292E98F40028B35D /* EditProfileBuilder.swift */,
+				FF3D6D85292FAB6E0046015C /* EditGallery.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -427,6 +434,7 @@
 				FF5F2085291AB38B007E0E99 /* AppPreviewModel.swift */,
 				FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */,
 				FF07163C292E973F0028B35D /* TextFieldHelper.swift */,
+				FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -563,6 +571,7 @@
 				FFCA5A452918289200C91BEC /* PromiseKit */,
 				FF5F2092291ACCE2007E0E99 /* Sliders */,
 				FF5F209B291AE747007E0E99 /* TagLayoutView */,
+				FF3D6D88292FB7BB0046015C /* Popovers */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -648,6 +657,7 @@
 				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
+				FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -828,12 +838,14 @@
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
+				FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */,
 				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
 				FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
 				FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */,
+				FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */,
 				FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */,
 				FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */,
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
@@ -1225,6 +1237,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
@@ -1292,6 +1312,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FF3D6D88292FB7BB0046015C /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
+		};
 		FF5F2092291ACCE2007E0E99 /* Sliders */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;

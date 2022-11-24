@@ -39,7 +39,8 @@ struct AuthProfileImages: View {
                                 ProfileImageBox(images: $authVM.images, showPicker: $showPicker,
                                                 height: UIScreen.main.bounds.size.height * 0.22,
                                                 width:  UIScreen.main.bounds.size.width * 0.38,
-                                                index: index)
+                                                index: index)  { _ in
+                                }
                                 .environmentObject(authVM)
                             }
                         }
@@ -50,7 +51,8 @@ struct AuthProfileImages: View {
                                 ProfileImageBox(images: $authVM.images, showPicker: $showPicker,
                                                 height: UIScreen.main.bounds.size.height * 0.14,
                                                 width:  UIScreen.main.bounds.size.width * 0.23,
-                                                index: index)
+                                                index: index) { _ in
+                                }
                                 .environmentObject(authVM)
                             }
                         }

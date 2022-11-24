@@ -29,7 +29,6 @@ struct EditAccountInnerView: View {
                         .frame(width: 140, height: 140)
                         .clipShape(Circle())
                     
-                    
                     ZStack {
                         Circle()
                             .stroke(lineWidth: 10)
@@ -50,16 +49,30 @@ struct EditAccountInnerView: View {
                 }
                 
                 // image gallery here
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        ForEach(user.images, id: \.self) { image in
-                            ImageHelper(image: image, contentMode: .fill)
-                                .frame(width: 92, height: 92)
-                                .clipped()
-                                .cornerRadius(10)
+                
+                VStack(spacing: 0) {
+                    HStack {
+                        Spacer()
+                        NavigationLink {
+                            EditGallery(user: user)
+                        } label: {
+                            TextHelper(text: NSLocalizedString("editGallery", comment: ""), color: AppColors.primary, fontSize: 12)
+                                .padding([.vertical, .leading])
                         }
-                    }                                .frame(height: 92)
 
+                    }
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHStack {
+                            ForEach(user.images, id: \.self) { image in
+                                ImageHelper(image: image, contentMode: .fill)
+                                    .frame(width: 92, height: 92)
+                                    .clipped()
+                                    .cornerRadius(10)
+                            }
+                        }.frame(height: 92)
+
+                    }
                 }
                 
                 // birthday here

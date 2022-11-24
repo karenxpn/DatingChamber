@@ -54,7 +54,8 @@ struct UserModelViewModel: Identifiable {
     }
     
     var images: [String] {
-        self.user.images
+        get { self.user.images }
+        set { self.user.images = newValue }
         
     }
     
