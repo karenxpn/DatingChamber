@@ -43,10 +43,12 @@ struct EditProfileBuilder<Content: View>: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    NavigationLink {
+                        Settings()
                     } label: {
                         Image("icon_settings")
-                    }.padding(.bottom, 10)
+                            .padding(.bottom, 10)
+                    }
                 }
             }
             .alert(isPresented: $showAlert, content: {

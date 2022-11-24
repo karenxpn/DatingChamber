@@ -32,9 +32,11 @@ struct Account: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    NavigationLink {
+                        Settings()
                     } label: {
                         Image("icon_settings")
+                            .padding(.bottom, 10)
                     }
                 }
             }.navigationTitle(Text(""))
@@ -46,21 +48,6 @@ struct Account: View {
                       dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
             }
         }
-//        Button {
-//            let firebaseAuth = Auth.auth()
-//            do {
-//                try firebaseAuth.signOut()
-//                userID = ""
-//                initialUserID = ""
-//            } catch let signOutError as NSError {
-//                print("Error signing out: %@", signOutError)
-//            }
-//        } label: {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Log out")
-//        }
     }
 }
 

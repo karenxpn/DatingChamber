@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 class AccountViewModel: AlertViewModel, ObservableObject {
     @AppStorage("userID") var userID: String = ""
+    @AppStorage("initialuserID") var initialUserID: String = ""
     @Published var user: UserModelViewModel?
     
     @Published var loading: Bool = false
@@ -109,6 +111,17 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             if !Task.isCancelled {
                 loading = false
             }
+        }
+    }
+    
+    func signOut() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            userID = ""
+            initialUserID = ""
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
     }
     

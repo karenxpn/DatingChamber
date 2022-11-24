@@ -30,9 +30,11 @@ struct EditAccount: View {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
+                NavigationLink {
+                    Settings()
                 } label: {
                     Image("icon_settings")
+                        .padding(.bottom, 10)
                 }
             }
         }
