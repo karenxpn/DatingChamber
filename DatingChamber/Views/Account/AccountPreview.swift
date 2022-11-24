@@ -20,7 +20,7 @@ struct AccountPreview: View {
             
             ProfileImage(user: user)
                 
-            VStack(spacing: 20) {
+            VStack(spacing: 26) {
                 TextHelper(text: "\(user.name), \(user.age)", fontName: "Inter-SemiBold", fontSize: 20)
 
                 // bio
@@ -57,7 +57,7 @@ struct AccountPreview: View {
                 alignment: .center
             )
             .padding(30)
-            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.15)
             .offset(y: 50)
             
         }.padding(.top, 1)

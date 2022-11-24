@@ -16,7 +16,7 @@ struct ProfileImage: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.main.bounds.size.width,
-                       height: UIScreen.main.bounds.size.height * 0.3)
+                       height: UIScreen.main.bounds.size.height * 0.25)
                 .clipped()
             
             ZStack( alignment: .bottomTrailing) {

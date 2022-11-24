@@ -28,7 +28,7 @@ struct TagsViewHelper: View {
                     .foregroundColor(.white)
                     .background(
                         RoundedRectangle(cornerRadius: 30)
-                            .fill(LinearGradient(colors: interests.contains(where: {$0.name == tag && $0.same == true}) ? [AppColors.gradient_orange, AppColors.gradient_crimson] : [.gray.opacity(0.5)], startPoint: .top, endPoint: .bottom))
+                            .fill(interests.contains(where: {$0.name == tag && $0.same == true}) ? AppColors.primary : .gray.opacity(0.5))
                     )
                 
             }
