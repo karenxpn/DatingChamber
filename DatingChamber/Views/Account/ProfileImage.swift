@@ -15,9 +15,6 @@ struct ProfileImage: View {
             Image("account_bg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-//                .overlay(LinearGradient(gradient:
-//                                            Gradient(colors: [.clear, .clear, .gray]),
-//                                        startPoint: .top, endPoint: .bottom))
                 .frame(width: UIScreen.main.bounds.size.width,
                        height: UIScreen.main.bounds.size.height * 0.3)
                 .clipped()
