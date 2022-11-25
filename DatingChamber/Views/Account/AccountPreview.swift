@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AccountPreview: View {
-    let user: UserModelViewModel
+    @State var user: UserModelViewModel
     let icons = ["occupation_icon", "education_icon", "gender_icon", "city_icon"]
     let names = [NSLocalizedString("occupation", comment: ""),
                  NSLocalizedString("education", comment: ""),
@@ -37,12 +37,12 @@ struct AccountPreview: View {
                     )
                 }
                 
-                // specs here
+                // specs here                
                 VStack( spacing: 5) {
-                    AccountSpecs(icon: icons[0], label: names[0], value: user.occupation, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
-                    AccountSpecs(icon: icons[1], label: names[1], value: user.education, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
-                    AccountSpecs(icon: icons[2], label: names[2], value: user.gender, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
-                    AccountSpecs(icon: icons[3], label: names[3], value: user.city, destination: AnyView(EmptyView()), disabled: true, iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[0], label: names[0], value: user.occupation, destination: AnyView(EditOccupation(user: $user)), iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[1], label: names[1], value: user.education, destination: AnyView(EditEducation(user: $user)), iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[2], label: names[2], value: user.gender, destination: AnyView(EditGender(user: $user)), iconColor: AppColors.primary)
+                    AccountSpecs(icon: icons[3], label: names[3], value: user.city, destination: AnyView(EditCity(user: $user)), iconColor: AppColors.primary)
                 }
                 
                 // interests

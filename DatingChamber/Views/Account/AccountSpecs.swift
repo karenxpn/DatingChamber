@@ -28,7 +28,7 @@ struct AccountSpecs: View {
                 
                 Spacer()
                 
-                Text( value.isEmpty ? NSLocalizedString( disabled ? "notSpecified" : "specify", comment: "") : value )
+                Text( value.isEmpty ? NSLocalizedString( "notSpecified", comment: "") : value )
                     .kerning(0.24)
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 12))
