@@ -82,3 +82,6 @@
 "settings" = "Settings";
 "no" = "No";
 "yes" = "Yes";
+"notifications" = "Notifications";
+"location" = "Location";
+"blockedList" = "Blocked Users";
