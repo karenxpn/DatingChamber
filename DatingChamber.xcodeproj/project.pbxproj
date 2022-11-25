@@ -35,6 +35,7 @@
 		FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D91293034630046015C /* ActionButtonHelper.swift */; };
 		FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D93293034770046015C /* NavigationButtonHelper.swift */; };
 		FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D95293036090046015C /* GeneralSettings.swift */; };
+		FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D972930E7BD0046015C /* LocationRequest.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -173,6 +174,7 @@
 		FF3D6D91293034630046015C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
 		FF3D6D93293034770046015C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
 		FF3D6D95293036090046015C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		FF3D6D972930E7BD0046015C /* LocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				FF3D6D91293034630046015C /* ActionButtonHelper.swift */,
 				FF3D6D93293034770046015C /* NavigationButtonHelper.swift */,
 				FF3D6D95293036090046015C /* GeneralSettings.swift */,
+				FF3D6D972930E7BD0046015C /* LocationRequest.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				FF07163B292E96D90028B35D /* EditCity.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
 				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
+				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
 				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,

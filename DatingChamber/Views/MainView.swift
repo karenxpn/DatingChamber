@@ -37,6 +37,7 @@ struct MainView: View {
 
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {
+                locationManager.initLocation()
                 ATTrackingManager.requestTrackingAuthorization { _ in
                 }
             }

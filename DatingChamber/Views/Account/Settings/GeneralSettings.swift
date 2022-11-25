@@ -11,14 +11,11 @@ struct GeneralSettings: View {
     var body: some View {
         VStack( spacing: 20 ) {
             
-            
             ActionButtonHelper(label: NSLocalizedString("notifications", comment: "")) {
 
             }
             
-            ActionButtonHelper(label: NSLocalizedString("location", comment: "")) {
-
-            }
+            NavigationButtonHelper(label: NSLocalizedString("location", comment: ""), destination: AnyView(LocationRequest()))
             
             ActionButtonHelper(label: NSLocalizedString("blockedList", comment: "")) {
 

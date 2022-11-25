@@ -85,3 +85,5 @@
 "notifications" = "Notifications";
 "location" = "Location";
 "blockedList" = "Blocked Users";
+"locationRequest" = "Show my location";
+"locationRequestMessage" = "To see more accurate content and nearby users please share your location with us.";
