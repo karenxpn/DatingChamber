@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 class AccountViewModel: AlertViewModel, ObservableObject {
     @AppStorage("userID") var userID: String = ""
+    @AppStorage("initialuserID") var initialUserID: String = ""
     @Published var user: UserModelViewModel?
     
     @Published var loading: Bool = false
@@ -93,7 +95,6 @@ class AccountViewModel: AlertViewModel, ObservableObject {
         loading = true
         Task {
             let result = await manager.updateAccount(userID: userID, updateField: ["avatar" : image])
-            print(result)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
@@ -108,6 +109,35 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             
             if !Task.isCancelled {
                 loading = false
+            }
+        }
+    }
+    
+    func signOut() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            userID = ""
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    @MainActor func deleteAccount() {
+        Task {
+            let result = await manager.deleteAccount()
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(()):
+                let deleteResult = await manager.deleteAccountData(userID: userID)
+                switch deleteResult {
+                case .failure(let error):
+                    self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+                case .success(()):
+                    self.userID = ""
+//                    self.initialUserID = ""
+                }
             }
         }
     }

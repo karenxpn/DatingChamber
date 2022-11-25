@@ -41,7 +41,6 @@ extension AuthService: AuthServiceProtocol {
     }
     
     func uploadImages(images: [Data], completion: @escaping (Error?, [String]) -> ()) {
-        
         var uploadedImages = [(Int, String)]()
         for (index, image) in images.enumerated() {
             // Create a reference to the file you want to upload

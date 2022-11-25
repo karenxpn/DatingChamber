@@ -30,6 +30,14 @@
 		FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D85292FAB6E0046015C /* EditGallery.swift */; };
 		FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = FF3D6D88292FB7BB0046015C /* Popovers */; };
 		FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */; };
+		FF3D6D8E293033E50046015C /* SettingsButtonHelperContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */; };
+		FF3D6D90293034550046015C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8F293034550046015C /* Settings.swift */; };
+		FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D91293034630046015C /* ActionButtonHelper.swift */; };
+		FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D93293034770046015C /* NavigationButtonHelper.swift */; };
+		FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D95293036090046015C /* GeneralSettings.swift */; };
+		FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D972930E7BD0046015C /* LocationRequest.swift */; };
+		FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D992930EB430046015C /* NotificationsViewModel.swift */; };
+		FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -163,6 +171,14 @@
 		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
 		FF3D6D85292FAB6E0046015C /* EditGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGallery.swift; sourceTree = "<group>"; };
 		FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonHelper.swift; sourceTree = "<group>"; };
+		FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
+		FF3D6D8F293034550046015C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		FF3D6D91293034630046015C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
+		FF3D6D93293034770046015C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
+		FF3D6D95293036090046015C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		FF3D6D972930E7BD0046015C /* LocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
+		FF3D6D992930EB430046015C /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRequest.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -307,9 +323,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF3D6D8C293033D20046015C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FF3D6D8F293034550046015C /* Settings.swift */,
+				FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */,
+				FF3D6D91293034630046015C /* ActionButtonHelper.swift */,
+				FF3D6D93293034770046015C /* NavigationButtonHelper.swift */,
+				FF3D6D95293036090046015C /* GeneralSettings.swift */,
+				FF3D6D972930E7BD0046015C /* LocationRequest.swift */,
+				FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		FF5F207A291A909E007E0E99 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				FF3D6D8C293033D20046015C /* Settings */,
 				FF5F207D291A90BB007E0E99 /* Account.swift */,
 				FF071626292D45000028B35D /* AccountPreview.swift */,
 				FF071628292D472C0028B35D /* ProfileImage.swift */,
@@ -465,6 +496,7 @@
 				FFE33EE0291BE609002053B7 /* LocationManager.swift */,
 				FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */,
 				FF071624292D436A0028B35D /* AccountViewModel.swift */,
+				FF3D6D992930EB430046015C /* NotificationsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -823,6 +855,7 @@
 				FF071639292E77F90028B35D /* EditBio.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
+				FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
@@ -830,10 +863,12 @@
 				FF071637292E6E830028B35D /* EditBirthday.swift in Sources */,
 				FF071645292E9FB30028B35D /* EditGender.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
+				FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */,
 				FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */,
 				FF07163B292E96D90028B35D /* EditCity.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
 				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
+				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
 				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
@@ -849,6 +884,7 @@
 				FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */,
 				FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */,
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
+				FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
 				FF071627292D45000028B35D /* AccountPreview.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
@@ -861,14 +897,18 @@
 				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
 				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
+				FF3D6D8E293033E50046015C /* SettingsButtonHelperContent.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
+				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
+				FF3D6D90293034550046015C /* Settings.swift in Sources */,
 				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
 				FF07162B292D47470028B35D /* EditAccount.swift in Sources */,
 				FFC614532912A3A200CE75E2 /* Extensions.swift in Sources */,
 				FFC6144F2912A35400CE75E2 /* VerifyPhoneNumber.swift in Sources */,
+				FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */,
 				FF07163F292E97FA0028B35D /* EditEducation.swift in Sources */,
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,

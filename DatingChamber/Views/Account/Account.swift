@@ -10,7 +10,6 @@ import FirebaseAuth
 
 struct Account: View {
     @AppStorage("userID") var userID: String = ""
-    @AppStorage("initialuserID") var initialUserID: String = ""
     @StateObject private var accountVM = AccountViewModel()
 
     var body: some View {
@@ -32,35 +31,24 @@ struct Account: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    NavigationLink {
+                        Settings()
                     } label: {
                         Image("icon_settings")
+                            .padding(.bottom, 10)
                     }
                 }
             }.navigationTitle(Text(""))
             .task {
-                accountVM.getAccount()
+                if !userID.isEmpty {
+                    accountVM.getAccount()
+                }
             }.alert(isPresented: $accountVM.showAlert) {
                 Alert(title: Text(NSLocalizedString("error", comment: "")),
                       message: Text(accountVM.alertMessage),
                       dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
             }
         }
-//        Button {
-//            let firebaseAuth = Auth.auth()
-//            do {
-//                try firebaseAuth.signOut()
-//                userID = ""
-//                initialUserID = ""
-//            } catch let signOutError as NSError {
-//                print("Error signing out: %@", signOutError)
-//            }
-//        } label: {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Log out")
-//        }
     }
 }
 
