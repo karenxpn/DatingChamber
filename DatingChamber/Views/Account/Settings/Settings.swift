@@ -63,9 +63,14 @@ struct Settings: View {
                           message: Text( NSLocalizedString("afterDeletion", comment: "")),
                           primaryButton: .cancel(Text(NSLocalizedString("no", comment: ""))),
                           secondaryButton: .default(Text( NSLocalizedString("yes", comment: "")), action: {
-//                        profileVM.deactivateAccount()
+                        accountVM.deleteAccount()
                     }))
-        }.toolbar {
+        }.alert(NSLocalizedString("error", comment: ""), isPresented: $accountVM.showAlert, actions: {
+            Button(NSLocalizedString("gotIt", comment: ""), role: .cancel) { }
+        }, message: {
+            Text(accountVM.alertMessage)
+        })
+        .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 TextHelper(text: NSLocalizedString("settings", comment: ""),
                            fontName: "Inter-Black",

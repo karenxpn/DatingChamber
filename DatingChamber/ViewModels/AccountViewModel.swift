@@ -95,7 +95,6 @@ class AccountViewModel: AlertViewModel, ObservableObject {
         loading = true
         Task {
             let result = await manager.updateAccount(userID: userID, updateField: ["avatar" : image])
-            print(result)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
@@ -122,6 +121,19 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             initialUserID = ""
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    @MainActor func deleteAccount() {
+        Task {
+            let result = await manager.deleteAccount(userID: userID)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(()):
+                userID = ""
+                initialUserID = ""
+            }
         }
     }
     
