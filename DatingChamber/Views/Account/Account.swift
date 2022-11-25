@@ -10,23 +10,44 @@ import FirebaseAuth
 
 struct Account: View {
     @AppStorage("userID") var userID: String = ""
-    @AppStorage("initialuserID") var initialUserID: String = ""
+    @StateObject private var accountVM = AccountViewModel()
 
     var body: some View {
-        Button {
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                userID = ""
-                initialUserID = ""
-            } catch let signOutError as NSError {
-                print("Error signing out: %@", signOutError)
+        NavigationStack {
+            ZStack {
+                if accountVM.loading {
+                    ProgressView()
+                } else if accountVM.user != nil {
+                    AccountPreview(user: accountVM.user!)
+
+                }
+            }.toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    TextHelper(text: NSLocalizedString("profile", comment: ""),
+                               fontName: "Inter-Black",
+                               fontSize: 24)
+                    .kerning(0.56)
+                    .accessibilityAddTraits(.isHeader)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        Settings()
+                    } label: {
+                        Image("icon_settings")
+                            .padding(.bottom, 10)
+                    }
+                }
+            }.navigationTitle(Text(""))
+            .task {
+                if !userID.isEmpty {
+                    accountVM.getAccount()
+                }
+            }.alert(isPresented: $accountVM.showAlert) {
+                Alert(title: Text(NSLocalizedString("error", comment: "")),
+                      message: Text(accountVM.alertMessage),
+                      dismissButton: .default(Text(NSLocalizedString("gotIt", comment: ""))))
             }
-        } label: {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Log out")
         }
     }
 }

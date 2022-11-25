@@ -26,16 +26,43 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     init( userManager: UserServiceProtocol = UserService.shared) {
         self.userManager = userManager
+        self.locationStatus = self.manager.authorizationStatus
         super.init()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startMonitoringSignificantLocationChanges()
     }
     
     convenience override init() {
         self.init(userManager: UserService.shared)
     }
+    
+    var status: String {
+        if locationStatus == .authorizedAlways || locationStatus == .authorizedWhenInUse {
+            return "true"
+        } else if locationStatus == .notDetermined {
+            return "request"
+        } else {
+            return "settings"
+        }
+    }
+    
+    func initLocation() {
+        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+
+        if status == "true" {
+            manager.startMonitoringSignificantLocationChanges()
+        } else if status == "request" {
+            manager.requestWhenInUseAuthorization()
+            manager.startMonitoringSignificantLocationChanges()
+        }
+    }
+    
+    func requestLocation() {
+        initLocation()
+        manager.requestWhenInUseAuthorization()
+        manager.startMonitoringSignificantLocationChanges()
+    }
+    
     
     @MainActor func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first?.coordinate

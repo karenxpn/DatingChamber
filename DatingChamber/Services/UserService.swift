@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -14,6 +15,11 @@ protocol UserServiceProtocol {
     func likeUser(userID: String, uid: String) async -> Result<Void, Error>
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error>
     func blockUser(userID: String, uid: String) async -> Result<Void, Error>
+    
+    func fetchAccount(userID: String) async -> Result<UserModel, Error>
+    func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
+    func deleteAccount() async -> Result<Void, Error>
+    func deleteAccountData(userID: String) async -> Result<Void, Error>
 }
 
 class UserService {
@@ -23,6 +29,42 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    func deleteAccount() async -> Result<Void, Error> {
+        do {
+            try await Auth.auth().currentUser?.delete()
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func deleteAccountData(userID: String) async -> Result<Void, Error> {
+        do {
+            try await db.collection("Users").document(userID).delete()
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error> {
+        do {
+            try await db.collection("Users").document(userID).setData(updateField, merge: true)
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func fetchAccount(userID: String) async -> Result<UserModel, Error> {
+        do {
+            let user = try await db.collection("Users").document(userID).getDocument().data(as: UserModel.self)
+            return .success(user)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error> {
         do {
             let myEncodedRequests = try await db.collection("Users").document(userID).getDocument().get("requests")

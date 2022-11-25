@@ -10,6 +10,34 @@
 		2FDF77821B312607ED85FABD /* Pods_DatingChamberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583C8561B24CA2895C5E418A /* Pods_DatingChamberTests.framework */; };
 		AC11603571AE24016913698E /* Pods_DatingChamber_DatingChamberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F38AE49E652FBA2932DFCC /* Pods_DatingChamber_DatingChamberUITests.framework */; };
 		C8C018EA24F7D88B044EC4CD /* Pods_DatingChamber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D32021C10C86B0735E5842C /* Pods_DatingChamber.framework */; };
+		FF071623292D42810028B35D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071622292D42810028B35D /* UserModel.swift */; };
+		FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071624292D436A0028B35D /* AccountViewModel.swift */; };
+		FF071627292D45000028B35D /* AccountPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071626292D45000028B35D /* AccountPreview.swift */; };
+		FF071629292D472C0028B35D /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071628292D472C0028B35D /* ProfileImage.swift */; };
+		FF07162B292D47470028B35D /* EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07162A292D47470028B35D /* EditAccount.swift */; };
+		FF07162F292D4D5E0028B35D /* AccountName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07162E292D4D5E0028B35D /* AccountName.swift */; };
+		FF071631292E3F4D0028B35D /* AccountSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071630292E3F4D0028B35D /* AccountSpecs.swift */; };
+		FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071632292E40170028B35D /* EditAccountInnerView.swift */; };
+		FF071635292E558F0028B35D /* EditInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071634292E558E0028B35D /* EditInterests.swift */; };
+		FF071637292E6E830028B35D /* EditBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071636292E6E830028B35D /* EditBirthday.swift */; };
+		FF071639292E77F90028B35D /* EditBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071638292E77F90028B35D /* EditBio.swift */; };
+		FF07163B292E96D90028B35D /* EditCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07163A292E96D90028B35D /* EditCity.swift */; };
+		FF07163D292E973F0028B35D /* TextFieldHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07163C292E973F0028B35D /* TextFieldHelper.swift */; };
+		FF07163F292E97FA0028B35D /* EditEducation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07163E292E97FA0028B35D /* EditEducation.swift */; };
+		FF071641292E98660028B35D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071640292E98660028B35D /* EditOccupation.swift */; };
+		FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071642292E98F40028B35D /* EditProfileBuilder.swift */; };
+		FF071645292E9FB30028B35D /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071644292E9FB30028B35D /* EditGender.swift */; };
+		FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D85292FAB6E0046015C /* EditGallery.swift */; };
+		FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = FF3D6D88292FB7BB0046015C /* Popovers */; };
+		FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */; };
+		FF3D6D8E293033E50046015C /* SettingsButtonHelperContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */; };
+		FF3D6D90293034550046015C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8F293034550046015C /* Settings.swift */; };
+		FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D91293034630046015C /* ActionButtonHelper.swift */; };
+		FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D93293034770046015C /* NavigationButtonHelper.swift */; };
+		FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D95293036090046015C /* GeneralSettings.swift */; };
+		FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D972930E7BD0046015C /* LocationRequest.swift */; };
+		FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D992930EB430046015C /* NotificationsViewModel.swift */; };
+		FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -124,6 +152,33 @@
 		D6E8BD76042C1A20844E4D94 /* Pods-DatingChamberTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamberTests.debug.xcconfig"; path = "Target Support Files/Pods-DatingChamberTests/Pods-DatingChamberTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD86050C16EA11A3FD42B06B /* Pods-DatingChamber-DatingChamberUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamber-DatingChamberUITests.debug.xcconfig"; path = "Target Support Files/Pods-DatingChamber-DatingChamberUITests/Pods-DatingChamber-DatingChamberUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4CC2631C05FE24E808DE19E /* Pods-DatingChamber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingChamber.release.xcconfig"; path = "Target Support Files/Pods-DatingChamber/Pods-DatingChamber.release.xcconfig"; sourceTree = "<group>"; };
+		FF071622292D42810028B35D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FF071624292D436A0028B35D /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		FF071626292D45000028B35D /* AccountPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPreview.swift; sourceTree = "<group>"; };
+		FF071628292D472C0028B35D /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		FF07162A292D47470028B35D /* EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccount.swift; sourceTree = "<group>"; };
+		FF07162E292D4D5E0028B35D /* AccountName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountName.swift; sourceTree = "<group>"; };
+		FF071630292E3F4D0028B35D /* AccountSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSpecs.swift; sourceTree = "<group>"; };
+		FF071632292E40170028B35D /* EditAccountInnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountInnerView.swift; sourceTree = "<group>"; };
+		FF071634292E558E0028B35D /* EditInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInterests.swift; sourceTree = "<group>"; };
+		FF071636292E6E830028B35D /* EditBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBirthday.swift; sourceTree = "<group>"; };
+		FF071638292E77F90028B35D /* EditBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBio.swift; sourceTree = "<group>"; };
+		FF07163A292E96D90028B35D /* EditCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCity.swift; sourceTree = "<group>"; };
+		FF07163C292E973F0028B35D /* TextFieldHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldHelper.swift; sourceTree = "<group>"; };
+		FF07163E292E97FA0028B35D /* EditEducation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEducation.swift; sourceTree = "<group>"; };
+		FF071640292E98660028B35D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
+		FF071642292E98F40028B35D /* EditProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBuilder.swift; sourceTree = "<group>"; };
+		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FF3D6D85292FAB6E0046015C /* EditGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGallery.swift; sourceTree = "<group>"; };
+		FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonHelper.swift; sourceTree = "<group>"; };
+		FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
+		FF3D6D8F293034550046015C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		FF3D6D91293034630046015C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
+		FF3D6D93293034770046015C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
+		FF3D6D95293036090046015C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		FF3D6D972930E7BD0046015C /* LocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
+		FF3D6D992930EB430046015C /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRequest.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -220,6 +275,7 @@
 				FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */,
 				FFC614432911EA9D00CE75E2 /* FirebaseStorageCombine-Community in Frameworks */,
 				FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */,
+				FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */,
 				FFC6143D2911EA9D00CE75E2 /* FirebaseFirestoreSwift in Frameworks */,
 				C8C018EA24F7D88B044EC4CD /* Pods_DatingChamber.framework in Frameworks */,
 			);
@@ -267,10 +323,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF3D6D8C293033D20046015C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FF3D6D8F293034550046015C /* Settings.swift */,
+				FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */,
+				FF3D6D91293034630046015C /* ActionButtonHelper.swift */,
+				FF3D6D93293034770046015C /* NavigationButtonHelper.swift */,
+				FF3D6D95293036090046015C /* GeneralSettings.swift */,
+				FF3D6D972930E7BD0046015C /* LocationRequest.swift */,
+				FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		FF5F207A291A909E007E0E99 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				FF3D6D8C293033D20046015C /* Settings */,
 				FF5F207D291A90BB007E0E99 /* Account.swift */,
+				FF071626292D45000028B35D /* AccountPreview.swift */,
+				FF071628292D472C0028B35D /* ProfileImage.swift */,
+				FF07162E292D4D5E0028B35D /* AccountName.swift */,
+				FF07162A292D47470028B35D /* EditAccount.swift */,
+				FF071632292E40170028B35D /* EditAccountInnerView.swift */,
+				FF071630292E3F4D0028B35D /* AccountSpecs.swift */,
+				FF071634292E558E0028B35D /* EditInterests.swift */,
+				FF071636292E6E830028B35D /* EditBirthday.swift */,
+				FF071638292E77F90028B35D /* EditBio.swift */,
+				FF07163A292E96D90028B35D /* EditCity.swift */,
+				FF07163E292E97FA0028B35D /* EditEducation.swift */,
+				FF071640292E98660028B35D /* EditOccupation.swift */,
+				FF071644292E9FB30028B35D /* EditGender.swift */,
+				FF071642292E98F40028B35D /* EditProfileBuilder.swift */,
+				FF3D6D85292FAB6E0046015C /* EditGallery.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -378,6 +464,8 @@
 				FFCA5A42291818DC00C91BEC /* ImageHelper.swift */,
 				FF5F2085291AB38B007E0E99 /* AppPreviewModel.swift */,
 				FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */,
+				FF07163C292E973F0028B35D /* TextFieldHelper.swift */,
+				FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -407,6 +495,8 @@
 				FF5F208D291AC5B2007E0E99 /* SwipesViewModel.swift */,
 				FFE33EE0291BE609002053B7 /* LocationManager.swift */,
 				FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */,
+				FF071624292D436A0028B35D /* AccountViewModel.swift */,
+				FF3D6D992930EB430046015C /* NotificationsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -426,6 +516,7 @@
 			children = (
 				FFCA5A2C2917E31900C91BEC /* RegistrationModel.swift */,
 				FF5F2083291AAF38007E0E99 /* SwipeModel.swift */,
+				FF071622292D42810028B35D /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -512,6 +603,7 @@
 				FFCA5A452918289200C91BEC /* PromiseKit */,
 				FF5F2092291ACCE2007E0E99 /* Sliders */,
 				FF5F209B291AE747007E0E99 /* TagLayoutView */,
+				FF3D6D88292FB7BB0046015C /* Popovers */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -591,12 +683,13 @@
 			packageReferences = (
 				FFC6142B2911EA9D00CE75E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FFC6145B2912CC0300CE75E2 /* XCRemoteSwiftPackageReference "FirebaseService" */,
-				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */,
-				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */,
-				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */,
+				FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
+				FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -753,56 +846,83 @@
 			files = (
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
 				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,
+				FF07162F292D4D5E0028B35D /* AccountName.swift in Sources */,
 				FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */,
 				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
+				FF071639292E77F90028B35D /* EditBio.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
+				FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
+				FF071637292E6E830028B35D /* EditBirthday.swift in Sources */,
+				FF071645292E9FB30028B35D /* EditGender.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
+				FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */,
 				FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */,
+				FF07163B292E96D90028B35D /* EditCity.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
+				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
+				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
+				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
+				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
+				FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */,
 				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
 				FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */,
 				FFC6144B29129B4900CE75E2 /* TextHelper.swift in Sources */,
 				FFB4D5E5291193B80065955F /* CountryCodeSelection.swift in Sources */,
 				FF5F208E291AC5B2007E0E99 /* SwipesViewModel.swift in Sources */,
+				FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */,
 				FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */,
 				FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */,
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
+				FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
+				FF071627292D45000028B35D /* AccountPreview.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
 				FF5F2086291AB38B007E0E99 /* AppPreviewModel.swift in Sources */,
 				FFCA5A3E29180F3600C91BEC /* Gallery.swift in Sources */,
 				FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */,
 				FF5F207E291A90BB007E0E99 /* Account.swift in Sources */,
 				FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */,
+				FF07163D292E973F0028B35D /* TextFieldHelper.swift in Sources */,
 				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
 				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
+				FF3D6D8E293033E50046015C /* SettingsButtonHelperContent.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
+				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
+				FF3D6D90293034550046015C /* Settings.swift in Sources */,
 				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
+				FF07162B292D47470028B35D /* EditAccount.swift in Sources */,
 				FFC614532912A3A200CE75E2 /* Extensions.swift in Sources */,
 				FFC6144F2912A35400CE75E2 /* VerifyPhoneNumber.swift in Sources */,
+				FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */,
+				FF07163F292E97FA0028B35D /* EditEducation.swift in Sources */,
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
+				FF071629292D472C0028B35D /* ProfileImage.swift in Sources */,
+				FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */,
 				FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */,
+				FF071631292E3F4D0028B35D /* AccountSpecs.swift in Sources */,
 				FFB4D5E3291193010065955F /* AppColors.swift in Sources */,
 				FFB4D5DB29118FBE0065955F /* Authentication.swift in Sources */,
+				FF071635292E558F0028B35D /* EditInterests.swift in Sources */,
 				FFB4D5E1291192EE0065955F /* ButtonHelper.swift in Sources */,
 				FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */,
 				FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */,
+				FF071641292E98660028B35D /* EditOccupation.swift in Sources */,
 				FFCA5A3C29180EDA00C91BEC /* AuthProfileImages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1157,6 +1277,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
@@ -1189,7 +1317,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */ = {
+		FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
 			requirement = {
@@ -1197,7 +1325,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */ = {
+		FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
 			requirement = {
@@ -1205,7 +1333,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */ = {
+		FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -1224,6 +1352,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FF3D6D88292FB7BB0046015C /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
+		};
 		FF5F2092291ACCE2007E0E99 /* Sliders */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
@@ -1301,17 +1434,17 @@
 		};
 		FFC6145F2912D52400CE75E2 /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView.git" */;
+			package = FFC6145E2912D52400CE75E2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
 		};
 		FFC6146A2914789400CE75E2 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
+			package = FFC614692914789400CE75E2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
 		FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */;
+			package = FFCA5A3F291818A300C91BEC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 		FFCA5A452918289200C91BEC /* PromiseKit */ = {

@@ -12,6 +12,7 @@ struct Gallery: UIViewControllerRepresentable {
     
     let action: (([Data]) -> Void)
     let existingImageCount: Int
+    var limit = 5
     
     func makeCoordinator() -> Coordinator {
         return Gallery.Coordinator( parent: self)
@@ -20,7 +21,7 @@ struct Gallery: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
-        configuration.selectionLimit = 5 - existingImageCount
+        configuration.selectionLimit = limit - existingImageCount
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator
