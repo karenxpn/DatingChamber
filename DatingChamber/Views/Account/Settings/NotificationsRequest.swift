@@ -17,7 +17,7 @@ struct NotificationsRequest: View {
             Image("notification_request_icon")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 120, height: 140)
+                .frame(width: 220, height: 220)
             
             
             Text( NSLocalizedString("notificationRequest", comment: "") )
