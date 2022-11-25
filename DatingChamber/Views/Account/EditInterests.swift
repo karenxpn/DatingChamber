@@ -43,6 +43,7 @@ struct EditInterests: View {
                                     } label: {
                                         Text(tag)
                                             .fixedSize()
+                                            .font(.custom("Inter-Regular", size: 12))
                                             .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
                                             .foregroundColor( selectedInterests.contains(where: {$0 == tag}) ? .white : AppColors.primary)
                                             .background(RoundedRectangle(cornerRadius: 30)

@@ -117,21 +117,9 @@ struct EditAccountInnerView: View {
                                 .padding(.leading)
                         }
                     }
-                    TagLayoutView(
-                        user.interests, tagFont: UIFont(name: "Inter-Regular", size: 12)!,
-                        padding: 20,
-                        parentWidth: UIScreen.main.bounds.width * 0.8) { tag in
-                            
-                            Text(tag)
-                                .fixedSize()
-                                .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                                .foregroundColor( .white)
-                                .background(RoundedRectangle(cornerRadius: 30)
-                                    .fill(AppColors.primary)
-                                )
-                            
-                        }.padding(.leading, 1)
-                })
+                    
+                    TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!, parentWidth: UIScreen.main.bounds.width * 0.8, interests: user.interests.map{ InterestModel(same: true, name: $0)})
+                    })
 
                 
             }.frame(
