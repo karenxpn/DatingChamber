@@ -10,6 +10,7 @@ import AppTrackingTransparency
 
 struct MainView: View {
     @StateObject private var locationManager = LocationManager()
+    @StateObject private var notificationsVM = NotificationsViewModel()
     @StateObject private var tabViewModel = TabViewModel()
     
     var body: some View {
@@ -38,6 +39,7 @@ struct MainView: View {
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {
                 locationManager.initLocation()
+                notificationsVM.requestPermission()
                 ATTrackingManager.requestTrackingAuthorization { _ in
                 }
             }

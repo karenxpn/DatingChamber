@@ -87,3 +87,5 @@
 "blockedList" = "Blocked Users";
 "locationRequest" = "Show my location";
 "locationRequestMessage" = "To see more accurate content and nearby users please share your location with us.";
+"notificationRequest" = "Enable notifications";
+"notificationRequestMessage" = "Get push-noifications when you get the match or receive a message";

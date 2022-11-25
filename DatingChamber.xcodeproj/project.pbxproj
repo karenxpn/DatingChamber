@@ -36,6 +36,8 @@
 		FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D93293034770046015C /* NavigationButtonHelper.swift */; };
 		FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D95293036090046015C /* GeneralSettings.swift */; };
 		FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D972930E7BD0046015C /* LocationRequest.swift */; };
+		FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D992930EB430046015C /* NotificationsViewModel.swift */; };
+		FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */; };
 		FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */; };
 		FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */; };
 		FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F2078291A8DFE007E0E99 /* MainView.swift */; };
@@ -175,6 +177,8 @@
 		FF3D6D93293034770046015C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
 		FF3D6D95293036090046015C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		FF3D6D972930E7BD0046015C /* LocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
+		FF3D6D992930EB430046015C /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRequest.swift; sourceTree = "<group>"; };
 		FF5F2074291A8C3F007E0E99 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		FF5F2076291A8C8C007E0E99 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FF5F2078291A8DFE007E0E99 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 				FF3D6D93293034770046015C /* NavigationButtonHelper.swift */,
 				FF3D6D95293036090046015C /* GeneralSettings.swift */,
 				FF3D6D972930E7BD0046015C /* LocationRequest.swift */,
+				FF3D6D9B2930EBCF0046015C /* NotificationsRequest.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				FFE33EE0291BE609002053B7 /* LocationManager.swift */,
 				FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */,
 				FF071624292D436A0028B35D /* AccountViewModel.swift */,
+				FF3D6D992930EB430046015C /* NotificationsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -878,6 +884,7 @@
 				FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */,
 				FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */,
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
+				FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
 				FF071627292D45000028B35D /* AccountPreview.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
@@ -894,6 +901,7 @@
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
+				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
 				FF3D6D90293034550046015C /* Settings.swift in Sources */,
 				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
