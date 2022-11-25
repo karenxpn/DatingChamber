@@ -126,13 +126,19 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     
     @MainActor func deleteAccount() {
         Task {
-            let result = await manager.deleteAccount(userID: userID)
+            let result = await manager.deleteAccount()
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(()):
-                userID = ""
-                initialUserID = ""
+                let deleteResult = await manager.deleteAccountData(userID: userID)
+                switch deleteResult {
+                case .failure(let error):
+                    self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+                case .success(()):
+                    self.userID = ""
+                    self.initialUserID = ""
+                }
             }
         }
     }
