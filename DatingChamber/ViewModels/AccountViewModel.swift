@@ -118,7 +118,6 @@ class AccountViewModel: AlertViewModel, ObservableObject {
         do {
             try firebaseAuth.signOut()
             userID = ""
-            initialUserID = ""
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
@@ -137,7 +136,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                     self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
                 case .success(()):
                     self.userID = ""
-                    self.initialUserID = ""
+//                    self.initialUserID = ""
                 }
             }
         }

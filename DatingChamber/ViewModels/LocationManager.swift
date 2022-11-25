@@ -43,7 +43,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             let locationModel = LocationModel(hash: GFUtils.geoHash(forLocation: location),
                                               lat: location.latitude,
                                               lng: location.longitude)
-            self.updateLocation(location: locationModel)
+//            self.updateLocation(location: locationModel)
         }      
         
     }

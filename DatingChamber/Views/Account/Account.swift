@@ -10,7 +10,6 @@ import FirebaseAuth
 
 struct Account: View {
     @AppStorage("userID") var userID: String = ""
-    @AppStorage("initialuserID") var initialUserID: String = ""
     @StateObject private var accountVM = AccountViewModel()
 
     var body: some View {
@@ -41,7 +40,9 @@ struct Account: View {
                 }
             }.navigationTitle(Text(""))
             .task {
-                accountVM.getAccount()
+                if !userID.isEmpty {
+                    accountVM.getAccount()
+                }
             }.alert(isPresented: $accountVM.showAlert) {
                 Alert(title: Text(NSLocalizedString("error", comment: "")),
                       message: Text(accountVM.alertMessage),
