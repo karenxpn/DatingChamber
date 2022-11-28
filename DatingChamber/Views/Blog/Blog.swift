@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct Blog: View {
+    @StateObject var blogVM = BlogViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                if blogVM.loading {
+                    ProgressView()
+                } else {
+                    BlogInnerView()
+                }
+            }.task {
+                blogVM.getPosts()
+            }
+        }
     }
 }
 
