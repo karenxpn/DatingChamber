@@ -27,6 +27,10 @@
 		FF071641292E98660028B35D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071640292E98660028B35D /* EditOccupation.swift */; };
 		FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071642292E98F40028B35D /* EditProfileBuilder.swift */; };
 		FF071645292E9FB30028B35D /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071644292E9FB30028B35D /* EditGender.swift */; };
+		FF34A2E6293510F000598724 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E5293510F000598724 /* Blog.swift */; };
+		FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E72935113E00598724 /* BlogViewModel.swift */; };
+		FF34A2EA2935118D00598724 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E92935118D00598724 /* PostModel.swift */; };
+		FF34A2EC2935129400598724 /* BlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2EB2935129400598724 /* BlogService.swift */; };
 		FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D85292FAB6E0046015C /* EditGallery.swift */; };
 		FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = FF3D6D88292FB7BB0046015C /* Popovers */; };
 		FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */; };
@@ -169,6 +173,10 @@
 		FF071640292E98660028B35D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF071642292E98F40028B35D /* EditProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBuilder.swift; sourceTree = "<group>"; };
 		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FF34A2E5293510F000598724 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
+		FF34A2E72935113E00598724 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
+		FF34A2E92935118D00598724 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		FF34A2EB2935129400598724 /* BlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogService.swift; sourceTree = "<group>"; };
 		FF3D6D85292FAB6E0046015C /* EditGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGallery.swift; sourceTree = "<group>"; };
 		FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonHelper.swift; sourceTree = "<group>"; };
 		FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
@@ -342,6 +350,14 @@
 			path = EditAccount;
 			sourceTree = "<group>";
 		};
+		FF34A2E4293510D500598724 /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				FF34A2E5293510F000598724 /* Blog.swift */,
+			);
+			path = Blog;
+			sourceTree = "<group>";
+		};
 		FF3D6D8C293033D20046015C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +497,7 @@
 		FFB4D5D429118F620065955F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FF34A2E4293510D500598724 /* Blog */,
 				FF5F207C291A90AB007E0E99 /* Swipes */,
 				FF5F207B291A90A5007E0E99 /* Chat */,
 				FF5F207A291A909E007E0E99 /* Account */,
@@ -505,6 +522,7 @@
 				FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */,
 				FF071624292D436A0028B35D /* AccountViewModel.swift */,
 				FF3D6D992930EB430046015C /* NotificationsViewModel.swift */,
+				FF34A2E72935113E00598724 /* BlogViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -515,6 +533,7 @@
 				FFC6144C29129F2400CE75E2 /* AuthService.swift */,
 				FFE33EDE291B33CA002053B7 /* SwipesService.swift */,
 				FFE33EE2291BFF3B002053B7 /* UserService.swift */,
+				FF34A2EB2935129400598724 /* BlogService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -525,6 +544,7 @@
 				FFCA5A2C2917E31900C91BEC /* RegistrationModel.swift */,
 				FF5F2083291AAF38007E0E99 /* SwipeModel.swift */,
 				FF071622292D42810028B35D /* UserModel.swift */,
+				FF34A2E92935118D00598724 /* PostModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -864,6 +884,7 @@
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
 				FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */,
+				FF34A2EA2935118D00598724 /* PostModel.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
@@ -880,6 +901,7 @@
 				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
+				FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */,
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
 				FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */,
 				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
@@ -912,6 +934,7 @@
 				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
 				FF3D6D90293034550046015C /* Settings.swift in Sources */,
+				FF34A2E6293510F000598724 /* Blog.swift in Sources */,
 				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
 				FF07162B292D47470028B35D /* EditAccount.swift in Sources */,
 				FFC614532912A3A200CE75E2 /* Extensions.swift in Sources */,
@@ -928,6 +951,7 @@
 				FFB4D5DB29118FBE0065955F /* Authentication.swift in Sources */,
 				FF071635292E558F0028B35D /* EditInterests.swift in Sources */,
 				FFB4D5E1291192EE0065955F /* ButtonHelper.swift in Sources */,
+				FF34A2EC2935129400598724 /* BlogService.swift in Sources */,
 				FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */,
 				FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */,
 				FF071641292E98660028B35D /* EditOccupation.swift in Sources */,
