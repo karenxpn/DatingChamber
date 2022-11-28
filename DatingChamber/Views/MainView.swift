@@ -19,7 +19,7 @@ struct MainView: View {
             VStack {
 
                 if tabViewModel.currentTab == 0 {
-                    CreatePost()
+                    Blog()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 1 {
                     Swipes()
