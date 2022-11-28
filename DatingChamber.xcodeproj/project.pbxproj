@@ -323,6 +323,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF34A2E32934F08A00598724 /* EditAccount */ = {
+			isa = PBXGroup;
+			children = (
+				FF07162A292D47470028B35D /* EditAccount.swift */,
+				FF071632292E40170028B35D /* EditAccountInnerView.swift */,
+				FF071630292E3F4D0028B35D /* AccountSpecs.swift */,
+				FF071634292E558E0028B35D /* EditInterests.swift */,
+				FF071636292E6E830028B35D /* EditBirthday.swift */,
+				FF071638292E77F90028B35D /* EditBio.swift */,
+				FF07163A292E96D90028B35D /* EditCity.swift */,
+				FF07163E292E97FA0028B35D /* EditEducation.swift */,
+				FF071640292E98660028B35D /* EditOccupation.swift */,
+				FF071644292E9FB30028B35D /* EditGender.swift */,
+				FF071642292E98F40028B35D /* EditProfileBuilder.swift */,
+				FF3D6D85292FAB6E0046015C /* EditGallery.swift */,
+			);
+			path = EditAccount;
+			sourceTree = "<group>";
+		};
 		FF3D6D8C293033D20046015C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,23 +359,12 @@
 		FF5F207A291A909E007E0E99 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				FF34A2E32934F08A00598724 /* EditAccount */,
 				FF3D6D8C293033D20046015C /* Settings */,
 				FF5F207D291A90BB007E0E99 /* Account.swift */,
 				FF071626292D45000028B35D /* AccountPreview.swift */,
 				FF071628292D472C0028B35D /* ProfileImage.swift */,
 				FF07162E292D4D5E0028B35D /* AccountName.swift */,
-				FF07162A292D47470028B35D /* EditAccount.swift */,
-				FF071632292E40170028B35D /* EditAccountInnerView.swift */,
-				FF071630292E3F4D0028B35D /* AccountSpecs.swift */,
-				FF071634292E558E0028B35D /* EditInterests.swift */,
-				FF071636292E6E830028B35D /* EditBirthday.swift */,
-				FF071638292E77F90028B35D /* EditBio.swift */,
-				FF07163A292E96D90028B35D /* EditCity.swift */,
-				FF07163E292E97FA0028B35D /* EditEducation.swift */,
-				FF071640292E98660028B35D /* EditOccupation.swift */,
-				FF071644292E9FB30028B35D /* EditGender.swift */,
-				FF071642292E98F40028B35D /* EditProfileBuilder.swift */,
-				FF3D6D85292FAB6E0046015C /* EditGallery.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
