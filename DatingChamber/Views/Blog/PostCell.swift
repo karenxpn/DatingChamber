@@ -11,9 +11,9 @@ struct PostCell: View {
     let post: PostViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 12) {
             if let user = post.user {
-                HStack(alignment: .top) {
+                HStack(alignment: .top, spacing: 8) {
                     
                     ImageHelper(image: user.image, contentMode: .fill)
                         .frame(width: 52, height: 52)
@@ -25,6 +25,7 @@ struct PostCell: View {
                         HStack {
                             if post.allowReading {
                                 TextHelper(text: NSLocalizedString("readingAllowed", comment: ""), fontSize: 12)
+                                    .lineLimit(1)
                                 Button {
                                     
                                 } label: {
@@ -39,15 +40,17 @@ struct PostCell: View {
                 }
             }
             
-            TextHelper(text: post.title, fontName: "Inter-Medium", fontSize: 14)
-            TextHelper(text: post.content)
-                .lineLimit(5)
-            
-            ImageHelper(image: post.image, contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width * 0.8,
-                       height: UIScreen.main.bounds.height * 0.3)
-                .clipped()
-                .cornerRadius(10)
+            VStack(alignment: .leading, spacing: 4) {
+                TextHelper(text: post.title, fontName: "Inter-Medium", fontSize: 14)
+                TextHelper(text: post.content, fontSize: 12)
+                    .lineLimit(5)
+                
+                ImageHelper(image: post.image, contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width * 0.8,
+                           height: UIScreen.main.bounds.height * 0.25)
+                    .clipped()
+                    .cornerRadius(10)
+            }
             
         }.padding(28)
             .background(AppColors.light_red)

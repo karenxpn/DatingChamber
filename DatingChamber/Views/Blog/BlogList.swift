@@ -17,7 +17,8 @@ struct BlogList: View {
             ForEach(posts, id: \.id) { post in
                 PostCell(post: post)
                     .onAppear {
-                        if post.id == posts.last?.id && !blogVM.loading {
+                        if post.id == blogVM.posts.last?.id && !blogVM.loadingPage {
+                            print("faced \(post.id)")
                             blogVM.getPosts()
                         }
                     }

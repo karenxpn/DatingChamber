@@ -52,12 +52,15 @@ class BlogViewModel: AlertViewModel, ObservableObject {
         
         Task {
             let result = await manager.fetchPosts(userID: userID, lastDocSnapshot: lastPost)
+            print(result)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let posts):
                 self.posts.append(contentsOf: posts.0.map(PostViewModel.init))
-                self.lastPost = posts.1
+                if !posts.0.isEmpty {
+                    self.lastPost = posts.1
+                }
             }
             
             if !Task.isCancelled {
