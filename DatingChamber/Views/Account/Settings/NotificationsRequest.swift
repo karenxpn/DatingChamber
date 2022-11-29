@@ -11,7 +11,7 @@ struct NotificationsRequest: View {
     
     @StateObject var notificationsVM = NotificationsViewModel()
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 20) {
             
             Spacer()
             Image("notification_request_icon")
@@ -20,18 +20,10 @@ struct NotificationsRequest: View {
                 .frame(width: 220, height: 220)
             
             
-            Text( NSLocalizedString("notificationRequest", comment: "") )
-                .foregroundColor(.black)
-                .font(.custom("Inter-SemiBold", size: 30))
+            TextHelper(text: NSLocalizedString("notificationRequest", comment: ""),fontName: "Inter-SemiBold", fontSize: 30)
                 .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
             
-            
-            Text( NSLocalizedString("notificationRequestMessage", comment: "") )
-                .foregroundColor(.black)
-                .font(.custom("Inter-Regular", size: 16))
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
+            TextHelper(text: NSLocalizedString("notificationRequestMessage", comment: ""))                .multilineTextAlignment(.center)
             
             Spacer()
 
@@ -51,7 +43,7 @@ struct NotificationsRequest: View {
             minHeight: 0,
             maxHeight: .infinity
         ).padding(30)
-            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.15)
     }
 }
 

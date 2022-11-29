@@ -11,7 +11,7 @@ struct LocationRequest: View {
     
     @StateObject var locationManager = LocationManager()
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 20) {
             
             Spacer()
             Image("location_request_icon")
@@ -19,19 +19,10 @@ struct LocationRequest: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 220, height: 220)
             
-            
-            Text( NSLocalizedString("locationRequest", comment: "") )
-                .foregroundColor(.black)
-                .font(.custom("Inter-SemiBold", size: 30))
+            TextHelper(text: NSLocalizedString("locationRequest", comment: ""),fontName: "Inter-SemiBold", fontSize: 30)
                 .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
             
-            
-            Text( NSLocalizedString("locationRequestMessage", comment: "") )
-                .foregroundColor(.black)
-                .font(.custom("Inter-Regular", size: 16))
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
+            TextHelper(text: NSLocalizedString("locationRequestMessage", comment: ""))                .multilineTextAlignment(.center)
             
             Spacer()
 
@@ -49,7 +40,7 @@ struct LocationRequest: View {
             minHeight: 0,
             maxHeight: .infinity
         ).padding(30)
-            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.15)
     }
 }
 

@@ -19,6 +19,7 @@ struct Account: View {
                     ProgressView()
                 } else if accountVM.user != nil {
                     AccountPreview(user: accountVM.user!)
+                        .environmentObject(accountVM)
 
                 }
             }.toolbar {
@@ -41,6 +42,8 @@ struct Account: View {
             }.navigationTitle(Text(""))
             .task {
                 if !userID.isEmpty {
+                    accountVM.posts.removeAll(keepingCapacity: false)
+                    accountVM.lastPost = nil
                     accountVM.getAccount()
                 }
             }.alert(isPresented: $accountVM.showAlert) {

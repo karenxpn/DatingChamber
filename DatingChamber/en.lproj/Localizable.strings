@@ -89,3 +89,15 @@
 "locationRequestMessage" = "To see more accurate content and nearby users please share your location with us.";
 "notificationRequest" = "Enable notifications";
 "notificationRequestMessage" = "Get push-noifications when you get the match or receive a message";
+"addPostCover" = "Add cover image for your story";
+"titlePlaceholder" = "Post Title";
+"postTitle" = "Post Title";
+"postContent" = "Post Content";
+"postContentPlaceholder" = "Post Content";
+"allowReading" = "Allow reading this post using male/female voice reader";
+"maleVoice" = "Male voice";
+"femaleVoice" = "Female voice";
+"post" = "Post";
+"readingAllowed" = "This user enabled voice reading";
+"blog" = "Blog";
+"posts" = "Posts";
