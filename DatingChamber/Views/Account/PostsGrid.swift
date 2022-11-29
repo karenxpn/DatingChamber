@@ -9,14 +9,34 @@ import SwiftUI
 
 struct PostsGrid: View {
     @EnvironmentObject var accountVM: AccountViewModel
-    let posts: [PostViewModel]
+    
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
         LazyVGrid(columns: columns, spacing: 20) {
-            ForEach(posts, id: \.id) { post in
+            
+            // creaet new post
+            NavigationLink {
+                CreatePost()
+            } label: {
+                Image("add_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 21, height: 21)
+                    .foregroundColor(AppColors.primary)
+                    .frame(width: UIScreen.main.bounds.width * 0.4,
+                           height: UIScreen.main.bounds.height * 0.2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .stroke(AppColors.light_red, style: StrokeStyle(lineWidth: 1, dash: [10]))
+                        
+                    )
+            }
+            
+            ForEach(accountVM.posts, id: \.id) { post in
                 PostGridCell(post: post)
                     .onAppear {
-                        if post.id == posts.last?.id && !accountVM.loadingPost {
+                        if post.id == accountVM.posts.last?.id && !accountVM.loadingPost {
+                            print("faced \(post.id)")
                             accountVM.getPosts()
                         }
                     }
@@ -27,7 +47,7 @@ struct PostsGrid: View {
 
 struct PostsGrid_Previews: PreviewProvider {
     static var previews: some View {
-        PostsGrid(posts: AppPreviewModel.posts)
+        PostsGrid()
             .environmentObject(AccountViewModel())
     }
 }

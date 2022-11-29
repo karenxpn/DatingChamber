@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 protocol BlogServiceProtocol {
     func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
+    func fetchUserPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
     func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error>
     
 }
@@ -25,6 +26,23 @@ class BlogService {
 }
 
 extension BlogService: BlogServiceProtocol {
+    func fetchUserPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error> {
+        do {
+            
+            var query: Query = db.collection("Blogs").whereField("user.id", isEqualTo: userID)
+            if lastDocSnapshot == nil   { query = query.limit(to: 10) }
+            else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
+            
+            let postDocuments = try await query.getDocuments().documents
+            let posts = try postDocuments.map { try $0.data(as: PostModel.self ) }
+            
+            return .success((posts, postDocuments.last))
+            
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error> {
         do {
             

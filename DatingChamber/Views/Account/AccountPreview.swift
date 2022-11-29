@@ -52,7 +52,8 @@ struct AccountPreview: View {
                 if !accountVM.posts.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
                         TextHelper(text: NSLocalizedString("posts", comment: ""), fontName: "Inter-SemiBold", fontSize: 18)
-                        PostsGrid(posts: accountVM.posts)
+                        PostsGrid()
+                            .environmentObject(accountVM)
                     }
 
                 }

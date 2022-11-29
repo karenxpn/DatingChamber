@@ -42,6 +42,8 @@ struct Account: View {
             }.navigationTitle(Text(""))
             .task {
                 if !userID.isEmpty {
+                    accountVM.posts.removeAll(keepingCapacity: false)
+                    accountVM.lastPost = nil
                     accountVM.getAccount()
                 }
             }.alert(isPresented: $accountVM.showAlert) {

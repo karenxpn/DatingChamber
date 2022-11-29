@@ -45,11 +45,11 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let response):
                 let user = response.0
-                self.lastPost = response.1
                 
                 self.user = UserModelViewModel(user: user)
                 if let posts = user.posts {
                     self.posts = posts.map(PostViewModel.init)
+                    self.lastPost = response.1
                 }
             }
             
@@ -62,7 +62,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @MainActor func getPosts() {
         loadingPost = true
         Task {
-            let result = await blogManager.fetchPosts(userID: userID, lastDocSnapshot: lastPost)
+            let result = await blogManager.fetchUserPosts(userID: userID, lastDocSnapshot: lastPost)
             switch result {
             case .success(let post):
                 self.posts.append(contentsOf: post.0.map(PostViewModel.init))
