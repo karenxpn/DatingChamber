@@ -11,7 +11,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol BlogServiceProtocol {
-    func fetchPosts(userID: String) async -> Result<[PostModel], Error>
+    func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
     func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error>
     
 }
@@ -56,7 +56,7 @@ extension BlogService: BlogServiceProtocol {
         }
     }
     
-    func fetchPosts(userID: String) async -> Result<[PostModel], Error> {
+    func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error> {
         do {
             // filter data
             let encodedFriends = try await db.collection("Users").document(userID).getDocument().get("friends")
@@ -66,10 +66,15 @@ extension BlogService: BlogServiceProtocol {
             }
             friends.append(userID)
             
-            let postDocuments = try await db.collection("Blogs").whereField("user.id", in: friends).getDocuments().documents
+            
+            var query: Query = db.collection("Blogs").whereField("user.id", in: friends)
+            if lastDocSnapshot == nil   { query = query.limit(to: 10) }
+            else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
+            
+            let postDocuments = try await query.getDocuments().documents
             let posts = try postDocuments.map { try $0.data(as: PostModel.self ) }
             
-            return .success(posts)
+            return .success((posts, postDocuments.last))
             
         } catch {
             return .failure(error)

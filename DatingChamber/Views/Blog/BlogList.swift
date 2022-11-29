@@ -16,6 +16,19 @@ struct BlogList: View {
         List {
             ForEach(posts, id: \.id) { post in
                 PostCell(post: post)
+                    .onAppear {
+                        if post.id == posts.last?.id && !blogVM.loading {
+                            blogVM.getPosts()
+                        }
+                    }
+            }
+            
+            if blogVM.loadingPage {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             }
             
             Spacer()
@@ -23,6 +36,8 @@ struct BlogList: View {
         }.listStyle(.plain)
             .padding(.top, 1)
             .refreshable {
+                blogVM.posts.removeAll(keepingCapacity: false)
+                blogVM.lastPost = nil
                 blogVM.getPosts()
             }
     }

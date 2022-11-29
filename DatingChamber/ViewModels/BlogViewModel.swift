@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import FirebaseFirestore
 
 class BlogViewModel: AlertViewModel, ObservableObject {
     @AppStorage("userID") var userID: String = ""
@@ -25,7 +26,10 @@ class BlogViewModel: AlertViewModel, ObservableObject {
     
     @Published var uploading: Bool = false
     
+    @Published var loadingPage: Bool = false
     @Published var posts = [PostViewModel]()
+    @Published var lastPost: QueryDocumentSnapshot?
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var manager: BlogServiceProtocol
     
@@ -42,20 +46,23 @@ class BlogViewModel: AlertViewModel, ObservableObject {
     @MainActor func getPosts() {
         if posts.isEmpty {
             loading = true
+        } else {
+            loadingPage = true
         }
         
-        print("called")
         Task {
-            let result = await manager.fetchPosts(userID: userID)
+            let result = await manager.fetchPosts(userID: userID, lastDocSnapshot: lastPost)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let posts):
-                self.posts = posts.map(PostViewModel.init)
+                self.posts.append(contentsOf: posts.0.map(PostViewModel.init))
+                self.lastPost = posts.1
             }
             
             if !Task.isCancelled {
                 loading = false
+                loadingPage = false
             }
         }
     }
