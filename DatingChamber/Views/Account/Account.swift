@@ -19,6 +19,7 @@ struct Account: View {
                     ProgressView()
                 } else if accountVM.user != nil {
                     AccountPreview(user: accountVM.user!)
+                        .environmentObject(accountVM)
 
                 }
             }.toolbar {

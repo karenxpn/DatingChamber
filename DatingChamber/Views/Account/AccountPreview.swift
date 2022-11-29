@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountPreview: View {
+    @EnvironmentObject var accountVM: AccountViewModel
     @State var user: UserModelViewModel
     let icons = ["occupation_icon", "education_icon", "gender_icon", "city_icon"]
     let names = [NSLocalizedString("occupation", comment: ""),
@@ -48,6 +49,16 @@ struct AccountPreview: View {
                 // interests
                 TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!, parentWidth: UIScreen.main.bounds.width * 0.8, interests: user.interests.map{ InterestModel(same: true, name: $0)})
                 
+                if !accountVM.posts.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        TextHelper(text: NSLocalizedString("posts", comment: ""), fontName: "Inter-SemiBold", fontSize: 18)
+                        PostsGrid(posts: accountVM.posts)
+                    }
+
+                }
+                if accountVM.loadingPost {
+                    ProgressView()
+                }
                 
             }.frame(
                 minWidth: 0,

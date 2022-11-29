@@ -16,7 +16,7 @@ protocol UserServiceProtocol {
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error>
     func blockUser(userID: String, uid: String) async -> Result<Void, Error>
     
-    func fetchAccount(userID: String) async -> Result<UserModel, Error>
+    func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error>
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
     func deleteAccount() async -> Result<Void, Error>
     func deleteAccountData(userID: String) async -> Result<Void, Error>
@@ -56,10 +56,13 @@ extension UserService: UserServiceProtocol {
         }
     }
     
-    func fetchAccount(userID: String) async -> Result<UserModel, Error> {
+    func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error> {
         do {
-            let user = try await db.collection("Users").document(userID).getDocument().data(as: UserModel.self)
-            return .success(user)
+            var user = try await db.collection("Users").document(userID).getDocument().data(as: UserModel.self)
+            let posts = try await db.collection("Blogs").whereField("user.id", isEqualTo: userID).limit(to: 10).getDocuments().documents
+            user.posts = try posts.map{ try $0.data(as: PostModel.self)}
+            
+            return .success((user, posts.last))
         } catch {
             return .failure(error)
         }

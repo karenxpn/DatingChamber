@@ -18,6 +18,7 @@ struct UserModel: Identifiable, Codable {
     var occupation: String?
     var city: String?
     var education: String?
+    var posts: [PostModel]?
 }
 
 struct UserModelViewModel: Identifiable {
@@ -73,7 +74,6 @@ struct UserModelViewModel: Identifiable {
     var education: String {
         get { self.user.education ?? "" }
         set { self.user.education = newValue }
-        
     }
 
     var occupation: String {
@@ -84,5 +84,10 @@ struct UserModelViewModel: Identifiable {
     var city: String {
         get { self.user.city ?? "" }
         set { self.user.city = newValue }
+    }
+    
+    var posts: [PostModel] {
+        get { self.user.posts ?? []}
+        set { self.user.posts = newValue }
     }
 }

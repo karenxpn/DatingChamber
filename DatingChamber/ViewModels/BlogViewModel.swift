@@ -52,7 +52,6 @@ class BlogViewModel: AlertViewModel, ObservableObject {
         
         Task {
             let result = await manager.fetchPosts(userID: userID, lastDocSnapshot: lastPost)
-            print(result)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)

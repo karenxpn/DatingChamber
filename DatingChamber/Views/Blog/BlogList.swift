@@ -18,7 +18,6 @@ struct BlogList: View {
                 PostCell(post: post)
                     .onAppear {
                         if post.id == blogVM.posts.last?.id && !blogVM.loadingPage {
-                            print("faced \(post.id)")
                             blogVM.getPosts()
                         }
                     }

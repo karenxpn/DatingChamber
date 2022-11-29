@@ -8,12 +8,16 @@
 import Foundation
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 
 class AccountViewModel: AlertViewModel, ObservableObject {
     @AppStorage("userID") var userID: String = ""
     @AppStorage("initialuserID") var initialUserID: String = ""
     @Published var user: UserModelViewModel?
+    @Published var posts = [PostViewModel]()
     
+    @Published var loadingPost: Bool = false
+    @Published var lastPost: QueryDocumentSnapshot?
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
@@ -22,11 +26,14 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     
     var manager: UserServiceProtocol
     var authManager: AuthServiceProtocol
+    var blogManager: BlogServiceProtocol
     
     init(manager: UserServiceProtocol = UserService.shared,
-         authManager: AuthServiceProtocol = AuthService.shared) {
+         authManager: AuthServiceProtocol = AuthService.shared,
+         blogManager: BlogServiceProtocol = BlogService.shared) {
         self.manager = manager
         self.authManager = authManager
+        self.blogManager = blogManager
     }
     
     @MainActor func getAccount() {
@@ -36,12 +43,36 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            case .success(let user):
+            case .success(let response):
+                let user = response.0
+                self.lastPost = response.1
+                
                 self.user = UserModelViewModel(user: user)
+                if let posts = user.posts {
+                    self.posts = posts.map(PostViewModel.init)
+                }
             }
             
             if !Task.isCancelled {
                 loading = false
+            }
+        }
+    }
+    
+    @MainActor func getPosts() {
+        loadingPost = true
+        Task {
+            let result = await blogManager.fetchPosts(userID: userID, lastDocSnapshot: lastPost)
+            switch result {
+            case .success(let post):
+                self.posts.append(contentsOf: post.0.map(PostViewModel.init))
+                self.lastPost = post.1
+            case .failure( _):
+                break
+            }
+            
+            if !Task.isCancelled {
+                loadingPost = false
             }
         }
     }
