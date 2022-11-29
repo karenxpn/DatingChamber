@@ -40,9 +40,13 @@ class BlogViewModel: AlertViewModel, ObservableObject {
     }
     
     @MainActor func getPosts() {
-        loading = true
+        if posts.isEmpty {
+            loading = true
+        }
+        
+        print("called")
         Task {
-            let result = await manager.fetchPosts()
+            let result = await manager.fetchPosts(userID: userID)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
@@ -69,7 +73,7 @@ class BlogViewModel: AlertViewModel, ObservableObject {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(()):
-                break
+                NotificationCenter.default.post(name: Notification.Name("post_uploaded"), object: nil)
             }
             
             if !Task.isCancelled {

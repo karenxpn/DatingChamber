@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CreatePost: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @StateObject private var blogVM = BlogViewModel()
     @State private var showGallery: Bool = false
     @State private var image: Data?
@@ -109,11 +111,17 @@ struct CreatePost: View {
                 ).padding(30)
                     .padding(.bottom, UIScreen.main.bounds.height * 0.15)
                 
-            }.scrollDismissesKeyboard(.interactively)
+            }.padding(.top, 1)
+            .scrollDismissesKeyboard(.interactively)
                 .sheet(isPresented: $showGallery) {
                     Gallery(action: { images in
                         image = images.first
                     }, existingImageCount: 0, limit: 1)
+                }
+                .alert(isPresented: $blogVM.showAlert, content: {
+                    Alert(title: Text( "Error" ), message: Text( blogVM.alertMessage ), dismissButton: .default(Text( "Got It" )))
+                }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "post_uploaded"))) { _ in
+                    presentationMode.wrappedValue.dismiss()
                 }
         }
 

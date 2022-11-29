@@ -11,7 +11,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol BlogServiceProtocol {
-    func fetchPosts() async -> Result<[PostModel], Error>
+    func fetchPosts(userID: String) async -> Result<[PostModel], Error>
     func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error>
     
 }
@@ -38,41 +38,41 @@ extension BlogService: BlogServiceProtocol {
             }
             
             let user = try await db.collection("Users").document(userID).getDocument().data(as: UserModel.self)
-            try await db.collection("Users").document(userID).collection("Blog").addDocument(data: [
-                "id" : UUID().uuidString,
-                "title": title,
-                "content": content,
-                "image": url,
-                "allowReading": allowReading,
-                "readingVoice": readingVoice,
-                "user": [
-                    "id": user.id,
-                    "name": user.name,
-                    "avatar": user.avatar
-                ]
-            ])
             
+            let post = PostModel(id: UUID().uuidString,
+                                 title: title,
+                                 content: content,
+                                 image: url,
+                                 allowReading: allowReading,
+                                 readingVoice: readingVoice,
+                                 user: PostUserModel(id: user.id,
+                                                     name: user.name,
+                                                     image: user.avatar))
+            
+            try await db.collection("Blogs").document(UUID().uuidString).setData(from: post)
             return .success(())
         } catch {
             return .failure(error)
         }
-        // get me
-        // assign to post user and upload
     }
     
-    func fetchPosts() async -> Result<[PostModel], Error> {
-        return .success([])
+    func fetchPosts(userID: String) async -> Result<[PostModel], Error> {
+        do {
+            // filter data
+            let encodedFriends = try await db.collection("Users").document(userID).getDocument().get("friends")
+            var friends = [String]()
+            if let encodedFriends {
+                friends = try Firestore.Decoder().decode([String].self, from: encodedFriends)
+            }
+            friends.append(userID)
+            
+            let postDocuments = try await db.collection("Blogs").whereField("user.id", in: friends).getDocuments().documents
+            let posts = try postDocuments.map { try $0.data(as: PostModel.self ) }
+            
+            return .success(posts)
+            
+        } catch {
+            return .failure(error)
+        }
     }
-//
-//    func uploadPostImage(image: Data) async -> Result<String, Error> {
-//        do {
-//            let dbRef = storageRef.child("blog/\(UUID().uuidString)")
-//            try await dbRef.putDataAsync(image)
-//            let url = try await dbRef.downloadURL().absoluteString
-//
-//            return .success(url)
-//        } catch {
-//            return .failure(error)
-//        }
-//    }
 }

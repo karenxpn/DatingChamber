@@ -16,9 +16,29 @@ struct Blog: View {
                 if blogVM.loading {
                     ProgressView()
                 } else {
-                    BlogInnerView()
+                    BlogList(posts: blogVM.posts)
+                        .environmentObject(blogVM)
                 }
-            }.task {
+            }.navigationTitle(Text(""))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        TextHelper(text: NSLocalizedString("blog", comment: ""),
+                                   fontName: "Inter-Black",
+                                   fontSize: 24)
+                        .kerning(0.56)
+                        .accessibilityAddTraits(.isHeader)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink {
+                            Settings()
+                        } label: {
+                            Image("icon_settings")
+                                .padding(.bottom, 10)
+                        }
+                    }
+                }
+            .task {
                 blogVM.getPosts()
             }
         }
