@@ -12,19 +12,8 @@ import ExpandableText
 struct PostDetailiView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var reading: Bool = false
+    @StateObject private var speaker = Speaker()
     let post: PostViewModel
-    let utterance: AVSpeechUtterance
-    let synthesizer: AVSpeechSynthesizer
-    
-    init(post: PostViewModel) {
-        self.post = post
-        self.utterance = AVSpeechUtterance(string: post.content)
-        self.utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        self.utterance.rate = 0.5
-        
-        self.synthesizer = AVSpeechSynthesizer()
-    }
     
     var body: some View {
         NavigationStack {
@@ -63,20 +52,17 @@ struct PostDetailiView: View {
                             if post.allowReading {
                                 Button {
                                     
-                                    if reading {
-                                        synthesizer.pauseSpeaking(at: .word)
+                                    if speaker.isSpeaking {
+                                        speaker.synthesizer.pauseSpeaking(at: .word)
                                     } else {
-                                        if synthesizer.isPaused {
-                                            synthesizer.continueSpeaking()
+                                        if speaker.synthesizer.isPaused {
+                                            speaker.synthesizer.continueSpeaking()
                                         } else {
-                                            synthesizer.speak(utterance)
+                                            speaker.speak()
                                         }
                                     }
-                                    
-                                    reading.toggle()
-                                    
                                 } label: {
-                                    Image(reading ? "voice_off" : "voice_on")
+                                    Image(speaker.isSpeaking ? "voice_off" : "voice_on")
                                         .foregroundColor(.white)
                                 }
                             }
@@ -86,6 +72,10 @@ struct PostDetailiView: View {
                     }.padding(.top, 1)
                 }
                 
+            }.onAppear {
+                speaker.initializeSpeaker(content: post.content)
+            }.onDisappear {
+                speaker.synthesizer.stopSpeaking(at: .immediate)
             }
             .navigationTitle(Text(""))
             .navigationBarTitleDisplayMode(.inline)
