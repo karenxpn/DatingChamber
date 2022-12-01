@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PostCell: View {
     let post: PostViewModel
+    @State private var seePost: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -22,39 +23,32 @@ struct PostCell: View {
                     VStack(alignment: .leading) {
                         TextHelper(text: user.name, fontName: "Inter-Medium", fontSize: 14)
                         
-                        HStack {
-                            if post.allowReading {
-                                TextHelper(text: NSLocalizedString("readingAllowed", comment: ""), fontSize: 12)
-                                    .lineLimit(1)
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "speaker.wave.2")
-                                        .foregroundColor(.black)
-                                        .padding(.horizontal)
-                                }.buttonStyle(.borderless)
-                                
-                            }
-                        }
+                        TextHelper(text: post.title, fontName: "Inter-Medium", fontSize: 14)
                     }
                 }
             }
             
             VStack(alignment: .leading, spacing: 4) {
-                TextHelper(text: post.title, fontName: "Inter-Medium", fontSize: 14)
                 TextHelper(text: post.content, fontSize: 12)
                     .lineLimit(5)
                 
-                ImageHelper(image: post.image, contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width * 0.8,
-                           height: UIScreen.main.bounds.height * 0.25)
-                    .clipped()
-                    .cornerRadius(10)
+                Button {
+                    seePost.toggle()
+                } label: {
+                    ImageHelper(image: post.image, contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width * 0.8,
+                               height: UIScreen.main.bounds.height * 0.25)
+                        .clipped()
+                        .cornerRadius(10)
+                }.buttonStyle(.borderless)
             }
             
         }.padding(28)
             .background(AppColors.light_red)
             .cornerRadius(10)
+            .fullScreenCover(isPresented: $seePost) {
+                PostDetailiView(post: post)
+            }
     }
 }
 

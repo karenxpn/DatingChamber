@@ -101,3 +101,5 @@
 "readingAllowed" = "This user enabled voice reading";
 "blog" = "Blog";
 "posts" = "Posts";
+"seeMore" = "See More";
+"seeLess" = "See Less";
