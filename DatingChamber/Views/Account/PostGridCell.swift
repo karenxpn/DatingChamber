@@ -12,7 +12,7 @@ struct PostGridCell: View {
     let post: PostViewModel
     var body: some View {
         Button {
-            
+            navigate.toggle()
         } label: {
             ZStack(alignment: .bottomLeading) {
                 ImageHelper(image: post.image, contentMode: .fill)
@@ -24,6 +24,8 @@ struct PostGridCell: View {
                     .lineLimit(1)
                     .padding()
             }
+        }.fullScreenCover(isPresented: $navigate) {
+            PostDetailiView(post: post)
         }
 
     }
