@@ -30,7 +30,7 @@ struct PostCell: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 TextHelper(text: post.content, fontSize: 12)
-                    .lineLimit(5)
+                    .lineLimit(3)
                 
                 Button {
                     seePost.toggle()

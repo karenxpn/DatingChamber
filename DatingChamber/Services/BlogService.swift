@@ -29,7 +29,7 @@ extension BlogService: BlogServiceProtocol {
     func fetchUserPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error> {
         do {
             
-            var query: Query = db.collection("Blogs").whereField("user.id", isEqualTo: userID)
+            var query: Query = db.collection("Blogs").whereField("user.id", isEqualTo: userID).order(by: "createdAt", descending: true)
             if lastDocSnapshot == nil   { query = query.limit(to: 10) }
             else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
             
@@ -85,7 +85,7 @@ extension BlogService: BlogServiceProtocol {
             friends.append(userID)
             
             
-            var query: Query = db.collection("Blogs").whereField("user.id", in: friends)
+            var query: Query = db.collection("Blogs").whereField("user.id", in: friends).order(by: "createdAt", descending: true)
             if lastDocSnapshot == nil   { query = query.limit(to: 10) }
             else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
             

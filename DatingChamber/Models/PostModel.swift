@@ -7,8 +7,10 @@
 
 import Foundation
 import Firebase
+
 struct PostModel: Identifiable, Codable {
     var id: String
+    var createdAt: Date = Date()
     var title: String
     var content: String
     var image: String
@@ -37,4 +39,5 @@ struct PostViewModel: Identifiable {
     var allowReading: Bool          { self.post.allowReading }
     var readingVoice: String?       { self.post.readingVoice }
     var user: PostUserModel?        { self.post.user }
+    var createdAt: Date             { self.post.createdAt }
 }

@@ -19,7 +19,12 @@ struct Blog: View {
                     BlogList(posts: blogVM.posts)
                         .environmentObject(blogVM)
                 }
-            }.navigationTitle(Text(""))
+            }.alert(NSLocalizedString("error", comment: ""), isPresented: $blogVM.showAlert, actions: {
+                Button(NSLocalizedString("gotIt", comment: ""), role: .cancel) { }
+            }, message: {
+                Text(blogVM.alertMessage)
+            })
+            .navigationTitle(Text(""))
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         TextHelper(text: NSLocalizedString("blog", comment: ""),
