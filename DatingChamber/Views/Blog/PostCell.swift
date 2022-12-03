@@ -54,7 +54,7 @@ struct PostCell: View {
                     blogVM.getPosts()
                 }
             }, content: {
-                PostDetailiView(post: post)
+                PostDetailView(post: post)
             })
     }
 }

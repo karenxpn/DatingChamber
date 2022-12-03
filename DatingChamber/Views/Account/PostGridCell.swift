@@ -31,7 +31,7 @@ struct PostGridCell: View {
             accountVM.getAccount()
             
         }, content: {
-            PostDetailiView(post: post)
+            PostDetailView(post: post)
         })
 
     }

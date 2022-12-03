@@ -1,5 +1,5 @@
 //
-//  PostDetailiView.swift
+//  PostDetailView.swift
 //  DatingChamber
 //
 //  Created by Karen Mirakyan on 01.12.22.
@@ -9,7 +9,8 @@ import SwiftUI
 import AVFoundation
 import ExpandableText
 
-struct PostDetailiView: View {
+struct PostDetailView: View {
+    
     @AppStorage("userID") var userID: String = ""
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var blogVM = BlogViewModel()
@@ -173,9 +174,9 @@ struct PostDetailiView: View {
     }
 }
 
-struct PostDetailiView_Previews: PreviewProvider {
+struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDetailiView(post: AppPreviewModel.posts[0])
+        PostDetailView(post: AppPreviewModel.posts[0])
     }
 }
 
