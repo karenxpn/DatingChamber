@@ -26,7 +26,7 @@ struct SwipeCardActionSheet: View {
         CustomActionSheet {
             
             ActionSheetButtonHelper(icon: "report_icon",
-                                    label: NSLocalizedString("report", comment: ""),
+                                    label: NSLocalizedString("reportUser", comment: ""),
                                     role: .destructive) {
                 self.showReportConfirmation.toggle()
             }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {

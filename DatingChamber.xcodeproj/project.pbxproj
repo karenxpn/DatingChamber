@@ -129,6 +129,9 @@
 		FFCA5A41291818A300C91BEC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A40291818A300C91BEC /* SDWebImageSwiftUI */; };
 		FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA5A42291818DC00C91BEC /* ImageHelper.swift */; };
 		FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A452918289200C91BEC /* PromiseKit */; };
+		FFDB62342938EF4000B39102 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = FFDB62332938EF4000B39102 /* ExpandableText */; };
+		FFDB62362938EF8400B39102 /* PostDetailiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB62352938EF8400B39102 /* PostDetailiView.swift */; };
+		FFDB623A29390AF100B39102 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB623929390AF100B39102 /* Speaker.swift */; };
 		FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EDE291B33CA002053B7 /* SwipesService.swift */; };
 		FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE0291BE609002053B7 /* LocationManager.swift */; };
 		FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE2291BFF3B002053B7 /* UserService.swift */; };
@@ -267,6 +270,8 @@
 		FFCA5A3B29180EDA00C91BEC /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFCA5A3D29180F3600C91BEC /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFCA5A42291818DC00C91BEC /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		FFDB62352938EF8400B39102 /* PostDetailiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailiView.swift; sourceTree = "<group>"; };
+		FFDB623929390AF100B39102 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
 		FFE33EE0291BE609002053B7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFE33EE2291BFF3B002053B7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -284,6 +289,7 @@
 				FFC614352911EA9D00CE75E2 /* FirebaseDatabase in Frameworks */,
 				FF5F2093291ACCE2007E0E99 /* Sliders in Frameworks */,
 				FFC6142F2911EA9D00CE75E2 /* FirebaseAnalyticsSwift in Frameworks */,
+				FFDB62342938EF4000B39102 /* ExpandableText in Frameworks */,
 				FFCA5A41291818A300C91BEC /* SDWebImageSwiftUI in Frameworks */,
 				FFC614332911EA9D00CE75E2 /* FirebaseCrashlytics in Frameworks */,
 				FFC6146B2914789400CE75E2 /* GoogleSignIn in Frameworks */,
@@ -372,6 +378,7 @@
 				FF34A2EF2935417200598724 /* CreatePost.swift */,
 				FF34A2F32935487100598724 /* VoicePicker.swift */,
 				FF34A2F729357B6800598724 /* PostCell.swift */,
+				FFDB62352938EF8400B39102 /* PostDetailiView.swift */,
 			);
 			path = Blog;
 			sourceTree = "<group>";
@@ -544,6 +551,7 @@
 				FF071624292D436A0028B35D /* AccountViewModel.swift */,
 				FF3D6D992930EB430046015C /* NotificationsViewModel.swift */,
 				FF34A2E72935113E00598724 /* BlogViewModel.swift */,
+				FFDB623929390AF100B39102 /* Speaker.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -653,6 +661,7 @@
 				FF5F2092291ACCE2007E0E99 /* Sliders */,
 				FF5F209B291AE747007E0E99 /* TagLayoutView */,
 				FF3D6D88292FB7BB0046015C /* Popovers */,
+				FFDB62332938EF4000B39102 /* ExpandableText */,
 			);
 			productName = DatingChamber;
 			productReference = FFB4D5A629118EDE0065955F /* DatingChamber.app */;
@@ -739,6 +748,7 @@
 				FF5F2091291ACCE1007E0E99 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FF5F209A291AE747007E0E99 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF3D6D87292FB7BB0046015C /* XCRemoteSwiftPackageReference "Popovers" */,
+				FFDB62322938EF4000B39102 /* XCRemoteSwiftPackageReference "ExpandableText" */,
 			);
 			productRefGroup = FFB4D5A729118EDE0065955F /* Products */;
 			projectDirPath = "";
@@ -918,6 +928,7 @@
 				FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */,
 				FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */,
 				FF07163B292E96D90028B35D /* EditCity.swift in Sources */,
+				FFDB62362938EF8400B39102 /* PostDetailiView.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
 				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
 				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
@@ -961,6 +972,7 @@
 				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
 				FF3D6D90293034550046015C /* Settings.swift in Sources */,
+				FFDB623A29390AF100B39102 /* Speaker.swift in Sources */,
 				FF34A2F22935462A00598724 /* CheckboxHelper.swift in Sources */,
 				FF34A2E6293510F000598724 /* Blog.swift in Sources */,
 				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
@@ -1409,6 +1421,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		FFDB62322938EF4000B39102 /* XCRemoteSwiftPackageReference "ExpandableText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NuPlay/ExpandableText?ref=iosexample.com";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1511,6 +1531,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FFCA5A442918289200C91BEC /* XCRemoteSwiftPackageReference "PromiseKit" */;
 			productName = PromiseKit;
+		};
+		FFDB62332938EF4000B39102 /* ExpandableText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFDB62322938EF4000B39102 /* XCRemoteSwiftPackageReference "ExpandableText" */;
+			productName = ExpandableText;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -40,12 +40,14 @@
 "alternativeSignIn" = "or sign in with";
 "online" = "Online";
 "verified" = "Verified";
-"report" = "Report the user";
+"reportUser" = "Report the user";
 "block" = "Block the user";
 "chooseReason" = "Chose the reason why you report this user.";
 "fraud" = "Fraud";
 "insults" = "Insults";
 "fakeAccount" = "Fake Account";
+"sexual" = "Sexually explicit content";
+"hateSpeach" = "Hate group or contains hate speech";
 "all" = "All";
 "age" = "Age";
 "showUsers" = "Show users";
@@ -101,3 +103,9 @@
 "readingAllowed" = "This user enabled voice reading";
 "blog" = "Blog";
 "posts" = "Posts";
+"seeMore" = "See More";
+"seeLess" = "See Less";
+"delete" = "Delete";
+"reportPost" = "Report Post";
+"chooseReasonToReportPost" = "Chose the reason why you report this post.";
+

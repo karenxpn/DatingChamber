@@ -91,6 +91,31 @@ class BlogViewModel: AlertViewModel, ObservableObject {
         }
     }
     
+    @MainActor func reportPost( post: String, reason: String) {
+        Task {
+            let result = await manager.reportPost(userID: userID, postID: post, reason: reason)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(()):
+                NotificationCenter.default.post(name: Notification.Name("post_action_completed"), object: nil)
+
+            }
+        }
+    }
+    
+    @MainActor func deletePost(post: String) {
+        Task {
+            let result = await manager.deletePost(postID: post)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(()):
+                NotificationCenter.default.post(name: Notification.Name("post_action_completed"), object: nil)
+            }
+        }
+    }
+    
     
     // publisher validation
     private var isTitleValid: AnyPublisher<Bool, Never> {

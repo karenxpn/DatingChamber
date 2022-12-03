@@ -20,10 +20,10 @@ struct AccountPreview: View {
         ScrollView(showsIndicators: false) {
             
             ProfileImage(user: user)
-                
+            
             VStack(spacing: 26) {
                 TextHelper(text: "\(user.name), \(user.age)", fontName: "Inter-SemiBold", fontSize: 20)
-
+                
                 // bio
                 if !user.bio.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
@@ -38,7 +38,7 @@ struct AccountPreview: View {
                     )
                 }
                 
-                // specs here                
+                // specs here
                 VStack( spacing: 5) {
                     AccountSpecs(icon: icons[0], label: names[0], value: user.occupation, destination: AnyView(EditOccupation(user: $user)), iconColor: AppColors.primary)
                     AccountSpecs(icon: icons[1], label: names[1], value: user.education, destination: AnyView(EditEducation(user: $user)), iconColor: AppColors.primary)
@@ -49,14 +49,14 @@ struct AccountPreview: View {
                 // interests
                 TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!, parentWidth: UIScreen.main.bounds.width * 0.8, interests: user.interests.map{ InterestModel(same: true, name: $0)})
                 
-                if !accountVM.posts.isEmpty {
-                    VStack(alignment: .leading, spacing: 8) {
-                        TextHelper(text: NSLocalizedString("posts", comment: ""), fontName: "Inter-SemiBold", fontSize: 18)
-                        PostsGrid()
-                            .environmentObject(accountVM)
-                    }
-
+                // blog posts
+                VStack(alignment: .leading, spacing: 8) {
+                    TextHelper(text: NSLocalizedString("posts", comment: ""), fontName: "Inter-SemiBold", fontSize: 18)
+                    PostsGrid()
+                        .environmentObject(accountVM)
                 }
+                
+                // loading posts page
                 if accountVM.loadingPost {
                     ProgressView()
                 }

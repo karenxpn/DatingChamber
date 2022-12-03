@@ -7,8 +7,11 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
+
 struct PostModel: Identifiable, Codable {
-    var id: String
+    @DocumentID var id: String?
+    var createdAt: Date = Date()
     var title: String
     var content: String
     var image: String
@@ -30,11 +33,12 @@ struct PostViewModel: Identifiable {
         self.post = post
     }
     
-    var id: String                  { self.post.id }
+    var id: String                  { self.post.id ?? "" }
     var title: String               { self.post.title }
     var content: String             { self.post.content }
     var image: String               { self.post.image }
     var allowReading: Bool          { self.post.allowReading }
     var readingVoice: String?       { self.post.readingVoice }
     var user: PostUserModel?        { self.post.user }
+    var createdAt: Date             { self.post.createdAt }
 }
