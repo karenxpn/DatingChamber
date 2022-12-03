@@ -48,9 +48,11 @@ struct PostCell: View {
             .background(AppColors.light_red)
             .cornerRadius(10)
             .fullScreenCover(isPresented: $seePost, onDismiss: {
-                blogVM.posts.removeAll(keepingCapacity: false)
-                blogVM.lastPost = nil
-                blogVM.getPosts()
+                Task {
+                    blogVM.posts.removeAll(keepingCapacity: false)
+                    blogVM.lastPost = nil
+                    blogVM.getPosts()
+                }
             }, content: {
                 PostDetailiView(post: post)
             })
