@@ -16,6 +16,7 @@ struct BlogList: View {
         List {
             ForEach(posts, id: \.id) { post in
                 PostCell(post: post)
+                    .environmentObject(blogVM)
                     .onAppear {
                         if post.id == blogVM.posts.last?.id && !blogVM.loadingPage {
                             blogVM.getPosts()

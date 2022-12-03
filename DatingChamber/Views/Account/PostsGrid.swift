@@ -34,6 +34,7 @@ struct PostsGrid: View {
             
             ForEach(accountVM.posts, id: \.id) { post in
                 PostGridCell(post: post)
+                    .environmentObject(accountVM)
                     .onAppear {
                         if post.id == accountVM.posts.last?.id && !accountVM.loadingPost {
                             print("faced \(post.id)")

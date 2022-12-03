@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostGridCell: View {
+    @EnvironmentObject var accountVM: AccountViewModel
     @State private var navigate: Bool = false
     let post: PostViewModel
     var body: some View {
@@ -24,9 +25,14 @@ struct PostGridCell: View {
                     .lineLimit(1)
                     .padding()
             }
-        }.fullScreenCover(isPresented: $navigate) {
+        }.fullScreenCover(isPresented: $navigate, onDismiss: {
+            accountVM.posts.removeAll(keepingCapacity: false)
+            accountVM.lastPost = nil
+            accountVM.getAccount()
+            
+        }, content: {
             PostDetailiView(post: post)
-        }
+        })
 
     }
 }

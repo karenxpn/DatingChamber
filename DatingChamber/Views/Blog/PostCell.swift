@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostCell: View {
+    @EnvironmentObject var blogVM: BlogViewModel
     let post: PostViewModel
     @State private var seePost: Bool = false
     
@@ -46,9 +47,13 @@ struct PostCell: View {
         }.padding(28)
             .background(AppColors.light_red)
             .cornerRadius(10)
-            .fullScreenCover(isPresented: $seePost) {
+            .fullScreenCover(isPresented: $seePost, onDismiss: {
+                blogVM.posts.removeAll(keepingCapacity: false)
+                blogVM.lastPost = nil
+                blogVM.getPosts()
+            }, content: {
                 PostDetailiView(post: post)
-            }
+            })
     }
 }
 

@@ -10,9 +10,12 @@ import AVFoundation
 import ExpandableText
 
 struct PostDetailiView: View {
+    @AppStorage("userID") var userID: String = ""
     @Environment(\.presentationMode) var presentationMode
-
+    @StateObject private var blogVM = BlogViewModel()
     @StateObject private var speaker = Speaker()
+    @State private var showReportReason: Bool = false
+    
     let post: PostViewModel
     
     var body: some View {
@@ -76,6 +79,8 @@ struct PostDetailiView: View {
                 speaker.initializeSpeaker(content: post.content)
             }.onDisappear {
                 speaker.synthesizer.stopSpeaking(at: .immediate)
+            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "post_action_completed"))) { _ in
+                presentationMode.wrappedValue.dismiss()
             }
             .navigationTitle(Text(""))
             .navigationBarTitleDisplayMode(.inline)
@@ -96,11 +101,30 @@ struct PostDetailiView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 20) {
-                        Button {
+                        Menu {
+                            
+                            if userID == post.user?.id {
+                                Button {
+                                    blogVM.deletePost(post: post.id)
+                                } label: {
+                                    Label(NSLocalizedString("delete", comment: ""), systemImage: "trash")
+                                }
+
+                                // my post ability to delete it
+                            } else {
+                                // ability to report post
+
+                                Button {
+                                    showReportReason.toggle()
+                                } label: {
+                                    Label(NSLocalizedString("reportPost", comment: ""), systemImage: "exclamationmark.bubble.fill")
+                                }
+                            }
                             
                         } label: {
                             Image("dots")
                         }
+
                         
                         Button {
                             presentationMode.wrappedValue.dismiss()
@@ -110,10 +134,40 @@ struct PostDetailiView: View {
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 17, height: 17)
                         }
-
                     }
                 }
-            }
+            }.alert(NSLocalizedString("error", comment: ""), isPresented: $blogVM.showAlert, actions: {
+                Button(NSLocalizedString("gotIt", comment: ""), role: .cancel) { }
+            }, message: {
+                Text(blogVM.alertMessage)
+            })
+            .alert(NSLocalizedString("chooseReasonToReportPost", comment: ""), isPresented: $showReportReason, actions: {
+                Button {
+                    blogVM.reportPost(post: post.id, reason: NSLocalizedString("fraud", comment: ""))
+                } label: {
+                    Text( NSLocalizedString("fraud", comment: "") )
+                }
+                
+                Button {
+                    blogVM.reportPost(post: post.id, reason: NSLocalizedString("insults", comment: ""))
+                } label: {
+                    Text( NSLocalizedString("insults", comment: "") )
+                }
+                
+                Button {
+                    blogVM.reportPost(post: post.id, reason: NSLocalizedString("sexual", comment: ""))
+                } label: {
+                    Text( NSLocalizedString("sexual", comment: "") )
+                }
+                
+                Button {
+                    blogVM.reportPost(post: post.id, reason: NSLocalizedString("hateSpeach", comment: ""))
+                } label: {
+                    Text( NSLocalizedString("hateSpeach", comment: "") )
+                }
+                
+                Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
+            })
         }
         
     }
