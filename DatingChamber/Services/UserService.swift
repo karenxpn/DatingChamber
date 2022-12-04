@@ -59,7 +59,12 @@ extension UserService: UserServiceProtocol {
     func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error> {
         do {
             var user = try await db.collection("Users").document(userID).getDocument().data(as: UserModel.self)
-            let posts = try await db.collection("Blogs").whereField("user.id", isEqualTo: userID).limit(to: 10).getDocuments().documents
+            let posts = try await db.collection("Blogs")
+                .whereField("user.id", isEqualTo: userID)
+                .order(by: "createdAt", descending: true)
+                .limit(to: 10)
+                .getDocuments().documents
+            
             user.posts = try posts.map{ try $0.data(as: PostModel.self)}
             
             return .success((user, posts.last))
