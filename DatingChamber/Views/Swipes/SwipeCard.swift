@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-enum CardAction {
-    case dislike, like, star, report
-}
 
 struct SwipeCard: View {
     @EnvironmentObject var swipesVM: SwipesViewModel

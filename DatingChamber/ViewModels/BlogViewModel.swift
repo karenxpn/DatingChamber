@@ -43,10 +43,14 @@ class BlogViewModel: AlertViewModel, ObservableObject {
             .store(in: &cancellableSet)
     }
     
-    @MainActor func getPosts() {
+    @MainActor func getPosts(refresh: Refresh? = nil) {
+        if refresh == .refresh {
+            lastPost = nil
+        }
+        
         if posts.isEmpty {
             loading = true
-        } else {
+        } else if refresh != .refresh {
             loadingPage = true
         }
         
@@ -56,7 +60,9 @@ class BlogViewModel: AlertViewModel, ObservableObject {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let posts):
-                self.posts.append(contentsOf: posts.0.map(PostViewModel.init))
+                if refresh == .refresh  { self.posts = posts.0.map(PostViewModel.init) }
+                else                    { self.posts.append(contentsOf: posts.0.map(PostViewModel.init)) }
+                
                 if !posts.0.isEmpty {
                     self.lastPost = posts.1
                 }

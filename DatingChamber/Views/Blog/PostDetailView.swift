@@ -90,7 +90,7 @@ struct PostDetailView: View {
                     HStack(spacing: 20) {
                         if let user = post.user {
                             ImageHelper(image: user.image, contentMode: .fill)
-                                .frame(width: 45, height: 45)
+                                .frame(width: 30, height: 30)
                                 .clipShape(Circle())
                             
                             TextHelper(text: user.name, color: .white, fontName: "Inter-Medium", fontSize: 14)

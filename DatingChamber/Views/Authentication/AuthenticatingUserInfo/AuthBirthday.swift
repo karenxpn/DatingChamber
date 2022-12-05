@@ -9,12 +9,6 @@
 import SwiftUI
 import Combine
 
-enum BirthdayForm: Hashable {
-    case day
-    case month
-    case year
-}
-
 struct AuthBirthday: View {
     @Binding var model: RegistrationModel
     

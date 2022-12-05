@@ -69,6 +69,7 @@
 		FF5F209C291AE747007E0E99 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF5F209B291AE747007E0E99 /* TagLayoutView */; };
 		FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */; };
 		FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */; };
+		FF755672293E8C7600DB64DA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF755671293E8C7600DB64DA /* Enums.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -222,6 +223,7 @@
 		FF5F2098291ACDC4007E0E99 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
 		FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewHelper.swift; sourceTree = "<group>"; };
 		FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
+		FF755671293E8C7600DB64DA /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				FF07163C292E973F0028B35D /* TextFieldHelper.swift */,
 				FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */,
 				FF34A2F12935462A00598724 /* CheckboxHelper.swift */,
+				FF755671293E8C7600DB64DA /* Enums.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -923,6 +926,7 @@
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
 				FF071637292E6E830028B35D /* EditBirthday.swift in Sources */,
+				FF755672293E8C7600DB64DA /* Enums.swift in Sources */,
 				FF071645292E9FB30028B35D /* EditGender.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
 				FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */,

@@ -36,9 +36,7 @@ struct BlogList: View {
         }.listStyle(.plain)
             .padding(.top, 1)
             .refreshable {
-                blogVM.posts.removeAll(keepingCapacity: false)
-                blogVM.lastPost = nil
-                blogVM.getPosts()
+                blogVM.getPosts(refresh: .refresh)
             }
     }
 }
