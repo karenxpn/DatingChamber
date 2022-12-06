@@ -17,13 +17,16 @@ struct ChatListCell: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading, spacing: 4) {
-                TextHelper(text: chat.name, fontName: "Inter-SemiBold", fontSize: 18 )
+                TextHelper(text: chat.name, fontName: "Inter-SemiBold" )
                 
                 TextHelper(text: chat.content, fontSize: 14)
                     .lineLimit(1)
             }
             
             Spacer()
+            
+            TextHelper(text: "\(chat.date)", color: .gray, fontSize: 11)
+                .lineLimit(1)
         }.frame(minWidth: 0, maxWidth: .infinity)
             .padding(.horizontal, 26)
             .padding(.vertical, 12)

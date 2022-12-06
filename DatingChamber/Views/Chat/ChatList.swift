@@ -14,8 +14,11 @@ struct ChatList: View {
         List {
             ForEach(chats, id: \.id) { chat in
                 ChatListCell(chat: chat)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
             }
         }.listStyle(.plain)
+            .padding(.top, 1)
     }
 }
 
