@@ -108,4 +108,5 @@
 "delete" = "Delete";
 "reportPost" = "Report Post";
 "chooseReasonToReportPost" = "Chose the reason why you report this post.";
-
+"emptyChat" = "You don't have any active chats or an error occured fetching";
+"emptyChatMessage" = "You can start new conversation with your matches or press the button to refresh your chats.";

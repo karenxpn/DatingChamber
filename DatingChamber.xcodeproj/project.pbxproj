@@ -27,6 +27,12 @@
 		FF071641292E98660028B35D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071640292E98660028B35D /* EditOccupation.swift */; };
 		FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071642292E98F40028B35D /* EditProfileBuilder.swift */; };
 		FF071645292E9FB30028B35D /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071644292E9FB30028B35D /* EditGender.swift */; };
+		FF138028293F4F44002E9FCA /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138027293F4F44002E9FCA /* Chats.swift */; };
+		FF13802A293F4F5A002E9FCA /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138029293F4F5A002E9FCA /* ChatViewModel.swift */; };
+		FF13802C293F4F95002E9FCA /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802B293F4F95002E9FCA /* ChatModel.swift */; };
+		FF13802E293F4FBA002E9FCA /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802D293F4FBA002E9FCA /* ChatService.swift */; };
+		FF138030293F5172002E9FCA /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802F293F5172002E9FCA /* ChatList.swift */; };
+		FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138031293F5187002E9FCA /* EmptyChatList.swift */; };
 		FF34A2E6293510F000598724 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E5293510F000598724 /* Blog.swift */; };
 		FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E72935113E00598724 /* BlogViewModel.swift */; };
 		FF34A2EA2935118D00598724 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E92935118D00598724 /* PostModel.swift */; };
@@ -184,6 +190,12 @@
 		FF071640292E98660028B35D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF071642292E98F40028B35D /* EditProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBuilder.swift; sourceTree = "<group>"; };
 		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FF138027293F4F44002E9FCA /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
+		FF138029293F4F5A002E9FCA /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		FF13802B293F4F95002E9FCA /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		FF13802D293F4FBA002E9FCA /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		FF13802F293F5172002E9FCA /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
+		FF138031293F5187002E9FCA /* EmptyChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatList.swift; sourceTree = "<group>"; };
 		FF34A2E5293510F000598724 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FF34A2E72935113E00598724 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
 		FF34A2E92935118D00598724 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -417,6 +429,9 @@
 		FF5F207B291A90A5007E0E99 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				FF138027293F4F44002E9FCA /* Chats.swift */,
+				FF13802F293F5172002E9FCA /* ChatList.swift */,
+				FF138031293F5187002E9FCA /* EmptyChatList.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -555,6 +570,7 @@
 				FF3D6D992930EB430046015C /* NotificationsViewModel.swift */,
 				FF34A2E72935113E00598724 /* BlogViewModel.swift */,
 				FFDB623929390AF100B39102 /* Speaker.swift */,
+				FF138029293F4F5A002E9FCA /* ChatViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -566,6 +582,7 @@
 				FFE33EDE291B33CA002053B7 /* SwipesService.swift */,
 				FFE33EE2291BFF3B002053B7 /* UserService.swift */,
 				FF34A2EB2935129400598724 /* BlogService.swift */,
+				FF13802D293F4FBA002E9FCA /* ChatService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -577,6 +594,7 @@
 				FF5F2083291AAF38007E0E99 /* SwipeModel.swift */,
 				FF071622292D42810028B35D /* UserModel.swift */,
 				FF34A2E92935118D00598724 /* PostModel.swift */,
+				FF13802B293F4F95002E9FCA /* ChatModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -909,9 +927,11 @@
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
 				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,
 				FF07162F292D4D5E0028B35D /* AccountName.swift in Sources */,
+				FF13802C293F4F95002E9FCA /* ChatModel.swift in Sources */,
 				FFE33EE1291BE609002053B7 /* LocationManager.swift in Sources */,
 				FF34A2F6293579FC00598724 /* BlogList.swift in Sources */,
 				FFCA5A2F2917E56800C91BEC /* AuthProgress.swift in Sources */,
+				FF138030293F5172002E9FCA /* ChatList.swift in Sources */,
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
@@ -920,6 +940,7 @@
 				FF34A2FE29364AE000598724 /* PostGridCell.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
 				FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */,
+				FF138028293F4F44002E9FCA /* Chats.swift in Sources */,
 				FF34A2EA2935118D00598724 /* PostModel.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
@@ -963,6 +984,7 @@
 				FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */,
 				FF5F207E291A90BB007E0E99 /* Account.swift in Sources */,
 				FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */,
+				FF13802A293F4F5A002E9FCA /* ChatViewModel.swift in Sources */,
 				FF07163D292E973F0028B35D /* TextFieldHelper.swift in Sources */,
 				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
 				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
@@ -987,6 +1009,7 @@
 				FF07163F292E97FA0028B35D /* EditEducation.swift in Sources */,
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
+				FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */,
 				FF071629292D472C0028B35D /* ProfileImage.swift in Sources */,
 				FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */,
 				FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */,
@@ -996,6 +1019,7 @@
 				FF071635292E558F0028B35D /* EditInterests.swift in Sources */,
 				FFB4D5E1291192EE0065955F /* ButtonHelper.swift in Sources */,
 				FF34A2EC2935129400598724 /* BlogService.swift in Sources */,
+				FF13802E293F4FBA002E9FCA /* ChatService.swift in Sources */,
 				FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */,
 				FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */,
 				FF071641292E98660028B35D /* EditOccupation.swift in Sources */,

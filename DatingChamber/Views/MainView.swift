@@ -25,7 +25,7 @@ struct MainView: View {
                     Swipes()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 2 {
-                    Text("Chats")
+                    Chats()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 3 {
                     Account()
