@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ChatList: View {
+    let chats: [ChatModelViewModel]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(chats, id: \.id) { chat in
+                ChatListCell(chat: chat)
+            }
+        }.listStyle(.plain)
     }
 }
 
 struct ChatList_Previews: PreviewProvider {
     static var previews: some View {
-        ChatList()
+        ChatList(chats: AppPreviewModel.chats)
     }
 }

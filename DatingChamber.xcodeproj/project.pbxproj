@@ -34,6 +34,8 @@
 		FF138030293F5172002E9FCA /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802F293F5172002E9FCA /* ChatList.swift */; };
 		FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138031293F5187002E9FCA /* EmptyChatList.swift */; };
 		FF138034293F5FA2002E9FCA /* EmptyBlogList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */; };
+		FF138036293F88B3002E9FCA /* UserPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138035293F88B3002E9FCA /* UserPreviewModel.swift */; };
+		FF138038293F8CB8002E9FCA /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138037293F8CB8002E9FCA /* ChatListCell.swift */; };
 		FF34A2E6293510F000598724 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E5293510F000598724 /* Blog.swift */; };
 		FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E72935113E00598724 /* BlogViewModel.swift */; };
 		FF34A2EA2935118D00598724 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E92935118D00598724 /* PostModel.swift */; };
@@ -198,6 +200,8 @@
 		FF13802F293F5172002E9FCA /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		FF138031293F5187002E9FCA /* EmptyChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatList.swift; sourceTree = "<group>"; };
 		FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBlogList.swift; sourceTree = "<group>"; };
+		FF138035293F88B3002E9FCA /* UserPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewModel.swift; sourceTree = "<group>"; };
+		FF138037293F8CB8002E9FCA /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		FF34A2E5293510F000598724 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FF34A2E72935113E00598724 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
 		FF34A2E92935118D00598724 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -434,6 +438,7 @@
 			children = (
 				FF138027293F4F44002E9FCA /* Chats.swift */,
 				FF13802F293F5172002E9FCA /* ChatList.swift */,
+				FF138037293F8CB8002E9FCA /* ChatListCell.swift */,
 				FF138031293F5187002E9FCA /* EmptyChatList.swift */,
 			);
 			path = Chat;
@@ -598,6 +603,7 @@
 				FF071622292D42810028B35D /* UserModel.swift */,
 				FF34A2E92935118D00598724 /* PostModel.swift */,
 				FF13802B293F4F95002E9FCA /* ChatModel.swift */,
+				FF138035293F88B3002E9FCA /* UserPreviewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -938,6 +944,7 @@
 				FFC614512912A36900CE75E2 /* OTPTextFieldView.swift in Sources */,
 				FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */,
 				FFCA5A2D2917E31900C91BEC /* RegistrationModel.swift in Sources */,
+				FF138038293F8CB8002E9FCA /* ChatListCell.swift in Sources */,
 				FF071639292E77F90028B35D /* EditBio.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF34A2FE29364AE000598724 /* PostGridCell.swift in Sources */,
@@ -1012,6 +1019,7 @@
 				FF3D6D96293036090046015C /* GeneralSettings.swift in Sources */,
 				FF07163F292E97FA0028B35D /* EditEducation.swift in Sources */,
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
+				FF138036293F88B3002E9FCA /* UserPreviewModel.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
 				FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */,
 				FF071629292D472C0028B35D /* ProfileImage.swift in Sources */,

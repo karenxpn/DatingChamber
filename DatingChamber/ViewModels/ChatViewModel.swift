@@ -13,7 +13,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    @Published var chats = [ChatModel]()
+    @Published var chats = [ChatModelViewModel]()
     @Published var lastChat: QueryDocumentSnapshot?
     
     var manager: ChatServiceProtocol
@@ -27,7 +27,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
             let result = await manager.fetchChats(lastChat: lastChat)
             switch result {
             case .success(let chats):
-                self.chats.append(contentsOf: chats)
+                self.chats.append(contentsOf: chats.map(ChatModelViewModel.init))
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             }

@@ -95,7 +95,7 @@ extension String {
         let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
         
         let formatter = RelativeDateTimeFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.locale = Locale(identifier: "en_US")
         formatter.unitsStyle = .short
         let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
         

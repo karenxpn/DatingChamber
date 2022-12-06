@@ -18,7 +18,7 @@ struct Chats: View {
                 } else if chatVM.chats.isEmpty {
                     EmptyChatList()
                 } else {
-                    ChatList()
+                    ChatList(chats: chatVM.chats)
                 }
             }.task {
                 chatVM.getChats()
