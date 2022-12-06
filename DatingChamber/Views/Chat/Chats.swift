@@ -22,7 +22,29 @@ struct Chats: View {
                 }
             }.task {
                 chatVM.getChats()
-            }
+            }.alert(NSLocalizedString("error", comment: ""), isPresented: $chatVM.showAlert, actions: {
+                Button(NSLocalizedString("gotIt", comment: ""), role: .cancel) { }
+            }, message: {
+                Text(chatVM.alertMessage)
+            }).navigationTitle(Text(""))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        TextHelper(text: NSLocalizedString("chats", comment: ""),
+                                   fontName: "Inter-Black",
+                                   fontSize: 24)
+                        .kerning(0.56)
+                        .accessibilityAddTraits(.isHeader)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink {
+                            Settings()
+                        } label: {
+                            Image("icon_settings")
+                                .padding(.bottom, 10)
+                        }
+                    }
+                }
         }
     }
 }
