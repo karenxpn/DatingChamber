@@ -15,6 +15,9 @@ struct Blog: View {
             ZStack {
                 if blogVM.loading {
                     ProgressView()
+                } else if blogVM.posts.isEmpty {
+                    EmptyBlogList()
+                        .environmentObject(blogVM)
                 } else {
                     BlogList(posts: blogVM.posts)
                         .environmentObject(blogVM)

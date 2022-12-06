@@ -112,4 +112,4 @@
 "emptyChatMessage" = "You can start new conversation with your matches or press the button to refresh your chats.";
 "chats" = "Chats";
 "emptyBlog" = "No posts were found";
-"emptyBlogMessage" = "Neither you nor your friends have published any posts, or an error occurred fetching posts, press the button to refresh your posts or go to your account and create a new post."
+"emptyBlogMessage" = "Neither you nor your friends have published any posts, or an error occurred fetching posts, press the button to refresh your posts or go to your account and create a new post.";

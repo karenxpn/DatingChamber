@@ -33,6 +33,7 @@
 		FF13802E293F4FBA002E9FCA /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802D293F4FBA002E9FCA /* ChatService.swift */; };
 		FF138030293F5172002E9FCA /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802F293F5172002E9FCA /* ChatList.swift */; };
 		FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138031293F5187002E9FCA /* EmptyChatList.swift */; };
+		FF138034293F5FA2002E9FCA /* EmptyBlogList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */; };
 		FF34A2E6293510F000598724 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E5293510F000598724 /* Blog.swift */; };
 		FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E72935113E00598724 /* BlogViewModel.swift */; };
 		FF34A2EA2935118D00598724 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E92935118D00598724 /* PostModel.swift */; };
@@ -196,6 +197,7 @@
 		FF13802D293F4FBA002E9FCA /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		FF13802F293F5172002E9FCA /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		FF138031293F5187002E9FCA /* EmptyChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatList.swift; sourceTree = "<group>"; };
+		FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBlogList.swift; sourceTree = "<group>"; };
 		FF34A2E5293510F000598724 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FF34A2E72935113E00598724 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
 		FF34A2E92935118D00598724 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				FF34A2E5293510F000598724 /* Blog.swift */,
+				FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */,
 				FF34A2F5293579FC00598724 /* BlogList.swift */,
 				FF34A2EF2935417200598724 /* CreatePost.swift */,
 				FF34A2F32935487100598724 /* VoicePicker.swift */,
@@ -994,6 +997,7 @@
 				FF3D6D8E293033E50046015C /* SettingsButtonHelperContent.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
+				FF138034293F5FA2002E9FCA /* EmptyBlogList.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
 				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
