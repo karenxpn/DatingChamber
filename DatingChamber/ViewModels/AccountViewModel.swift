@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import FirebaseAuth
 import FirebaseFirestore
 
 class AccountViewModel: AlertViewModel, ObservableObject {
@@ -144,13 +143,15 @@ class AccountViewModel: AlertViewModel, ObservableObject {
         }
     }
     
-    func signOut() {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            userID = ""
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+    @MainActor func signOut() {
+        Task {
+            let result = await manager.signOut()
+            switch result {
+            case .success(()):
+                userID = ""
+            default:
+                break
+            }
         }
     }
     

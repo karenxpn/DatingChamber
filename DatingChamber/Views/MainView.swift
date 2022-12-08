@@ -9,6 +9,8 @@ import SwiftUI
 import AppTrackingTransparency
 
 struct MainView: View {
+    @Environment(\.scenePhase) var scenePhase
+
     @StateObject private var locationManager = LocationManager()
     @StateObject private var notificationsVM = NotificationsViewModel()
     @StateObject private var tabViewModel = TabViewModel()
@@ -41,6 +43,12 @@ struct MainView: View {
                 locationManager.initLocation()
                 notificationsVM.requestPermission()
                 ATTrackingManager.requestTrackingAuthorization { _ in
+                }
+            }.onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    tabViewModel.updateOnlineStatus(online: true, lastVisit: nil)
+                } else {
+                    tabViewModel.updateOnlineStatus(online: false, lastVisit: Date().toGlobalTime())
                 }
             }
     }

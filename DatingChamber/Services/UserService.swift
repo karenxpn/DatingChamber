@@ -18,8 +18,10 @@ protocol UserServiceProtocol {
     
     func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error>
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
+    func signOut() async -> Result<Void, Error>
     func deleteAccount() async -> Result<Void, Error>
     func deleteAccountData(userID: String) async -> Result<Void, Error>
+    func updateOnlineState( userID: String, online: Bool, lastVisit: Date? ) async -> Result<Void, Error>
 }
 
 class UserService {
@@ -29,6 +31,25 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    func updateOnlineState(userID: String, online: Bool, lastVisit: Date?) async -> Result<Void, Error> {
+        do {
+            try await db.collection("Users").document(userID).setData(["online": online,
+                                                                       "lastVisit": lastVisit], merge: true)
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func signOut() async -> Result<Void, Error> {
+        do {
+            try Auth.auth().signOut()
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func deleteAccount() async -> Result<Void, Error> {
         do {
             try await Auth.auth().currentUser?.delete()
