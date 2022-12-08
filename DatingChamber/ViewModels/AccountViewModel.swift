@@ -44,14 +44,14 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let response):
                 let user = response.0
-                
+
                 self.user = UserModelViewModel(user: user)
                 if let posts = user.posts {
                     self.posts = posts.map(PostViewModel.init)
                     self.lastPost = response.1
                 }
             }
-            
+
             if !Task.isCancelled {
                 loading = false
             }
@@ -69,7 +69,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             case .failure( _):
                 break
             }
-            
+
             if !Task.isCancelled {
                 loadingPost = false
             }
@@ -102,7 +102,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             case .success(()):
                 NotificationCenter.default.post(name: Notification.Name("profile_updated"), object: nil)
             }
-            
+
             if !Task.isCancelled {
                 loading = false
             }
@@ -136,7 +136,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                     }
                 }
             }
-            
+
             if !Task.isCancelled {
                 loading = false
             }
