@@ -13,11 +13,16 @@ struct ChatModel: Identifiable, Codable {
     @DocumentID var id: String?
     var users: [UserPreviewModel]
     var lastMesssage: ChatMessagePreview
+    var mutedBy: [String]
 }
 
 struct ChatMessagePreview: Identifiable, Codable {
     var id: String
+    var type: String
     var content: String
+    var sentBy: String
+    var seenBy: [String]
+    var status: String
 }
 
 
@@ -31,18 +36,27 @@ struct ChatModelViewModel: Identifiable {
     
     var id: String                      { self.chat.id ?? UUID().uuidString }
     var image: String {
-        if let user = self.chat.users.first(where: {$0.id != userID }) {
-            return user.image
-        }
+        if let user = self.chat.users.first(where: {$0.id != userID }) { return user.image }
         return Credentials.default_story_image
     }
     
     var name: String {
-        if let user = self.chat.users.first(where: {$0.id != userID }) {
-            return user.name
-        }
-        
+        if let user = self.chat.users.first(where: {$0.id != userID }) { return user.name }
         return ""
+    }
+    
+    var muted: Bool {
+        if self.chat.mutedBy.contains(userID) { return true }
+        return false
+    }
+    
+    var messageStatus: String   { self.chat.lastMesssage.status }
+    var messageType: String     { self.chat.lastMesssage.type }
+    
+    var seen: Bool {
+        if self.chat.lastMesssage.seenBy.contains(userID) &&
+            self.chat.lastMesssage.sentBy != userID { return true }
+        return false
     }
     
     // to be modified

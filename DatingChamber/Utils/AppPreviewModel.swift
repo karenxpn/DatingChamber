@@ -12,6 +12,21 @@ struct AppPreviewModel {
     static let posts = [PostViewModel(post: PostModel(id: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92", title: "some title here", content: "lorem ipsumlorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum lorem ipsum", image: Credentials.default_story_image, allowReading: false, readingVoice: nil, user: PostUserModel(id: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92", name: "Karen", image: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92"))),
                                       PostViewModel(post: PostModel(id: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92sadf", title: "some title here", content: "lorem ipsumlorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum lorem ipsum", image: Credentials.default_story_image, allowReading: true, readingVoice: "male", user: PostUserModel(id: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92", name: "Karen", image: "asdfyo1NBb8aLlPbC1wJE5pdeJ4fZC92")))]
     
-    static let chats = [ChatModelViewModel(chat: ChatModel(id: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92", users: [UserPreviewModel(id: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92", name: "Karen", image: Credentials.img_url, online: true, lastVisit: nil, blocked: false), UserPreviewModel(id: "asdfyo1NBb8aLlPbC1wJE5pdeJ4fZC92", name: "Martin", image: Credentials.img_url, online: false, lastVisit: .now, blocked: false)], lastMesssage: ChatMessagePreview(id: UUID().uuidString, content: "Some new content")))]
+    static let chats = [ChatModelViewModel(
+        chat: ChatModel(id: "asdfyo1NBb8aLlPbC1wJE5pdeJ4fZC92",
+                        users: [UserPreviewModel(id: "a;sldkfj",
+                                                 name: "Karen",
+                                                 image: Credentials.img_url,
+                                                 online: true, lastVisit: nil, blocked: false),
+                                UserPreviewModel(id: "slkdjf",
+                                                 name: "Martin",
+                                                 image: Credentials.default_story_image,
+                                                 online: true, lastVisit: nil, blocked: false)],
+                        lastMesssage: ChatMessagePreview(id: "1",
+                                                         type: "text",
+                                                         content: "Holaaa my name is Karen",
+                                                         sentBy: "a;sldkfj",
+                                                         seenBy: ["a;sldkfj", "slkdjf"],
+                                                         status: "sent"), mutedBy: []))]
 }
 

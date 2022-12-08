@@ -82,26 +82,6 @@ extension String {
         return Int( String( tmp ) )!
     }
     
-    func countTimeBetweenDates() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let newDate = dateFormatter.date(from: self) ?? Date()
-        
-        let currentDateFormatter = DateFormatter()
-        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
-        currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
-        
-        let formatter = RelativeDateTimeFormatter()
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.unitsStyle = .short
-        let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
-        
-        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("now", comment: "") : string
-    }
-    
     var isSingleEmoji: Bool { count == 1 && containsEmoji }
     
     var containsEmoji: Bool { contains { $0.isEmoji } }
@@ -231,6 +211,46 @@ extension Date {
         let age = calender.dateComponents([.year], from: self, to: Date())
 
         return String(age.year!)
+    }
+    
+//    func countTimeBetweenDates() -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+//        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+//        let newDate = dateFormatter.date(from: self) ?? Date()
+//
+//        let currentDateFormatter = DateFormatter()
+//        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+//        currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+//
+//        let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
+//
+//        let formatter = RelativeDateTimeFormatter()
+//        formatter.locale = Locale(identifier: "en_US")
+//        formatter.unitsStyle = .short
+//        let string = formatter.localizedString(for: self, relativeTo: currentDate)
+//
+//        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("justNow", comment: "") : string
+//    }
+    
+    func GMTZeroNow() -> Date {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let stringDate = formatter.string(from: .now)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        print(dateFormatter.date(from: stringDate) ?? Date())
+        return dateFormatter.date(from: stringDate) ?? Date()
+
+    }
+    
+    func localDate() -> Date {
+        let nowUTC = Date()
+        let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: nowUTC))
+        guard let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: nowUTC) else {return Date()}
+
+        return localDate
     }
 }
 
