@@ -30,6 +30,9 @@ struct ChatListCell: View {
         }.frame(minWidth: 0, maxWidth: .infinity)
             .padding(.horizontal, 26)
             .padding(.vertical, 12)
+            .background(
+                chat.seen ? AppColors.light_red : .clear
+            )
     }
 }
 

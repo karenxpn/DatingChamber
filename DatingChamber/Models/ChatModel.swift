@@ -23,6 +23,7 @@ struct ChatMessagePreview: Identifiable, Codable {
     var sentBy: String
     var seenBy: [String]
     var status: String
+    var createdAt: Date
 }
 
 
@@ -62,7 +63,7 @@ struct ChatModelViewModel: Identifiable {
     // to be modified
     // content -> detect content type
     var content: String                 { self.chat.lastMesssage.content }
-    var date: String                    { "1min ago" }
+    var date: String                    { self.chat.lastMesssage.createdAt.countTimeBetweenDates() }
     //
     var users: [UserPreviewViewModel]   { self.chat.users.map(UserPreviewViewModel.init) }
     var lastMessage: ChatMessagePreview { self.chat.lastMesssage }
