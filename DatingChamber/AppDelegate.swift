@@ -16,9 +16,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        
-        @ObservedObject var tabVM = TabViewModel()
-        tabVM.updateOnlineStatus(online: true, lastVisit: nil)
         return true
     }
     

@@ -42,6 +42,8 @@ struct MainView: View {
             .onAppear {
                 locationManager.initLocation()
                 notificationsVM.requestPermission()
+                tabViewModel.updateOnlineStatus(online: true, lastVisit: nil)
+
                 ATTrackingManager.requestTrackingAuthorization { _ in
                 }
             }.onChange(of: scenePhase) { newPhase in

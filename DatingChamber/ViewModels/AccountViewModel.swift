@@ -145,7 +145,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     
     @MainActor func signOut() {
         Task {
-            let result = await manager.signOut()
+            let result = await manager.signOut(userID: userID)
             switch result {
             case .success(()):
                 userID = ""
