@@ -19,6 +19,7 @@ struct Chats: View {
                     EmptyChatList()
                 } else {
                     ChatList(chats: chatVM.chats)
+                        .environmentObject(chatVM)
                 }
             }.task {
                 chatVM.getChats()

@@ -13,6 +13,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
+    @Published var loadingPage: Bool = false
+    
     @Published var chats = [ChatModelViewModel]()
     @Published var lastChat: QueryDocumentSnapshot?
     
@@ -21,18 +23,30 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         self.manager = manager
     }
     
-    @MainActor func getChats() {
-        loading = true
+    @MainActor func getChats(refresh: Refresh? = nil) {
+        if refresh == .refresh {
+            lastChat = nil
+        }
+        
+        if chats.isEmpty {
+            loading = true
+        } else {
+            loadingPage = true
+        }
         Task {
             let result = await manager.fetchChats(lastChat: lastChat)
             switch result {
             case .success(let chats):
-                self.chats.append(contentsOf: chats.map(ChatModelViewModel.init))
+                if refresh == .refresh  { self.chats = chats.map(ChatModelViewModel.init) }
+                else                    { self.chats.append(contentsOf: chats.map(ChatModelViewModel.init)) }
+                
+                // store last chat here
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             }
             
             if !Task.isCancelled {
+                loadingPage = false
                 loading = false
             }
         }

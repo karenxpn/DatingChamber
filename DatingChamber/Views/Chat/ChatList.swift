@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChatList: View {
+    @EnvironmentObject var chatVM: ChatViewModel
     let chats: [ChatModelViewModel]
     
     var body: some View {
@@ -16,7 +17,15 @@ struct ChatList: View {
                 ChatListCell(chat: chat)
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
-            }            
+            }
+            
+            if chatVM.loadingPage {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            }
             
             Spacer()
                 .padding(.bottom, UIScreen.main.bounds.height * 0.15)
@@ -30,5 +39,6 @@ struct ChatList: View {
 struct ChatList_Previews: PreviewProvider {
     static var previews: some View {
         ChatList(chats: AppPreviewModel.chats)
+            .environmentObject(ChatViewModel())
     }
 }
