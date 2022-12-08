@@ -33,6 +33,8 @@ struct BlogList: View {
             
             Spacer()
                 .padding(.bottom, UIScreen.main.bounds.height * 0.15)
+                .listRowSeparator(.hidden)
+
         }.listStyle(.plain)
             .padding(.top, 1)
             .refreshable {

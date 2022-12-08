@@ -18,15 +18,26 @@ struct ChatListCell: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 TextHelper(text: chat.name, fontName: "Inter-SemiBold" )
-                
-                TextHelper(text: chat.content, fontSize: 14)
                     .lineLimit(1)
+                
+                    TextHelper(text: chat.content, fontSize: 14)
+                        .lineLimit(1)
             }
             
             Spacer()
             
-            TextHelper(text: "\(chat.date)", color: .gray, fontSize: 11)
-                .lineLimit(1)
+            VStack(alignment: .trailing, spacing: 10) {
+                TextHelper(text: "\(chat.date)", color: .gray, fontSize: 11)
+                    .lineLimit(1)
+                
+                if chat.messageStatus == "pending" {
+                    ProgressView()
+                        .scaleEffect(0.5)
+                } else {
+                    Image(chat.seen ? "read_icon" : "sent_icon")
+                        .foregroundColor(chat.seen ? AppColors.primary : .black)
+                }
+            }
         }.frame(minWidth: 0, maxWidth: .infinity)
             .padding(.horizontal, 26)
             .padding(.vertical, 12)

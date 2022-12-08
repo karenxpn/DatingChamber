@@ -27,7 +27,7 @@ struct AppPreviewModel {
                                                          content: "Holaaa my name is Karen",
                                                          sentBy: "a;sldkfj",
                                                          seenBy: [""],
-                                                         status: "sent",
+                                                         status: "pending",
                                                          createdAt: Date().toGlobalTime()), mutedBy: []))]
 }
 

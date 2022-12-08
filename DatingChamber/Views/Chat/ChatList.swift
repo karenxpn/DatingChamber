@@ -16,7 +16,12 @@ struct ChatList: View {
                 ChatListCell(chat: chat)
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
-            }
+            }            
+            
+            Spacer()
+                .padding(.bottom, UIScreen.main.bounds.height * 0.15)
+                .listRowSeparator(.hidden)
+
         }.listStyle(.plain)
             .padding(.top, 1)
     }
