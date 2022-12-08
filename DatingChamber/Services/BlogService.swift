@@ -29,7 +29,7 @@ class BlogService {
 extension BlogService: BlogServiceProtocol {
     func reportPost(userID: String, postID: String, reason: String) async -> Result<Void, Error> {
         do {
-            try await db.collection("ReportedPosts").addDocument(data: ["user" : userID,
+            let result = try await db.collection("ReportedPosts").addDocument(data: ["user" : userID,
                                                                         "post" : postID,
                                                                         "reason": reason])
             return .success(())
@@ -72,7 +72,7 @@ extension BlogService: BlogServiceProtocol {
                 url = imageURL
             } else {
                 let dbRef = storageRef.child("blog/\(UUID().uuidString)")
-                try await dbRef.putDataAsync(image!)
+                let _ = try await dbRef.putDataAsync(image!)
                 url = try await dbRef.downloadURL().absoluteString
             }
             

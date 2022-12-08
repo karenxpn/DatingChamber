@@ -60,6 +60,13 @@ struct ChatModelViewModel: Identifiable {
         return false
     }
     
+    var online: Bool {
+        if let index = self.chat.users.firstIndex(where: {$0.id != userID }) {
+            return self.chat.users[index].online
+        }
+        return false
+    }
+    
     // to be modified
     // content -> detect content type
     var content: String                 { self.chat.lastMesssage.content }

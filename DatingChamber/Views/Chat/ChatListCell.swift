@@ -12,9 +12,24 @@ struct ChatListCell: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
-            ImageHelper(image: chat.image , contentMode: .fill)
-                .frame(width: 55, height: 55)
-                .clipShape(Circle())
+            
+            ZStack(alignment: .bottomTrailing) {
+                ImageHelper(image: chat.image , contentMode: .fill)
+                    .frame(width: 55, height: 55)
+                    .clipShape(Circle())
+                
+                if chat.online {
+                    ZStack {
+                        Circle()
+                            .fill(.white)
+                            .frame(width: 15, height: 15)
+                        
+                        Circle()
+                            .fill(AppColors.onlineStatus)
+                            .frame(width: 8, height: 8)
+                    }
+                }
+            }
             
             VStack(alignment: .leading, spacing: 4) {
                 TextHelper(text: chat.name, fontName: "Inter-SemiBold" )

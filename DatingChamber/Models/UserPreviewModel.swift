@@ -25,9 +25,6 @@ struct UserPreviewViewModel: Identifiable {
     var name: String            { self.user.name }
     var image: String           { self.user.image }
     var online: Bool            { self.user.online }
-    var lastVisit: Date? {
-        self.user.lastVisit
-        // to be modified
-    }
+    var lastVisit: String       { self.user.lastVisit?.countTimeBetweenDates() ?? "" }
     var blocked: Bool           { self.user.blocked }
 }
