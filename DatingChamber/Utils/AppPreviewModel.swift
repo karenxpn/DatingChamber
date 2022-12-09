@@ -22,7 +22,7 @@ struct AppPreviewModel {
                                                  name: "Martin",
                                                  image: Credentials.default_story_image,
                                                  online: true, lastVisit: nil, blocked: false)],
-                        lastMesssage: ChatMessagePreview(id: "1",
+                        lastMessage: ChatMessagePreview(id: "1",
                                                          type: "text",
                                                          content: "Holaaa my name is Karen",
                                                          sentBy: "a;sldkfj",

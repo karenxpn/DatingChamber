@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import SwiftUI
 
 class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var loading: Bool = false
@@ -49,9 +50,14 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                         else if chat.1 == .added    { self.chats.append(ChatModelViewModel(chat: chat.0)) }
                         else if chat.1 == .modified {
                             if let index = self.chats.firstIndex(where: { $0.id == chat.0.id }) {
-                                self.chats[index] = ChatModelViewModel(chat: chat.0)
-                                // update list here move to front if chat id is different
-                                
+                                withAnimation {
+                                    if self.chats[index].lastMessage.id != chat.0.lastMessage.id {
+                                        print("need to move to front")
+                                        self.chats.move(from: index, to: 0)
+                                    }
+                                    self.chats[0] = ChatModelViewModel(chat: chat.0)
+                                    // update list here move to front if message id is different
+                                }
                             }
                         }
                     }

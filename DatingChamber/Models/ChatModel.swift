@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 struct ChatModel: Identifiable, Codable {
     @DocumentID var id: String?
     var users: [UserPreviewModel]
-    var lastMesssage: ChatMessagePreview
+    var lastMessage: ChatMessagePreview
     var mutedBy: [String]
 }
 
@@ -51,12 +51,12 @@ struct ChatModelViewModel: Identifiable {
         return false
     }
     
-    var messageStatus: String   { self.chat.lastMesssage.status }
-    var messageType: String     { self.chat.lastMesssage.type }
+    var messageStatus: String   { self.chat.lastMessage.status }
+    var messageType: String     { self.chat.lastMessage.type }
     
     var seen: Bool {
-        if self.chat.lastMesssage.seenBy.contains(userID) &&
-            self.chat.lastMesssage.sentBy != userID { return true }
+        if self.chat.lastMessage.seenBy.contains(userID) &&
+            self.chat.lastMessage.sentBy != userID { return true }
         return false
     }
     
@@ -69,9 +69,9 @@ struct ChatModelViewModel: Identifiable {
     
     // to be modified
     // content -> detect content type
-    var content: String                 { self.chat.lastMesssage.content }
-    var date: String                    { self.chat.lastMesssage.createdAt.countTimeBetweenDates() }
+    var content: String                 { self.chat.lastMessage.content }
+    var date: String                    { self.chat.lastMessage.createdAt.countTimeBetweenDates() }
     //
     var users: [UserPreviewViewModel]   { self.chat.users.map(UserPreviewViewModel.init) }
-    var lastMessage: ChatMessagePreview { self.chat.lastMesssage }
+    var lastMessage: ChatMessagePreview { self.chat.lastMessage }
 }

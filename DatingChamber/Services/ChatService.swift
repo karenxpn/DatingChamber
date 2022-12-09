@@ -22,7 +22,7 @@ class ChatService {
 extension ChatService: ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ()){
         // modify this lastMesssage -> lastMessage
-        var query: Query = db.collection("Chats").order(by: "lastMesssage.createdAt", descending: true)
+        var query: Query = db.collection("Chats").order(by: "lastMessage.createdAt", descending: true)
         if lastChat == nil   { query = query.limit(to: 10) }
         else                 { query = query.start(afterDocument: lastChat!).limit(to: 10) }
         

@@ -19,7 +19,8 @@ struct ChatList: View {
                         if chat.id == chatVM.chats.last?.id && !chatVM.loadingPage {
                             chatVM.getChats()
                         }
-                    }.listRowSeparator(.hidden)
+                    }
+                    .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
             }
             
