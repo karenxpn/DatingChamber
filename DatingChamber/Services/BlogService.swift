@@ -29,7 +29,7 @@ class BlogService {
 extension BlogService: BlogServiceProtocol {
     func reportPost(userID: String, postID: String, reason: String) async -> Result<Void, Error> {
         do {
-            let result = try await db.collection("ReportedPosts").addDocument(data: ["user" : userID,
+            let _ = try await db.collection("ReportedPosts").addDocument(data: ["user" : userID,
                                                                         "post" : postID,
                                                                         "reason": reason])
             return .success(())

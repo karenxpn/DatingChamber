@@ -33,21 +33,33 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         } else {
             loadingPage = true
         }
-        Task {
-            let result = await manager.fetchChats(lastChat: lastChat)
+        
+        manager.fetchChats(lastChat: lastChat) { result in
+            self.loadingPage = false
+            self.loading = false
             switch result {
-            case .success(let chats):
-                if refresh == .refresh  { self.chats = chats.map(ChatModelViewModel.init) }
-                else                    { self.chats.append(contentsOf: chats.map(ChatModelViewModel.init)) }
-                
-                // store last chat here
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            }
-            
-            if !Task.isCancelled {
-                loadingPage = false
-                loading = false
+            case .success(let chats):   // ([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?)
+                // map the result and check type of difference
+                if refresh == .refresh  { self.chats = chats.0.map{ChatModelViewModel(chat: $0.0)} }
+                else {
+                    for chat in chats.0 {
+                        if chat.1 == .removed       { self.chats.removeAll(where: { $0.id == chat.0.id }) }
+                        else if chat.1 == .added    { self.chats.append(ChatModelViewModel(chat: chat.0)) }
+                        else if chat.1 == .modified {
+                            if let index = self.chats.firstIndex(where: { $0.id == chat.0.id }) {
+                                self.chats[index] = ChatModelViewModel(chat: chat.0)
+                                // update list here move to front if chat id is different
+                                
+                            }
+                        }
+                    }
+                }
+                
+                if !chats.0.isEmpty {
+                    self.lastChat = chats.1
+                }
             }
         }
     }

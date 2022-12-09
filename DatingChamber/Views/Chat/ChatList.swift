@@ -15,7 +15,11 @@ struct ChatList: View {
         List {
             ForEach(chats, id: \.id) { chat in
                 ChatListCell(chat: chat)
-                    .listRowSeparator(.hidden)
+                    .onAppear {
+                        if chat.id == chatVM.chats.last?.id && !chatVM.loadingPage {
+                            chatVM.getChats()
+                        }
+                    }.listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
             }
             
@@ -33,6 +37,9 @@ struct ChatList: View {
 
         }.listStyle(.plain)
             .padding(.top, 1)
+            .refreshable {
+                chatVM.getChats(refresh: .refresh)
+            }
     }
 }
 
