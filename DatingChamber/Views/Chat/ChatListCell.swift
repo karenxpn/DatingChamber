@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChatListCell: View {
+    @AppStorage("userID") var userID: String = ""
     let chat: ChatModelViewModel
     @State private var navigate: Bool = false
     
@@ -53,8 +54,10 @@ struct ChatListCell: View {
                         ProgressView()
                             .scaleEffect(0.5)
                     } else {
-                        Image(chat.seen ? "read_icon" : "sent_icon")
-                            .foregroundColor(chat.seen ? AppColors.primary : .black)
+                        if chat.lastMessage.sentBy == userID {
+                            Image(chat.seen ? "read_icon" : "sent_icon")
+                                .foregroundColor(chat.seen ? AppColors.primary : .black)
+                        }
                     }
                 }
             }.frame(minWidth: 0, maxWidth: .infinity)
