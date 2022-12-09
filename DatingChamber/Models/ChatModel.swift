@@ -55,8 +55,7 @@ struct ChatModelViewModel: Identifiable {
     var messageType: String     { self.chat.lastMessage.type }
     
     var seen: Bool {
-        if self.chat.lastMessage.seenBy.contains(userID) &&
-            self.chat.lastMessage.sentBy != userID { return true }
+        if self.chat.lastMessage.seenBy.contains(where: {$0 != self.chat.lastMessage.sentBy }) { return true }
         return false
     }
     

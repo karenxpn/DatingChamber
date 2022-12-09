@@ -64,7 +64,7 @@ struct ChatListCell: View {
                 .padding(.horizontal, 26)
                 .padding(.vertical, 12)
                 .background(
-                    chat.seen ? AppColors.light_red : .clear
+                    (chat.seen || chat.lastMessage.sentBy == userID) ? .clear : AppColors.light_red
                 )
         }.buttonStyle(PlainButtonStyle())
             .navigationDestination(isPresented: $navigate) {
