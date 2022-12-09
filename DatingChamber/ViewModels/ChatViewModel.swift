@@ -54,8 +54,10 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                                     if self.chats[index].lastMessage.id != chat.0.lastMessage.id {
                                         print("need to move to front")
                                         self.chats.move(from: index, to: 0)
+                                        self.chats[0] = ChatModelViewModel(chat: chat.0)
+                                    } else {
+                                        self.chats[index] = ChatModelViewModel(chat: chat.0)
                                     }
-                                    self.chats[0] = ChatModelViewModel(chat: chat.0)
                                     // update list here move to front if message id is different
                                 }
                             }

@@ -10,6 +10,8 @@ import FirebaseFirestore
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
+    func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error>
+    
 }
 
 class ChatService {
@@ -57,6 +59,22 @@ extension ChatService: ChatServiceProtocol {
             DispatchQueue.main.async {
                 completion(.success((results, snapshot?.documents.last)))
             }
+        }
+    }
+    
+    func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error> {
+        do {
+            let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
+            let _ = try await db.collection("Chats").document(chatID).setData(["lastMessage" : ["id": UUID().uuidString,
+                                                                                                "content" : text,
+                                                                                                "createdAt": Date().toGlobalTime(),
+                                                                                                "sentBy": userID,
+                                                                                                "seenBy": [userID],
+                                                                                                "status": "sent",
+                                                                                                "type": "text"]], merge: true)
+            return .success(())
+        } catch {
+            return .failure(error)
         }
     }
 }

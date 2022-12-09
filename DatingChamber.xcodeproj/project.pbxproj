@@ -36,6 +36,8 @@
 		FF138034293F5FA2002E9FCA /* EmptyBlogList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */; };
 		FF138036293F88B3002E9FCA /* UserPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138035293F88B3002E9FCA /* UserPreviewModel.swift */; };
 		FF138038293F8CB8002E9FCA /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138037293F8CB8002E9FCA /* ChatListCell.swift */; };
+		FF13803A294370D9002E9FCA /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138039294370D9002E9FCA /* ChatRoom.swift */; };
+		FF13803C29437131002E9FCA /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13803B29437131002E9FCA /* RoomViewModel.swift */; };
 		FF34A2E6293510F000598724 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E5293510F000598724 /* Blog.swift */; };
 		FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E72935113E00598724 /* BlogViewModel.swift */; };
 		FF34A2EA2935118D00598724 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E92935118D00598724 /* PostModel.swift */; };
@@ -202,6 +204,8 @@
 		FF138033293F5FA2002E9FCA /* EmptyBlogList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBlogList.swift; sourceTree = "<group>"; };
 		FF138035293F88B3002E9FCA /* UserPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewModel.swift; sourceTree = "<group>"; };
 		FF138037293F8CB8002E9FCA /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		FF138039294370D9002E9FCA /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		FF13803B29437131002E9FCA /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		FF34A2E5293510F000598724 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FF34A2E72935113E00598724 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
 		FF34A2E92935118D00598724 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 				FF13802F293F5172002E9FCA /* ChatList.swift */,
 				FF138037293F8CB8002E9FCA /* ChatListCell.swift */,
 				FF138031293F5187002E9FCA /* EmptyChatList.swift */,
+				FF138039294370D9002E9FCA /* ChatRoom.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				FF34A2E72935113E00598724 /* BlogViewModel.swift */,
 				FFDB623929390AF100B39102 /* Speaker.swift */,
 				FF138029293F4F5A002E9FCA /* ChatViewModel.swift */,
+				FF13803B29437131002E9FCA /* RoomViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -973,6 +979,7 @@
 				FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */,
 				FF34A2F02935417200598724 /* CreatePost.swift in Sources */,
 				FFCA5A2B2917D42100C91BEC /* AuthName.swift in Sources */,
+				FF13803C29437131002E9FCA /* RoomViewModel.swift in Sources */,
 				FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */,
 				FF5F2095291ACCED007E0E99 /* Filter.swift in Sources */,
 				FFC614682914753700CE75E2 /* GoogleLogin.swift in Sources */,
@@ -995,6 +1002,7 @@
 				FF5F207E291A90BB007E0E99 /* Account.swift in Sources */,
 				FFCA5A312917E59900C91BEC /* AuthBirthday.swift in Sources */,
 				FF13802A293F4F5A002E9FCA /* ChatViewModel.swift in Sources */,
+				FF13803A294370D9002E9FCA /* ChatRoom.swift in Sources */,
 				FF07163D292E973F0028B35D /* TextFieldHelper.swift in Sources */,
 				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
 				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
