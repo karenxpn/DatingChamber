@@ -37,11 +37,17 @@ struct ChatListCell: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    TextHelper(text: chat.name, fontName: "Inter-SemiBold" )
-                        .lineLimit(1)
-                    
-                        TextHelper(text: chat.content, fontSize: 14)
+                    HStack {
+                        TextHelper(text: chat.name, fontName: "Inter-SemiBold" )
                             .lineLimit(1)
+                        
+                        if chat.muted {
+                            Image("mute_icon")
+                        }
+                    }
+                    
+                    TextHelper(text: chat.content, fontSize: 14)
+                        .lineLimit(1)
                 }
                 
                 Spacer()
@@ -70,8 +76,8 @@ struct ChatListCell: View {
             .navigationDestination(isPresented: $navigate) {
                 ChatRoom(chatID: chat.id)
             }
-
-
+        
+        
     }
 }
 

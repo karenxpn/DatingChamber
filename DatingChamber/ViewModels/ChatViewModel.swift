@@ -10,6 +10,8 @@ import FirebaseFirestore
 import SwiftUI
 
 class ChatViewModel: AlertViewModel, ObservableObject {
+    @AppStorage("userID") var userID: String = ""
+
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
@@ -69,6 +71,18 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                     self.lastChat = chats.1
                 }
             }
+        }
+    }
+    
+    @MainActor func muteChat(chatID: String, mute: Bool) {
+        Task {
+            let _ = await manager.muteChat(userID: userID, chatID: chatID, mute: mute)
+        }
+    }
+    
+    @MainActor func deleteChat(chatID: String) {
+        Task {
+            let _ = await manager.deleteChat(chatID: chatID)
         }
     }
 }

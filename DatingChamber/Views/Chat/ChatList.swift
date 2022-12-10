@@ -22,6 +22,23 @@ struct ChatList: View {
                     }
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
+                    .swipeActions {
+                            Button {
+                                chatVM.deleteChat(chatID: chat.id)
+                            } label: {
+                                Image("message_delete_icon")
+                            }.tint(.red)
+                        
+                        Button {
+                            chatVM.muteChat(chatID: chat.id, mute: !chat.muted)
+                        } label: {
+                            if chat.muted {
+                                Image("message_notification_icon")
+                            } else {
+                                Image("message_mute_icon")
+                            }
+                        }.tint(AppColors.light_blue)
+                    }
             }
             
             if chatVM.loadingPage {

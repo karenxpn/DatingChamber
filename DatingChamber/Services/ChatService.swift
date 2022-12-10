@@ -11,6 +11,8 @@ import FirebaseFirestore
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
     func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error>
+    func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
+    func deleteChat(chatID: String) async -> Result<Void, Error>
     
 }
 
@@ -22,6 +24,24 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error> {
+        do {
+            try await db.collection("Chats").document(chatID).updateData(["mutedBy" : mute ? FieldValue.arrayUnion([userID]) : FieldValue.arrayRemove([userID])])
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func deleteChat(chatID: String) async -> Result<Void, Error> {
+        do {
+            try await db.collection("Chats").document(chatID).delete()
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ()){
         // modify this lastMesssage -> lastMessage
         var query: Query = db.collection("Chats").order(by: "lastMessage.createdAt", descending: true)
