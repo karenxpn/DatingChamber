@@ -23,7 +23,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @Published var interests = [String]()
     @Published var uploadedImages = [String]()
     
-    @Published var blockedUsers = [UserPreviewViewModel]()
+    @Published var blockedUsers = [BlockedUserModel]()
     @Published var loadingPage: Bool = false
     
     
@@ -188,20 +188,23 @@ class AccountViewModel: AlertViewModel, ObservableObject {
         } else {
             loadingPage = true
         }
+        
         Task {
             
             let result = await manager.fetchBlockedUsers(userID: userID, lastUser: lastSnapshot)
+            
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let response):
-                if refresh == .refresh      { self.blockedUsers = response.0.map(UserPreviewViewModel.init) }
-                else                        { self.blockedUsers.append(contentsOf: response.0.map(UserPreviewViewModel.init))}
+                if refresh == .refresh      { self.blockedUsers = response.0 }
+                else                        { self.blockedUsers.append(contentsOf: response.0) }
                 
                 if !response.0.isEmpty {
                     self.lastSnapshot = response.1
                 }
             }
+                                                                       
             if !Task.isCancelled {
                 loading = false
                 loadingPage = false

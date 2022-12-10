@@ -40,6 +40,7 @@
 		FF13803C29437131002E9FCA /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13803B29437131002E9FCA /* RoomViewModel.swift */; };
 		FF13803E2944FCF4002E9FCA /* BlockedUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13803D2944FCF4002E9FCA /* BlockedUsers.swift */; };
 		FF1380402944FD7D002E9FCA /* BlockedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13803F2944FD7D002E9FCA /* BlockedListCell.swift */; };
+		FF13804229452E6E002E9FCA /* BlockedUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13804129452E6E002E9FCA /* BlockedUserModel.swift */; };
 		FF34A2E6293510F000598724 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E5293510F000598724 /* Blog.swift */; };
 		FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E72935113E00598724 /* BlogViewModel.swift */; };
 		FF34A2EA2935118D00598724 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2E92935118D00598724 /* PostModel.swift */; };
@@ -210,6 +211,7 @@
 		FF13803B29437131002E9FCA /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		FF13803D2944FCF4002E9FCA /* BlockedUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsers.swift; sourceTree = "<group>"; };
 		FF13803F2944FD7D002E9FCA /* BlockedListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedListCell.swift; sourceTree = "<group>"; };
+		FF13804129452E6E002E9FCA /* BlockedUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserModel.swift; sourceTree = "<group>"; };
 		FF34A2E5293510F000598724 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FF34A2E72935113E00598724 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
 		FF34A2E92935118D00598724 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				FF34A2E92935118D00598724 /* PostModel.swift */,
 				FF13802B293F4F95002E9FCA /* ChatModel.swift */,
 				FF138035293F88B3002E9FCA /* UserPreviewModel.swift */,
+				FF13804129452E6E002E9FCA /* BlockedUserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				FF3D6D90293034550046015C /* Settings.swift in Sources */,
 				FFDB623A29390AF100B39102 /* Speaker.swift in Sources */,
 				FF34A2F22935462A00598724 /* CheckboxHelper.swift in Sources */,
+				FF13804229452E6E002E9FCA /* BlockedUserModel.swift in Sources */,
 				FF34A2E6293510F000598724 /* Blog.swift in Sources */,
 				FF5F2084291AAF39007E0E99 /* SwipeModel.swift in Sources */,
 				FF07162B292D47470028B35D /* EditAccount.swift in Sources */,

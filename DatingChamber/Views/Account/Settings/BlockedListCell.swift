@@ -8,35 +8,15 @@
 import SwiftUI
 
 struct BlockedListCell: View {
-    let user: UserPreviewViewModel
+    let user: BlockedUserModel
     var body: some View {
-        HStack {
+        HStack(spacing: 15) {
             
-            ZStack(alignment: .bottomTrailing) {
-                
-                ImageHelper(image: user.image, contentMode: .fill)
-                    .frame(width: 55, height: 55)
-                    .clipShape(Circle())
-                
-                if user.online {
-                    ZStack {
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 15, height: 15)
-                        
-                        Circle()
-                            .fill(AppColors.onlineStatus)
-                            .frame(width: 8, height: 8)
-                    }
-                }
-            }
+            ImageHelper(image: user.image, contentMode: .fill)
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
             
-            VStack {
-                TextHelper(text: user.name, fontName: "Inter-SemiBold" )
-                    .lineLimit(1)
-                
-                TextHelper(text: user.lastVisit)
-            }
+            TextHelper(text: user.name, fontName: "Inter-SemiBold")
             
             Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity)
@@ -47,6 +27,6 @@ struct BlockedListCell: View {
 
 struct BlockedListCell_Previews: PreviewProvider {
     static var previews: some View {
-        BlockedListCell(user: UserPreviewViewModel(user: AppPreviewModel.userPreviewModel))
+        BlockedListCell(user: BlockedUserModel(id: "id", name: "Karen", image: Credentials.default_story_image))
     }
 }
