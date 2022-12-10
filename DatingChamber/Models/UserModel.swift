@@ -18,6 +18,8 @@ struct UserModel: Identifiable, Codable {
     var occupation: String?
     var city: String?
     var education: String?
+    var online: Bool
+    var lastVisit: Date?
     var posts: [PostModel]?
 }
 

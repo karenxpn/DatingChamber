@@ -16,12 +16,16 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @Published var posts = [PostViewModel]()
     
     @Published var loadingPost: Bool = false
-    @Published var lastPost: QueryDocumentSnapshot?
+    @Published var lastSnapshot: QueryDocumentSnapshot?
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     @Published var interests = [String]()
     @Published var uploadedImages = [String]()
+    
+    @Published var blockedUsers = [UserPreviewViewModel]()
+    @Published var loadingPage: Bool = false
+    
     
     var manager: UserServiceProtocol
     var authManager: AuthServiceProtocol
@@ -48,7 +52,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                 self.user = UserModelViewModel(user: user)
                 if let posts = user.posts {
                     self.posts = posts.map(PostViewModel.init)
-                    self.lastPost = response.1
+                    self.lastSnapshot = response.1
                 }
             }
 
@@ -61,11 +65,11 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @MainActor func getPosts() {
         loadingPost = true
         Task {
-            let result = await blogManager.fetchUserPosts(userID: userID, lastDocSnapshot: lastPost)
+            let result = await blogManager.fetchUserPosts(userID: userID, lastDocSnapshot: lastSnapshot)
             switch result {
             case .success(let post):
                 self.posts.append(contentsOf: post.0.map(PostViewModel.init))
-                self.lastPost = post.1
+                self.lastSnapshot = post.1
             case .failure( _):
                 break
             }
@@ -170,6 +174,37 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                     self.userID = ""
 //                    self.initialUserID = ""
                 }
+            }
+        }
+    }
+    
+    @MainActor func getBlockedUsers(refresh: Refresh? = nil) {
+        if refresh == .refresh {
+            lastSnapshot = nil
+        }
+        
+        if blockedUsers.isEmpty {
+            loading = true
+        } else {
+            loadingPage = true
+        }
+        Task {
+            
+            let result = await manager.fetchBlockedUsers(userID: userID, lastUser: lastSnapshot)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(let response):
+                if refresh == .refresh      { self.blockedUsers = response.0.map(UserPreviewViewModel.init) }
+                else                        { self.blockedUsers.append(contentsOf: response.0.map(UserPreviewViewModel.init))}
+                
+                if !response.0.isEmpty {
+                    self.lastSnapshot = response.1
+                }
+            }
+            if !Task.isCancelled {
+                loading = false
+                loadingPage = false
             }
         }
     }
