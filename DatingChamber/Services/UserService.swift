@@ -22,6 +22,7 @@ protocol UserServiceProtocol {
     func deleteAccount() async -> Result<Void, Error>
     func deleteAccountData(userID: String) async -> Result<Void, Error>
     func updateOnlineState( userID: String, online: Bool, lastVisit: Date? ) async -> Result<Void, Error>
+    func fetchBlockedUsers(userID: String, lastUser: QueryDocumentSnapshot?) async -> Result<([UserPreviewModel], QueryDocumentSnapshot?), Error>
 }
 
 class UserService {
@@ -31,6 +32,16 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    func fetchBlockedUsers(userID: String, lastUser: QueryDocumentSnapshot?) async -> Result<([UserPreviewModel], QueryDocumentSnapshot?), Error> {
+        do {
+            let usersDocs = try await db.collection("Users").document(userID).collection("Blocked").getDocuments().documents
+            let users = try usersDocs.map{ try $0.data(as: UserPreviewModel.self)}
+            return .success((users, usersDocs.last))
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func updateOnlineState(userID: String, online: Bool, lastVisit: Date?) async -> Result<Void, Error> {
         do {
             try await db.collection("Users").document(userID).setData(["online": online,
@@ -162,8 +173,16 @@ extension UserService: UserServiceProtocol {
             try await db.collection("Users").document(uid).updateData(["pending": FieldValue.arrayRemove([userID])])
             
             // add to my blocked users
-            try await db.collection("Users").document(userID).updateData(["blocked": FieldValue.arrayUnion([uid])])
-            
+            // get uid user and make a preview model to upload to user.nested collection called blocked
+
+            let uidUser = try await db.collection("Users").document(uid).getDocument(as: UserModel.self)
+            let userPreview = UserPreviewModel(id: uidUser.id,
+                                               name: uidUser.name,
+                                               image: uidUser.avatar,
+                                               online: uidUser.online,
+                                               lastVisit: uidUser.lastVisit,
+                                               blocked: true)
+            let _ = try await db.collection("Users").document(userID).collection("Blocked").addDocument(data: Firestore.Encoder().encode(userPreview))
             return .success(())
         } catch {
             return .failure(error)
