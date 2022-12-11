@@ -115,3 +115,6 @@
 "emptyBlogMessage" = "Neither you nor your friends have published any posts, or an error occurred fetching posts, press the button to refresh your posts or go to your account and create a new post.";
 "justNow" = "Just Now";
 "blockedUsers" = "Blocked Users";
+"sureToDeleteChat" = "Are you sure to delete this chat?";
+"deleteChatMessage" = "If you delete this chat it will be deleted for everyone and all the data will be deleted";
+"delete" = "Delete";

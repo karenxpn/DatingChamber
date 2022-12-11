@@ -10,6 +10,8 @@ import SwiftUI
 struct ChatList: View {
     @EnvironmentObject var chatVM: ChatViewModel
     let chats: [ChatModelViewModel]
+    @State private var showDelete: Bool = false
+    
     
     var body: some View {
         List {
@@ -23,11 +25,11 @@ struct ChatList: View {
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
                     .swipeActions {
-                            Button {
-                                chatVM.deleteChat(chatID: chat.id)
-                            } label: {
-                                Image("message_delete_icon")
-                            }.tint(.red)
+                        Button {
+                            showDelete.toggle()
+                        } label: {
+                            Image("message_delete_icon")
+                        }.tint(.red)
                         
                         Button {
                             chatVM.muteChat(chatID: chat.id, mute: !chat.muted)
@@ -38,7 +40,15 @@ struct ChatList: View {
                                 Image("message_mute_icon")
                             }
                         }.tint(AppColors.light_blue)
-                    }
+                    }.alert(NSLocalizedString("sureToDeleteChat", comment: ""), isPresented: $showDelete, actions: {
+                        Button(NSLocalizedString("delete", comment: ""), role: .destructive) {
+                            chatVM.deleteChat(chatID: chat.id)
+                        }
+                        Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
+                        
+                    }, message: {
+                        TextHelper(text: NSLocalizedString("deleteChatMessage", comment: ""))
+                    })
             }
             
             if chatVM.loadingPage {
@@ -52,7 +62,7 @@ struct ChatList: View {
             Spacer()
                 .padding(.bottom, UIScreen.main.bounds.height * 0.15)
                 .listRowSeparator(.hidden)
-
+            
         }.listStyle(.plain)
             .padding(.top, 1)
             .refreshable {
