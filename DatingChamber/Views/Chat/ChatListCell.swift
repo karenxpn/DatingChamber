@@ -74,7 +74,7 @@ struct ChatListCell: View {
                 )
         }.buttonStyle(PlainButtonStyle())
             .navigationDestination(isPresented: $navigate) {
-                ChatRoom(chatID: chat.id)
+                ChatRoom(chatName: chat.name, chatID: chat.id)
             }
         
         

@@ -7,12 +7,16 @@
 
 import Foundation
 import FirebaseFirestore
+import AVFoundation
+import SwiftUI
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
     func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error>
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
     func deleteChat(chatID: String) async -> Result<Void, Error>
+    
+    func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
     
 }
 
@@ -24,6 +28,57 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                var cur_url = url
+                if url.absoluteString.hasPrefix("https://") {
+                    let data = try Data(contentsOf: url)
+                    
+                    let directory = FileManager.default.temporaryDirectory
+                    let fileName = "chunk.m4a"
+                    cur_url = directory.appendingPathComponent(fileName)
+                    
+                    try data.write(to: cur_url)
+                }
+                
+                let file = try AVAudioFile(forReading: cur_url)
+                if let format = AVAudioFormat(commonFormat: .pcmFormatFloat32,
+                                              sampleRate: file.fileFormat.sampleRate,
+                                              channels: file.fileFormat.channelCount, interleaved: false),
+                   let buf = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(file.length)) {
+                    
+                    try file.read(into: buf)
+                    guard let floatChannelData = buf.floatChannelData else { return }
+                    let frameLength = Int(buf.frameLength)
+                    
+                    let samples = Array(UnsafeBufferPointer(start:floatChannelData[0], count:frameLength))
+                    
+                    var result = [AudioPreviewModel]()
+                    
+                    let chunked = samples.chunked(into: samples.count / samplesCount)
+                    for row in chunked {
+                        var accumulator: Float = 0
+                        let newRow = row.map{ $0 * $0 }
+                        accumulator = newRow.reduce(0, +)
+                        let power: Float = accumulator / Float(row.count)
+                        let decibles = 10 * log10f(power)
+                        
+                        result.append(AudioPreviewModel(magnitude: decibles, color: Color.gray))
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
+                }
+            } catch {
+                print("Audio Error: \(error)")
+            }
+        }
+        
+    }
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error> {
         do {
             try await db.collection("Chats").document(chatID).updateData(["mutedBy" : mute ? FieldValue.arrayUnion([userID]) : FieldValue.arrayRemove([userID])])
