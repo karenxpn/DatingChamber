@@ -146,6 +146,11 @@
 		FFCA5A462918289200C91BEC /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FFCA5A452918289200C91BEC /* PromiseKit */; };
 		FFCCAD6029487EB900BACB91 /* MessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD5F29487EB900BACB91 /* MessageBar.swift */; };
 		FFCCAD632948809D00BACB91 /* CameraXPN in Frameworks */ = {isa = PBXBuildFile; productRef = FFCCAD622948809D00BACB91 /* CameraXPN */; };
+		FFCCAD652948892F00BACB91 /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD642948892F00BACB91 /* AudioRecorderViewModel.swift */; };
+		FFCCAD6729488A3100BACB91 /* AudioRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6629488A3100BACB91 /* AudioRecordingView.swift */; };
+		FFCCAD6929488A8800BACB91 /* RecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */; };
+		FFCCAD6B29488AAC00BACB91 /* AudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */; };
+		FFCCAD6D29488AE000BACB91 /* AudioPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */; };
 		FFDB62342938EF4000B39102 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = FFDB62332938EF4000B39102 /* ExpandableText */; };
 		FFDB62362938EF8400B39102 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB62352938EF8400B39102 /* PostDetailView.swift */; };
 		FFDB623A29390AF100B39102 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB623929390AF100B39102 /* Speaker.swift */; };
@@ -303,6 +308,11 @@
 		FFCA5A3D29180F3600C91BEC /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFCA5A42291818DC00C91BEC /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		FFCCAD5F29487EB900BACB91 /* MessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBar.swift; sourceTree = "<group>"; };
+		FFCCAD642948892F00BACB91 /* AudioRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewModel.swift; sourceTree = "<group>"; };
+		FFCCAD6629488A3100BACB91 /* AudioRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingView.swift; sourceTree = "<group>"; };
+		FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingPreview.swift; sourceTree = "<group>"; };
+		FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewModel.swift; sourceTree = "<group>"; };
+		FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPreviewModel.swift; sourceTree = "<group>"; };
 		FFDB62352938EF8400B39102 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		FFDB623929390AF100B39102 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
@@ -458,6 +468,8 @@
 				FF138031293F5187002E9FCA /* EmptyChatList.swift */,
 				FF138039294370D9002E9FCA /* ChatRoom.swift */,
 				FFCCAD5F29487EB900BACB91 /* MessageBar.swift */,
+				FFCCAD6629488A3100BACB91 /* AudioRecordingView.swift */,
+				FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -598,6 +610,8 @@
 				FFDB623929390AF100B39102 /* Speaker.swift */,
 				FF138029293F4F5A002E9FCA /* ChatViewModel.swift */,
 				FF13803B29437131002E9FCA /* RoomViewModel.swift */,
+				FFCCAD642948892F00BACB91 /* AudioRecorderViewModel.swift */,
+				FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -624,6 +638,7 @@
 				FF13802B293F4F95002E9FCA /* ChatModel.swift */,
 				FF138035293F88B3002E9FCA /* UserPreviewModel.swift */,
 				FF13804129452E6E002E9FCA /* BlockedUserModel.swift */,
+				FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -975,6 +990,7 @@
 				FF138028293F4F44002E9FCA /* Chats.swift in Sources */,
 				FF34A2EA2935118D00598724 /* PostModel.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
+				FFCCAD6729488A3100BACB91 /* AudioRecordingView.swift in Sources */,
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,
 				FFB4D5DD291192150065955F /* AuthViewModel.swift in Sources */,
@@ -989,6 +1005,7 @@
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
 				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
 				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
+				FFCCAD6B29488AAC00BACB91 /* AudioPlayerViewModel.swift in Sources */,
 				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
@@ -1010,6 +1027,7 @@
 				FF5F208C291AB57C007E0E99 /* SwipeButtonHelper.swift in Sources */,
 				FF3D6D9C2930EBCF0046015C /* NotificationsRequest.swift in Sources */,
 				FFCA5A332917E5D100C91BEC /* BirthdayFields.swift in Sources */,
+				FFCCAD652948892F00BACB91 /* AudioRecorderViewModel.swift in Sources */,
 				FF071627292D45000028B35D /* AccountPreview.swift in Sources */,
 				FFC6144D29129F2400CE75E2 /* AuthService.swift in Sources */,
 				FFCCAD6029487EB900BACB91 /* MessageBar.swift in Sources */,
@@ -1035,6 +1053,7 @@
 				FF3D6D9A2930EB430046015C /* NotificationsViewModel.swift in Sources */,
 				FFC614572912A56200CE75E2 /* AlertViewModel.swift in Sources */,
 				FF3D6D90293034550046015C /* Settings.swift in Sources */,
+				FFCCAD6D29488AE000BACB91 /* AudioPreviewModel.swift in Sources */,
 				FFDB623A29390AF100B39102 /* Speaker.swift in Sources */,
 				FF34A2F22935462A00598724 /* CheckboxHelper.swift in Sources */,
 				FF13804229452E6E002E9FCA /* BlockedUserModel.swift in Sources */,
@@ -1049,6 +1068,7 @@
 				FF138036293F88B3002E9FCA /* UserPreviewModel.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
 				FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */,
+				FFCCAD6929488A8800BACB91 /* RecordingPreview.swift in Sources */,
 				FF071629292D472C0028B35D /* ProfileImage.swift in Sources */,
 				FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */,
 				FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */,
