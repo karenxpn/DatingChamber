@@ -118,3 +118,6 @@
 "sureToDeleteChat" = "Are you sure to delete this chat?";
 "deleteChatMessage" = "If you delete this chat it will be deleted for everyone and all the data will be deleted";
 "delete" = "Delete";
+"messageBarPlaceholder" = "Write your message here...";
+"loadFromGallery" = "Upload from Gallery";
+"openCamera" = "Open Camera";

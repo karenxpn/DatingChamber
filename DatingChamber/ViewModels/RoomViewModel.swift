@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 class RoomViewModel: AlertViewModel, ObservableObject {
-    @AppStorage("userID") var userID: String = ""    
+    @AppStorage("userID") var userID: String = ""
+    
+    @Published var message: String = ""
+//    @Published var editingMessage: MessageViewModel?
+//    @Published var replyMessage: MessageViewModel?
     
     var manager: ChatServiceProtocol
     init(manager: ChatServiceProtocol = ChatService.shared) {
