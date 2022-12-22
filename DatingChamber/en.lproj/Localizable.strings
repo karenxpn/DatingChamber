@@ -123,3 +123,5 @@
 "openCamera" = "Open Camera";
 "enableAccessForBoth" = "Enable access for both microphone and camera to record videos and take photos.";
 "useThisMedia" = "Use this media";
+"itsMatch" = "It's a match!";
+"startConversation" = "Start the conversation\nwriting a message";

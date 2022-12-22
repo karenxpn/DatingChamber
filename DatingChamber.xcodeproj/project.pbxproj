@@ -152,6 +152,7 @@
 		FFCCAD6B29488AAC00BACB91 /* AudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */; };
 		FFCCAD6D29488AE000BACB91 /* AudioPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */; };
 		FFCCAD6F2954ED4E00BACB91 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6E2954ED4E00BACB91 /* MessageModel.swift */; };
+		FFCCAD712954F6AA00BACB91 /* EmptyChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD702954F6AA00BACB91 /* EmptyChat.swift */; };
 		FFDB62342938EF4000B39102 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = FFDB62332938EF4000B39102 /* ExpandableText */; };
 		FFDB62362938EF8400B39102 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB62352938EF8400B39102 /* PostDetailView.swift */; };
 		FFDB623A29390AF100B39102 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB623929390AF100B39102 /* Speaker.swift */; };
@@ -315,6 +316,7 @@
 		FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewModel.swift; sourceTree = "<group>"; };
 		FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPreviewModel.swift; sourceTree = "<group>"; };
 		FFCCAD6E2954ED4E00BACB91 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		FFCCAD702954F6AA00BACB91 /* EmptyChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChat.swift; sourceTree = "<group>"; };
 		FFDB62352938EF8400B39102 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		FFDB623929390AF100B39102 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				FFCCAD5F29487EB900BACB91 /* MessageBar.swift */,
 				FFCCAD6629488A3100BACB91 /* AudioRecordingView.swift */,
 				FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */,
+				FFCCAD702954F6AA00BACB91 /* EmptyChat.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1050,6 +1053,7 @@
 				FF3D6D8E293033E50046015C /* SettingsButtonHelperContent.swift in Sources */,
 				FF13803E2944FCF4002E9FCA /* BlockedUsers.swift in Sources */,
 				FFC614622912D55100CE75E2 /* Loading.swift in Sources */,
+				FFCCAD712954F6AA00BACB91 /* EmptyChat.swift in Sources */,
 				FFCA5A352917E8FB00C91BEC /* AuthGenderPicker.swift in Sources */,
 				FF138034293F5FA2002E9FCA /* EmptyBlogList.swift in Sources */,
 				FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */,
