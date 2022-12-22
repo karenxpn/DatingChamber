@@ -17,6 +17,7 @@ protocol ChatServiceProtocol {
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
+    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([(MessageModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
     
 }
 
@@ -28,6 +29,47 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([(MessageModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ()) {
+        var query: Query = db.collection("Chats").document(chatIID).collection("messages").order(by: "createdAt", descending: true)
+        if lastMessage == nil       { query = query.limit(to: 10) }
+        else                        { query = query.start(afterDocument: lastMessage!).limit(to: 10) }
+        
+        query.addSnapshotListener { snapshot, error in
+            if let error {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            guard snapshot?.documents.last != nil else {
+                DispatchQueue.main.async {
+                    completion(.success(([], nil)))
+                }
+                // The collection is empty.
+                return
+            }
+            
+            var results = [(MessageModel, DocumentChangeType)]()
+            
+            snapshot?.documentChanges.forEach({ diff in
+                do {
+                    let doc = try diff.document.data(as: MessageModel.self)
+                    results.append((doc, diff.type))
+                } catch {
+                    print(error)
+                }
+                
+            })
+            
+            DispatchQueue.main.async {
+                completion(.success((results, snapshot?.documents.last)))
+            }
+            
+        }
+        
+    }
+    
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
         
         DispatchQueue.global(qos: .userInteractive).async {

@@ -151,6 +151,7 @@
 		FFCCAD6929488A8800BACB91 /* RecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */; };
 		FFCCAD6B29488AAC00BACB91 /* AudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */; };
 		FFCCAD6D29488AE000BACB91 /* AudioPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */; };
+		FFCCAD6F2954ED4E00BACB91 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCCAD6E2954ED4E00BACB91 /* MessageModel.swift */; };
 		FFDB62342938EF4000B39102 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = FFDB62332938EF4000B39102 /* ExpandableText */; };
 		FFDB62362938EF8400B39102 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB62352938EF8400B39102 /* PostDetailView.swift */; };
 		FFDB623A29390AF100B39102 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDB623929390AF100B39102 /* Speaker.swift */; };
@@ -313,6 +314,7 @@
 		FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingPreview.swift; sourceTree = "<group>"; };
 		FFCCAD6A29488AAC00BACB91 /* AudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewModel.swift; sourceTree = "<group>"; };
 		FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPreviewModel.swift; sourceTree = "<group>"; };
+		FFCCAD6E2954ED4E00BACB91 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		FFDB62352938EF8400B39102 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		FFDB623929390AF100B39102 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		FFE33EDE291B33CA002053B7 /* SwipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesService.swift; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 				FF138035293F88B3002E9FCA /* UserPreviewModel.swift */,
 				FF13804129452E6E002E9FCA /* BlockedUserModel.swift */,
 				FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */,
+				FFCCAD6E2954ED4E00BACB91 /* MessageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1080,6 +1083,7 @@
 				FF34A2EC2935129400598724 /* BlogService.swift in Sources */,
 				FF13802E293F4FBA002E9FCA /* ChatService.swift in Sources */,
 				FFE33EDF291B33CA002053B7 /* SwipesService.swift in Sources */,
+				FFCCAD6F2954ED4E00BACB91 /* MessageModel.swift in Sources */,
 				FF5F208A291AB4E7007E0E99 /* CustomActionSheet.swift in Sources */,
 				FF071641292E98660028B35D /* EditOccupation.swift in Sources */,
 				FFCA5A3C29180EDA00C91BEC /* AuthProfileImages.swift in Sources */,
