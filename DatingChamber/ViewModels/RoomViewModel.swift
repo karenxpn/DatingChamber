@@ -18,36 +18,37 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     @Published var replyMessage: MessageViewModel?
     
     @Published var loading: Bool = false
-    @Published var loadingPage: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
     @Published var messages = [MessageViewModel]()
     @Published var lastMessage: QueryDocumentSnapshot?
-
+    
+    @Published var lastMessageID: String = ""
     
     var manager: ChatServiceProtocol
     init(manager: ChatServiceProtocol = ChatService.shared) {
         self.manager = manager
     }
     
-    @MainActor func sendMessage(text: String, chat: String) {
+    @MainActor func sendMessage() {
         Task {
-            let result = await manager.sendMessage(userID: userID, chatID: chat, text: text)
+            let result = await manager.sendMessage(userID: userID, chatID: chatID, text: message)
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(()):
+                self.message = ""
+            }
         }
     }
     
     
     func getMessages() {
-        if messages.isEmpty {
-            loading = true
-        } else {
-            loadingPage = true
-        }
+        loading = true
         
         manager.fetchMessages(chatIID: chatID, lastMessage: lastMessage, completion: { result in
             self.loading = false
-            self.loadingPage = false
             
             switch result {
             case .failure(let error):
@@ -68,6 +69,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                 
                 if !response.0.isEmpty {
                     self.lastMessage = response.1
+                    self.lastMessageID = self.messages[0].id
                 }
                 
             }

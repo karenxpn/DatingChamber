@@ -34,5 +34,15 @@ struct AppPreviewModel {
                                                    name: "Karen",
                                                    image: Credentials.img_url,
                                                    online: true, lastVisit: nil, blocked: false)
+    
+    static let message = MessageViewModel(message: MessageModel(id: UUID().uuidString,
+                                                                createdAt: Date().toGlobalTime(),
+                                                                type: .text,
+                                                                content: "Hello my name is Karen",
+                                                                sentBy: "yo1NBb8aLlPbC1wJE5pdeJ4fZC92",
+                                                                seenBy: ["yo1NBb8aLlPbC1wJE5pdeJ4fZC92"],
+                                                                isEdited: false, status: .sent,
+                                                                repliedTo: nil,
+                                                                reactions: []))
 }
 

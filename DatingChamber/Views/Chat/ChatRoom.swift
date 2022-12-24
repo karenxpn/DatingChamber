@@ -16,14 +16,12 @@ struct ChatRoom: View {
     var body: some View {
         ZStack {
             
-            if roomVM.loading {
-                ProgressView()
-            } else if roomVM.messages.isEmpty {
+            if roomVM.messages.isEmpty && !roomVM.loading {
                 EmptyChat(chat: chat)
             } else {
-                
+                MessagesList()
+                    .environmentObject(roomVM)
             }
-            
             
             VStack {
                 Spacer()
@@ -47,7 +45,11 @@ struct ChatRoom: View {
                     .kerning(0.56)
                     .accessibilityAddTraits(.isHeader)
                 }
-            }
+            }.alert(NSLocalizedString("error", comment: ""), isPresented: $roomVM.showAlert, actions: {
+                Button(NSLocalizedString("gotIt", comment: ""), role: .cancel) { }
+            }, message: {
+                Text(roomVM.alertMessage)
+            })
     }
 }
 

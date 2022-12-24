@@ -30,9 +30,13 @@ class ChatService {
 
 extension ChatService: ChatServiceProtocol {
     func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([(MessageModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ()) {
-        var query: Query = db.collection("Chats").document(chatIID).collection("messages").order(by: "createdAt", descending: true)
-        if lastMessage == nil       { query = query.limit(to: 10) }
-        else                        { query = query.start(afterDocument: lastMessage!).limit(to: 10) }
+        var query: Query = db.collection("Chats")
+            .document(chatIID)
+            .collection("messages")
+            .order(by: "createdAt", descending: true)
+        
+        if lastMessage == nil       { query = query.limit(to: 5) }
+        else                        { query = query.start(afterDocument: lastMessage!).limit(to: 5) }
         
         query.addSnapshotListener { snapshot, error in
             if let error {
@@ -54,6 +58,8 @@ extension ChatService: ChatServiceProtocol {
             
             snapshot?.documentChanges.forEach({ diff in
                 do {
+                    if diff.type == .modified   { print("modified") }
+                    if diff.type == .added      { print("added") }
                     let doc = try diff.document.data(as: MessageModel.self)
                     results.append((doc, diff.type))
                 } catch {
@@ -182,13 +188,26 @@ extension ChatService: ChatServiceProtocol {
     func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error> {
         do {
             let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
-            let _ = try await db.collection("Chats").document(chatID).setData(["lastMessage" : ["id": UUID().uuidString,
-                                                                                                "content" : text,
-                                                                                                "createdAt": Date().toGlobalTime(),
-                                                                                                "sentBy": userID,
-                                                                                                "seenBy": [userID],
-                                                                                                "status": "sent",
-                                                                                                "type": "text"]], merge: true)
+
+            let message = MessageModel(createdAt: Date().toGlobalTime(),
+                                       type: .text,
+                                       content: text,
+                                       sentBy: userID,
+                                       seenBy: [userID],
+                                       isEdited: false,
+                                       status: .sent,
+                                       reactions: [])
+            
+            let lastMessage = LastMessageModel(lastMessage: message)
+            
+            let _ = try await db
+                .collection("Chats")
+                .document(chatID)
+                .collection("messages")
+                .addDocument(data: Firestore.Encoder().encode(message))
+            
+            let _ = try await db.collection("Chats").document(chatID).setData(from: lastMessage, merge: true)
+            
             return .success(())
         } catch {
             return .failure(error)

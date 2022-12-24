@@ -64,6 +64,7 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
+                            roomVM.sendMessage()
 //                            if roomVM.editingMessage != nil{
 //                                roomVM.editMessage()
 //                            } else {

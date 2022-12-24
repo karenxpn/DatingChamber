@@ -161,6 +161,11 @@
 		FFE33EE3291BFF3B002053B7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE2291BFF3B002053B7 /* UserService.swift */; };
 		FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */; };
 		FFE33EE9291C5694002053B7 /* SwipeCardActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */; };
+		FFF28EE629572FD400226DF2 /* LastMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF28EE529572FD400226DF2 /* LastMessageModel.swift */; };
+		FFF28EE82957307800226DF2 /* MessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF28EE72957307800226DF2 /* MessagesList.swift */; };
+		FFF28EEA295730D600226DF2 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF28EE9295730D600226DF2 /* MessageCell.swift */; };
+		FFF28EEC2957320200226DF2 /* MessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF28EEB2957320200226DF2 /* MessageContent.swift */; };
+		FFF28EEE2957323500226DF2 /* TextMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF28EED2957323500226DF2 /* TextMessageContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +329,11 @@
 		FFE33EE2291BFF3B002053B7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FFE33EE6291C4F9B002053B7 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		FFE33EE8291C5694002053B7 /* SwipeCardActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardActionSheet.swift; sourceTree = "<group>"; };
+		FFF28EE529572FD400226DF2 /* LastMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMessageModel.swift; sourceTree = "<group>"; };
+		FFF28EE72957307800226DF2 /* MessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesList.swift; sourceTree = "<group>"; };
+		FFF28EE9295730D600226DF2 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		FFF28EEB2957320200226DF2 /* MessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContent.swift; sourceTree = "<group>"; };
+		FFF28EED2957323500226DF2 /* TextMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,6 +485,10 @@
 				FFCCAD6629488A3100BACB91 /* AudioRecordingView.swift */,
 				FFCCAD6829488A8800BACB91 /* RecordingPreview.swift */,
 				FFCCAD702954F6AA00BACB91 /* EmptyChat.swift */,
+				FFF28EE72957307800226DF2 /* MessagesList.swift */,
+				FFF28EE9295730D600226DF2 /* MessageCell.swift */,
+				FFF28EEB2957320200226DF2 /* MessageContent.swift */,
+				FFF28EED2957323500226DF2 /* TextMessageContent.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -645,6 +659,7 @@
 				FF13804129452E6E002E9FCA /* BlockedUserModel.swift */,
 				FFCCAD6C29488AE000BACB91 /* AudioPreviewModel.swift */,
 				FFCCAD6E2954ED4E00BACB91 /* MessageModel.swift */,
+				FFF28EE529572FD400226DF2 /* LastMessageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -977,6 +992,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
+				FFF28EEE2957323500226DF2 /* TextMessageContent.swift in Sources */,
 				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,
 				FF07162F292D4D5E0028B35D /* AccountName.swift in Sources */,
 				FF13802C293F4F95002E9FCA /* ChatModel.swift in Sources */,
@@ -1012,6 +1028,7 @@
 				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
 				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
 				FFCCAD6B29488AAC00BACB91 /* AudioPlayerViewModel.swift in Sources */,
+				FFF28EE629572FD400226DF2 /* LastMessageModel.swift in Sources */,
 				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
@@ -1046,6 +1063,8 @@
 				FF13803A294370D9002E9FCA /* ChatRoom.swift in Sources */,
 				FF07163D292E973F0028B35D /* TextFieldHelper.swift in Sources */,
 				FF5F2099291ACDC4007E0E99 /* CustomSegmentPicker.swift in Sources */,
+				FFF28EEC2957320200226DF2 /* MessageContent.swift in Sources */,
+				FFF28EE82957307800226DF2 /* MessagesList.swift in Sources */,
 				FF5F2097291ACD17007E0E99 /* AgeFilter.swift in Sources */,
 				FF34A2F42935487100598724 /* VoicePicker.swift in Sources */,
 				FFB4D5D929118FB10065955F /* Introduction.swift in Sources */,
@@ -1076,6 +1095,7 @@
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
 				FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */,
 				FFCCAD6929488A8800BACB91 /* RecordingPreview.swift in Sources */,
+				FFF28EEA295730D600226DF2 /* MessageCell.swift in Sources */,
 				FF071629292D472C0028B35D /* ProfileImage.swift in Sources */,
 				FF071633292E40170028B35D /* EditAccountInnerView.swift in Sources */,
 				FF5F2082291AADF1007E0E99 /* SwipeCard.swift in Sources */,
