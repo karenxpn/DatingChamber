@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
+import Firebase
 
 struct MessageModel: Codable, Identifiable {
     @DocumentID var id: String?
-    var createdAt: Date
+    var createdAt: Timestamp
     var type: MessageType
     var content: String
     var sentBy: String
@@ -37,7 +38,8 @@ struct MessageViewModel: Identifiable {
     }
     
     var id: String                              { self.message.id ?? UUID().uuidString }
-    var createdAt: String                       { self.message.createdAt.countTimeBetweenDates() }
+    var creationDate: Timestamp                 { self.message.createdAt}
+    var createdAt: String                       { self.message.createdAt.dateValue().countTimeBetweenDates() }
     var type: MessageType                       { self.message.type }
     var content: String                         { self.message.content }
     var sentBy: String                          { self.message.sentBy }

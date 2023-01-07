@@ -17,7 +17,7 @@ protocol ChatServiceProtocol {
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
-    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([(MessageModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
+    func fetchMessages(chatIID: String, lastMessageTime: Timestamp, completion: @escaping(Result<([(MessageModel, DocumentChangeType)]), Error>) -> ())
     
 }
 
@@ -29,15 +29,15 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
-    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([(MessageModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ()) {
+    func fetchMessages(chatIID: String, lastMessageTime: Timestamp, completion: @escaping (Result<([(MessageModel, DocumentChangeType)]), Error>) -> ()) {
         var query: Query = db.collection("Chats")
             .document(chatIID)
             .collection("messages")
             .order(by: "createdAt", descending: true)
+            .start(after: [lastMessageTime])
+            .limit(to: 5)
         
-        if lastMessage == nil       { query = query.limit(to: 5) }
-        else                        { query = query.start(afterDocument: lastMessage!).limit(to: 5) }
-        
+            
         query.addSnapshotListener { snapshot, error in
             if let error {
                 DispatchQueue.main.async {
@@ -48,7 +48,7 @@ extension ChatService: ChatServiceProtocol {
             
             guard snapshot?.documents.last != nil else {
                 DispatchQueue.main.async {
-                    completion(.success(([], nil)))
+                    completion(.success(([])))
                 }
                 // The collection is empty.
                 return
@@ -58,22 +58,18 @@ extension ChatService: ChatServiceProtocol {
             
             snapshot?.documentChanges.forEach({ diff in
                 do {
-                    if diff.type == .modified   { print("modified") }
-                    if diff.type == .added      { print("added") }
                     let doc = try diff.document.data(as: MessageModel.self)
+                    print(diff.type, doc.id, doc.createdAt)
                     results.append((doc, diff.type))
                 } catch {
                     print(error)
                 }
-                
             })
             
             DispatchQueue.main.async {
-                completion(.success((results, snapshot?.documents.last)))
+                completion(.success(results))
             }
-            
         }
-        
     }
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
@@ -189,7 +185,7 @@ extension ChatService: ChatServiceProtocol {
         do {
             let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
 
-            let message = MessageModel(createdAt: Date().toGlobalTime(),
+            let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
                                        type: .text,
                                        content: text,
                                        sentBy: userID,

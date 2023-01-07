@@ -24,8 +24,10 @@ struct MessagesList: View {
                                      ( roomVM.editingMessage != nil || roomVM.replyMessage != nil ) ? UIScreen.main.bounds.height * 0.1 : 0)
                             .rotationEffect(.radians(3.14))
                             .onAppear {
-                                if message.id == roomVM.messages.last?.id && !roomVM.loading {
-                                    roomVM.getMessages()
+                                if let lastElement = roomVM.messages.last {
+                                    if message.id == lastElement.id && !roomVM.loading {
+                                        roomVM.getMessages(lastMessageTime: lastElement.creationDate)
+                                    }
                                 }
                             }
                     }

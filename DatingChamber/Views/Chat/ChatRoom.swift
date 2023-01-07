@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct ChatRoom: View {
     let chat: ChatModelViewModel
@@ -32,7 +33,7 @@ struct ChatRoom: View {
             .onAppear {
                 NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
                 roomVM.chatID = chat.id
-                roomVM.getMessages()
+                roomVM.getMessages(lastMessageTime: Timestamp(date: Date().toGlobalTime()))
             }
             .onDisappear {
                 NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)

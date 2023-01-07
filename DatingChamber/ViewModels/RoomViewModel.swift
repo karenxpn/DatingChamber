@@ -22,7 +22,6 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var messages = [MessageViewModel]()
-    @Published var lastMessage: QueryDocumentSnapshot?
     
     @Published var lastMessageID: String = ""
     
@@ -44,21 +43,26 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     }
     
     
-    func getMessages() {
+    func getMessages(lastMessageTime: Timestamp) {
         loading = true
         
-        manager.fetchMessages(chatIID: chatID, lastMessage: lastMessage, completion: { result in
+        manager.fetchMessages(chatIID: chatID, lastMessageTime: lastMessageTime, completion: { result in
             self.loading = false
             
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let response):
-                // response.0 -> messages
-                // response.1 -> last message
                 
-                for message in response.0 {
-                    if message.1 == .added          { self.messages.append(MessageViewModel(message: message.0)) }
+                for message in response {
+                    if message.1 == .added {
+                        let newMessage = MessageViewModel(message: message.0)
+//                        if newMessage.creationDate > self.messages.first?.creationDate ?? Date() {
+//                            self.messages.insert(newMessage, at: 0)
+//                        } else {
+                            self.messages.append(newMessage)
+//                        }
+                    }
                     else if message.1 == .removed   { self.messages.removeAll(where: {$0.id == message.0.id}) }
                     else if message.1 == .modified {
                         if let index = self.messages.firstIndex(where: {$0.id == message.0.id }) {
@@ -67,11 +71,9 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                     }
                 }
                 
-                if !response.0.isEmpty {
-                    self.lastMessage = response.1
+                if !response.isEmpty {
                     self.lastMessageID = self.messages[0].id
                 }
-                
             }
         })
     }
