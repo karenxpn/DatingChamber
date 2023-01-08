@@ -17,7 +17,7 @@ protocol ChatServiceProtocol {
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
-    func fetchMessages(chatIID: String, lastMessageTime: Timestamp, completion: @escaping(Result<([(MessageModel, DocumentChangeType)]), Error>) -> ())
+    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ())
     
 }
 
@@ -29,45 +29,90 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
-    func fetchMessages(chatIID: String, lastMessageTime: Timestamp, completion: @escaping (Result<([(MessageModel, DocumentChangeType)]), Error>) -> ()) {
+    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ()) {
         var query: Query = db.collection("Chats")
             .document(chatIID)
             .collection("messages")
             .order(by: "createdAt", descending: true)
-            .start(after: [lastMessageTime])
-            .limit(to: 5)
         
-            
-        query.addSnapshotListener { snapshot, error in
-            if let error {
+        if lastMessage == nil {
+            let currentQuery = query.limit(to: 5)
+                currentQuery.getDocuments { snapshot, error in
+                    if let error {
+                        DispatchQueue.main.async {
+                            completion(.failure(error))
+                        }
+                        return
+                    }
+                    
+                    let last = snapshot!.documents.last
+                    if let last { query = query.end(atDocument: last) }
+                    
+                    query.addSnapshotListener { snapshot, error in
+                        if let error {
+                            DispatchQueue.main.async {
+                                completion(.failure(error))
+                            }
+                            return
+                        }
+                        
+                        guard snapshot?.documents.last != nil else {
+                            DispatchQueue.main.async {
+                                completion(.success(([], nil)))
+                            }
+                            // The collection is empty.
+                            return
+                        }
+                        
+                        var results = [(MessageModel)]()
+                        snapshot?.documents.forEach({ doc in
+                            do {
+                                let message = try doc.data(as: MessageModel.self)
+                                results.append(message)
+                            } catch {
+                                print(error)
+                            }
+                        })
+                        
+                        DispatchQueue.main.async {
+                            completion(.success((results, snapshot?.documents.last)))
+                        }
+                    }
+                    
+                }
+
+        } else {
+            query = query.start(afterDocument: lastMessage!).limit(to: 5)
+            query.addSnapshotListener { snapshot, error in
+                if let error {
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
+                    return
+                }
+                
+                guard snapshot?.documents.last != nil else {
+                    DispatchQueue.main.async {
+                        completion(.success(([], nil)))
+                    }
+                    // The collection is empty.
+                    return
+                }
+                
+                var results = [(MessageModel)]()
+                
+                snapshot?.documents.forEach({ doc in
+                    do {
+                        let message = try doc.data(as: MessageModel.self)
+                        results.append(message)
+                    } catch {
+                        print(error)
+                    }
+                })
+                
                 DispatchQueue.main.async {
-                    completion(.failure(error))
+                    completion(.success((results, snapshot?.documents.last)))
                 }
-                return
-            }
-            
-            guard snapshot?.documents.last != nil else {
-                DispatchQueue.main.async {
-                    completion(.success(([])))
-                }
-                // The collection is empty.
-                return
-            }
-            
-            var results = [(MessageModel, DocumentChangeType)]()
-            
-            snapshot?.documentChanges.forEach({ diff in
-                do {
-                    let doc = try diff.document.data(as: MessageModel.self)
-                    print(diff.type, doc.id, doc.createdAt)
-                    results.append((doc, diff.type))
-                } catch {
-                    print(error)
-                }
-            })
-            
-            DispatchQueue.main.async {
-                completion(.success(results))
             }
         }
     }

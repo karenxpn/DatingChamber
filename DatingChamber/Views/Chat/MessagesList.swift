@@ -26,7 +26,7 @@ struct MessagesList: View {
                             .onAppear {
                                 if let lastElement = roomVM.messages.last {
                                     if message.id == lastElement.id && !roomVM.loading {
-                                        roomVM.getMessages(lastMessageTime: lastElement.creationDate)
+                                        roomVM.getMessages()
                                     }
                                 }
                             }
