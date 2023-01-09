@@ -8,11 +8,12 @@
 import Foundation
 import FirebaseFirestore
 import AVFoundation
+import FirebaseStorage
 import SwiftUI
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
-    func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error>
+    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String) async -> Result<Void, Error>
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
@@ -23,6 +24,7 @@ protocol ChatServiceProtocol {
 
 class ChatService {
     static let shared: ChatServiceProtocol = ChatService()
+    let storageRef = Storage.storage().reference()
     let db = Firestore.firestore()
     
     private init() { }
@@ -226,13 +228,21 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func sendMessage(userID: String, chatID: String, text: String) async -> Result<Void, Error> {
+    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String) async -> Result<Void, Error> {
         do {
             let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
+            
+            
+            var url: String = ""
+            if type != .text {
+                let dbRef = storageRef.child("chats/\(UUID().uuidString)")
+                let _ = try await dbRef.putDataAsync(media!)
+                url = try await dbRef.downloadURL().absoluteString
+            }
 
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
-                                       type: .text,
-                                       content: text,
+                                       type: type,
+                                       content: type == .text ? text : url,
                                        sentBy: userID,
                                        seenBy: [userID],
                                        isEdited: false,

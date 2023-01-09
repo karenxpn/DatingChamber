@@ -14,6 +14,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     
     @Published var chatID: String = ""
     @Published var message: String = ""
+    @Published var media: Data?
     @Published var editingMessage: MessageViewModel?
     @Published var replyMessage: MessageViewModel?
     
@@ -32,14 +33,16 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         self.manager = manager
     }
     
-    @MainActor func sendMessage() {
+    @MainActor func sendMessage(messageType: MessageType) {
+        self.message = ""
+
         Task {
-            let result = await manager.sendMessage(userID: userID, chatID: chatID, text: message)
+            let result = await manager.sendMessage(userID: userID, chatID: chatID, type: messageType, media: media, text: message)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(()):
-                self.message = ""
+                break
             }
         }
     }

@@ -84,6 +84,7 @@
 		FF5F209E291AE75C007E0E99 /* TagsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */; };
 		FF5F20A0291AEAC5007E0E99 /* AuthInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */; };
 		FF755672293E8C7600DB64DA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF755671293E8C7600DB64DA /* Enums.swift */; };
+		FF75BB82296CAAA50074896B /* PhotoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -266,6 +267,7 @@
 		FF5F209D291AE75C007E0E99 /* TagsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewHelper.swift; sourceTree = "<group>"; };
 		FF5F209F291AEAC5007E0E99 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
 		FF755671293E8C7600DB64DA /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessageContent.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				FFF28EE9295730D600226DF2 /* MessageCell.swift */,
 				FFF28EEB2957320200226DF2 /* MessageContent.swift */,
 				FFF28EED2957323500226DF2 /* TextMessageContent.swift */,
+				FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -991,6 +994,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF75BB82296CAAA50074896B /* PhotoMessageContent.swift in Sources */,
 				FFC6146629141AD200CE75E2 /* AppleSignIn.swift in Sources */,
 				FFF28EEE2957323500226DF2 /* TextMessageContent.swift in Sources */,
 				FF5F2090291AC81F007E0E99 /* SwipeOnlineAndVerified.swift in Sources */,

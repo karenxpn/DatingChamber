@@ -12,7 +12,7 @@ struct MessageBar: View {
     
     @EnvironmentObject var roomVM: RoomViewModel
     @StateObject private var audioVM = AudioRecorderViewModel()
-//
+
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
@@ -64,7 +64,7 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            roomVM.sendMessage()
+                            roomVM.sendMessage(messageType: .text)
 //                            if roomVM.editingMessage != nil{
 //                                roomVM.editMessage()
 //                            } else {
@@ -113,8 +113,8 @@ struct MessageBar: View {
 //            }
         }.fullScreenCover(isPresented: $openCamera, content: {
             CameraXPN(action: { url, data in
-//                roomVM.mediaBinaryData = data
-//                roomVM.getSignedURL(content_type: url.absoluteString.hasSuffix(".mov") ? "video" : "photo")
+                roomVM.media = data
+                roomVM.sendMessage(messageType: url.absoluteString.hasSuffix(".mov") ? .video : .photo)
             }, font: .custom("Inter-SemiBold", size: 14), permissionMessgae: NSLocalizedString("enableAccessForBoth", comment: ""),
                       recordVideoButtonColor: AppColors.primary,
                       useMediaContent: NSLocalizedString("useThisMedia", comment: ""))
