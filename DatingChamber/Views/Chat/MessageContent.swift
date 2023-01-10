@@ -21,7 +21,7 @@ struct MessageContent: View {
             } else if message.type == .photo {
                 PhotoMessageContent(message: message)
             } else if message.type == .video {
-//                VideoMessageContent(message: message, group: group)
+                VideoMessageContent(message: message)
             } else if message.type == .audio {
 //                AudioMessageContent(message: message, group: group)
             }
