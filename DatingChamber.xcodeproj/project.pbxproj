@@ -86,6 +86,8 @@
 		FF755672293E8C7600DB64DA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF755671293E8C7600DB64DA /* Enums.swift */; };
 		FF75BB82296CAAA50074896B /* PhotoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */; };
 		FF75BB84296D95AA0074896B /* VideoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB83296D95AA0074896B /* VideoMessageContent.swift */; };
+		FF75BB86296F11020074896B /* SingleMediaContentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */; };
+		FF75BB88296F11520074896B /* AVPlayerControllerRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB87296F11520074896B /* AVPlayerControllerRepresented.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -270,6 +272,8 @@
 		FF755671293E8C7600DB64DA /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessageContent.swift; sourceTree = "<group>"; };
 		FF75BB83296D95AA0074896B /* VideoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessageContent.swift; sourceTree = "<group>"; };
+		FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMediaContentPreview.swift; sourceTree = "<group>"; };
+		FF75BB87296F11520074896B /* AVPlayerControllerRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerControllerRepresented.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 				FFF28EED2957323500226DF2 /* TextMessageContent.swift */,
 				FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */,
 				FF75BB83296D95AA0074896B /* VideoMessageContent.swift */,
+				FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */,
 				FF34A2F12935462A00598724 /* CheckboxHelper.swift */,
 				FF755671293E8C7600DB64DA /* Enums.swift */,
+				FF75BB87296F11520074896B /* AVPlayerControllerRepresented.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1014,12 +1020,14 @@
 				FF071639292E77F90028B35D /* EditBio.swift in Sources */,
 				FFC6142A2911E8D700CE75E2 /* AppDelegate.swift in Sources */,
 				FF34A2FE29364AE000598724 /* PostGridCell.swift in Sources */,
+				FF75BB86296F11020074896B /* SingleMediaContentPreview.swift in Sources */,
 				FF5F2080291AADE7007E0E99 /* Swipes.swift in Sources */,
 				FF3D6D94293034770046015C /* NavigationButtonHelper.swift in Sources */,
 				FF138028293F4F44002E9FCA /* Chats.swift in Sources */,
 				FF75BB84296D95AA0074896B /* VideoMessageContent.swift in Sources */,
 				FF34A2EA2935118D00598724 /* PostModel.swift in Sources */,
 				FFB4D5DF291192490065955F /* Credentials.swift in Sources */,
+				FF75BB88296F11520074896B /* AVPlayerControllerRepresented.swift in Sources */,
 				FFCCAD6729488A3100BACB91 /* AudioRecordingView.swift in Sources */,
 				FFE33EE7291C4F9B002053B7 /* UserViewModel.swift in Sources */,
 				FF5F2077291A8C8C007E0E99 /* TabViewModel.swift in Sources */,

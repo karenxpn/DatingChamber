@@ -235,7 +235,7 @@ extension ChatService: ChatServiceProtocol {
             
             var url: String = ""
             if type != .text {
-                let dbRef = storageRef.child("chats/\(UUID().uuidString)")
+                let dbRef = storageRef.child("chats/\(UUID().uuidString).\(type == .photo ? "jpg" : "mov")")
                 let _ = try await dbRef.putDataAsync(media!)
                 url = try await dbRef.downloadURL().absoluteString
             }
