@@ -23,7 +23,7 @@ struct MessageContent: View {
             } else if message.type == .video {
                 VideoMessageContent(message: message)
             } else if message.type == .audio {
-//                AudioMessageContent(message: message, group: group)
+                AudioMessageContent(message: message)
             }
             
 //            HStack {

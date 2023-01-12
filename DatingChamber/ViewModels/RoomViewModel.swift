@@ -33,16 +33,18 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         self.manager = manager
     }
     
-    @MainActor func sendMessage(messageType: MessageType) {
-        self.message = ""
-
+    @MainActor func sendMessage(messageType: MessageType, duration: String? = nil) {
+        if messageType == .audio {
+            NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+        }
+        
         Task {
-            let result = await manager.sendMessage(userID: userID, chatID: chatID, type: messageType, media: media, text: message)
+            let result = await manager.sendMessage(userID: userID, chatID: chatID, type: messageType, media: media, text: message, duration: duration)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(()):
-                break
+                self.message = ""
             }
         }
     }

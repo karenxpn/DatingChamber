@@ -13,7 +13,7 @@ import SwiftUI
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String) async -> Result<Void, Error>
+    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, duration: String?) async -> Result<Void, Error>
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
@@ -228,14 +228,19 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String) async -> Result<Void, Error> {
+    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, duration: String? ) async -> Result<Void, Error> {
         do {
             let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
             
             
             var url: String = ""
+            var fileExtension = ""
+            if type == .photo       { fileExtension = "jpg" }
+            else if type == .video  { fileExtension = "mov" }
+            else if type == .audio  { fileExtension = "m4a" }
+            
             if type != .text {
-                let dbRef = storageRef.child("chats/\(UUID().uuidString).\(type == .photo ? "jpg" : "mov")")
+                let dbRef = storageRef.child("chats/\(UUID().uuidString).\(fileExtension)")
                 let _ = try await dbRef.putDataAsync(media!)
                 url = try await dbRef.downloadURL().absoluteString
             }
@@ -243,6 +248,7 @@ extension ChatService: ChatServiceProtocol {
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
                                        type: type,
                                        content: type == .text ? text : url,
+                                       duration: duration,
                                        sentBy: userID,
                                        seenBy: [userID],
                                        isEdited: false,

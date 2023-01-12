@@ -88,6 +88,7 @@
 		FF75BB84296D95AA0074896B /* VideoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB83296D95AA0074896B /* VideoMessageContent.swift */; };
 		FF75BB86296F11020074896B /* SingleMediaContentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */; };
 		FF75BB88296F11520074896B /* AVPlayerControllerRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75BB87296F11520074896B /* AVPlayerControllerRepresented.swift */; };
+		FFB1CCE929709FAC00DC4DA3 /* AudioMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB1CCE829709FAC00DC4DA3 /* AudioMessageContent.swift */; };
 		FFB4D5AA29118EDE0065955F /* DatingChamberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */; };
 		FFB4D5AC29118EDE0065955F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D5AB29118EDE0065955F /* ContentView.swift */; };
 		FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFB4D5AD29118EE10065955F /* Assets.xcassets */; };
@@ -274,6 +275,7 @@
 		FF75BB83296D95AA0074896B /* VideoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessageContent.swift; sourceTree = "<group>"; };
 		FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMediaContentPreview.swift; sourceTree = "<group>"; };
 		FF75BB87296F11520074896B /* AVPlayerControllerRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerControllerRepresented.swift; sourceTree = "<group>"; };
+		FFB1CCE829709FAC00DC4DA3 /* AudioMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessageContent.swift; sourceTree = "<group>"; };
 		FFB4D5A629118EDE0065955F /* DatingChamber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatingChamber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB4D5A929118EDE0065955F /* DatingChamberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatingChamberApp.swift; sourceTree = "<group>"; };
 		FFB4D5AB29118EDE0065955F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				FF75BB81296CAAA50074896B /* PhotoMessageContent.swift */,
 				FF75BB83296D95AA0074896B /* VideoMessageContent.swift */,
 				FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */,
+				FFB1CCE829709FAC00DC4DA3 /* AudioMessageContent.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 				FF07163B292E96D90028B35D /* EditCity.swift in Sources */,
 				FFDB62362938EF8400B39102 /* PostDetailView.swift in Sources */,
 				FFCA5A3A29180E3600C91BEC /* ProfileImageBox.swift in Sources */,
+				FFB1CCE929709FAC00DC4DA3 /* AudioMessageContent.swift in Sources */,
 				FF071625292D436A0028B35D /* AccountViewModel.swift in Sources */,
 				FF3D6D982930E7BD0046015C /* LocationRequest.swift in Sources */,
 				FFCCAD6B29488AAC00BACB91 /* AudioPlayerViewModel.swift in Sources */,

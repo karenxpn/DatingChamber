@@ -73,15 +73,15 @@ struct AudioRecordingView: View {
     }
     
     func sendAudio() {
-//        do {
-//            let data = try Data(contentsOf: audioVM.url)
-//            roomVM.mediaBinaryData = data
-//            roomVM.duration = "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")"
-//
-//            roomVM.getSignedURL(content_type: "audio")
-//        } catch {
-//            print(error)
-//        }
+        do {
+            let data = try Data(contentsOf: audioVM.url)
+            roomVM.media = data
+
+            roomVM.sendMessage(messageType: .audio,
+                               duration: "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")")
+        } catch {
+            print(error)
+        }
     }
 }
 

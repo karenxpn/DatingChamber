@@ -25,7 +25,7 @@ struct AppPreviewModel {
                                                  image: Credentials.default_story_image,
                                                  online: true, lastVisit: nil, blocked: false)],
                         lastMessage: ChatMessagePreview(id: "1",
-                                                         type: "text",
+                                                        type: .text,
                                                          content: "Holaaa my name is Karen",
                                                          sentBy: "a;sldkfj",
                                                          seenBy: [""],

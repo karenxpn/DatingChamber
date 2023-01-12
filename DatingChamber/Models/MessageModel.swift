@@ -15,6 +15,7 @@ struct MessageModel: Codable, Identifiable {
     var createdAt: Timestamp
     var type: MessageType
     var content: String
+    var duration: String?
     var sentBy: String
     var seenBy: [String]
     var isEdited: Bool
@@ -48,6 +49,7 @@ struct MessageViewModel: Identifiable {
     var repliedTo: RepliedMessageModel?         { self.message.repliedTo }
     var reactions: [String]                     { self.message.reactions }
     var status: MessageStatus                   { self.message.status }
+    var duration: String                        { self.message.duration ?? "" }
 }
 
 enum MessageType : RawRepresentable, CaseIterable, Codable {

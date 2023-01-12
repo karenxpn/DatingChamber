@@ -18,7 +18,7 @@ struct ChatModel: Identifiable, Codable {
 
 struct ChatMessagePreview: Identifiable, Codable {
     var id: String
-    var type: String
+    var type: MessageType
     var content: String
     var sentBy: String
     var seenBy: [String]
@@ -51,8 +51,8 @@ struct ChatModelViewModel: Identifiable {
         return false
     }
     
-    var messageStatus: String   { self.chat.lastMessage.status }
-    var messageType: String     { self.chat.lastMessage.type }
+    var messageStatus: String       { self.chat.lastMessage.status }
+    var messageType: MessageType    { self.chat.lastMessage.type }
     
     var seen: Bool {
         if self.chat.lastMessage.seenBy.contains(where: {$0 != self.chat.lastMessage.sentBy }) { return true }
@@ -68,7 +68,14 @@ struct ChatModelViewModel: Identifiable {
     
     // to be modified
     // content -> detect content type
-    var content: String                 { self.chat.lastMessage.content }
+    var content: String {
+        if messageType == .text {
+            return self.chat.lastMessage.content
+        } else {
+            return NSLocalizedString("mediaContent", comment: "")
+        }
+        
+    }
     var date: String                    { self.chat.lastMessage.createdAt.countTimeBetweenDates() }
     //
     var users: [UserPreviewViewModel]   { self.chat.users.map(UserPreviewViewModel.init) }
