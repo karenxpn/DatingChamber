@@ -30,9 +30,9 @@ struct TextMessageContent: View {
         else {
             VStack( alignment: message.sentBy == userID && message.repliedTo == nil ? .trailing : .leading) {
                 
-//                if message.reptyedTo != nil {
-//                    ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!)
-//                }
+                if message.repliedTo != nil {
+                    ReplyedToMessagePreview(senderID: message.sentBy, repliedTo: message.repliedTo!, contentType: message.type)
+                }
                 
                 Text(message.content)
                     .foregroundColor(message.sentBy == userID ? .white : .black)

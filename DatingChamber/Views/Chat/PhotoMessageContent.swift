@@ -15,13 +15,11 @@ struct PhotoMessageContent: View {
     var body: some View {
         
         VStack( alignment: message.sentBy == userID && message.repliedTo == nil ? .trailing : .leading) {
-//
-//            if message.reptyedTo != nil {
-//                ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!)
-//                    .frame(width: UIScreen.main.bounds.width * 0.5)
-//
-//            }
-//
+            if message.repliedTo != nil {
+                ReplyedToMessagePreview(senderID: message.sentBy, repliedTo: message.repliedTo!, contentType: message.type)
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+            }
+
             if message.content.hasPrefix("https://") {
                 ImageHelper(image: message.content, contentMode: .fill)
                     .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.4)

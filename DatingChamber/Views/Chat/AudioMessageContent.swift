@@ -27,11 +27,11 @@ struct AudioMessageContent: View {
     
     var body: some View {
         VStack( alignment: message.sentBy == userID && message.repliedTo == nil ? .trailing : .leading ) {
-            
-//            if message.reptyedTo != nil {
-//                ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!, contentType: "audio")
-//                    .frame(width: UIScreen.main.bounds.width * 0.4)
-//            }
+
+            if message.repliedTo != nil {
+                ReplyedToMessagePreview(senderID: message.sentBy, repliedTo: message.repliedTo!, contentType: message.type)
+                    .frame(width: UIScreen.main.bounds.width * 0.6)
+            }
             
             LazyHStack(alignment: .center, spacing: 10) {
                 

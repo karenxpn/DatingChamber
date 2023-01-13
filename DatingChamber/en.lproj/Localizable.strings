@@ -126,3 +126,5 @@
 "itsMatch" = "It's a match!";
 "startConversation" = "Start the conversation\nwriting a message";
 "mediaContent" = "Media Content";
+"videoContent" = "Video Content";
+"audioContent" = "Audio Content";

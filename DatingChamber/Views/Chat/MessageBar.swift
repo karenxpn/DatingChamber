@@ -23,9 +23,10 @@ struct MessageBar: View {
             
 //            if roomVM.editingMessage != nil {
 //                BarMessagePreview(message: $roomVM.editingMessage)
-//            } else if roomVM.replyMessage != nil {
-//                BarMessagePreview(message: $roomVM.replyMessage)
 //            }
+            if roomVM.replyMessage != nil {
+                BarMessagePreview(message: $roomVM.replyMessage)
+            }
             
             if audioVM.recording {
                 HStack( alignment: .top) {
@@ -91,8 +92,8 @@ struct MessageBar: View {
                 }
             }.frame(height: 96)
                 .background(.white)
-                .cornerRadius(35, corners: [.topLeft, .topRight])
-                .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+                .cornerRadius((roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? 0 : 35, corners: [.topLeft, .topRight])
+                .shadow(color: (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
             Button {

@@ -253,7 +253,8 @@ extension ChatService: ChatServiceProtocol {
                                        seenBy: [userID],
                                        isEdited: false,
                                        status: .sent,
-                                       reactions: [])
+                                       reactions: [],
+                                       senderName: user.name)
             
             let lastMessage = LastMessageModel(lastMessage: message)
             

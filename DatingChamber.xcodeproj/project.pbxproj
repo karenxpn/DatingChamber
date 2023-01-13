@@ -27,6 +27,8 @@
 		FF071641292E98660028B35D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071640292E98660028B35D /* EditOccupation.swift */; };
 		FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071642292E98F40028B35D /* EditProfileBuilder.swift */; };
 		FF071645292E9FB30028B35D /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071644292E9FB30028B35D /* EditGender.swift */; };
+		FF0966DB29719B7A0036EA1C /* ReplyedToMessagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0966DA29719B7A0036EA1C /* ReplyedToMessagePreview.swift */; };
+		FF0966DD29719DDA0036EA1C /* BarMessagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0966DC29719DDA0036EA1C /* BarMessagePreview.swift */; };
 		FF138028293F4F44002E9FCA /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138027293F4F44002E9FCA /* Chats.swift */; };
 		FF13802A293F4F5A002E9FCA /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138029293F4F5A002E9FCA /* ChatViewModel.swift */; };
 		FF13802C293F4F95002E9FCA /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13802B293F4F95002E9FCA /* ChatModel.swift */; };
@@ -217,6 +219,8 @@
 		FF071640292E98660028B35D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF071642292E98F40028B35D /* EditProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBuilder.swift; sourceTree = "<group>"; };
 		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FF0966DA29719B7A0036EA1C /* ReplyedToMessagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyedToMessagePreview.swift; sourceTree = "<group>"; };
+		FF0966DC29719DDA0036EA1C /* BarMessagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarMessagePreview.swift; sourceTree = "<group>"; };
 		FF138027293F4F44002E9FCA /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
 		FF138029293F4F5A002E9FCA /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		FF13802B293F4F95002E9FCA /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -503,6 +507,8 @@
 				FF75BB83296D95AA0074896B /* VideoMessageContent.swift */,
 				FF75BB85296F11020074896B /* SingleMediaContentPreview.swift */,
 				FFB1CCE829709FAC00DC4DA3 /* AudioMessageContent.swift */,
+				FF0966DA29719B7A0036EA1C /* ReplyedToMessagePreview.swift */,
+				FF0966DC29719DDA0036EA1C /* BarMessagePreview.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1039,6 +1045,7 @@
 				FF755672293E8C7600DB64DA /* Enums.swift in Sources */,
 				FF071645292E9FB30028B35D /* EditGender.swift in Sources */,
 				FFC6349629119853001711BC /* TermsOfUse.swift in Sources */,
+				FF0966DB29719B7A0036EA1C /* ReplyedToMessagePreview.swift in Sources */,
 				FF3D6D92293034630046015C /* ActionButtonHelper.swift in Sources */,
 				FF5F2088291AB4A8007E0E99 /* ActionSheetButtonHelper.swift in Sources */,
 				FF07163B292E96D90028B35D /* EditCity.swift in Sources */,
@@ -1051,6 +1058,7 @@
 				FFF28EE629572FD400226DF2 /* LastMessageModel.swift in Sources */,
 				FF071623292D42810028B35D /* UserModel.swift in Sources */,
 				FF5F2079291A8DFE007E0E99 /* MainView.swift in Sources */,
+				FF0966DD29719DDA0036EA1C /* BarMessagePreview.swift in Sources */,
 				FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */,
 				FF34A2E82935113E00598724 /* BlogViewModel.swift in Sources */,
 				FF34A2F02935417200598724 /* CreatePost.swift in Sources */,

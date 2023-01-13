@@ -22,12 +22,13 @@ struct MessageModel: Codable, Identifiable {
     var status: MessageStatus
     var repliedTo: RepliedMessageModel?
     var reactions: [String]
+    var senderName: String?
 }
 
 struct RepliedMessageModel: Codable {
-    var message: String
-    var type: String
     var name: String
+    var message: String
+    var type: MessageType
 }
 
 struct MessageViewModel: Identifiable {
@@ -50,6 +51,7 @@ struct MessageViewModel: Identifiable {
     var reactions: [String]                     { self.message.reactions }
     var status: MessageStatus                   { self.message.status }
     var duration: String                        { self.message.duration ?? "" }
+    var senderName: String                      { self.message.senderName ?? "User" }
 }
 
 enum MessageType : RawRepresentable, CaseIterable, Codable {

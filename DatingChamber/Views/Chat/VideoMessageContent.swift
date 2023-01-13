@@ -16,11 +16,10 @@ struct VideoMessageContent: View {
         
         VStack( alignment: message.sentBy == userID && message.repliedTo == nil ? .trailing : .leading) {
             
-//            if message.reptyedTo != nil {
-//                ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!)
-//                    .frame(width: UIScreen.main.bounds.width * 0.5)
-//
-//            }
+            if message.repliedTo != nil {
+                ReplyedToMessagePreview(senderID: message.sentBy, repliedTo: message.repliedTo!, contentType: message.type)
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+            }
             
             if message.content.hasPrefix("https://") {
                 let player = AVPlayer(url:  URL(string: message.content)!)
