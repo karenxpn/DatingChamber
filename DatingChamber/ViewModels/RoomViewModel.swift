@@ -39,12 +39,17 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         }
         
         Task {
-            let result = await manager.sendMessage(userID: userID, chatID: chatID, type: messageType, media: media, text: message, duration: duration)
+            let replyTo = replyMessage != nil ? RepliedMessageModel(name: replyMessage!.senderName,
+                                                                    message: replyMessage!.content,
+                                                                    type: replyMessage!.type) : nil
+            
+            let result = await manager.sendMessage(userID: userID, chatID: chatID, type: messageType, media: media, text: message, repliedTo: replyTo, duration: duration)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(()):
                 self.message = ""
+                self.replyMessage = nil
             }
         }
     }

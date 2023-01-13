@@ -13,7 +13,7 @@ import SwiftUI
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, duration: String?) async -> Result<Void, Error>
+    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, repliedTo: RepliedMessageModel?, duration: String?) async -> Result<Void, Error>
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
@@ -228,7 +228,7 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, duration: String? ) async -> Result<Void, Error> {
+    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, repliedTo: RepliedMessageModel?, duration: String? ) async -> Result<Void, Error> {
         do {
             let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
             
@@ -253,6 +253,7 @@ extension ChatService: ChatServiceProtocol {
                                        seenBy: [userID],
                                        isEdited: false,
                                        status: .sent,
+                                       repliedTo: repliedTo,
                                        reactions: [],
                                        senderName: user.name)
             
