@@ -21,14 +21,13 @@ struct ChatRoom: View {
     var body: some View {
         ZStack {
             
-//            if roomVM.messages.isEmpty && !roomVM.loading {
-//                EmptyChat(chat: chat)
-//            } else {
-            MessagesList( messages: messages.map(MessageViewModel.init),
-                          manager: _messages.manager)
-                    .environmentObject(roomVM)
-            
-//            }
+            if messages.isEmpty {
+                EmptyChat(chat: chat)
+            } else {
+                MessagesList( messages: messages.map(MessageViewModel.init),
+                              manager: _messages.manager)
+                .environmentObject(roomVM)
+            }
             
             VStack {
                 Spacer()
