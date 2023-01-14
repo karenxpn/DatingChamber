@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseService
+import FirebaseFirestore
 
 struct ChatRoom: View {
     let chat: ChatModelViewModel
@@ -13,15 +15,20 @@ struct ChatRoom: View {
     
     @StateObject private var roomVM = RoomViewModel()
     
+    @FirestorePaginatedFetch("Chats/wcItooQ5tsYVPiKloiYn/messages", pagination: .init(orderBy: "createdAt", type: Timestamp.self, descending: true, limit: 2)) var messages: [MessageModel]
+
+    
     var body: some View {
         ZStack {
             
-            if roomVM.messages.isEmpty && !roomVM.loading {
-                EmptyChat(chat: chat)
-            } else {
-                MessagesList()
+//            if roomVM.messages.isEmpty && !roomVM.loading {
+//                EmptyChat(chat: chat)
+//            } else {
+            MessagesList( messages: messages.map(MessageViewModel.init),
+                          manager: _messages.manager)
                     .environmentObject(roomVM)
-            }
+            
+//            }
             
             VStack {
                 Spacer()
@@ -32,8 +39,10 @@ struct ChatRoom: View {
             .onAppear {
                 NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
                 roomVM.chatID = chat.id
-                roomVM.getMessages()
-            }
+//                roomVM.getMessages()
+            }.onChange(of: messages, perform: { newValue in
+                print(newValue)
+            })
             .onDisappear {
                 NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)
             }.navigationTitle(Text(""))

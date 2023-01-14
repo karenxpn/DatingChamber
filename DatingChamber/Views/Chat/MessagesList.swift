@@ -6,27 +6,31 @@
 //
 
 import SwiftUI
+import FirebaseService
+import FirebaseFirestore
 
 struct MessagesList: View {
     @EnvironmentObject var roomVM: RoomViewModel
-    
+    let messages: [MessageViewModel]
+    let manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
+        
     var body: some View {
         ScrollView(showsIndicators: false) {
             ScrollViewReader { scrollView in
                 
                 LazyVStack(spacing: 0) {
                     
-                    ForEach(roomVM.messages, id: \.id) { message in
+                    ForEach(messages, id: \.uid) { message in
                         MessageCell(message: message)
                             .environmentObject(roomVM)
-                            .padding(.bottom, roomVM.messages[0].id == message.id ? UIScreen.main.bounds.size.height * 0.15 : 0)
-                            .padding(.bottom, roomVM.messages[0].id == message.id &&
+                            .padding(.bottom, messages[0].uid == message.uid ? UIScreen.main.bounds.size.height * 0.15 : 0)
+                            .padding(.bottom, messages[0].uid == message.uid &&
                                      ( roomVM.editingMessage != nil || roomVM.replyMessage != nil ) ? UIScreen.main.bounds.height * 0.1 : 0)
                             .rotationEffect(.radians(3.14))
                             .onAppear {
-                                if let lastElement = roomVM.messages.last {
-                                    if message.id == lastElement.id && !roomVM.loading {
-                                        roomVM.getMessages()
+                                if let lastMessageUID = messages.last?.uid {
+                                    if message.uid == lastMessageUID {
+                                        manager.fetch()
                                     }
                                 }
                             }
@@ -52,8 +56,8 @@ struct MessagesList: View {
     }
 }
 
-struct MessagesList_Previews: PreviewProvider {
-    static var previews: some View {
-        MessagesList()
-    }
-}
+//struct MessagesList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessagesList( messages: [AppPreviewModel.message])
+//    }
+//}

@@ -9,8 +9,15 @@ import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
 import Firebase
+import FirebaseService
 
-struct MessageModel: Codable, Identifiable {
+struct MessageModel: Codable, Firestorable, Equatable {
+    var uid: String
+        
+    static func == (lhs: MessageModel, rhs: MessageModel) -> Bool {
+        lhs.createdAt < rhs.createdAt
+    }
+    
     @DocumentID var id: String?
     var createdAt: Timestamp
     var type: MessageType
@@ -23,6 +30,22 @@ struct MessageModel: Codable, Identifiable {
     var repliedTo: RepliedMessageModel?
     var reactions: [String]
     var senderName: String?
+    
+    init(uid: String? = nil, id: String? = nil, createdAt: Timestamp, type: MessageType, content: String, duration: String? = nil, sentBy: String, seenBy: [String], isEdited: Bool, status: MessageStatus, repliedTo: RepliedMessageModel? = nil, reactions: [String], senderName: String? = nil) {
+        self.uid = uid ?? UUID().uuidString
+        self.id = id
+        self.createdAt = createdAt
+        self.type = type
+        self.content = content
+        self.duration = duration
+        self.sentBy = sentBy
+        self.seenBy = seenBy
+        self.isEdited = isEdited
+        self.status = status
+        self.repliedTo = repliedTo
+        self.reactions = reactions
+        self.senderName = senderName
+    }
 }
 
 struct RepliedMessageModel: Codable {
@@ -40,6 +63,7 @@ struct MessageViewModel: Identifiable {
     }
     
     var id: String                              { self.message.id ?? UUID().uuidString }
+    var uid: String                             { self.message.uid }
     var creationDate: Timestamp                 { self.message.createdAt}
     var createdAt: String                       { self.message.createdAt.dateValue().countTimeBetweenDates() }
     var type: MessageType                       { self.message.type }
