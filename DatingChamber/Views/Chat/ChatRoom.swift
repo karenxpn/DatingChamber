@@ -31,7 +31,7 @@ struct ChatRoom: View {
             
             VStack {
                 Spacer()
-                MessageBar()
+                MessageBar(manager: _messages.manager)
                     .environmentObject(roomVM)
             }
         }.ignoresSafeArea(.container, edges: .bottom)

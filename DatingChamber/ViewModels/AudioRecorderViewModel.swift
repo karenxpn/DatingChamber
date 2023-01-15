@@ -89,7 +89,9 @@ class AudioRecorderViewModel: ObservableObject {
         if audioSession.recordPermission == .undetermined {
             audioSession.requestRecordPermission { (isGranted) in
                 if isGranted {
-                    self.permissionStatus = .granted
+                    DispatchQueue.main.async {
+                        self.permissionStatus = .granted
+                    }
                 }
                 if !isGranted {
                     print("no access to record")

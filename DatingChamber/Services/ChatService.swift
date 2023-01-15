@@ -10,16 +10,23 @@ import FirebaseFirestore
 import AVFoundation
 import FirebaseStorage
 import SwiftUI
+import FirebaseService
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, repliedTo: RepliedMessageModel?, duration: String?) async -> Result<Void, Error>
+    func sendMessage(manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>,
+                     userID: String,
+                     chatID: String,
+                     type: MessageType,
+                     content: String,
+                     repliedTo: RepliedMessageModel?,
+                     duration: String?) async -> Result<Void, Error>
+    
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
-    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ())
-    
+    func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error>
 }
 
 class ChatService {
@@ -31,94 +38,7 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
-    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ()) {
-        var query: Query = db.collection("Chats")
-            .document(chatIID)
-            .collection("messages")
-            .order(by: "createdAt", descending: true)
-        
-        if lastMessage == nil {
-            let currentQuery = query.limit(to: 5)
-                currentQuery.getDocuments { snapshot, error in
-                    if let error {
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
-                        return
-                    }
-                    
-                    let last = snapshot!.documents.last
-                    if let last { query = query.end(atDocument: last) }
-                    
-                    query.addSnapshotListener { snapshot, error in
-                        if let error {
-                            DispatchQueue.main.async {
-                                completion(.failure(error))
-                            }
-                            return
-                        }
-                        
-                        guard snapshot?.documents.last != nil else {
-                            DispatchQueue.main.async {
-                                completion(.success(([], nil)))
-                            }
-                            // The collection is empty.
-                            return
-                        }
-                        
-                        var results = [(MessageModel)]()
-                        snapshot?.documents.forEach({ doc in
-                            do {
-                                let message = try doc.data(as: MessageModel.self)
-                                results.append(message)
-                            } catch {
-                                print(error)
-                            }
-                        })
-                        
-                        DispatchQueue.main.async {
-                            completion(.success((results, snapshot?.documents.last)))
-                        }
-                    }
-                    
-                }
 
-        } else {
-            query = query.start(afterDocument: lastMessage!).limit(to: 5)
-            query.addSnapshotListener { snapshot, error in
-                if let error {
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                    }
-                    return
-                }
-                
-                guard snapshot?.documents.last != nil else {
-                    DispatchQueue.main.async {
-                        completion(.success(([], nil)))
-                    }
-                    // The collection is empty.
-                    return
-                }
-                
-                var results = [(MessageModel)]()
-                
-                snapshot?.documents.forEach({ doc in
-                    do {
-                        let message = try doc.data(as: MessageModel.self)
-                        results.append(message)
-                    } catch {
-                        print(error)
-                    }
-                })
-                
-                DispatchQueue.main.async {
-                    completion(.success((results, snapshot?.documents.last)))
-                }
-            }
-        }
-    }
-    
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
         
         DispatchQueue.global(qos: .userInteractive).async {
@@ -228,26 +148,36 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, repliedTo: RepliedMessageModel?, duration: String? ) async -> Result<Void, Error> {
+    func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error> {
         do {
-            let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
-            
-            
-            var url: String = ""
             var fileExtension = ""
             if type == .photo       { fileExtension = "jpg" }
             else if type == .video  { fileExtension = "mov" }
             else if type == .audio  { fileExtension = "m4a" }
             
-            if type != .text {
-                let dbRef = storageRef.child("chats/\(UUID().uuidString).\(fileExtension)")
-                let _ = try await dbRef.putDataAsync(media!)
-                url = try await dbRef.downloadURL().absoluteString
-            }
+            let dbRef = storageRef.child("chats/\(UUID().uuidString).\(fileExtension)")
+            let _ = try await dbRef.putDataAsync(media)
+            let url = try await dbRef.downloadURL().absoluteString
+            
+            return .success(url)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func sendMessage(manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>,
+                     userID: String,
+                     chatID: String,
+                     type: MessageType,
+                     content: String,
+                     repliedTo: RepliedMessageModel?,
+                     duration: String?) async -> Result<Void, Error> {
+        do {
+            let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
 
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
                                        type: type,
-                                       content: type == .text ? text : url,
+                                       content: content,
                                        duration: duration,
                                        sentBy: userID,
                                        seenBy: [userID],
@@ -259,11 +189,9 @@ extension ChatService: ChatServiceProtocol {
             
             let lastMessage = LastMessageModel(lastMessage: message)
             
-            let _ = try await db
-                .collection("Chats")
-                .document(chatID)
-                .collection("messages")
-                .addDocument(data: Firestore.Encoder().encode(message))
+            DispatchQueue.main.async {
+                try? manager.create(message)
+            }
             
             let _ = try await db.collection("Chats").document(chatID).setData(from: lastMessage, merge: true)
             
@@ -271,5 +199,6 @@ extension ChatService: ChatServiceProtocol {
         } catch {
             return .failure(error)
         }
+        
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseFirestore
+import FirebaseService
 
 class RoomViewModel: AlertViewModel, ObservableObject {
     @AppStorage("userID") var userID: String = ""
@@ -33,17 +34,38 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         self.manager = manager
     }
     
-    @MainActor func sendMessage(messageType: MessageType, duration: String? = nil) {
+    @MainActor func sendMessage(messageType: MessageType,
+                                duration: String? = nil,
+                                firestoreManager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>) {
         if messageType == .audio {
             NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
         }
-        
+                
         Task {
+            if let media = media{
+                if  messageType != .text  {
+                    let mediaUploadResult = await manager.uploadMedia(media: media, type: messageType)
+                    switch mediaUploadResult {
+                    case .failure(let error):
+                        self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+                    case .success(let url):
+                        // send message
+                        self.message = url
+                    }
+                }
+            }
+            
             let replyTo = replyMessage != nil ? RepliedMessageModel(name: replyMessage!.senderName,
                                                                     message: replyMessage!.content,
                                                                     type: replyMessage!.type) : nil
             
-            let result = await manager.sendMessage(userID: userID, chatID: chatID, type: messageType, media: media, text: message, repliedTo: replyTo, duration: duration)
+            let result = await manager.sendMessage(manager: firestoreManager,
+                                                   userID: userID,
+                                                   chatID: chatID,
+                                                   type: messageType,
+                                                   content: message,
+                                                   repliedTo: replyTo,
+                                                   duration: duration)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
@@ -52,43 +74,5 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                 self.replyMessage = nil
             }
         }
-    }
-    
-    
-    func getMessages() {
-        loading = true
-        
-        manager.fetchMessages(chatIID: chatID, lastMessage: lastMessage, completion: { result in
-            self.loading = false
-            
-            switch result {
-            case .failure(let error):
-                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
-            case .success(let response):
-                // response.0 -> messages
-                // response.1 -> last message
-                
-                print(response.0.count)
-                if response.0.count > 5 {
-                    self.messagesBlocks[0].insert(MessageViewModel(message: response.0[0]), at: 0)
-                    print(self.messagesBlocks[0])
-                    withAnimation {
-                        self.messages.insert(MessageViewModel(message: response.0[0]), at: 0)
-                    }
-                    
-                    if !response.0.isEmpty {
-                        self.lastMessageID = self.messages[0].id
-                    }
-                } else {
-                    self.messagesBlocks.append(response.0.map(MessageViewModel.init))
-                    self.messages = Array(self.messagesBlocks.joined())
-                    
-                    if !response.0.isEmpty {
-                        self.lastMessageID = self.messages[0].id
-                        self.lastMessage = response.1
-                    }
-                }
-            }
-        })
     }
 }

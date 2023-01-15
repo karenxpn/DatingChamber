@@ -15,7 +15,7 @@ struct MessageModel: Codable, Firestorable, Equatable {
     var uid: String
         
     static func == (lhs: MessageModel, rhs: MessageModel) -> Bool {
-        lhs.createdAt < rhs.createdAt
+        lhs.uid == rhs.uid
     }
     
     @DocumentID var id: String?

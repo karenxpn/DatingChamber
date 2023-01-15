@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CameraXPN
+import FirebaseService
+import FirebaseFirestore
 
 struct MessageBar: View {
     
@@ -16,6 +18,8 @@ struct MessageBar: View {
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
+    let manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
+
         
     
     var body: some View {
@@ -44,10 +48,10 @@ struct MessageBar: View {
             
             HStack {
                 if audioVM.showRecording {
-                    AudioRecordingView()
+                    AudioRecordingView(manager: manager)
                         .environmentObject(audioVM)
                 } else if audioVM.showPreview {
-                    RecordingPreview(url: audioVM.url, duration: Int(audioVM.audioDuration))
+                    RecordingPreview(url: audioVM.url, duration: Int(audioVM.audioDuration), manager: manager)
                 } else {
                     Button {
                         openAttachment.toggle()
@@ -65,7 +69,7 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            roomVM.sendMessage(messageType: .text)
+                            roomVM.sendMessage(messageType: .text, firestoreManager: manager)
 //                            if roomVM.editingMessage != nil{
 //                                roomVM.editMessage()
 //                            } else {
@@ -115,7 +119,7 @@ struct MessageBar: View {
         }.fullScreenCover(isPresented: $openCamera, content: {
             CameraXPN(action: { url, data in
                 roomVM.media = data
-                roomVM.sendMessage(messageType: url.absoluteString.hasSuffix(".mov") ? .video : .photo)
+                roomVM.sendMessage(messageType: url.absoluteString.hasSuffix(".mov") ? .video : .photo, firestoreManager: manager)
             }, font: .custom("Inter-SemiBold", size: 14), permissionMessgae: NSLocalizedString("enableAccessForBoth", comment: ""),
                       recordVideoButtonColor: AppColors.primary,
                       useMediaContent: NSLocalizedString("useThisMedia", comment: ""))
@@ -126,9 +130,9 @@ struct MessageBar: View {
     }
 }
 
-struct MessageBar_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageBar()
-            .environmentObject(RoomViewModel())
-    }
-}
+//struct MessageBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessageBar()
+//            .environmentObject(RoomViewModel())
+//    }
+//}
