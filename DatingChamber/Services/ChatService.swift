@@ -92,20 +92,14 @@ extension ChatService: ChatServiceProtocol {
         
     }
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Chats").document(chatID).updateData(["mutedBy" : mute ? FieldValue.arrayUnion([userID]) : FieldValue.arrayRemove([userID])])
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func deleteChat(chatID: String) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Chats").document(chatID).delete()
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     

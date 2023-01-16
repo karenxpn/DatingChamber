@@ -27,6 +27,7 @@
 		FF071641292E98660028B35D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071640292E98660028B35D /* EditOccupation.swift */; };
 		FF071643292E98F40028B35D /* EditProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071642292E98F40028B35D /* EditProfileBuilder.swift */; };
 		FF071645292E9FB30028B35D /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF071644292E9FB30028B35D /* EditGender.swift */; };
+		FF0845C92975DC8F002EDD82 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0845C82975DC8F002EDD82 /* APIHelper.swift */; };
 		FF0966DB29719B7A0036EA1C /* ReplyedToMessagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0966DA29719B7A0036EA1C /* ReplyedToMessagePreview.swift */; };
 		FF0966DD29719DDA0036EA1C /* BarMessagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0966DC29719DDA0036EA1C /* BarMessagePreview.swift */; };
 		FF138028293F4F44002E9FCA /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF138027293F4F44002E9FCA /* Chats.swift */; };
@@ -219,6 +220,7 @@
 		FF071640292E98660028B35D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF071642292E98F40028B35D /* EditProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBuilder.swift; sourceTree = "<group>"; };
 		FF071644292E9FB30028B35D /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FF0845C82975DC8F002EDD82 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		FF0966DA29719B7A0036EA1C /* ReplyedToMessagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyedToMessagePreview.swift; sourceTree = "<group>"; };
 		FF0966DC29719DDA0036EA1C /* BarMessagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarMessagePreview.swift; sourceTree = "<group>"; };
 		FF138027293F4F44002E9FCA /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 				FFE33EE2291BFF3B002053B7 /* UserService.swift */,
 				FF34A2EB2935129400598724 /* BlogService.swift */,
 				FF13802D293F4FBA002E9FCA /* ChatService.swift */,
+				FF0845C82975DC8F002EDD82 /* APIHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1120,6 +1123,7 @@
 				FF07163F292E97FA0028B35D /* EditEducation.swift in Sources */,
 				FFCA5A43291818DC00C91BEC /* ImageHelper.swift in Sources */,
 				FF138036293F88B3002E9FCA /* UserPreviewModel.swift in Sources */,
+				FF0845C92975DC8F002EDD82 /* APIHelper.swift in Sources */,
 				FF5F2075291A8C3F007E0E99 /* CustomTabView.swift in Sources */,
 				FF138032293F5187002E9FCA /* EmptyChatList.swift in Sources */,
 				FFCCAD6929488A8800BACB91 /* RecordingPreview.swift in Sources */,
@@ -1317,7 +1321,10 @@
 				INFOPLIST_FILE = DatingChamber/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Dating Chamber";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow using your camera to take pictures and videos";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The data will be used to present more accurate content";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow using your microphone to send audio messages and videos with voice";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "The app uses information for more accurate content";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1352,7 +1359,10 @@
 				INFOPLIST_FILE = DatingChamber/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Dating Chamber";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow using your camera to take pictures and videos";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The data will be used to present more accurate content";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow using your microphone to send audio messages and videos with voice";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "The app uses information for more accurate content";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
