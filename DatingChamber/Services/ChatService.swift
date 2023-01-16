@@ -27,6 +27,7 @@ protocol ChatServiceProtocol {
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
     func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error>
+    func editMessage(chatID: String, messageID: String, message: String) async -> Result<Void, Error>
 }
 
 class ChatService {
@@ -200,5 +201,17 @@ extension ChatService: ChatServiceProtocol {
             return .failure(error)
         }
         
+    }
+    
+    func editMessage(chatID: String, messageID: String, message: String) async -> Result<Void, Error> {
+        do {
+            let _ = try await db.collection("Chats").document(chatID).collection("messages").document(messageID)
+                .setData(["content" : message,
+                          "isEdited": true], merge: true)
+            
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
     }
 }

@@ -76,7 +76,18 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         }
     }
     
-    func editMessage() {
-        
+    @MainActor func editMessage() {
+        Task {
+            let result = await manager.editMessage(chatID: chatID,
+                                                   messageID: editingMessage?.id ?? UUID().uuidString,
+                                                   message: message)
+            switch result {
+            case .success(()):
+                self.message = ""
+                self.editingMessage = nil
+            case .failure(_):
+                break
+            }
+        }
     }
 }

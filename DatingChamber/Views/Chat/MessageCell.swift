@@ -37,7 +37,7 @@ struct MessageCell: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 7)
                 
-                Text("\(message.createdAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
+                Text("\(message.createdAt)\(message.isEdited ? "(\(NSLocalizedString("edited", comment: "")))" : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }
@@ -156,7 +156,7 @@ struct MessageCell: View {
             
             
             if message.sentBy != userID {
-                Text("\(message.createdAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
+                Text("\(message.createdAt)\(message.isEdited ? "(\(NSLocalizedString("edited", comment: "")))" : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }
