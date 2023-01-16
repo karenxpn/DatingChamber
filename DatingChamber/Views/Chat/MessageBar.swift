@@ -25,10 +25,9 @@ struct MessageBar: View {
     var body: some View {
         VStack( spacing: 0) {
             
-//            if roomVM.editingMessage != nil {
-//                BarMessagePreview(message: $roomVM.editingMessage)
-//            }
-            if roomVM.replyMessage != nil {
+            if roomVM.editingMessage != nil {
+                BarMessagePreview(message: $roomVM.editingMessage)
+            } else if roomVM.replyMessage != nil {
                 BarMessagePreview(message: $roomVM.replyMessage)
             }
             
@@ -69,12 +68,11 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            roomVM.sendMessage(messageType: .text, firestoreManager: manager)
-//                            if roomVM.editingMessage != nil{
-//                                roomVM.editMessage()
-//                            } else {
-//                                roomVM.sendTextMessage()
-//                            }
+                            if roomVM.editingMessage != nil{
+                                roomVM.editMessage()
+                            } else {
+                                roomVM.sendMessage(messageType: .text, firestoreManager: manager)
+                            }
                         } label: {
                             Image("icon_send_message")
                                 .padding([.trailing, .vertical], 20)

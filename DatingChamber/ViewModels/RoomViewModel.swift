@@ -75,4 +75,8 @@ class RoomViewModel: AlertViewModel, ObservableObject {
             }
         }
     }
+    
+    func editMessage() {
+        
+    }
 }

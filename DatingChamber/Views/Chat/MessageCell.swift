@@ -95,7 +95,7 @@ struct MessageCell: View {
                     }
                 ) {
                     VStack(alignment: .leading, spacing: 0) {
-                        MenuButtonsHelper(label: NSLocalizedString("answer", comment: ""), role: .cancel) {
+                        MenuButtonsHelper(label: NSLocalizedString("reply", comment: ""), role: .cancel) {
                             roomVM.replyMessage = message
                             showPopOver = false
                         }

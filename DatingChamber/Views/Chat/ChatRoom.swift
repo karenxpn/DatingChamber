@@ -15,7 +15,7 @@ struct ChatRoom: View {
     
     @StateObject private var roomVM = RoomViewModel()
     
-    @FirestorePaginatedFetch("Chats/wcItooQ5tsYVPiKloiYn/messages", pagination: .init(orderBy: "createdAt", type: Timestamp.self, descending: true, limit: 2)) var messages: [MessageModel]
+    @FirestorePaginatedFetch("Chats/wcItooQ5tsYVPiKloiYn/messages", pagination: .init(orderBy: "createdAt", type: Timestamp.self, descending: true, limit: 5)) var messages: [MessageModel]
 
     
     var body: some View {
@@ -39,9 +39,7 @@ struct ChatRoom: View {
                 NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
                 roomVM.chatID = chat.id
 //                roomVM.getMessages()
-            }.onChange(of: messages, perform: { newValue in
-                print(newValue)
-            })
+            }
             .onDisappear {
                 NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)
             }.navigationTitle(Text(""))
