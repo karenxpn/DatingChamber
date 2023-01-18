@@ -119,7 +119,7 @@ struct MessageCell: View {
                         
                         if message.sentBy == userID {
                             MenuButtonsHelper(label: NSLocalizedString("delete", comment: ""), role: .destructive) {
-//                                roomVM.deleteMessage(messageID: message.id)
+                                roomVM.deleteMessage(messageID: message.id)
                                 showPopOver = false
                             }
                         }

@@ -40,7 +40,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         if messageType == .audio {
             NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
         }
-                
+        
         Task {
             if let media = media{
                 if  messageType != .text  {
@@ -80,7 +80,8 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         Task {
             let result = await manager.editMessage(chatID: chatID,
                                                    messageID: editingMessage?.id ?? UUID().uuidString,
-                                                   message: message)
+                                                   message: message,
+                                                   status: .sent)
             switch result {
             case .success(()):
                 self.message = ""
@@ -88,6 +89,15 @@ class RoomViewModel: AlertViewModel, ObservableObject {
             case .failure(_):
                 break
             }
+        }
+    }
+    
+    @MainActor func deleteMessage(messageID: String) {
+        Task {
+            let _ = await manager.editMessage(chatID: chatID,
+                                              messageID: messageID,
+                                              message: "This message was deleted",
+                                              status: .deleted)
         }
     }
 }
