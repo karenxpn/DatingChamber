@@ -101,11 +101,18 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         }
     }
     
-    @MainActor func sendReaction(messageID: String, reaction: String) {
+    @MainActor func sendReaction(message: MessageViewModel, reaction: String) {
         Task {
+            var action = ReactionAction.react
+            let reaction = ReactionModel(userId: userID, reaction: reaction)
+            if message.reactionModels.contains(where: { $0 == reaction}) {
+                action = .remove
+            }
+            
             let _ = await manager.sendReaction(chatID: chatID,
-                                               messageID: messageID,
-                                               reaction: reaction)
+                                               messageID: message.id,
+                                               reaction: reaction,
+                                               action: action)
         }
     }
 }

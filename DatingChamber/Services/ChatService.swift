@@ -28,7 +28,7 @@ protocol ChatServiceProtocol {
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
     func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error>
     func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error>
-    func sendReaction(chatID: String, messageID: String, reaction: String) async -> Result<Void, Error>
+    func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error>
 }
 
 class ChatService {
@@ -40,13 +40,17 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
-    func sendReaction(chatID: String, messageID: String, reaction: String) async -> Result<Void, Error> {
+    func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
             try await db.collection("Chats")
                 .document(chatID)
                 .collection("messages")
                 .document(messageID)
-                .setData(["reactions" : FieldValue.arrayUnion([reaction])], merge: true)
+                .updateData(["reactions": action == .react ?
+                             FieldValue.arrayUnion([["userId" : reaction.userId,
+                                                     "reaction" : reaction.reaction]]) :
+                                FieldValue.arrayRemove([["userId": reaction.userId,
+                                                         "reaction": reaction.reaction]])])
         }
     }
 

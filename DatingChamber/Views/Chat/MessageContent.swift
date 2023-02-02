@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MessageContent: View {
     @AppStorage("userID") private var userID: String = ""
-    @Binding var showReactions: Bool
     let message: MessageViewModel
     
     var body: some View {
@@ -27,8 +26,8 @@ struct MessageContent: View {
             }
             
             HStack {
-                ForEach(Array(Set(message.reactions)), id: \.self) { reaction in
-                    Text( reaction )
+                ForEach(Array(Set(message.reactionModels.map{ $0.reaction })), id: \.self) { reaction in
+                    Text( "\(reaction) \(message.reactionModels.filter{ $0.reaction == reaction }.count)" )
                         .font(.custom("Inter-Regular", size: 10))
                         .foregroundColor(.black)
                         .padding(.vertical, 4)
@@ -38,9 +37,6 @@ struct MessageContent: View {
                         .shadow(color: Color.gray.opacity(0.3), radius: 2, x: 0, y: 2)
                 }
             }.offset(x: -10,y: 10)
-                .onTapGesture {
-                    showReactions.toggle()
-                }
             
         }
         
@@ -49,6 +45,6 @@ struct MessageContent: View {
 
 struct MessageContent_Previews: PreviewProvider {
     static var previews: some View {
-        MessageContent(showReactions: .constant(false), message: AppPreviewModel.message)
+        MessageContent(message: AppPreviewModel.message)
     }
 }
