@@ -70,7 +70,7 @@ struct MessageCell: View {
                         
                         ForEach(reactions, id: \.self) { reaction in
                             Button {
-//                                roomVM.reactMessage(messageID: message.id, reaction: reaction)
+                                roomVM.sendReaction(messageID: message.id, reaction: reaction)
                                 showPopOver = false
                             } label: {
                                 Text(reaction)
@@ -145,7 +145,6 @@ struct MessageCell: View {
                                 
                             }.frame(height: 37)
                                 .padding(.horizontal)
-
                         }
                         
                     }.frame(width: 200)

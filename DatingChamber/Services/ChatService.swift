@@ -27,7 +27,8 @@ protocol ChatServiceProtocol {
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
     func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error>
-    func editMessage(chatID: String, messageID: String, message: String,status: MessageStatus) async -> Result<Void, Error>
+    func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error>
+    func sendReaction(chatID: String, messageID: String, reaction: String) async -> Result<Void, Error>
 }
 
 class ChatService {
@@ -39,6 +40,15 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func sendReaction(chatID: String, messageID: String, reaction: String) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest {
+            try await db.collection("Chats")
+                .document(chatID)
+                .collection("messages")
+                .document(messageID)
+                .setData(["reactions" : FieldValue.arrayUnion([reaction])], merge: true)
+        }
+    }
 
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
         
@@ -167,7 +177,8 @@ extension ChatService: ChatServiceProtocol {
                      content: String,
                      repliedTo: RepliedMessageModel?,
                      duration: String?) async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
 
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
@@ -190,24 +201,17 @@ extension ChatService: ChatServiceProtocol {
             
             let _ = try await db.collection("Chats").document(chatID).setData(from: lastMessage, merge: true)
             
-            return .success(())
-        } catch {
-            return .failure(error)
         }
-        
     }
     
     func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             let _ = try await db.collection("Chats").document(chatID).collection("messages").document(messageID)
                 .setData(["content" : message,
                           "isEdited": true,
                           "status": status.rawValue,
                           "type": MessageType.text.rawValue], merge: true)
-            
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
 }

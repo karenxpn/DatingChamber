@@ -100,4 +100,12 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                                               status: .deleted)
         }
     }
+    
+    @MainActor func sendReaction(messageID: String, reaction: String) {
+        Task {
+            let _ = await manager.sendReaction(chatID: chatID,
+                                               messageID: messageID,
+                                               reaction: reaction)
+        }
+    }
 }
