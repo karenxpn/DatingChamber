@@ -19,3 +19,7 @@ enum BirthdayForm: Hashable {
     case month
     case year
 }
+
+enum ReactionAction {
+    case remove, react
+}

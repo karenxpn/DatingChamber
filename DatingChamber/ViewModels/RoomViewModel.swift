@@ -100,4 +100,19 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                                               status: .deleted)
         }
     }
+    
+    @MainActor func sendReaction(message: MessageViewModel, reaction: String) {
+        Task {
+            var action = ReactionAction.react
+            let reaction = ReactionModel(userId: userID, reaction: reaction)
+            if message.reactionModels.contains(where: { $0 == reaction}) {
+                action = .remove
+            }
+            
+            let _ = await manager.sendReaction(chatID: chatID,
+                                               messageID: message.id,
+                                               reaction: reaction,
+                                               action: action)
+        }
+    }
 }

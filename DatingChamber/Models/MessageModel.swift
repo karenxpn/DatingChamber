@@ -28,10 +28,10 @@ struct MessageModel: Codable, Firestorable, Equatable {
     var isEdited: Bool
     var status: MessageStatus
     var repliedTo: RepliedMessageModel?
-    var reactions: [String]
+    var reactions: [ReactionModel]
     var senderName: String?
     
-    init(uid: String? = nil, id: String? = nil, createdAt: Timestamp, type: MessageType, content: String, duration: String? = nil, sentBy: String, seenBy: [String], isEdited: Bool, status: MessageStatus, repliedTo: RepliedMessageModel? = nil, reactions: [String], senderName: String? = nil) {
+    init(uid: String? = nil, id: String? = nil, createdAt: Timestamp, type: MessageType, content: String, duration: String? = nil, sentBy: String, seenBy: [String], isEdited: Bool, status: MessageStatus, repliedTo: RepliedMessageModel? = nil, reactions: [ReactionModel], senderName: String? = nil) {
         self.uid = uid ?? UUID().uuidString
         self.id = id
         self.createdAt = createdAt
@@ -54,6 +54,11 @@ struct RepliedMessageModel: Codable {
     var type: MessageType
 }
 
+struct ReactionModel: Codable, Equatable {
+    var userId: String
+    var reaction: String
+}
+
 struct MessageViewModel: Identifiable {
     @AppStorage("userID") var userID: String = ""
     
@@ -72,10 +77,11 @@ struct MessageViewModel: Identifiable {
     var seen: Bool                              { self.message.seenBy.contains(where: {$0 != sentBy})}
     var isEdited: Bool                          { self.message.isEdited }
     var repliedTo: RepliedMessageModel?         { self.message.repliedTo }
-    var reactions: [String]                     { self.message.reactions }
+    var reactions: [String]                     { self.message.reactions.map{ $0.reaction} }
     var status: MessageStatus                   { self.message.status }
     var duration: String                        { self.message.duration ?? "" }
     var senderName: String                      { self.message.senderName ?? "User" }
+    var reactionModels: [ReactionModel]         { self.message.reactions }
 }
 
 enum MessageType : RawRepresentable, CaseIterable, Codable {
