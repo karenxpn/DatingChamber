@@ -110,10 +110,10 @@ struct MessageBar: View {
                 Text(NSLocalizedString("openCamera", comment: ""))
             }
         }.sheet(isPresented: $openGallery) {
-//            MessageGallery { content_type, content in
-//                roomVM.mediaBinaryData = content
-//                roomVM.getSignedURL(content_type: content_type)
-//            }
+            MessageGallery { content_type, content in
+                roomVM.media = content
+                roomVM.sendMessage(messageType: content_type, firestoreManager: manager)
+            }
         }.fullScreenCover(isPresented: $openCamera, content: {
             CameraXPN(action: { url, data in
                 roomVM.media = data
