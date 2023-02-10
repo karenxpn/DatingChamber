@@ -21,7 +21,7 @@ class BlogViewModel: AlertViewModel, ObservableObject {
     @Published var title: String = ""
     @Published var content: String = ""
     @Published var allowReading: Bool = false
-    @Published var readingVoice: String?
+    @Published var readingVoice: PostReadingVoice?
     @Published var postButtonClickable: Bool = false
     
     @Published var uploading: Bool = false

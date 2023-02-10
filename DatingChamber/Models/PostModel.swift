@@ -16,7 +16,7 @@ struct PostModel: Identifiable, Codable {
     var content: String
     var image: String
     var allowReading: Bool
-    var readingVoice: String?
+    var readingVoice: PostReadingVoice?
     var user: PostUserModel?
 }
 
@@ -33,12 +33,39 @@ struct PostViewModel: Identifiable {
         self.post = post
     }
     
-    var id: String                  { self.post.id ?? "" }
-    var title: String               { self.post.title }
-    var content: String             { self.post.content }
-    var image: String               { self.post.image }
-    var allowReading: Bool          { self.post.allowReading }
-    var readingVoice: String?       { self.post.readingVoice }
-    var user: PostUserModel?        { self.post.user }
-    var createdAt: Date             { self.post.createdAt }
+    var id: String                              { self.post.id ?? "" }
+    var title: String                           { self.post.title }
+    var content: String                         { self.post.content }
+    var image: String                           { self.post.image }
+    var allowReading: Bool                      { self.post.allowReading }
+    var readingVoice: PostReadingVoice?         { self.post.readingVoice }
+    var user: PostUserModel?                    { self.post.user }
+    var createdAt: Date                         { self.post.createdAt }
+}
+
+enum PostReadingVoice : RawRepresentable, CaseIterable, Codable {
+    
+    typealias RawValue = String
+    
+    case male
+    case female
+    case unknown(RawValue)
+    
+    static let allCases: AllCases = [
+        .male,
+        .female,
+    ]
+    
+    init(rawValue: RawValue) {
+        self = Self.allCases.first{ $0.rawValue == rawValue }
+        ?? .unknown(rawValue)
+    }
+    
+    var rawValue: RawValue {
+        switch self {
+        case .male                  : return "male"
+        case .female                : return "female"
+        case let .unknown(value)    : return value
+        }
+    }
 }

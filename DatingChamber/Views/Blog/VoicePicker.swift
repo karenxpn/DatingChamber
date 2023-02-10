@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct VoicePicker: View {
-    @Binding var voice: String?
+    @Binding var voice: PostReadingVoice?
     var body: some View {
         
         VStack(alignment: .leading) {
             Button {
-                voice = "male"
+                voice = .male
             } label: {
                 HStack {
                     ZStack {
                         Image("checkbox")
-                        if voice == "male" {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.gray)
-                                .font(Font.system(size: 12, weight: .semibold))
+                        if let voice {
+                            if voice == .male {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.gray)
+                                    .font(Font.system(size: 12, weight: .semibold))
+                            }
                             
                         }
                     }
@@ -32,21 +34,22 @@ struct VoicePicker: View {
             
             
             Button {
-                voice = "female"
+                voice = .female
             } label: {
                 HStack {
                     ZStack {
                         Image("checkbox")
-                        if voice == "female" {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.gray)
-                                .font(Font.system(size: 12, weight: .semibold))
-                            
+                        if let voice {
+                            if voice == .female {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.gray)
+                                    .font(Font.system(size: 12, weight: .semibold))
+                                
+                            }
                         }
                     }
                     
                     TextHelper(text: NSLocalizedString("femaleVoice", comment: ""), fontSize: 12)
-                    
                 }
                 
             }
@@ -56,6 +59,6 @@ struct VoicePicker: View {
 
 struct VoicePicker_Previews: PreviewProvider {
     static var previews: some View {
-        VoicePicker(voice: .constant("male"))
+        VoicePicker(voice: .constant(.female))
     }
 }
