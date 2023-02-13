@@ -14,8 +14,6 @@ struct AudioRecordingView: View {
     @EnvironmentObject var roomVM: RoomViewModel
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var duration: Int = 0
-    let manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
-
 
     var body: some View {
         
@@ -82,7 +80,7 @@ struct AudioRecordingView: View {
             roomVM.media = data
 
             roomVM.sendMessage(messageType: .audio,
-                               duration: "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")", firestoreManager: manager)
+                               duration: "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")")
         } catch {
             print(error)
         }

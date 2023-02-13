@@ -12,7 +12,6 @@ import FirebaseFirestore
 struct MessagesList: View {
     @EnvironmentObject var roomVM: RoomViewModel
     let messages: [MessageViewModel]
-    let manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
         
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -20,18 +19,16 @@ struct MessagesList: View {
                 
                 LazyVStack(spacing: 0) {
                     
-                    ForEach(messages, id: \.uid) { message in
+                    ForEach(messages, id: \.id) { message in
                         MessageCell(message: message)
                             .environmentObject(roomVM)
-                            .padding(.bottom, messages[0].uid == message.uid ? UIScreen.main.bounds.size.height * 0.15 : 0)
-                            .padding(.bottom, messages[0].uid == message.uid &&
+                            .padding(.bottom, messages[0].id == message.id ? UIScreen.main.bounds.size.height * 0.15 : 0)
+                            .padding(.bottom, messages[0].id == message.id &&
                                      ( roomVM.editingMessage != nil || roomVM.replyMessage != nil ) ? UIScreen.main.bounds.height * 0.1 : 0)
                             .rotationEffect(.radians(3.14))
                             .onAppear {
-                                if let lastMessageUID = messages.last?.uid {
-                                    if message.uid == lastMessageUID {
-                                        manager.fetch()
-                                    }
+                                if message.id == messages.last?.id && !roomVM.loading {
+                                    roomVM.getMessages()
                                 }
                             }
                     }

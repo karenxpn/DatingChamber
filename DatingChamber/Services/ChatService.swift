@@ -14,8 +14,7 @@ import FirebaseService
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
-    func sendMessage(manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>,
-                     userID: String,
+    func sendMessage(userID: String,
                      chatID: String,
                      type: MessageType,
                      content: String,
@@ -29,6 +28,8 @@ protocol ChatServiceProtocol {
     func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error>
     func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error>
     func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error>
+    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ())
+
 }
 
 class ChatService {
@@ -40,6 +41,96 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    
+    func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ()) {
+        var query: Query = db.collection("Chats")
+            .document(chatIID)
+            .collection("messages")
+            .order(by: "createdAt", descending: true)
+        
+        if lastMessage == nil {
+            let currentQuery = query.limit(to: 5)
+                currentQuery.getDocuments { snapshot, error in
+                    if let error {
+                        DispatchQueue.main.async {
+                            completion(.failure(error))
+                        }
+                        return
+                    }
+                    
+                    let last = snapshot!.documents.last
+                    if let last { query = query.end(atDocument: last) }
+                    
+                    query.addSnapshotListener { snapshot, error in
+                        if let error {
+                            DispatchQueue.main.async {
+                                completion(.failure(error))
+                            }
+                            return
+                        }
+                        
+                        guard snapshot?.documents.last != nil else {
+                            DispatchQueue.main.async {
+                                completion(.success(([], nil)))
+                            }
+                            // The collection is empty.
+                            return
+                        }
+                        
+                        var results = [(MessageModel)]()
+                        snapshot?.documents.forEach({ doc in
+                            do {
+                                let message = try doc.data(as: MessageModel.self)
+                                results.append(message)
+                            } catch {
+                                print(error)
+                            }
+                        })
+                        
+                        DispatchQueue.main.async {
+                            completion(.success((results, snapshot?.documents.last)))
+                        }
+                    }
+                    
+                }
+
+        } else {
+            query = query.start(afterDocument: lastMessage!).limit(to: 5)
+            query.addSnapshotListener { snapshot, error in
+                if let error {
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
+                    return
+                }
+                
+                guard snapshot?.documents.last != nil else {
+                    DispatchQueue.main.async {
+                        completion(.success(([], nil)))
+                    }
+                    // The collection is empty.
+                    return
+                }
+                
+                var results = [(MessageModel)]()
+                
+                snapshot?.documents.forEach({ doc in
+                    do {
+                        let message = try doc.data(as: MessageModel.self)
+                        results.append(message)
+                    } catch {
+                        print(error)
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    completion(.success((results, snapshot?.documents.last)))
+                }
+            }
+        }
+    }
+    
+    
     func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
             try await db.collection("Chats")
@@ -174,8 +265,7 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func sendMessage(manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>,
-                     userID: String,
+    func sendMessage(userID: String,
                      chatID: String,
                      type: MessageType,
                      content: String,
@@ -199,9 +289,11 @@ extension ChatService: ChatServiceProtocol {
             
             let lastMessage = LastMessageModel(lastMessage: message)
             
-            DispatchQueue.main.async {
-                try? manager.create(message)
-            }
+            let _ = try await db
+                .collection("Chats")
+                .document(chatID)
+                .collection("messages")
+                .addDocument(data: Firestore.Encoder().encode(message))
             
             let _ = try await db.collection("Chats").document(chatID).setData(from: lastMessage, merge: true)
             

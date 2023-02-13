@@ -15,30 +15,26 @@ struct ChatRoom: View {
     
     @StateObject private var roomVM = RoomViewModel()
     
-    @FirestorePaginatedFetch("Chats/wcItooQ5tsYVPiKloiYn/messages", pagination: .init(orderBy: "createdAt", type: Timestamp.self, descending: true, limit: 5)) var messages: [MessageModel]
-
-    
     var body: some View {
         ZStack {
             
-            if messages.isEmpty {
+            if roomVM.messages.isEmpty && !roomVM.loading {
                 EmptyChat(chat: chat)
             } else {
-                MessagesList( messages: messages.map(MessageViewModel.init),
-                              manager: _messages.manager)
-                .environmentObject(roomVM)
+                MessagesList(messages: roomVM.messages)
+                    .environmentObject(roomVM)
             }
             
             VStack {
                 Spacer()
-                MessageBar(manager: _messages.manager)
+                MessageBar()
                     .environmentObject(roomVM)
             }
         }.ignoresSafeArea(.container, edges: .bottom)
             .onAppear {
                 NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
                 roomVM.chatID = chat.id
-//                roomVM.getMessages()
+                roomVM.getMessages()
             }
             .onDisappear {
                 NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)

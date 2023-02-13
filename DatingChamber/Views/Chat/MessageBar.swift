@@ -18,9 +18,6 @@ struct MessageBar: View {
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
-    let manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
-
-        
     
     var body: some View {
         VStack( spacing: 0) {
@@ -47,10 +44,10 @@ struct MessageBar: View {
             
             HStack {
                 if audioVM.showRecording {
-                    AudioRecordingView(manager: manager)
+                    AudioRecordingView()
                         .environmentObject(audioVM)
                 } else if audioVM.showPreview {
-                    RecordingPreview(url: audioVM.url, duration: Int(audioVM.audioDuration), manager: manager)
+                    RecordingPreview(url: audioVM.url, duration: Int(audioVM.audioDuration))
                 } else {
                     Button {
                         openAttachment.toggle()
@@ -71,7 +68,7 @@ struct MessageBar: View {
                             if roomVM.editingMessage != nil{
                                 roomVM.editMessage()
                             } else {
-                                roomVM.sendMessage(messageType: .text, firestoreManager: manager)
+                                roomVM.sendMessage(messageType: .text)
                             }
                         } label: {
                             Image("icon_send_message")
@@ -112,12 +109,12 @@ struct MessageBar: View {
         }.sheet(isPresented: $openGallery) {
             MessageGallery { content_type, content in
                 roomVM.media = content
-                roomVM.sendMessage(messageType: content_type, firestoreManager: manager)
+                roomVM.sendMessage(messageType: content_type)
             }
         }.fullScreenCover(isPresented: $openCamera, content: {
             CameraXPN(action: { url, data in
                 roomVM.media = data
-                roomVM.sendMessage(messageType: url.absoluteString.hasSuffix(".mov") ? .video : .photo, firestoreManager: manager)
+                roomVM.sendMessage(messageType: url.absoluteString.hasSuffix(".mov") ? .video : .photo)
             }, font: .custom("Inter-SemiBold", size: 14), permissionMessgae: NSLocalizedString("enableAccessForBoth", comment: ""),
                       recordVideoButtonColor: AppColors.primary,
                       useMediaContent: NSLocalizedString("useThisMedia", comment: ""))

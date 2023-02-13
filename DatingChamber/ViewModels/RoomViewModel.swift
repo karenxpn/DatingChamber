@@ -23,7 +23,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    @Published var messagesBlocks = [[MessageViewModel]]()
+    @Published var messagesBlocks: [String: [MessageViewModel]] = [:]
     @Published var messages = [MessageViewModel]()
     @Published var lastMessage: QueryDocumentSnapshot?
     
@@ -35,8 +35,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     }
     
     @MainActor func sendMessage(messageType: MessageType,
-                                duration: String? = nil,
-                                firestoreManager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>) {
+                                duration: String? = nil) {
         if messageType == .audio {
             NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
         }
@@ -59,8 +58,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                                                                     message: replyMessage!.content,
                                                                     type: replyMessage!.type) : nil
             
-            let result = await manager.sendMessage(manager: firestoreManager,
-                                                   userID: userID,
+            let result = await manager.sendMessage(userID: userID,
                                                    chatID: chatID,
                                                    type: messageType,
                                                    content: message,
@@ -114,5 +112,29 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                                                reaction: reaction,
                                                action: action)
         }
+    }
+    
+    func getMessages() {
+        loading = true
+        
+        manager.fetchMessages(chatIID: chatID, lastMessage: lastMessage, completion: { result in
+            
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(let response):
+                // response.0 -> messages
+                // response.1 -> last message
+                
+                if let snapshot = response.1 {
+                    self.messagesBlocks[snapshot.documentID] = response.0.map(MessageViewModel.init)
+                    self.messages = self.messagesBlocks.flatMap{ $0.value }.sorted(by: { $0.creationDate > $1.creationDate})
+                    self.lastMessage = snapshot
+                }
+            }
+            
+            self.loading = false
+
+        })
     }
 }

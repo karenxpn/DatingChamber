@@ -15,15 +15,12 @@ struct RecordingPreview: View {
     @StateObject var audioVM: AudioPlayViewModel
     let url: URL
     let duration: Int
-    let manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
 
     
-    init(url: URL, duration: Int, manager: FirestorePaginatedFetchManager<[MessageModel], MessageModel, Timestamp>
-) {
+    init(url: URL, duration: Int) {
         self.url = url
         self.duration = duration
         _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: url, sampels_count: Int(UIScreen.main.bounds.width * 0.5 / 4)))
-        self.manager = manager
     }
     
     private func normalizeSoundLevel(level: Float) -> CGFloat {
@@ -95,7 +92,7 @@ struct RecordingPreview: View {
             roomVM.media = data
 
             roomVM.sendMessage(messageType: .audio,
-                               duration: "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")", firestoreManager: manager)
+                               duration: "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")")
         } catch {
             print(error)
         }
