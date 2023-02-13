@@ -128,3 +128,5 @@
 "mediaContent" = "Media Content";
 "videoContent" = "Video Content";
 "audioContent" = "Audio Content";
+"reply" = "Reply";
+"copy" = "Copy";

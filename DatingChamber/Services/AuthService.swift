@@ -84,11 +84,8 @@ extension AuthService: AuthServiceProtocol {
     
     
     func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(uid).setData(from: user)
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
@@ -103,13 +100,9 @@ extension AuthService: AuthServiceProtocol {
     }
     
     func sendVerificationCode(phone: String) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             let verificationID = try await PhoneAuthProvider.provider().verifyPhoneNumber(phone, uiDelegate: nil)
             UserDefaults.standard.set( verificationID, forKey: "authVerificationID")
-            
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     

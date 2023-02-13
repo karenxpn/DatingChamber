@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseService
+import FirebaseFirestore
 
 struct ChatRoom: View {
     let chat: ChatModelViewModel
@@ -19,7 +21,7 @@ struct ChatRoom: View {
             if roomVM.messages.isEmpty && !roomVM.loading {
                 EmptyChat(chat: chat)
             } else {
-                MessagesList()
+                MessagesList(messages: roomVM.messages)
                     .environmentObject(roomVM)
             }
             

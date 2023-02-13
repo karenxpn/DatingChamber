@@ -13,7 +13,7 @@ import FirebaseFirestore
 protocol BlogServiceProtocol {
     func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
     func fetchUserPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
-    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error>
+    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: PostReadingVoice?) async -> Result<Void, Error>
     func reportPost(userID: String, postID: String, reason: String) async -> Result<Void, Error>
     func deletePost(postID: String) async -> Result<Void, Error>
 }
@@ -64,7 +64,7 @@ extension BlogService: BlogServiceProtocol {
         }
     }
     
-    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error> {
+    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: PostReadingVoice?) async -> Result<Void, Error> {
         do {
             
             var url: String

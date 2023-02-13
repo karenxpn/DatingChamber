@@ -77,7 +77,7 @@ struct PostDetailView: View {
                 }
                 
             }.onAppear {
-                speaker.initializeSpeaker(content: post.content)
+                speaker.initializeSpeaker(content: post.content, voice: post.allowReading ? post.readingVoice! : .male)
             }.onDisappear {
                 speaker.synthesizer.stopSpeaking(at: .immediate)
             }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "post_action_completed"))) { _ in

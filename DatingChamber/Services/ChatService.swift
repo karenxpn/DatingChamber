@@ -10,16 +10,26 @@ import FirebaseFirestore
 import AVFoundation
 import FirebaseStorage
 import SwiftUI
+import FirebaseService
 
 protocol ChatServiceProtocol {
     func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, repliedTo: RepliedMessageModel?, duration: String?) async -> Result<Void, Error>
+    func sendMessage(userID: String,
+                     chatID: String,
+                     type: MessageType,
+                     content: String,
+                     repliedTo: RepliedMessageModel?,
+                     duration: String?) async -> Result<Void, Error>
+    
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error>
     func deleteChat(chatID: String) async -> Result<Void, Error>
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
+    func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error>
+    func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error>
+    func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error>
     func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ())
-    
+
 }
 
 class ChatService {
@@ -31,6 +41,7 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    
     func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ()) {
         var query: Query = db.collection("Chats")
             .document(chatIID)
@@ -119,6 +130,21 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
+    
+    func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest {
+            try await db.collection("Chats")
+                .document(chatID)
+                .collection("messages")
+                .document(messageID)
+                .updateData(["reactions": action == .react ?
+                             FieldValue.arrayUnion([["userId" : reaction.userId,
+                                                     "reaction" : reaction.reaction]]) :
+                                FieldValue.arrayRemove([["userId": reaction.userId,
+                                                         "reaction": reaction.reaction]])])
+        }
+    }
+
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
         
         DispatchQueue.global(qos: .userInteractive).async {
@@ -171,20 +197,14 @@ extension ChatService: ChatServiceProtocol {
         
     }
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Chats").document(chatID).updateData(["mutedBy" : mute ? FieldValue.arrayUnion([userID]) : FieldValue.arrayRemove([userID])])
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func deleteChat(chatID: String) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Chats").document(chatID).delete()
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
@@ -228,26 +248,36 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func sendMessage(userID: String, chatID: String, type: MessageType, media: Data?, text: String, repliedTo: RepliedMessageModel?, duration: String? ) async -> Result<Void, Error> {
+    func uploadMedia(media: Data, type: MessageType) async -> Result<String, Error> {
         do {
-            let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
-            
-            
-            var url: String = ""
             var fileExtension = ""
             if type == .photo       { fileExtension = "jpg" }
             else if type == .video  { fileExtension = "mov" }
             else if type == .audio  { fileExtension = "m4a" }
             
-            if type != .text {
-                let dbRef = storageRef.child("chats/\(UUID().uuidString).\(fileExtension)")
-                let _ = try await dbRef.putDataAsync(media!)
-                url = try await dbRef.downloadURL().absoluteString
-            }
+            let dbRef = storageRef.child("chats/\(UUID().uuidString).\(fileExtension)")
+            let _ = try await dbRef.putDataAsync(media)
+            let url = try await dbRef.downloadURL().absoluteString
+            
+            return .success(url)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func sendMessage(userID: String,
+                     chatID: String,
+                     type: MessageType,
+                     content: String,
+                     repliedTo: RepliedMessageModel?,
+                     duration: String?) async -> Result<Void, Error> {
+        
+        return await APIHelper.shared.voidRequest {
+            let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
 
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
                                        type: type,
-                                       content: type == .text ? text : url,
+                                       content: content,
                                        duration: duration,
                                        sentBy: userID,
                                        seenBy: [userID],
@@ -267,9 +297,17 @@ extension ChatService: ChatServiceProtocol {
             
             let _ = try await db.collection("Chats").document(chatID).setData(from: lastMessage, merge: true)
             
-            return .success(())
-        } catch {
-            return .failure(error)
+        }
+    }
+    
+    func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error> {
+        
+        return await APIHelper.shared.voidRequest {
+            let _ = try await db.collection("Chats").document(chatID).collection("messages").document(messageID)
+                .setData(["content" : message,
+                          "isEdited": true,
+                          "status": status.rawValue,
+                          "type": MessageType.text.rawValue], merge: true)
         }
     }
 }

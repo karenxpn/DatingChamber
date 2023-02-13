@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CameraXPN
+import FirebaseService
+import FirebaseFirestore
 
 struct MessageBar: View {
     
@@ -16,15 +18,13 @@ struct MessageBar: View {
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
-        
     
     var body: some View {
         VStack( spacing: 0) {
             
-//            if roomVM.editingMessage != nil {
-//                BarMessagePreview(message: $roomVM.editingMessage)
-//            }
-            if roomVM.replyMessage != nil {
+            if roomVM.editingMessage != nil {
+                BarMessagePreview(message: $roomVM.editingMessage)
+            } else if roomVM.replyMessage != nil {
                 BarMessagePreview(message: $roomVM.replyMessage)
             }
             
@@ -65,12 +65,11 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            roomVM.sendMessage(messageType: .text)
-//                            if roomVM.editingMessage != nil{
-//                                roomVM.editMessage()
-//                            } else {
-//                                roomVM.sendTextMessage()
-//                            }
+                            if roomVM.editingMessage != nil{
+                                roomVM.editMessage()
+                            } else {
+                                roomVM.sendMessage(messageType: .text)
+                            }
                         } label: {
                             Image("icon_send_message")
                                 .padding([.trailing, .vertical], 20)
@@ -108,10 +107,10 @@ struct MessageBar: View {
                 Text(NSLocalizedString("openCamera", comment: ""))
             }
         }.sheet(isPresented: $openGallery) {
-//            MessageGallery { content_type, content in
-//                roomVM.mediaBinaryData = content
-//                roomVM.getSignedURL(content_type: content_type)
-//            }
+            MessageGallery { content_type, content in
+                roomVM.media = content
+                roomVM.sendMessage(messageType: content_type)
+            }
         }.fullScreenCover(isPresented: $openCamera, content: {
             CameraXPN(action: { url, data in
                 roomVM.media = data
@@ -126,9 +125,9 @@ struct MessageBar: View {
     }
 }
 
-struct MessageBar_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageBar()
-            .environmentObject(RoomViewModel())
-    }
-}
+//struct MessageBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessageBar()
+//            .environmentObject(RoomViewModel())
+//    }
+//}

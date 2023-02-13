@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseService
+import FirebaseFirestore
 
 struct AudioRecordingView: View {
     @EnvironmentObject var audioVM: AudioRecorderViewModel
@@ -85,9 +87,9 @@ struct AudioRecordingView: View {
     }
 }
 
-struct AudioRecordingView_Previews: PreviewProvider {
-    static var previews: some View {
-        AudioRecordingView()
-            .environmentObject(AudioRecorderViewModel())
-    }
-}
+//struct AudioRecordingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AudioRecordingView()
+//            .environmentObject(AudioRecorderViewModel())
+//    }
+//}

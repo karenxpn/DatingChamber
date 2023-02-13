@@ -43,50 +43,37 @@ extension UserService: UserServiceProtocol {
     }
     
     func updateOnlineState(userID: String, online: Bool, lastVisit: Date?) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).setData(["online": online,
                                                                        "lastVisit": lastVisit], merge: true)
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func signOut(userID: String) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).setData(["online": false,
                                                                        "lastVisit": Date().toGlobalTime()], merge: true)
             try Auth.auth().signOut()
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func deleteAccount() async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             try await Auth.auth().currentUser?.delete()
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func deleteAccountData(userID: String) async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).delete()
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).setData(updateField, merge: true)
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
@@ -187,12 +174,9 @@ extension UserService: UserServiceProtocol {
     }
     
     func updateLocation(userID: String, location: LocationModel) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             let encodedLocation = try Firestore.Encoder().encode(location)
             try await db.collection("Users").document(userID).updateData(["location": encodedLocation])
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
 }

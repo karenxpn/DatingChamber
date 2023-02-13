@@ -7,19 +7,20 @@
 
 import SwiftUI
 
-import SwiftUI
+import FirebaseFirestore
+import FirebaseService
 
 struct RecordingPreview: View {
     @EnvironmentObject var roomVM: RoomViewModel
     @StateObject var audioVM: AudioPlayViewModel
     let url: URL
     let duration: Int
+
     
     init(url: URL, duration: Int) {
         self.url = url
         self.duration = duration
         _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: url, sampels_count: Int(UIScreen.main.bounds.width * 0.5 / 4)))
-        print(duration)
     }
     
     private func normalizeSoundLevel(level: Float) -> CGFloat {

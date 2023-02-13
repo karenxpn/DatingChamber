@@ -17,7 +17,6 @@ struct MessageCell: View {
     @State private var navigate: Bool = false
     
     @State private var showPopOver: Bool = false
-    @State private var showMessageReactions: Bool = false
     let reactions = ["👍", "👎", "❤️", "😂", "🤣", "😡", "😭"]
     
     let message: MessageViewModel
@@ -37,13 +36,13 @@ struct MessageCell: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 7)
                 
-                Text("\(message.createdAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
+                Text("\(message.createdAt)\(message.isEdited ? "(\(NSLocalizedString("edited", comment: "")))" : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }
             
             
-            MessageContent(showReactions: $showMessageReactions, message: message)
+            MessageContent(message: message)
                 .scaleEffect(showPopOver ? 0.8 : 1)
                 .blur(radius: showPopOver ? 0.7 : 0)
                 .animation(.easeInOut, value: showPopOver)
@@ -70,7 +69,7 @@ struct MessageCell: View {
                         
                         ForEach(reactions, id: \.self) { reaction in
                             Button {
-//                                roomVM.reactMessage(messageID: message.id, reaction: reaction)
+                                roomVM.sendReaction(message: message, reaction: reaction)
                                 showPopOver = false
                             } label: {
                                 Text(reaction)
@@ -95,7 +94,7 @@ struct MessageCell: View {
                     }
                 ) {
                     VStack(alignment: .leading, spacing: 0) {
-                        MenuButtonsHelper(label: NSLocalizedString("answer", comment: ""), role: .cancel) {
+                        MenuButtonsHelper(label: NSLocalizedString("reply", comment: ""), role: .cancel) {
                             roomVM.replyMessage = message
                             showPopOver = false
                         }
@@ -119,7 +118,7 @@ struct MessageCell: View {
                         
                         if message.sentBy == userID {
                             MenuButtonsHelper(label: NSLocalizedString("delete", comment: ""), role: .destructive) {
-//                                roomVM.deleteMessage(messageID: message.id)
+                                roomVM.deleteMessage(messageID: message.id)
                                 showPopOver = false
                             }
                         }
@@ -128,35 +127,10 @@ struct MessageCell: View {
                         .background(Color.white)
                         .cornerRadius(20)
                         .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
-                }.popover(
-                    present: $showMessageReactions,
-                    attributes: {
-                        $0.position = .absolute(
-                            originAnchor: .bottom,
-                            popoverAnchor: .top
-                        )
-                    }
-                ) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        ForEach(message.reactions, id: \.self) { reaction in
-                            HStack {
-                                Text(reaction)
-                                    .font(.system(size: 15))
-                                
-                            }.frame(height: 37)
-                                .padding(.horizontal)
-
-                        }
-                        
-                    }.frame(width: 200)
-                        .background(Color.white)
-                        .cornerRadius(20)
-                        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
                 }
             
-            
             if message.sentBy != userID {
-                Text("\(message.createdAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
+                Text("\(message.createdAt)\(message.isEdited ? "(\(NSLocalizedString("edited", comment: "")))" : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }

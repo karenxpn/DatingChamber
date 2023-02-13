@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
 import Firebase
+import FirebaseService
 
-struct MessageModel: Codable, Identifiable {
+struct MessageModel: Codable {
     @DocumentID var id: String?
     var createdAt: Timestamp
     var type: MessageType
@@ -21,7 +22,7 @@ struct MessageModel: Codable, Identifiable {
     var isEdited: Bool
     var status: MessageStatus
     var repliedTo: RepliedMessageModel?
-    var reactions: [String]
+    var reactions: [ReactionModel]
     var senderName: String?
 }
 
@@ -29,6 +30,11 @@ struct RepliedMessageModel: Codable {
     var name: String
     var message: String
     var type: MessageType
+}
+
+struct ReactionModel: Codable, Equatable {
+    var userId: String
+    var reaction: String
 }
 
 struct MessageViewModel: Identifiable {
@@ -48,10 +54,11 @@ struct MessageViewModel: Identifiable {
     var seen: Bool                              { self.message.seenBy.contains(where: {$0 != sentBy})}
     var isEdited: Bool                          { self.message.isEdited }
     var repliedTo: RepliedMessageModel?         { self.message.repliedTo }
-    var reactions: [String]                     { self.message.reactions }
+    var reactions: [String]                     { self.message.reactions.map{ $0.reaction} }
     var status: MessageStatus                   { self.message.status }
     var duration: String                        { self.message.duration ?? "" }
     var senderName: String                      { self.message.senderName ?? "User" }
+    var reactionModels: [ReactionModel]         { self.message.reactions }
 }
 
 enum MessageType : RawRepresentable, CaseIterable, Codable {
@@ -94,11 +101,13 @@ enum MessageStatus : RawRepresentable, CaseIterable, Codable {
     
     case sent
     case read
+    case deleted
     case unknown(RawValue)
     
     static let allCases: AllCases = [
         .sent,
-        .read
+        .read,
+        .deleted
     ]
     
     init(rawValue: RawValue) {
@@ -110,6 +119,7 @@ enum MessageStatus : RawRepresentable, CaseIterable, Codable {
         switch self {
         case .sent                  : return "sent"
         case .read                  : return "read"
+        case .deleted               : return "deleted"
         case let .unknown(value)    : return value
         }
     }

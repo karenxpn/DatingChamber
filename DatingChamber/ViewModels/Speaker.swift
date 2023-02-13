@@ -20,9 +20,11 @@ class Speaker: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
         self.synthesizer.delegate = self
     }
     
-    func initializeSpeaker(content: String) {
+    func initializeSpeaker(content: String, voice: PostReadingVoice) {
         utterance = AVSpeechUtterance(string: content)
-        utterance?.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance?.voice = AVSpeechSynthesisVoice(identifier: voice == .male ?
+                                                  "com.apple.ttsbundle.Daniel-compact" :
+                                                    "com.apple.ttsbundle.Samantha-compact")
         utterance?.rate = 0.5
     }
     
