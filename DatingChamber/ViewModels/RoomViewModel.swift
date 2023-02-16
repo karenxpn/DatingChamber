@@ -36,12 +36,16 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     
     @MainActor func sendMessage(messageType: MessageType,
                                 duration: String? = nil) {
+        
+        var sendingMessage = message
+        message = ""
+        
         if messageType == .audio {
             NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
         }
         
         Task {
-            if let media = media{
+            if let media = media {
                 if  messageType != .text  {
                     let mediaUploadResult = await manager.uploadMedia(media: media, type: messageType)
                     switch mediaUploadResult {
@@ -49,7 +53,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                         self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
                     case .success(let url):
                         // send message
-                        self.message = url
+                        sendingMessage = url
                     }
                 }
             }
@@ -61,14 +65,14 @@ class RoomViewModel: AlertViewModel, ObservableObject {
             let result = await manager.sendMessage(userID: userID,
                                                    chatID: chatID,
                                                    type: messageType,
-                                                   content: message,
+                                                   content: sendingMessage,
                                                    repliedTo: replyTo,
                                                    duration: duration)
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(()):
-                self.message = ""
+                sendingMessage = ""
                 self.replyMessage = nil
             }
         }

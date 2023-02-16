@@ -49,6 +49,7 @@ struct MessagesList: View {
 //                }
             }
         }.rotationEffect(.radians(3.14))
+            .scrollDismissesKeyboard(.immediately)
         .padding(.top, 1)
     }
 }
