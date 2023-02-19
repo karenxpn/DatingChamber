@@ -45,6 +45,17 @@ extension ChatService: ChatServiceProtocol {
     
     func markMessageAsRead(chatID: String, messageID: String, userID: String) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest(action: {
+            
+            let chat = try await db.collection("Chats")
+                .document(chatID)
+                .getDocument(as: ChatModel.self)
+            
+            if messageID == chat.lastMessage.id && !chat.lastMessage.seenBy.contains(where: {$0 == userID}){
+                try await db.collection("Chats")
+                    .document(chatID)
+                    .updateData(["lastMessage.seenBy": FieldValue.arrayUnion([userID])])
+            }
+            
             try await db.collection("Chats")
                 .document(chatID)
                 .collection("messages")
