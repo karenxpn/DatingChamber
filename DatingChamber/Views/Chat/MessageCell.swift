@@ -31,7 +31,7 @@ struct MessageCell: View {
             
             if message.sentBy == userID {
                 
-                Image(message.status == .sent ? "sent_icon" : "read_icon")
+                Image(message.seen ? "read_icon" : "sent_icon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 7)
