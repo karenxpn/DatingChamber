@@ -29,7 +29,7 @@ struct AppPreviewModel {
                                                          content: "Holaaa my name is Karen",
                                                          sentBy: "a;sldkfj",
                                                          seenBy: [""],
-                                                         status: "sent",
+                                                        status: .sent,
                                                          createdAt: Date().toGlobalTime()), mutedBy: []))]
     
     static let userPreviewModel = UserPreviewModel(id: "a;sldkfj",

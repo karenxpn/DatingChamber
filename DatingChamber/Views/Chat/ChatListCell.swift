@@ -56,7 +56,7 @@ struct ChatListCell: View {
                     TextHelper(text: "\(chat.date)", color: .gray, fontSize: 11)
                         .lineLimit(1)
                     
-                    if chat.messageStatus == "pending" {
+                    if chat.messageStatus == .pending {
                         ProgressView()
                             .scaleEffect(0.5)
                     } else {

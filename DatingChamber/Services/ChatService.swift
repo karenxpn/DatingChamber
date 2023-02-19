@@ -297,17 +297,25 @@ extension ChatService: ChatServiceProtocol {
                                        repliedTo: repliedTo,
                                        reactions: [],
                                        senderName: user.name)
-            
-            let lastMessage = LastMessageModel(lastMessage: message)
-            
-            let _ = try await db
+                        
+            let sentMessage = try await db
                 .collection("Chats")
                 .document(chatID)
                 .collection("messages")
                 .addDocument(data: Firestore.Encoder().encode(message))
             
-            let _ = try await db.collection("Chats").document(chatID).setData(from: lastMessage, merge: true)
+            let curMessage = try await sentMessage.getDocument(as: MessageModel.self)
+            let lastMessage = LastMessageModel(id: curMessage.id,
+                                                    createdAt: curMessage.createdAt,
+                                                    type: curMessage.type,
+                                                    content: curMessage.content,
+                                                    sentBy: curMessage.sentBy,
+                                                    seenBy: curMessage.seenBy,
+                                                    status: curMessage.status)
             
+            print(lastMessage)
+            
+            let _ = try await db.collection("Chats").document(chatID).updateData(["lastMessage": Firestore.Encoder().encode(lastMessage)])
         }
     }
     

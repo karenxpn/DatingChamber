@@ -6,6 +6,14 @@
 //
 
 import Foundation
-struct LastMessageModel: Codable {
-    var lastMessage: MessageModel
+import FirebaseFirestore
+
+struct LastMessageModel: Codable, Identifiable {
+    var id: String?
+    var createdAt: Timestamp
+    var type: MessageType
+    var content: String
+    var sentBy: String
+    var seenBy: [String]
+    var status: MessageStatus
 }

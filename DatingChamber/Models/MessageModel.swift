@@ -102,12 +102,14 @@ enum MessageStatus : RawRepresentable, CaseIterable, Codable {
     
     case sent
     case read
+    case pending
     case deleted
     case unknown(RawValue)
     
     static let allCases: AllCases = [
         .sent,
         .read,
+        .pending,
         .deleted
     ]
     
@@ -120,6 +122,7 @@ enum MessageStatus : RawRepresentable, CaseIterable, Codable {
         switch self {
         case .sent                  : return "sent"
         case .read                  : return "read"
+        case .pending               : return "pending"
         case .deleted               : return "deleted"
         case let .unknown(value)    : return value
         }

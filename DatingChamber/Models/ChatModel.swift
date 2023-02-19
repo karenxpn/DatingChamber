@@ -22,7 +22,7 @@ struct ChatMessagePreview: Identifiable, Codable {
     var content: String
     var sentBy: String
     var seenBy: [String]
-    var status: String
+    var status: MessageStatus
     var createdAt: Date
 }
 
@@ -51,8 +51,8 @@ struct ChatModelViewModel: Identifiable {
         return false
     }
     
-    var messageStatus: String       { self.chat.lastMessage.status }
-    var messageType: MessageType    { self.chat.lastMessage.type }
+    var messageStatus: MessageStatus        { self.chat.lastMessage.status }
+    var messageType: MessageType            { self.chat.lastMessage.type }
     
     var seen: Bool {
         if self.chat.lastMessage.seenBy.contains(where: {$0 != self.chat.lastMessage.sentBy }) { return true }
