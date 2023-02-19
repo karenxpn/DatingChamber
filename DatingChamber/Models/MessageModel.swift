@@ -52,6 +52,7 @@ struct MessageViewModel: Identifiable {
     var content: String                         { self.message.content }
     var sentBy: String                          { self.message.sentBy }
     var seen: Bool                              { self.message.seenBy.contains(where: {$0 != sentBy})}
+    var seenBy: [String]                        { self.message.seenBy }
     var isEdited: Bool                          { self.message.isEdited }
     var repliedTo: RepliedMessageModel?         { self.message.repliedTo }
     var reactions: [String]                     { self.message.reactions.map{ $0.reaction} }

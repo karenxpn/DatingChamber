@@ -29,6 +29,7 @@ protocol ChatServiceProtocol {
     func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error>
     func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error>
     func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping(Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ())
+    func markMessageAsRead(chatID: String, messageID: String, userID: String) async -> Result<Void, Error>
 
 }
 
@@ -41,6 +42,16 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    
+    func markMessageAsRead(chatID: String, messageID: String, userID: String) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest(action: {
+            try await db.collection("Chats")
+                .document(chatID)
+                .collection("messages")
+                .document(messageID)
+                .updateData(["seenBy" : FieldValue.arrayUnion([userID])])
+        })
+    }
     
     func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ()) {
         var query: Query = db.collection("Chats")

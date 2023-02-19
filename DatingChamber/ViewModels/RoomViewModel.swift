@@ -141,4 +141,10 @@ class RoomViewModel: AlertViewModel, ObservableObject {
 
         })
     }
+    
+    @MainActor func markMessageRead(messageID: String) {
+        Task {
+            let _ = await manager.markMessageAsRead(chatID: chatID, messageID: messageID, userID: userID)
+        }
+    }
 }

@@ -10,6 +10,7 @@ import FirebaseService
 import FirebaseFirestore
 
 struct MessagesList: View {
+    @AppStorage("userID") var userID: String = ""
     @EnvironmentObject var roomVM: RoomViewModel
     let messages: [MessageViewModel]
         
@@ -29,6 +30,10 @@ struct MessagesList: View {
                             .onAppear {
                                 if message.id == messages.last?.id && !roomVM.loading {
                                     roomVM.getMessages()
+                                }
+                                
+                                if !message.seenBy.contains(where: {$0 == userID}) {
+                                    roomVM.markMessageRead(messageID: message.id)
                                 }
                             }
                     }
