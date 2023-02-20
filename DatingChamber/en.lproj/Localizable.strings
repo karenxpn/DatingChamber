@@ -108,4 +108,25 @@
 "delete" = "Delete";
 "reportPost" = "Report Post";
 "chooseReasonToReportPost" = "Chose the reason why you report this post.";
-
+"emptyChat" = "You don't have any active chats or an error occurred fetching";
+"emptyChatMessage" = "You can start new conversation with your matches or press the button to refresh your chats.";
+"chats" = "Chats";
+"emptyBlog" = "No posts were found";
+"emptyBlogMessage" = "Neither you nor your friends have published any posts, or an error occurred fetching posts, press the button to refresh your posts or go to your account and create a new post.";
+"justNow" = "Just Now";
+"blockedUsers" = "Blocked Users";
+"sureToDeleteChat" = "Are you sure to delete this chat?";
+"deleteChatMessage" = "If you delete this chat it will be deleted for everyone and all the data will be deleted";
+"delete" = "Delete";
+"messageBarPlaceholder" = "Write your message here...";
+"loadFromGallery" = "Upload from Gallery";
+"openCamera" = "Open Camera";
+"enableAccessForBoth" = "Enable access for both microphone and camera to record videos and take photos.";
+"useThisMedia" = "Use this media";
+"itsMatch" = "It's a match!";
+"startConversation" = "Start the conversation\nwriting a message";
+"mediaContent" = "Media Content";
+"videoContent" = "Video Content";
+"audioContent" = "Audio Content";
+"reply" = "Reply";
+"copy" = "Copy";

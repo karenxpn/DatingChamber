@@ -13,11 +13,8 @@ struct GeneralSettings: View {
             
             NavigationButtonHelper(label: NSLocalizedString("notifications", comment: ""), destination: AnyView(NotificationsRequest()))
             NavigationButtonHelper(label: NSLocalizedString("location", comment: ""), destination: AnyView(LocationRequest()))
-            
-            ActionButtonHelper(label: NSLocalizedString("blockedList", comment: "")) {
+            NavigationButtonHelper(label: NSLocalizedString("blockedList", comment: ""), destination: AnyView(BlockedUsers()))
 
-            }
-            
             Spacer()
             
         }.frame(minWidth: 0,

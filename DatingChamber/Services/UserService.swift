@@ -18,8 +18,11 @@ protocol UserServiceProtocol {
     
     func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error>
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
+    func signOut(userID: String) async -> Result<Void, Error>
     func deleteAccount() async -> Result<Void, Error>
     func deleteAccountData(userID: String) async -> Result<Void, Error>
+    func updateOnlineState( userID: String, online: Bool, lastVisit: Date? ) async -> Result<Void, Error>
+    func fetchBlockedUsers(userID: String, lastUser: QueryDocumentSnapshot?) async -> Result<([BlockedUserModel], QueryDocumentSnapshot?), Error>
 }
 
 class UserService {
@@ -29,30 +32,48 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
-    func deleteAccount() async -> Result<Void, Error> {
+    func fetchBlockedUsers(userID: String, lastUser: QueryDocumentSnapshot?) async -> Result<([BlockedUserModel], QueryDocumentSnapshot?), Error> {
         do {
-            try await Auth.auth().currentUser?.delete()
-            return .success(())
+            let usersDocs = try await db.collection("Users").document(userID).collection("Blocked").getDocuments().documents
+            let users = try usersDocs.map{ try $0.data(as: BlockedUserModel.self)}
+            return .success((users, usersDocs.last))
         } catch {
             return .failure(error)
+        }
+    }
+    
+    func updateOnlineState(userID: String, online: Bool, lastVisit: Date?) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest {
+            try await db.collection("Users").document(userID).setData(["online": online,
+                                                                       "lastVisit": lastVisit], merge: true)
+        }
+    }
+    
+    func signOut(userID: String) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest {
+            try await db.collection("Users").document(userID).setData(["online": false,
+                                                                       "lastVisit": Date().toGlobalTime()], merge: true)
+            try Auth.auth().signOut()
+        }
+    }
+    
+    func deleteAccount() async -> Result<Void, Error> {
+        
+        return await APIHelper.shared.voidRequest {
+            try await Auth.auth().currentUser?.delete()
         }
     }
     
     func deleteAccountData(userID: String) async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).delete()
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).setData(updateField, merge: true)
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
     
@@ -139,8 +160,13 @@ extension UserService: UserServiceProtocol {
             try await db.collection("Users").document(uid).updateData(["pending": FieldValue.arrayRemove([userID])])
             
             // add to my blocked users
-            try await db.collection("Users").document(userID).updateData(["blocked": FieldValue.arrayUnion([uid])])
-            
+            // get uid user and make a preview model to upload to user.nested collection called blocked
+
+            let uidUser = try await db.collection("Users").document(uid).getDocument(as: UserModel.self)
+            let blockedUser = BlockedUserModel(id: uidUser.id,
+                                               name: uidUser.name,
+                                               image: uidUser.avatar)
+            let _ = try await db.collection("Users").document(userID).collection("Blocked").addDocument(data: Firestore.Encoder().encode(blockedUser))
             return .success(())
         } catch {
             return .failure(error)
@@ -148,12 +174,9 @@ extension UserService: UserServiceProtocol {
     }
     
     func updateLocation(userID: String, location: LocationModel) async -> Result<Void, Error> {
-        do {
+        return await APIHelper.shared.voidRequest {
             let encodedLocation = try Firestore.Encoder().encode(location)
             try await db.collection("Users").document(userID).updateData(["location": encodedLocation])
-            return .success(())
-        } catch {
-            return .failure(error)
         }
     }
 }

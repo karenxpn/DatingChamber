@@ -27,7 +27,7 @@ struct PostGridCell: View {
             }
         }.fullScreenCover(isPresented: $navigate, onDismiss: {
             accountVM.posts.removeAll(keepingCapacity: false)
-            accountVM.lastPost = nil
+            accountVM.lastSnapshot = nil
             accountVM.getAccount()
             
         }, content: {

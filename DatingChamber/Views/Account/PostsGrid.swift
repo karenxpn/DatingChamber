@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostsGrid: View {
+    @AppStorage("userID") var userID: String = ""
     @EnvironmentObject var accountVM: AccountViewModel
     
     var body: some View {
@@ -37,8 +38,9 @@ struct PostsGrid: View {
                     .environmentObject(accountVM)
                     .onAppear {
                         if post.id == accountVM.posts.last?.id && !accountVM.loadingPost {
-                            print("faced \(post.id)")
-                            accountVM.getPosts()
+                            if !userID.isEmpty {
+                                accountVM.getPosts()
+                            }
                         }
                     }
             }

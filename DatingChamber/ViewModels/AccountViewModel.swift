@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import FirebaseAuth
 import FirebaseFirestore
 
 class AccountViewModel: AlertViewModel, ObservableObject {
@@ -17,12 +16,16 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @Published var posts = [PostViewModel]()
     
     @Published var loadingPost: Bool = false
-    @Published var lastPost: QueryDocumentSnapshot?
+    @Published var lastSnapshot: QueryDocumentSnapshot?
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     @Published var interests = [String]()
     @Published var uploadedImages = [String]()
+    
+    @Published var blockedUsers = [BlockedUserModel]()
+    @Published var loadingPage: Bool = false
+    
     
     var manager: UserServiceProtocol
     var authManager: AuthServiceProtocol
@@ -45,14 +48,14 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
             case .success(let response):
                 let user = response.0
-                
+
                 self.user = UserModelViewModel(user: user)
                 if let posts = user.posts {
                     self.posts = posts.map(PostViewModel.init)
-                    self.lastPost = response.1
+                    self.lastSnapshot = response.1
                 }
             }
-            
+
             if !Task.isCancelled {
                 loading = false
             }
@@ -62,15 +65,15 @@ class AccountViewModel: AlertViewModel, ObservableObject {
     @MainActor func getPosts() {
         loadingPost = true
         Task {
-            let result = await blogManager.fetchUserPosts(userID: userID, lastDocSnapshot: lastPost)
+            let result = await blogManager.fetchUserPosts(userID: userID, lastDocSnapshot: lastSnapshot)
             switch result {
             case .success(let post):
                 self.posts.append(contentsOf: post.0.map(PostViewModel.init))
-                self.lastPost = post.1
+                self.lastSnapshot = post.1
             case .failure( _):
                 break
             }
-            
+
             if !Task.isCancelled {
                 loadingPost = false
             }
@@ -103,7 +106,7 @@ class AccountViewModel: AlertViewModel, ObservableObject {
             case .success(()):
                 NotificationCenter.default.post(name: Notification.Name("profile_updated"), object: nil)
             }
-            
+
             if !Task.isCancelled {
                 loading = false
             }
@@ -137,20 +140,22 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                     }
                 }
             }
-            
+
             if !Task.isCancelled {
                 loading = false
             }
         }
     }
     
-    func signOut() {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            userID = ""
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+    @MainActor func signOut() {
+        Task {
+            let result = await manager.signOut(userID: userID)
+            switch result {
+            case .success(()):
+                userID = ""
+            default:
+                break
+            }
         }
     }
     
@@ -169,6 +174,40 @@ class AccountViewModel: AlertViewModel, ObservableObject {
                     self.userID = ""
 //                    self.initialUserID = ""
                 }
+            }
+        }
+    }
+    
+    @MainActor func getBlockedUsers(refresh: Refresh? = nil) {
+        if refresh == .refresh {
+            lastSnapshot = nil
+        }
+        
+        if blockedUsers.isEmpty {
+            loading = true
+        } else {
+            loadingPage = true
+        }
+        
+        Task {
+            
+            let result = await manager.fetchBlockedUsers(userID: userID, lastUser: lastSnapshot)
+            
+            switch result {
+            case .failure(let error):
+                self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+            case .success(let response):
+                if refresh == .refresh      { self.blockedUsers = response.0 }
+                else                        { self.blockedUsers.append(contentsOf: response.0) }
+                
+                if !response.0.isEmpty {
+                    self.lastSnapshot = response.1
+                }
+            }
+                                                                       
+            if !Task.isCancelled {
+                loading = false
+                loadingPage = false
             }
         }
     }

@@ -13,7 +13,7 @@ import FirebaseFirestore
 protocol BlogServiceProtocol {
     func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
     func fetchUserPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error>
-    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error>
+    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: PostReadingVoice?) async -> Result<Void, Error>
     func reportPost(userID: String, postID: String, reason: String) async -> Result<Void, Error>
     func deletePost(postID: String) async -> Result<Void, Error>
 }
@@ -29,7 +29,7 @@ class BlogService {
 extension BlogService: BlogServiceProtocol {
     func reportPost(userID: String, postID: String, reason: String) async -> Result<Void, Error> {
         do {
-            try await db.collection("ReportedPosts").addDocument(data: ["user" : userID,
+            let _ = try await db.collection("ReportedPosts").addDocument(data: ["user" : userID,
                                                                         "post" : postID,
                                                                         "reason": reason])
             return .success(())
@@ -64,7 +64,7 @@ extension BlogService: BlogServiceProtocol {
         }
     }
     
-    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: String?) async -> Result<Void, Error> {
+    func uploadPost(userID: String, image: Data?, imageURL: String?, title: String, content: String, allowReading: Bool, readingVoice: PostReadingVoice?) async -> Result<Void, Error> {
         do {
             
             var url: String
@@ -72,7 +72,7 @@ extension BlogService: BlogServiceProtocol {
                 url = imageURL
             } else {
                 let dbRef = storageRef.child("blog/\(UUID().uuidString)")
-                try await dbRef.putDataAsync(image!)
+                let _ = try await dbRef.putDataAsync(image!)
                 url = try await dbRef.downloadURL().absoluteString
             }
             

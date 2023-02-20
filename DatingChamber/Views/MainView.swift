@@ -9,6 +9,8 @@ import SwiftUI
 import AppTrackingTransparency
 
 struct MainView: View {
+    @Environment(\.scenePhase) var scenePhase
+
     @StateObject private var locationManager = LocationManager()
     @StateObject private var notificationsVM = NotificationsViewModel()
     @StateObject private var tabViewModel = TabViewModel()
@@ -25,7 +27,7 @@ struct MainView: View {
                     Swipes()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 2 {
-                    Text("Chats")
+                    Chats()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 3 {
                     Account()
@@ -40,7 +42,15 @@ struct MainView: View {
             .onAppear {
                 locationManager.initLocation()
                 notificationsVM.requestPermission()
+                tabViewModel.updateOnlineStatus(online: true, lastVisit: nil)
+
                 ATTrackingManager.requestTrackingAuthorization { _ in
+                }
+            }.onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    tabViewModel.updateOnlineStatus(online: true, lastVisit: nil)
+                } else {
+                    tabViewModel.updateOnlineStatus(online: false, lastVisit: Date().toGlobalTime())
                 }
             }
     }
