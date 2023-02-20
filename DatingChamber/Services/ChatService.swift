@@ -13,7 +13,7 @@ import SwiftUI
 import FirebaseService
 
 protocol ChatServiceProtocol {
-    func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ())
+    func fetchChats(completion: @escaping(Result<[ChatModel], Error>) -> ())
     func sendMessage(userID: String,
                      chatID: String,
                      type: MessageType,
@@ -230,12 +230,10 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func fetchChats(lastChat: QueryDocumentSnapshot?, completion: @escaping(Result<([(ChatModel, DocumentChangeType)], QueryDocumentSnapshot?), Error>) -> ()){
+    func fetchChats(completion: @escaping(Result<[ChatModel], Error>) -> ()){
         // modify this lastMesssage -> lastMessage
-        var query: Query = db.collection("Chats").order(by: "lastMessage.createdAt", descending: true)
-        if lastChat == nil   { query = query.limit(to: 10) }
-        else                 { query = query.start(afterDocument: lastChat!).limit(to: 10) }
-        
+        let query: Query = db.collection("Chats").order(by: "lastMessage.createdAt", descending: true)
+
         query.addSnapshotListener { snapshot, error in
             if let error {
                 DispatchQueue.main.async {
@@ -246,26 +244,25 @@ extension ChatService: ChatServiceProtocol {
             
             guard snapshot?.documents.last != nil else {
                 DispatchQueue.main.async {
-                    completion(.success(([], nil)))
+                    completion(.success(([])))
                 }
                 // The collection is empty.
                 return
             }
             
-            var results = [(ChatModel, DocumentChangeType)]()
+            var results = [ChatModel]()
             
-            snapshot?.documentChanges.forEach({ diff in
+            snapshot?.documents.forEach({ doc in
                 do {
-                    let doc = try diff.document.data(as: ChatModel.self)
-                    results.append((doc, diff.type))
+                    let chat = try doc.data(as: ChatModel.self)
+                    results.append(chat)
                 } catch {
                     print(error)
                 }
-                
             })
             
             DispatchQueue.main.async {
-                completion(.success((results, snapshot?.documents.last)))
+                completion(.success(results))
             }
         }
     }

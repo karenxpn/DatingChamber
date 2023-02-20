@@ -17,11 +17,6 @@ struct ChatList: View {
         List {
             ForEach(chats, id: \.id) { chat in
                 ChatListCell(chat: chat)
-                    .onAppear {
-                        if chat.id == chatVM.chats.last?.id && !chatVM.loadingPage {
-                            chatVM.getChats()
-                        }
-                    }
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
                     .swipeActions {
