@@ -30,7 +30,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
             loading = true
         }
         
-        manager.fetchChats() { result in
+        manager.fetchChats(userID: userID) { result in
             self.loading = false
             switch result {
             case .failure(let error):

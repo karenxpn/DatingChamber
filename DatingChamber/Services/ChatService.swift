@@ -13,7 +13,7 @@ import SwiftUI
 import FirebaseService
 
 protocol ChatServiceProtocol {
-    func fetchChats(completion: @escaping(Result<[ChatModel], Error>) -> ())
+    func fetchChats(userID: String, completion: @escaping(Result<[ChatModel], Error>) -> ())
     func sendMessage(userID: String,
                      chatID: String,
                      type: MessageType,
@@ -230,9 +230,10 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-    func fetchChats(completion: @escaping(Result<[ChatModel], Error>) -> ()){
-        // modify this lastMesssage -> lastMessage
-        let query: Query = db.collection("Chats").order(by: "lastMessage.createdAt", descending: true)
+    func fetchChats(userID: String, completion: @escaping(Result<[ChatModel], Error>) -> ()){
+        let query: Query = db.collection("Chats")
+            .whereField("uids", arrayContains: userID)
+            .order(by: "lastMessage.createdAt", descending: true)
 
         query.addSnapshotListener { snapshot, error in
             if let error {
