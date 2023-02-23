@@ -43,9 +43,24 @@ extension UserService: UserServiceProtocol {
     }
     
     func updateOnlineState(userID: String, online: Bool, lastVisit: Date?) async -> Result<Void, Error> {
+        print("updating")
         return await APIHelper.shared.voidRequest {
             try await db.collection("Users").document(userID).setData(["online": online,
                                                                        "lastVisit": lastVisit], merge: true)
+            
+            let documents = try await db.collection("Chats").whereField("uids", arrayContains: userID).getDocuments().documents
+            
+            
+            for document in documents {
+                var chat = try document.data(as: ChatModel.self)
+                                
+                if let uid = chat.users.firstIndex(where: { $0.id == userID }) {
+                    chat.users[uid].online = online
+                    chat.users[uid].lastVisit = lastVisit
+                                        
+                    let _ = try await db.collection("Chats").document(document.documentID).setData(Firestore.Encoder().encode(chat), merge: true)
+                }
+            }
         }
     }
     
