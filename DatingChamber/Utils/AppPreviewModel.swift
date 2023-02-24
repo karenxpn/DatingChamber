@@ -30,7 +30,7 @@ struct AppPreviewModel {
                                                          sentBy: "a;sldkfj",
                                                          seenBy: [""],
                                                         status: .sent,
-                                                         createdAt: Date().toGlobalTime()), mutedBy: []))]
+                                                         createdAt: Timestamp(date: Date().toGlobalTime())), mutedBy: []))]
     
     static let userPreviewModel = UserPreviewModel(id: "a;sldkfj",
                                                    name: "Karen",

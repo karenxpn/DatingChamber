@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct ChatModel: Identifiable, Codable {
@@ -23,7 +24,7 @@ struct ChatMessagePreview: Identifiable, Codable {
     var sentBy: String
     var seenBy: [String]
     var status: MessageStatus
-    var createdAt: Date
+    var createdAt: Timestamp
 }
 
 
@@ -66,18 +67,15 @@ struct ChatModelViewModel: Identifiable {
         return false
     }
     
-    // to be modified
-    // content -> detect content type
     var content: String {
         if messageType == .text {
             return self.chat.lastMessage.content
         } else {
             return NSLocalizedString("mediaContent", comment: "")
         }
-        
     }
-    var date: String                    { self.chat.lastMessage.createdAt.countTimeBetweenDates() }
-    //
+    
+    var date: String                    { self.chat.lastMessage.createdAt.dateValue().countTimeBetweenDates() }
     var users: [UserPreviewViewModel]   { self.chat.users.map(UserPreviewViewModel.init) }
     var lastMessage: ChatMessagePreview { self.chat.lastMessage }
 }
