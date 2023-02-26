@@ -15,6 +15,7 @@ protocol UserServiceProtocol {
     func likeUser(userID: String, uid: String) async -> Result<Void, Error>
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error>
     func blockUser(userID: String, uid: String) async -> Result<Void, Error>
+    func reportUser(userID: String, uid: String, reason: String) async -> Result<Void, Error>
     
     func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error>
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
@@ -32,6 +33,7 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    
     func fetchBlockedUsers(userID: String, lastUser: QueryDocumentSnapshot?) async -> Result<([BlockedUserModel], QueryDocumentSnapshot?), Error> {
         do {
             let usersDocs = try await db.collection("Users").document(userID).collection("Blocked").getDocuments().documents
@@ -166,7 +168,8 @@ extension UserService: UserServiceProtocol {
     }
     
     func blockUser(userID: String, uid: String) async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             // remove from my requests and pendings
             try await db.collection("Users").document(userID).collection("Requests").document(uid).delete()
             try await db.collection("Users").document(userID).collection("Pending").document(uid).delete()
@@ -184,10 +187,20 @@ extension UserService: UserServiceProtocol {
                                                image: uidUser.avatar)
             
             let _ = try await db.collection("Users").document(userID).collection("Blocked").document(uidUser.id).setData(Firestore.Encoder().encode(blockedUser))
-            return .success(())
-        } catch {
-            return .failure(error)
         }
+    }
+    
+    func reportUser(userID: String, uid: String, reason: String) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest(action: {
+            let uidUser = try await db.collection("Users").document(uid).getDocument(as: UserModel.self)
+
+            let user = ReportedUserModel(id: uidUser.id,
+                                         name: uidUser.name,
+                                         image: uidUser.avatar,
+                                         reason: reason)
+            
+            try await db.collection("Users").document(userID).collection("Report").document(uid).setData(Firestore.Encoder().encode(user))
+        })
     }
     
     func updateLocation(userID: String, location: LocationModel) async -> Result<Void, Error> {

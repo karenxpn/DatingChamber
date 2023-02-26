@@ -37,13 +37,19 @@ class UserViewModel: AlertViewModel, ObservableObject {
     
     @MainActor func dislikeUser(uid: String) {
         Task {
-            let result = await manager.dislikeUser(userID: userID, uid: uid)
+            let _ = await manager.dislikeUser(userID: userID, uid: uid)
         }
     }
     
     @MainActor func blockUser(uid: String) {
         Task {
-            let result = await manager.blockUser(userID: userID, uid: uid)
+            let _ = await manager.blockUser(userID: userID, uid: uid)
+        }
+    }
+    
+    @MainActor func reportUser(uid: String) {
+        Task {
+            let _ = await manager.reportUser(userID: userID, uid: uid, reason: reportReason)
         }
     }
 }

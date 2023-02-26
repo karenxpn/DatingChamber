@@ -183,7 +183,6 @@ struct SwipeCard: View {
                                 userVM.likeUser(uid: user.id)
                                 checkLastAndRequestMore()
                                 user.x = 1000; user.degree = 20
-                                //                                AppAnalytics().logEvent(event: "swipe")
                             case (-100)...(-1):
                                 cardAction = .none
                                 user.x = 0
@@ -194,7 +193,6 @@ struct SwipeCard: View {
                                 userVM.likeUser(uid: user.id)
                                 checkLastAndRequestMore()
                                 user.x = -1000; user.degree = -20
-                                //                                AppAnalytics().logEvent(event: "swipe")
                             default:
                                 cardAction = .none
                                 user.x = 0;
@@ -217,6 +215,7 @@ struct SwipeCard: View {
     }
     
     func reportUser() {
+        userVM.reportUser(uid: user.id)
         cardAction = .report
         withAnimation {
             user.y = 1000;
