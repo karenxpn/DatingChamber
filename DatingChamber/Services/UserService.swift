@@ -15,6 +15,7 @@ protocol UserServiceProtocol {
     func likeUser(userID: String, uid: String) async -> Result<Void, Error>
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error>
     func blockUser(userID: String, uid: String) async -> Result<Void, Error>
+    func reportUser(userID: String, uid: String, reason: String) async -> Result<Void, Error>
     
     func fetchAccount(userID: String) async -> Result<(UserModel, QueryDocumentSnapshot?), Error>
     func updateAccount(userID: String, updateField: [String: Any]) async -> Result<Void, Error>
@@ -32,6 +33,7 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    
     func fetchBlockedUsers(userID: String, lastUser: QueryDocumentSnapshot?) async -> Result<([BlockedUserModel], QueryDocumentSnapshot?), Error> {
         do {
             let usersDocs = try await db.collection("Users").document(userID).collection("Blocked").getDocuments().documents
@@ -166,13 +168,15 @@ extension UserService: UserServiceProtocol {
     }
     
     func blockUser(userID: String, uid: String) async -> Result<Void, Error> {
-        do {
+        
+        return await APIHelper.shared.voidRequest {
             // remove from my requests and pendings
-            try await db.collection("Users").document(userID).updateData(["requests": FieldValue.arrayRemove([uid])])
-            try await db.collection("Users").document(userID).updateData(["pending": FieldValue.arrayRemove([uid])])
+            try await db.collection("Users").document(userID).collection("Requests").document(uid).delete()
+            try await db.collection("Users").document(userID).collection("Pending").document(uid).delete()
+            
             // remove from users requests and pendings
-            try await db.collection("Users").document(uid).updateData(["requests": FieldValue.arrayRemove([userID])])
-            try await db.collection("Users").document(uid).updateData(["pending": FieldValue.arrayRemove([userID])])
+            try await db.collection("Users").document(uid).collection("Requests").document(userID).delete()
+            try await db.collection("Users").document(uid).collection("Pending").document(userID).delete()
             
             // add to my blocked users
             // get uid user and make a preview model to upload to user.nested collection called blocked
@@ -181,11 +185,22 @@ extension UserService: UserServiceProtocol {
             let blockedUser = BlockedUserModel(id: uidUser.id,
                                                name: uidUser.name,
                                                image: uidUser.avatar)
-            let _ = try await db.collection("Users").document(userID).collection("Blocked").addDocument(data: Firestore.Encoder().encode(blockedUser))
-            return .success(())
-        } catch {
-            return .failure(error)
+            
+            let _ = try await db.collection("Users").document(userID).collection("Blocked").document(uidUser.id).setData(Firestore.Encoder().encode(blockedUser))
         }
+    }
+    
+    func reportUser(userID: String, uid: String, reason: String) async -> Result<Void, Error> {
+        return await APIHelper.shared.voidRequest(action: {
+            let uidUser = try await db.collection("Users").document(uid).getDocument(as: UserModel.self)
+
+            let user = ReportedUserModel(id: uidUser.id,
+                                         name: uidUser.name,
+                                         image: uidUser.avatar,
+                                         reason: reason)
+            
+            try await db.collection("Users").document(userID).collection("Report").document(uid).setData(Firestore.Encoder().encode(user))
+        })
     }
     
     func updateLocation(userID: String, location: LocationModel) async -> Result<Void, Error> {
