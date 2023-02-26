@@ -168,11 +168,12 @@ extension UserService: UserServiceProtocol {
     func blockUser(userID: String, uid: String) async -> Result<Void, Error> {
         do {
             // remove from my requests and pendings
-            try await db.collection("Users").document(userID).updateData(["requests": FieldValue.arrayRemove([uid])])
-            try await db.collection("Users").document(userID).updateData(["pending": FieldValue.arrayRemove([uid])])
+            try await db.collection("Users").document(userID).collection("Requests").document(uid).delete()
+            try await db.collection("Users").document(userID).collection("Pending").document(uid).delete()
+            
             // remove from users requests and pendings
-            try await db.collection("Users").document(uid).updateData(["requests": FieldValue.arrayRemove([userID])])
-            try await db.collection("Users").document(uid).updateData(["pending": FieldValue.arrayRemove([userID])])
+            try await db.collection("Users").document(uid).collection("Requests").document(userID).delete()
+            try await db.collection("Users").document(uid).collection("Pending").document(userID).delete()
             
             // add to my blocked users
             // get uid user and make a preview model to upload to user.nested collection called blocked
@@ -181,7 +182,8 @@ extension UserService: UserServiceProtocol {
             let blockedUser = BlockedUserModel(id: uidUser.id,
                                                name: uidUser.name,
                                                image: uidUser.avatar)
-            let _ = try await db.collection("Users").document(userID).collection("Blocked").addDocument(data: Firestore.Encoder().encode(blockedUser))
+            
+            let _ = try await db.collection("Users").document(userID).collection("Blocked").document(uidUser.id).setData(Firestore.Encoder().encode(blockedUser))
             return .success(())
         } catch {
             return .failure(error)
