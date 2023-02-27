@@ -239,6 +239,7 @@ extension ChatService: ChatServiceProtocol {
             if let error {
                 DispatchQueue.main.async {
                     completion(.failure(error))
+                    print(error)
                 }
                 return
             }

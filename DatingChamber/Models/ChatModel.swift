@@ -15,6 +15,7 @@ struct ChatModel: Identifiable, Codable {
     var users: [UserPreviewModel]
     var lastMessage: ChatMessagePreview
     var mutedBy: [String]
+    var uids: [String]
 }
 
 struct ChatMessagePreview: Identifiable, Codable {

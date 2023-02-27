@@ -139,32 +139,66 @@ extension UserService: UserServiceProtocol {
     }
     
     func likeUser(userID: String, uid: String) async -> Result<Void, Error> {
-        do {
-            let myEncodedRequests = try await db.collection("Users").document(userID).getDocument().get("requests")
-            var myRequests = [String]()
-            if let myEncodedRequests {
-                myRequests = try Firestore.Decoder().decode([String].self, from: myEncodedRequests)
-            }
+        
+        return await APIHelper.shared.voidRequest(action: {
             
-            if myRequests.contains(uid) {
-                // if user liked me -> remove from my requests and from user's pendings
-                try await db.collection("Users").document(userID).updateData(["requests" : FieldValue.arrayRemove([uid])])
-                try await db.collection("Users").document(userID).updateData(["pending" : FieldValue.arrayRemove([uid])])
+            let existence = try await db.collection("Users").document(userID).collection("Requests").document(uid).getDocument().exists
+            let me = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
+            let user = try await db.collection("Users").document(uid).getDocument(as: UserModel.self)
+            
+            let meAsFriend = FriendModel(id: me.id,
+                                         name: me.name,
+                                         image: me.avatar)
+            
+            let userAsFriend = FriendModel(id: user.id,
+                                           name: user.name,
+                                           image: user.avatar)
+            
+            if existence {
+                // if users exists in my requests
+                // 1. remove from my requests
+                // 2. remove from user's pendings
+                // 3. add to my friends
+                // 4. add to user's friends
+                // 5. add chat for users
                 
-                // add user to friends for both users
-                try await db.collection("Users").document(userID).updateData(["friends" : FieldValue.arrayUnion([uid])])
-                try await db.collection("Users").document(uid).updateData(["friends" : FieldValue.arrayUnion([userID])])
+                // 1, 2
+                try await db.collection("Users").document(userID).collection("Requests").document(uid).delete()
+                try await db.collection("Users").document(uid).collection("Pending").document(userID).delete()
+                
+                // 3, 4
+                try await db.collection("Users").document(userID).collection("Friends").document(uid).setData(Firestore.Encoder().encode(userAsFriend))
+                try await db.collection("Users").document(uid).collection("Friends").document(userID).setData(Firestore.Encoder().encode(meAsFriend))
+                
+                // add chat here
+                let chat = ChatModel(users: [UserPreviewModel(id: me.id,
+                                                              name: me.name,
+                                                              image: me.avatar,
+                                                              online: me.online,
+                                                              lastVisit: me.lastVisit,
+                                                              blocked: false),
+                                             UserPreviewModel(id: user.id,
+                                                              name: user.name,
+                                                              image: user.avatar,
+                                                              online: user.online,
+                                                              lastVisit: user.lastVisit,
+                                                              blocked: false)],
+                                     lastMessage: ChatMessagePreview(id: UUID().uuidString,
+                                                                     type: .text,
+                                                                     content: "Say Hello 🤩",
+                                                                     sentBy: "",
+                                                                     seenBy: [me.id, user.id],
+                                                                     status: .read,
+                                                                     createdAt: Timestamp(date: .now.toGlobalTime())),
+                                     mutedBy: [], uids: [me.id, user.id])
+                
+                let _ = try await db.collection("Chats").addDocument(data: Firestore.Encoder().encode(chat))
             } else {
                 // if I liked first -. add to my pendings and user's requests
-                try await db.collection("Users").document(userID).updateData(["pending" : FieldValue.arrayUnion([uid])])
-                try await db.collection("Users").document(uid).updateData(["requests" : FieldValue.arrayUnion([userID])])
+                try await db.collection("Users").document(userID).collection("Pending").document(uid).setData(Firestore.Encoder().encode(userAsFriend))
+                try await db.collection("Users").document(uid).collection("Requests").document(userID).setData(Firestore.Encoder().encode(meAsFriend))
             }
-            
-            return .success(())
-
-        } catch {
-            return .failure(error)
-        }
+        })
     }
     
     func blockUser(userID: String, uid: String) async -> Result<Void, Error> {
@@ -173,10 +207,12 @@ extension UserService: UserServiceProtocol {
             // remove from my requests and pendings
             try await db.collection("Users").document(userID).collection("Requests").document(uid).delete()
             try await db.collection("Users").document(userID).collection("Pending").document(uid).delete()
+            try await db.collection("Users").document(userID).collection("Friends").document(uid).delete()
             
             // remove from users requests and pendings
             try await db.collection("Users").document(uid).collection("Requests").document(userID).delete()
             try await db.collection("Users").document(uid).collection("Pending").document(userID).delete()
+            try await db.collection("Users").document(uid).collection("Friends").document(userID).delete()
             
             // add to my blocked users
             // get uid user and make a preview model to upload to user.nested collection called blocked
