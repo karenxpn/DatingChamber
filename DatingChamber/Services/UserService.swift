@@ -113,23 +113,21 @@ extension UserService: UserServiceProtocol {
     
     func dislikeUser(userID: String, uid: String) async -> Result<Void, Error> {
         do {
-            let myEncodedRequests = try await db.collection("Users").document(userID).getDocument().get("requests")
-            var myRequests = [String]()
-            if let myEncodedRequests {
-                myRequests = try Firestore.Decoder().decode([String].self, from: myEncodedRequests)
+            let existence = try await db.collection("Users").document(userID).collection("Requests").document(uid).getDocument().exists
+            let user = try await db.collection("Users").document(uid).getDocument(as: UserModel.self)
+            let dislikedUser = FriendModel(id: user.id, name: user.name, image: user.avatar)
+            
+            if existence {
+                // if I dislike user
+                // 1. remove from my requests
+                // 2. remove from user's pendings
+                try await db.collection("Users").document(userID).collection("Requests").document(uid).delete()
+                try await db.collection("Users").document(uid).collection("Pending").document(userID).delete()
+
             }
             
-            if myRequests.contains(uid) {
-                // if I dislike user
-                // remove from requests and add to dislikes
-                // remove user's pending request as I dislik
-                try await db.collection("Users").document(userID).updateData(["requests" : FieldValue.arrayRemove([uid])])
-                try await db.collection("Users").document(userID).updateData(["dislikes" : FieldValue.arrayUnion([uid])])
-                try await db.collection("Users").document(uid).updateData(["pending" : FieldValue.arrayRemove([userID])])
-
-            } else {
-                try await db.collection("Users").document(userID).updateData(["dislikes" : FieldValue.arrayUnion([uid])])
-            }
+            // 3. add to my dislikes
+            try await db.collection("Users").document(userID).collection("Dislikes").document(uid).setData(Firestore.Encoder().encode(dislikedUser))
             
             return .success(())
 
