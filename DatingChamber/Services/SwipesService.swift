@@ -37,7 +37,7 @@ extension SwipesService: SwipesServiceProtocol {
         let dateMaxLimit = Calendar.current.date(byAdding: .year, value: -maxAge, to: Date()) ?? Date()
            
         do {
-            let ref = db.collection("Users")
+            let ref = db.collection(DatabasePaths.users.rawValue)
             var query: Query = ref
             
             let encodedUserInterests = try await ref.document(userID).getDocument().get("interests")

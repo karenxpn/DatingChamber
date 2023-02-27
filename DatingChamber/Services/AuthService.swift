@@ -31,7 +31,7 @@ class AuthService {
 extension AuthService: AuthServiceProtocol {
     func fetchInterests() async -> Result<[String], Error> {
         do {
-            let docs = try await db.collection("Interests").getDocuments()
+            let docs = try await db.collection(DatabasePaths.interests.rawValue).getDocuments()
             let interests = docs.documents.map { $0.data()["name"] as! String }
             return .success(interests)
             
@@ -85,14 +85,14 @@ extension AuthService: AuthServiceProtocol {
     
     func storeUser(uid: String, user: RegistrationModel) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
-            try await db.collection("Users").document(uid).setData(from: user)
+            try await db.collection(DatabasePaths.users.rawValue).document(uid).setData(from: user)
         }
     }
     
     
     func checkExistence(uid: String) async -> Result<Bool, Error> {
         do {
-            let exists = try await db.collection("Users").document(uid).getDocument().exists
+            let exists = try await db.collection(DatabasePaths.users.rawValue).document(uid).getDocument().exists
             return .success(exists)
         } catch {
             return .failure(error)

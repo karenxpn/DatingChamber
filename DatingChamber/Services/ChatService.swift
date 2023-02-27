@@ -46,28 +46,28 @@ extension ChatService: ChatServiceProtocol {
     func markMessageAsRead(chatID: String, messageID: String, userID: String) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest(action: {
             
-            let chat = try await db.collection("Chats")
+            let chat = try await db.collection(DatabasePaths.chats.rawValue)
                 .document(chatID)
                 .getDocument(as: ChatModel.self)
             
             if messageID == chat.lastMessage.id && !chat.lastMessage.seenBy.contains(where: {$0 == userID}){
-                try await db.collection("Chats")
+                try await db.collection(DatabasePaths.chats.rawValue)
                     .document(chatID)
                     .updateData(["lastMessage.seenBy": FieldValue.arrayUnion([userID])])
             }
             
-            try await db.collection("Chats")
+            try await db.collection(DatabasePaths.chats.rawValue)
                 .document(chatID)
-                .collection("messages")
+                .collection(DatabasePaths.messages.rawValue)
                 .document(messageID)
                 .updateData(["seenBy" : FieldValue.arrayUnion([userID])])
         })
     }
     
     func fetchMessages(chatIID: String, lastMessage: QueryDocumentSnapshot?, completion: @escaping (Result<([MessageModel], QueryDocumentSnapshot?), Error>) -> ()) {
-        var query: Query = db.collection("Chats")
+        var query: Query = db.collection(DatabasePaths.chats.rawValue)
             .document(chatIID)
-            .collection("messages")
+            .collection(DatabasePaths.messages.rawValue)
             .order(by: "createdAt", descending: true)
         
         if lastMessage == nil {
@@ -155,9 +155,9 @@ extension ChatService: ChatServiceProtocol {
     
     func sendReaction(chatID: String, messageID: String, reaction: ReactionModel, action: ReactionAction) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
-            try await db.collection("Chats")
+            try await db.collection(DatabasePaths.chats.rawValue)
                 .document(chatID)
-                .collection("messages")
+                .collection(DatabasePaths.messages.rawValue)
                 .document(messageID)
                 .updateData(["reactions": action == .react ?
                              FieldValue.arrayUnion([["userId" : reaction.userId,
@@ -220,18 +220,18 @@ extension ChatService: ChatServiceProtocol {
     }
     func muteChat(userID: String, chatID: String, mute: Bool) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
-            try await db.collection("Chats").document(chatID).updateData(["mutedBy" : mute ? FieldValue.arrayUnion([userID]) : FieldValue.arrayRemove([userID])])
+            try await db.collection(DatabasePaths.chats.rawValue).document(chatID).updateData(["mutedBy" : mute ? FieldValue.arrayUnion([userID]) : FieldValue.arrayRemove([userID])])
         }
     }
     
     func deleteChat(chatID: String) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
-            try await db.collection("Chats").document(chatID).delete()
+            try await db.collection(DatabasePaths.chats.rawValue).document(chatID).delete()
         }
     }
     
     func fetchChats(userID: String, completion: @escaping(Result<[ChatModel], Error>) -> ()){
-        let query: Query = db.collection("Chats")
+        let query: Query = db.collection(DatabasePaths.chats.rawValue)
             .whereField("uids", arrayContains: userID)
             .order(by: "lastMessage.createdAt", descending: true)
 
@@ -294,7 +294,7 @@ extension ChatService: ChatServiceProtocol {
                      duration: String?) async -> Result<Void, Error> {
         
         return await APIHelper.shared.voidRequest {
-            let user = try await db.collection("Users").document(userID).getDocument(as: UserModel.self)
+            let user = try await db.collection(DatabasePaths.users.rawValue).document(userID).getDocument(as: UserModel.self)
 
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
                                        type: type,
@@ -309,9 +309,9 @@ extension ChatService: ChatServiceProtocol {
                                        senderName: user.name)
                         
             let sentMessage = try await db
-                .collection("Chats")
+                .collection(DatabasePaths.chats.rawValue)
                 .document(chatID)
-                .collection("messages")
+                .collection(DatabasePaths.messages.rawValue)
                 .addDocument(data: Firestore.Encoder().encode(message))
             
             let curMessage = try await sentMessage.getDocument(as: MessageModel.self)
@@ -323,16 +323,15 @@ extension ChatService: ChatServiceProtocol {
                                                     seenBy: curMessage.seenBy,
                                                     status: curMessage.status)
             
-            print(lastMessage)
             
-            let _ = try await db.collection("Chats").document(chatID).updateData(["lastMessage": Firestore.Encoder().encode(lastMessage)])
+            let _ = try await db.collection(DatabasePaths.chats.rawValue).document(chatID).updateData(["lastMessage": Firestore.Encoder().encode(lastMessage)])
         }
     }
     
     func editMessage(chatID: String, messageID: String, message: String, status: MessageStatus) async -> Result<Void, Error> {
         
         return await APIHelper.shared.voidRequest {
-            let _ = try await db.collection("Chats").document(chatID).collection("messages").document(messageID)
+            let _ = try await db.collection(DatabasePaths.chats.rawValue).document(chatID).collection(DatabasePaths.messages.rawValue).document(messageID)
                 .setData(["content" : message,
                           "isEdited": true,
                           "status": status.rawValue,

@@ -40,7 +40,7 @@ extension BlogService: BlogServiceProtocol {
     
     func deletePost(postID: String) async -> Result<Void, Error> {
         do {
-            try await db.collection("Blogs").document(postID).delete()
+            try await db.collection(DatabasePaths.blogs.rawValue).document(postID).delete()
             return .success(())
         } catch {
             return .failure(error)
@@ -50,7 +50,7 @@ extension BlogService: BlogServiceProtocol {
     func fetchUserPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error> {
         do {
             
-            var query: Query = db.collection("Blogs").whereField("user.id", isEqualTo: userID).order(by: "createdAt", descending: true)
+            var query: Query = db.collection(DatabasePaths.blogs.rawValue).whereField("user.id", isEqualTo: userID).order(by: "createdAt", descending: true)
             if lastDocSnapshot == nil   { query = query.limit(to: 10) }
             else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
             
@@ -76,7 +76,7 @@ extension BlogService: BlogServiceProtocol {
                 url = try await dbRef.downloadURL().absoluteString
             }
             
-            let user = try await db.collection("Users").document(userID).getDocument().data(as: UserModel.self)
+            let user = try await db.collection(DatabasePaths.users.rawValue).document(userID).getDocument().data(as: UserModel.self)
             
             let postID = UUID().uuidString
             let post = PostModel(title: title,
@@ -88,7 +88,7 @@ extension BlogService: BlogServiceProtocol {
                                                      name: user.name,
                                                      image: user.avatar))
             
-            try await db.collection("Blogs").document(postID).setData(from: post)
+            try await db.collection(DatabasePaths.blogs.rawValue).document(postID).setData(from: post)
             return .success(())
         } catch {
             return .failure(error)
@@ -98,15 +98,10 @@ extension BlogService: BlogServiceProtocol {
     func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error> {
         do {
             // filter data
-            let encodedFriends = try await db.collection("Users").document(userID).getDocument().get("friends")
-            var friends = [String]()
-            if let encodedFriends {
-                friends = try Firestore.Decoder().decode([String].self, from: encodedFriends)
-            }
-            friends.append(userID)
+            let friends = try await db.collection(DatabasePaths.users.rawValue).document(userID).collection(DatabasePaths.friends.rawValue).getDocuments().documents.map{ $0.documentID }
             
             
-            var query: Query = db.collection("Blogs").whereField("user.id", in: friends).order(by: "createdAt", descending: true)
+            var query: Query = db.collection(DatabasePaths.blogs.rawValue).whereField("user.id", in: friends).order(by: "createdAt", descending: true)
             if lastDocSnapshot == nil   { query = query.limit(to: 10) }
             else                        { query = query.start(afterDocument: lastDocSnapshot!).limit(to: 10) }
             
