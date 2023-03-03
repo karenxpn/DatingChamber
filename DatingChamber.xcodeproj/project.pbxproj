@@ -56,6 +56,7 @@
 		FF34A2F829357B6800598724 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2F729357B6800598724 /* PostCell.swift */; };
 		FF34A2FC29364A8A00598724 /* PostsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2FB29364A8A00598724 /* PostsGrid.swift */; };
 		FF34A2FE29364AE000598724 /* PostGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF34A2FD29364AE000598724 /* PostGridCell.swift */; };
+		FF3A14C529B1FA0300D1EF03 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3A14C429B1FA0300D1EF03 /* Launch Screen.storyboard */; };
 		FF3D6D86292FAB6E0046015C /* EditGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D85292FAB6E0046015C /* EditGallery.swift */; };
 		FF3D6D89292FB7BB0046015C /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = FF3D6D88292FB7BB0046015C /* Popovers */; };
 		FF3D6D8B292FB9550046015C /* MenuButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */; };
@@ -252,6 +253,7 @@
 		FF34A2F729357B6800598724 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		FF34A2FB29364A8A00598724 /* PostsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsGrid.swift; sourceTree = "<group>"; };
 		FF34A2FD29364AE000598724 /* PostGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGridCell.swift; sourceTree = "<group>"; };
+		FF3A14C429B1FA0300D1EF03 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FF3D6D85292FAB6E0046015C /* EditGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGallery.swift; sourceTree = "<group>"; };
 		FF3D6D8A292FB9550046015C /* MenuButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonHelper.swift; sourceTree = "<group>"; };
 		FF3D6D8D293033E50046015C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				FFC614632912E06100CE75E2 /* GoogleService-Info.plist */,
 				FFB4D5EA291194AD0065955F /* Localizable.strings */,
 				FFC63489291197F6001711BC /* font */,
+				FF3A14C429B1FA0300D1EF03 /* Launch Screen.storyboard */,
 			);
 			path = DatingChamber;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 				FFC6349129119803001711BC /* Inter-Medium.ttf in Resources */,
 				FFB4D5E8291194AD0065955F /* Localizable.strings in Resources */,
 				FFB4D5AE29118EE10065955F /* Assets.xcassets in Resources */,
+				FF3A14C529B1FA0300D1EF03 /* Launch Screen.storyboard in Resources */,
 				FFC6348F29119803001711BC /* Inter-Black.ttf in Resources */,
 				FFC614642912E06100CE75E2 /* GoogleService-Info.plist in Resources */,
 				FFC6349329119803001711BC /* Inter-Regular.ttf in Resources */,
@@ -1340,6 +1344,7 @@
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "The app uses information for more accurate content";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -1379,6 +1384,7 @@
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "The app uses information for more accurate content";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
