@@ -11,7 +11,6 @@ import FirebaseService
 @main
 struct DatingChamberApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @Environment(\.scenePhase) private var phase
     @StateObject var authState = AuthState()
     
     init() {
@@ -32,13 +31,6 @@ struct DatingChamberApp: App {
                 ContentView()
             case .notAuthenticated:
                 Introduction()
-            }
-        }.onChange(of: phase) { newScene in
-            switch newScene {
-            case .active:
-                UIApplication.shared.applicationIconBadgeNumber = 0
-            default:
-                break
             }
         }
     }
