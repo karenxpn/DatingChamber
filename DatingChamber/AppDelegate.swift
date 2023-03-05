@@ -15,6 +15,9 @@ import UserNotifications
 import FirebaseMessaging
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    @ObservedObject var notificationsVM = NotificationsViewModel()
+
     let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication,
@@ -22,6 +25,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
+        notificationsVM.checkPermissionStatus { status in
+            if status == .authorized {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
         return true
     }
     
@@ -40,6 +50,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let firebaseAuth = Auth.auth()
+        
+        let state = application.applicationState
+        switch state {
+        case .background:
+            application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+        default:
+            break
+        }
+        
         if (firebaseAuth.canHandleNotification(userInfo)){
             print(userInfo)
             completionHandler(UIBackgroundFetchResult.newData)
