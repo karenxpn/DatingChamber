@@ -37,6 +37,8 @@ class RoomViewModel: AlertViewModel, ObservableObject {
     @MainActor func sendMessage(messageType: MessageType,
                                 duration: String? = nil) {
         
+        print("sending message")
+        
         var sendingMessage = message
         message = ""
         
@@ -46,6 +48,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
         
         Task {
             if let media = media {
+                print("media found")
                 if  messageType != .text  {
                     let mediaUploadResult = await manager.uploadMedia(media: media, type: messageType)
                     switch mediaUploadResult {
@@ -68,6 +71,7 @@ class RoomViewModel: AlertViewModel, ObservableObject {
                                                    content: sendingMessage,
                                                    repliedTo: replyTo,
                                                    duration: duration)
+            print("result = \(result)")
             switch result {
             case .failure(let error):
                 self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)

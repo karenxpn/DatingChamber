@@ -7,6 +7,8 @@ target 'DatingChamber' do
 
   # Pods for DatingChamber
 	pod 'GeoFire/Utils'
+	pod 'Alamofire'
+
 
   target 'DatingChamberTests' do
     inherit! :search_paths

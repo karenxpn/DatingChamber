@@ -74,7 +74,7 @@ enum DatabasePaths : RawRepresentable, CaseIterable, Codable {
         case .blogs                     : return "Blogs"
         case .messages                  : return "messages"
         case .interests                 : return "Interests"
-        case let .unknown(value)    : return value
+        case let .unknown(value)        : return value
         }
     }
 }
