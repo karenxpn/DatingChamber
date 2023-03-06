@@ -9,12 +9,18 @@ import Foundation
 import SwiftUI
 import UserNotifications
 import OneSignal
+import FirebaseFirestore
 
 class NotificationsViewModel: ObservableObject {
+    @AppStorage("userID") var userID: String = ""
     
     func requestPermission() {
         OneSignal.promptForPushNotifications(userResponse: { accepted in
-          print("User accepted notification: \(accepted)")
+            if accepted {
+                let player = OneSignal.getDeviceState().userId
+                Firestore.firestore().collection(DatabasePaths.players.rawValue).document(self.userID)
+                    .setData(["player_id": player])
+            }
         })
     }
     

@@ -26,6 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         OneSignal.initWithLaunchOptions(launchOptions)
         OneSignal.setAppId(Credentials.oneSignalAppID)
 
+
         return true
     }
     
