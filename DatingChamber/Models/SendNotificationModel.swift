@@ -7,15 +7,16 @@
 
 import Foundation
 struct NotificationMessageModel: Codable {
-    var message: SendNotificationModel
-}
-
-struct SendNotificationModel: Codable {
-    var token: String
-    var notification: NotificationModel
-}
-
-struct NotificationModel: Codable {
-    var body: String
     var title: String
+    var subtitle: NotificationSubtitle
+    var contents: NotificationContents
+    var include_player_ids: [String]
+}
+
+struct NotificationSubtitle: Codable {
+    var en: String
+}
+
+struct NotificationContents: Codable {
+    var en: String
 }

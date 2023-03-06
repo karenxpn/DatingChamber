@@ -328,16 +328,24 @@ extension ChatService: ChatServiceProtocol {
                         
             let _ = try await db.collection(DatabasePaths.chats.rawValue).document(chatID).updateData(["lastMessage": Firestore.Encoder().encode(lastMessage)])
             
+            
+            // notification
+            // find the user to send notification
+            // find player id by user id
+            // send notification
             let uid = try await db.collection(DatabasePaths.chats.rawValue).document(chatID).getDocument(as: ChatModel.self).uids.first(where: { $0 != userID})
             
             if let uid {
                 let playerID = try await db.collection(DatabasePaths.players.rawValue).document(uid).getDocument().get("player_id") as? String
                 
                 if let playerID {
-                    OneSignal.postNotification(["title": "Dating Chamber",
-                                                "subtitle": ["en": "New message received form \(curMessage.senderName ?? "Anonymous")"],
-                                                "contents": ["en" : curMessage.content],
-                                                "include_player_ids": [playerID]])
+                    let notification = NotificationMessageModel(title: "Dating Chamber",
+                                                                subtitle: NotificationSubtitle(en: "New message received form \(curMessage.senderName ?? "Anonymous")"),
+                                                                contents: NotificationContents(en: "\(curMessage.content)"),
+                                                                include_player_ids: [playerID])
+                    let encodedNotification = try Firestore.Encoder().encode(notification)
+                    
+                    OneSignal.postNotification(encodedNotification)
                 }
             }
         }
