@@ -28,12 +28,10 @@ struct NotificationsRequest: View {
             Spacer()
 
             ButtonHelper(disabled: false, label: NSLocalizedString("continue", comment: "")) {
-                notificationsVM.checkPermissionStatus { status in
-                    if status == .notDetermined {
-                        notificationsVM.requestPermission()
-                    } else {
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                    }
+                if notificationsVM.checkPermissionStatus() == .notDetermined {
+                    notificationsVM.requestPermission()
+                } else {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                 }
             }
 

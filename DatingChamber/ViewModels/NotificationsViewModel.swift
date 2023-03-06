@@ -8,32 +8,17 @@
 import Foundation
 import SwiftUI
 import UserNotifications
+import OneSignal
 
-class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, ObservableObject {
-    
-    override init() {
-        super.init()
-    }
+class NotificationsViewModel: ObservableObject {
     
     func requestPermission() {
-        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
-
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: options) { (granted, error) in
-            
-            guard granted else { return }
-            
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+          print("User accepted notification: \(accepted)")
+        })
     }
     
-    func checkPermissionStatus(completion: @escaping(UNAuthorizationStatus) -> ()) {
-        UNUserNotificationCenter.current().getNotificationSettings { permission in
-            DispatchQueue.main.async {
-                completion(permission.authorizationStatus)
-            }
-        }
+    func checkPermissionStatus() -> OSNotificationPermission {
+        return OneSignal.getDeviceState().notificationPermissionStatus
     }
 }
