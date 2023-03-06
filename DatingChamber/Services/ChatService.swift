@@ -12,6 +12,7 @@ import FirebaseStorage
 import SwiftUI
 import FirebaseService
 import Alamofire
+import OneSignal
 
 protocol ChatServiceProtocol {
     func fetchChats(userID: String, completion: @escaping(Result<[ChatModel], Error>) -> ())
@@ -297,7 +298,6 @@ extension ChatService: ChatServiceProtocol {
         return await APIHelper.shared.voidRequest {
             let user = try await db.collection(DatabasePaths.users.rawValue).document(userID).getDocument(as: UserModel.self)
             
-            print(user)
             let message = MessageModel(createdAt: Timestamp(date: Date().toGlobalTime()),
                                        type: type,
                                        content: content,
@@ -327,6 +327,19 @@ extension ChatService: ChatServiceProtocol {
                                                status: curMessage.status)
                         
             let _ = try await db.collection(DatabasePaths.chats.rawValue).document(chatID).updateData(["lastMessage": Firestore.Encoder().encode(lastMessage)])
+            
+            let uid = try await db.collection(DatabasePaths.chats.rawValue).document(chatID).getDocument(as: ChatModel.self).uids.first(where: { $0 != userID})
+            
+            if let uid {
+                let playerID = try await db.collection(DatabasePaths.players.rawValue).document(uid).getDocument().get("player_id") as? String
+                
+                if let playerID {
+                    OneSignal.postNotification(["title": "Dating Chamber",
+                                                "subtitle": ["en": "New message received form \(curMessage.senderName ?? "Anonymous")"],
+                                                "contents": ["en" : curMessage.content],
+                                                "include_player_ids": [playerID]])
+                }
+            }
         }
     }
     
