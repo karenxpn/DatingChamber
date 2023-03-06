@@ -69,7 +69,7 @@ extension UserService: UserServiceProtocol {
     func signOut(userID: String) async -> Result<Void, Error> {
         return await APIHelper.shared.voidRequest {
             try await db.collection(DatabasePaths.users.rawValue).document(userID).setData(["online": false,
-                                                                       "lastVisit": Date().toGlobalTime()], merge: true)
+                                                                       "lastVisit": Timestamp(date: Date().toGlobalTime())], merge: true)
             try Auth.auth().signOut()
         }
     }

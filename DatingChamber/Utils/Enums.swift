@@ -40,6 +40,7 @@ enum DatabasePaths : RawRepresentable, CaseIterable, Codable {
     case blogs
     case messages
     case interests
+    case players
     case unknown(RawValue)
     
     static let allCases: AllCases = [
@@ -53,7 +54,8 @@ enum DatabasePaths : RawRepresentable, CaseIterable, Codable {
         .report,
         .blogs,
         .messages,
-        .interests
+        .interests,
+        .players
     ]
     
     init(rawValue: RawValue) {
@@ -74,7 +76,8 @@ enum DatabasePaths : RawRepresentable, CaseIterable, Codable {
         case .blogs                     : return "Blogs"
         case .messages                  : return "messages"
         case .interests                 : return "Interests"
-        case let .unknown(value)    : return value
+        case .players                   : return "Players"
+        case let .unknown(value)        : return value
         }
     }
 }

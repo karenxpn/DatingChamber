@@ -8,32 +8,23 @@
 import Foundation
 import SwiftUI
 import UserNotifications
+import OneSignal
+import FirebaseFirestore
 
-class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, ObservableObject {
-    
-    override init() {
-        super.init()
-    }
+class NotificationsViewModel: ObservableObject {
+    @AppStorage("userID") var userID: String = ""
     
     func requestPermission() {
-        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
-
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: options) { (granted, error) in
-            
-            guard granted else { return }
-            
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            if accepted {
+                let player = OneSignal.getDeviceState().userId
+                Firestore.firestore().collection(DatabasePaths.players.rawValue).document(self.userID)
+                    .setData(["player_id": player])
             }
-        }
+        })
     }
     
-    func checkPermissionStatus(completion: @escaping(UNAuthorizationStatus) -> ()) {
-        UNUserNotificationCenter.current().getNotificationSettings { permission in
-            DispatchQueue.main.async {
-                completion(permission.authorizationStatus)
-            }
-        }
+    func checkPermissionStatus() -> OSNotificationPermission {
+        return OneSignal.getDeviceState().notificationPermissionStatus
     }
 }
