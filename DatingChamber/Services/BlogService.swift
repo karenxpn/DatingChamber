@@ -98,7 +98,8 @@ extension BlogService: BlogServiceProtocol {
     func fetchPosts(userID: String, lastDocSnapshot: QueryDocumentSnapshot?) async -> Result<([PostModel], QueryDocumentSnapshot?), Error> {
         do {
             // filter data
-            let friends = try await db.collection(DatabasePaths.users.rawValue).document(userID).collection(DatabasePaths.friends.rawValue).getDocuments().documents.map{ $0.documentID }
+            var friends = try await db.collection(DatabasePaths.users.rawValue).document(userID).collection(DatabasePaths.friends.rawValue).getDocuments().documents.map{ $0.documentID }
+            friends.append(userID)
             
             
             var query: Query = db.collection(DatabasePaths.blogs.rawValue).whereField("user.id", in: friends).order(by: "createdAt", descending: true)
